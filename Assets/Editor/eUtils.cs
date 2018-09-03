@@ -95,10 +95,7 @@ public class eUtils : Editor
                     }
                 }
                 GUILayout.EndVertical();
-                SerializedObject serializedObject = new SerializedObject(conditions[i]);
-                SerializedProperty type = serializedObject.FindProperty("type");
-                EditorGUILayout.PropertyField(type, GUIContent.none);
-                serializedObject.ApplyModifiedProperties();
+                DrawConditionSelector(conditions[i]);
                 GUILayout.EndHorizontal();
             }
             if (GUILayout.Button("Add condition"))
@@ -161,11 +158,7 @@ public class eUtils : Editor
                     }
                 }
                 GUILayout.EndVertical();
-                SerializedObject serializedObject = new SerializedObject(effects[i]);
-                SerializedProperty type = serializedObject.FindProperty("type");
-                EditorGUILayout.PropertyField(type, GUIContent.none);
-                serializedObject.ApplyModifiedProperties();
-
+                DrawEffectSelector(effects[i]);
                 GUILayout.EndHorizontal();
             }
             if (GUILayout.Button("Add effect"))
