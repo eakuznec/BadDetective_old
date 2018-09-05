@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace BadDetective.LogicMap
 {
-    public interface iLogicMapContainer
+    public interface iLogicMapContainer: iEffectsContainer
     {
-        Transform GetTransform();
+        List<LogicMap> GetLogicMaps();
+        List<string> GetLogicMapNames();
     }
 }

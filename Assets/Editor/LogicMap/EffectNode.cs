@@ -86,6 +86,18 @@ namespace BadDetective.LogicMap
                         }
                     }
                 }
+                else if (logicEffect.actionInput is WaitFunction)
+                {
+                    WaitFunction input = (WaitFunction)logicEffect.actionInput;
+                    if (input.realize)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                }
             }
 
             GUILayout.FlexibleSpace();

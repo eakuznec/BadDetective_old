@@ -139,9 +139,15 @@ namespace BadDetective.LogicMap
             EditorGUILayout.PropertyField(soWait.FindProperty("waitType"), GUIContent.none);
             float min = EditorGUILayout.FloatField("Minutes", waitFunction.waitTime.minutes);
             int hour = EditorGUILayout.IntField("Hours", waitFunction.waitTime.hours);
-            int day = EditorGUILayout.IntField("Days", waitFunction.waitTime.days);
-            int week = EditorGUILayout.IntField("Weeks", waitFunction.waitTime.weeks);
-            int month = EditorGUILayout.IntField("Months", waitFunction.waitTime.months);
+            int day = 0;
+            int week = 0;
+            int month = 0;
+            if (waitFunction.waitType == WaitType.RELATION || waitFunction.waitType == WaitType.ABSOLUTE)
+            {
+                day = EditorGUILayout.IntField("Days", waitFunction.waitTime.days);
+                week = EditorGUILayout.IntField("Weeks", waitFunction.waitTime.weeks);
+                month = EditorGUILayout.IntField("Months", waitFunction.waitTime.months);
+            }
             GameTime gameTime = new GameTime 
 {
                 minutes = min,
@@ -211,6 +217,18 @@ namespace BadDetective.LogicMap
                         {
                             GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                         }
+                    }
+                }
+                else if (waitFunction.actionOutput is LogicEffect)
+                {
+                    LogicEffect output = (LogicEffect)waitFunction.actionOutput;
+                    if (!waitFunction.realize)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                     }
                 }
             }

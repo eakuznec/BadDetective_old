@@ -12,10 +12,6 @@ namespace BadDetective
         {
             QuestEvent questEvent = (QuestEvent)target;
             EditorGUILayout.PropertyField(serializedObject.FindProperty("eventName"));
-            if(questEvent.name != string.Format("QuestEvent_{0}", questEvent.eventName))
-            {
-                questEvent.name = string.Format("QuestEvent_{0}", questEvent.eventName);
-            }
             EditorGUILayout.PropertyField(serializedObject.FindProperty("eventDescription"));
             eUtils.DrawPointOnMapSelector(ref questEvent.tier, ref questEvent.point);
             GUILayout.Space(10);

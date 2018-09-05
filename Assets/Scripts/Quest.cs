@@ -23,9 +23,7 @@ namespace BadDetective
         public List<FileNote> notes = new List<FileNote>();
         public QuestType type;
         public MainState mainState;
-        public LogicMap.LogicMap startLogicMap;
-        public LogicMap.LogicMap completeLogicMap;
-        public LogicMap.LogicMap failLogicMap;
+        public List<LogicMap.LogicMap> logicMaps = new List<LogicMap.LogicMap>();
         public List<QuestState> questStates = new List<QuestState>();
         public List<QuestEvent> questEvents = new List<QuestEvent>();
 
@@ -46,18 +44,6 @@ namespace BadDetective
         public void ChangeMainState(MainState newMainState)
         {
             mainState = newMainState;
-            if (mainState == MainState.Started && startLogicMap!=null)
-            {
-                startLogicMap.RealizeLogicMap(this);
-            }
-            else if(mainState == MainState.Completed && completeLogicMap!=null)
-            {
-                completeLogicMap.RealizeLogicMap(this);
-            }
-            else if(mainState == MainState.Failed && failLogicMap!=null)
-            {
-                failLogicMap.RealizeLogicMap(this);
-            }
         }
 
         public void CreateQuestAction(MainState state)
@@ -97,6 +83,26 @@ namespace BadDetective
                 retVal.Add(questEvent.eventName);
             }
             return retVal.ToArray();
+        }
+
+        public Character GetCharacterOwner()
+        {
+            return null;
+        }
+
+        public List<LogicMap.LogicMap> GetLogicMaps()
+        {
+            return logicMaps;
+        }
+
+        public List<string> GetLogicMapNames()
+        {
+            List<string> retVal = new List<string>();
+            foreach(LogicMap.LogicMap logiMap in logicMaps)
+            {
+                retVal.Add(logiMap.logicMapName);
+            }
+            return retVal;
         }
     }
 }

@@ -1049,7 +1049,7 @@ namespace BadDetective.LogicMap
                 ((LogicEffect)effectNode.logicFunction).effect = effect.AddComponent<Effect>();
                 logicEffect.transform.parent = goEffects.transform;
                 logicMap.effects.Add((LogicEffect)effectNode.logicFunction);
-                effectNode.logicFunction.windowRect = new Rect(mousePos, new Vector2(280, 140));
+                effectNode.logicFunction.windowRect = new Rect(mousePos, new Vector2(280, 160));
             }
             else
             {

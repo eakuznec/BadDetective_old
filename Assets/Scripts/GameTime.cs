@@ -96,6 +96,36 @@ namespace BadDetective
             });
         }
 
+        public static bool operator ==(GameTime time1, GameTime time2)
+        {
+            return ConvertToFloat(time1) == ConvertToFloat(time2);
+        }
+
+        public static bool operator !=(GameTime time1, GameTime time2)
+        {
+            return ConvertToFloat(time1) != ConvertToFloat(time2);
+        }
+
+        public static bool operator >(GameTime time1, GameTime time2)
+        {
+            return ConvertToFloat(time1) > ConvertToFloat(time2);
+        }
+
+        public static bool operator <(GameTime time1, GameTime time2)
+        {
+            return ConvertToFloat(time1) < ConvertToFloat(time2);
+        }
+
+        public static bool operator >=(GameTime time1, GameTime time2)
+        {
+            return ConvertToFloat(time1) >= ConvertToFloat(time2);
+        }
+
+        public static bool operator <=(GameTime time1, GameTime time2)
+        {
+            return ConvertToFloat(time1) <= ConvertToFloat(time2);
+        }
+
         public GameTime GetDayHour()
         {
             return new GameTime()

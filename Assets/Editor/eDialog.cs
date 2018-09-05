@@ -2,31 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using BadDetective.Dialog;
 
-[CustomEditor (typeof(Dialog))]
-public class eDialog : Editor
+namespace BadDetective.Dialog
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(Dialog))]
+    public class eDialog : Editor
     {
-        Dialog dialog = (Dialog)target;
-        if (GUILayout.Button("Edit"))
+        public override void OnInspectorGUI()
         {
-            if (dialog != null)
+            Dialog dialog = (Dialog)target;
+            if (GUILayout.Button("Edit"))
             {
-                DialogEditor.Init();
-                if (eUtils.isPrefab(dialog))
+                if (dialog != null)
                 {
-                    DialogEditor.editor.prefab = dialog.gameObject;
+                    DialogEditor.Init();
+                    if (eUtils.isPrefab(dialog))
+                    {
+                        DialogEditor.editor.prefab = dialog.gameObject;
+                    }
+                    else
+                    {
+                        DialogEditor.editor.prefab = ((Dialog)PrefabUtility.GetPrefabParent(dialog)).gameObject;
+                    }
+                    DialogEditor.editor.LoadDialog();
                 }
-                else
-                {
-                    DialogEditor.editor.prefab = ((Dialog)PrefabUtility.GetPrefabParent(dialog)).gameObject;
-                }
-                DialogEditor.editor.LoadDialog();
-            }
 
+            }
+            base.OnInspectorGUI();
         }
-        base.OnInspectorGUI();
     }
 }

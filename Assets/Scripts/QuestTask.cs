@@ -11,9 +11,12 @@ namespace BadDetective
         public string taskDescription;
         public bool isMain;
         public MainState mainState;
+        public bool showTask;
         private Team curTeam;
         [HideInInspector]
-        public LogicMap.LogicMap logicMap;
+        public LogicMap.LogicMap startLogicMap;
+        [HideInInspector]
+        public List<LogicMap.LogicMap> logicMaps = new List<LogicMap.LogicMap>();
 
         public void ChangeMainState(MainState newState)
         {
@@ -38,12 +41,39 @@ namespace BadDetective
         public void Realize(Team team)
         {
             curTeam = team;
-            logicMap.RealizeLogicMap(this);
+            startLogicMap.RealizeLogicMap(this);
         }
 
         public Team GetTeam()
         {
             return curTeam;
+        }
+
+        public Character GetCharacterOwner()
+        {
+            return curTeam.detectives[0];
+        }
+
+        public List<LogicMap.LogicMap> GetLogicMaps()
+        {
+            return logicMaps;
+        }
+
+        public List<string> GetLogicMapNames()
+        {
+            List<string> retVal = new List<string>();
+            foreach (LogicMap.LogicMap logiMap in logicMaps)
+            {
+                if (logiMap != null)
+                {
+                    retVal.Add(logiMap.logicMapName);
+                }
+                else
+                {
+                    retVal.Add("-NULL-");
+                }
+            }
+            return retVal;
         }
     }
 }

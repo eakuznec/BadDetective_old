@@ -7,6 +7,7 @@ namespace BadDetective.LogicMap
     [ExecuteInEditMode]
     public class LogicMap : MonoBehaviour
     {
+        public string logicMapName;
         public iLogicMapContainer curOwner;
         public List<iLogicMapContainer> owners = new List<iLogicMapContainer>();
         public bool startRealize;

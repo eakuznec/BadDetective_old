@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using BadDetective.LogicMap;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,21 @@ namespace BadDetective.UI
         public Image photo;
         public Button acceptButton;
         public Button ignorButton;
+
+        public Character GetCharacterOwner()
+        {
+            return null;
+        }
+
+        public List<string> GetLogicMapNames()
+        {
+            return null;
+        }
+
+        public List<LogicMap.LogicMap> GetLogicMaps()
+        {
+            return null;
+        }
 
         public Transform GetTransform()
         {

@@ -7,19 +7,21 @@ namespace BadDetective
     public class Effect : MonoBehaviour
     {
         public EffectType type;
-        LogicMap.iLogicMapContainer logicMapContainer;
+        iEffectsContainer effectsContainer;
         public Quest quest;
         public MainState mainState;
         public QuestEvent questEvent;
         public QuestTask task;
         public FileNote fileNote;
         public Dialog.Dialog dialog;
+        public LogicMap.LogicMapOwnerType logicMapOwner;
+        public LogicMap.LogicMap logicMap;
         public int intValue;
         public bool boolValue;
 
-        public void Realize(LogicMap.iLogicMapContainer logicMapContainer)
+        public void Realize(iEffectsContainer effectsContainer)
         {
-            this.logicMapContainer = logicMapContainer;
+            this.effectsContainer = effectsContainer;
             QuestManager questManager = QuestManager.GetInstantiate();
             if (type == EffectType.CHANGE_QUEST)
             {
@@ -27,9 +29,9 @@ namespace BadDetective
             }
             else if (type == EffectType.CHANGE_TASK)
             {
-                int questIndex = questManager.GetQuestInstances().IndexOf(quest);
-                int eventIndex = questManager.GetQuestInstances()[questIndex].GetEvents().IndexOf(questEvent);
-                int taskIndex = questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
+                int questIndex = questManager.GetQuests().IndexOf(quest);
+                int eventIndex = questManager.GetQuests()[questIndex].GetEvents().IndexOf(questEvent);
+                int taskIndex = questManager.GetQuests()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
                 QuestEvent qEvent = questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex];
                 qEvent.ChangeTask(qEvent.GetTask()[taskIndex], mainState);
             }
@@ -40,16 +42,27 @@ namespace BadDetective
             }
             else if(type == EffectType.START_DIALOG)
             {
-                Character owner = null;
-                if(logicMapContainer is QuestTask)
-                {
-                    owner = ((QuestTask)logicMapContainer).GetTeam().detectives[0];
-                }
-                else if(logicMapContainer is Dialog.Dialog)
-                {
-                    owner = ((Dialog.Dialog)logicMapContainer).owner;
-                }
+                Character owner = effectsContainer.GetCharacterOwner();
                 Dialog.DialogManager.GetInstantiate().StartDialog(dialog, owner);
+            }
+            else if(type == EffectType.REALIZE_LOGIC_MAP)
+            {
+                if(logicMapOwner == LogicMap.LogicMapOwnerType.QUEST)
+                {
+                    logicMap.RealizeLogicMap(questManager.GetQuestInstance(quest));
+                }
+                else if (logicMapOwner == LogicMap.LogicMapOwnerType.QUEST_TASK)
+                {
+                    int questIndex = questManager.GetQuests().IndexOf(quest);
+                    int eventIndex = questManager.GetQuests()[questIndex].GetEvents().IndexOf(questEvent);
+                    int taskIndex = questManager.GetQuests()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
+                    QuestTask ownerTask = questManager.GetQuestInstance(quest).GetEvents()[eventIndex].GetTask()[taskIndex];
+                    logicMap.RealizeLogicMap(ownerTask);
+                }
+            }
+            else if(type == EffectType.CHECK_QUEST)
+            {
+
             }
         }
 

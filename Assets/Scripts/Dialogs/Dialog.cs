@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BadDetective.Dialog
 {
-    public class Dialog : MonoBehaviour, LogicMap.iLogicMapContainer
+    public class Dialog : MonoBehaviour, iEffectsContainer
     {
         public string dialogName;
         public string pathToSave;
@@ -13,9 +13,9 @@ namespace BadDetective.Dialog
         [HideInInspector]
         public Character owner;
 
-        public Transform GetTransform()
+        public Character GetCharacterOwner()
         {
-            return transform;
+            return owner;
         }
     }
 }

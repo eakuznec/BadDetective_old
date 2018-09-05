@@ -47,7 +47,6 @@ namespace BadDetective
                 }
                 GUILayout.Space(10);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("questName"));
-                    quest.gameObject.name = string.Format("Quest_{0}", quest.questName);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("shortDescription"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("client"));
                 GUILayout.Space(10);
@@ -87,53 +86,76 @@ namespace BadDetective
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("type"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("mainState"));
                 GUILayout.Space(10);
-                if (GUILayout.Button("Logic Maps"))
+                if (GUILayout.Button(string.Format("Logic Maps ({0})", quest.logicMaps.Count)))
                 {
                     showLogicMap = !showLogicMap;
                 }
                 if (showLogicMap)
                 {
-                    EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("startLogicMap"));
-                    if (quest.startLogicMap == null)
+                    int logicMapCount = EditorGUILayout.IntField("Logic Maps Count", quest.logicMaps.Count);
+                    int dif = logicMapCount - quest.logicMaps.Count;
+                    if (dif > 0)
                     {
-                        if(GUILayout.Button("Create", new GUILayoutOption[] { GUILayout.Width(100) }))
+                        for(int i = 0; i < dif; i++)
                         {
-                            GameObject goFolder = null;
-                            if (quest.transform.Find("LogicMaps"))
-                            {
-                                goFolder = quest.transform.Find("LogicMaps").gameObject;
-                            }
-                            if (goFolder == null)
-                            {
-                                goFolder = new GameObject("LogicMaps");
-                                goFolder.transform.parent = quest.transform;
-                            }
-                            GameObject newLogicMap = new GameObject(string.Format("LogicMap_{0}_Start", quest.questName));
-                            newLogicMap.transform.parent = goFolder.transform;
-                            quest.startLogicMap = newLogicMap.AddComponent<LogicMap.LogicMap>();
-                            if (LogicMap.LogicMapEditor.editor != null)
-                            {
-                                LogicMap.LogicMapEditor.editor.Close();
-                            }
-                            LogicMap.LogicMapEditor.logicMap = quest.startLogicMap;
-                            LogicMap.LogicMapEditor.ShowEditor();
+                            quest.logicMaps.Add(null);
                         }
                     }
-                    else
+                    else if (dif < 0)
                     {
-                        if (GUILayout.Button("Edit", new GUILayoutOption[] { GUILayout.Width(100) }))
+                        for (int i = 0; i < -dif; i++)
                         {
-                            if (LogicMap.LogicMapEditor.editor != null)
-                            {
-                                LogicMap.LogicMapEditor.editor.Close();
-                            }
-                            LogicMap.LogicMapEditor.logicMap = quest.startLogicMap;
-                            LogicMap.LogicMapEditor.ShowEditor();
+                            quest.logicMaps.RemoveAt(quest.logicMaps.Count-1);
                         }
                     }
+                    for (int i=0; i < quest.GetLogicMaps().Count; i++)
+                    {
+                        EditorGUILayout.BeginHorizontal();
+                        if (quest.logicMaps[i] != null)
+                        {
+                            quest.logicMaps[i].logicMapName = EditorGUILayout.TextField(quest.logicMaps[i].logicMapName);
+                        }
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty(string.Format("logicMaps.Array.data[{0}]", i)), GUIContent.none);
+                        if (quest.GetLogicMaps()[i] == null)
+                        {
+                            if (GUILayout.Button("Create", new GUILayoutOption[] { GUILayout.Width(100) }))
+                            {
+                                GameObject goFolder = null;
+                                if (quest.transform.Find("LogicMaps"))
+                                {
+                                    goFolder = quest.transform.Find("LogicMaps").gameObject;
+                                }
+                                if (goFolder == null)
+                                {
+                                    goFolder = new GameObject("LogicMaps");
+                                    goFolder.transform.parent = quest.transform;
+                                }
+                                GameObject newLogicMap = new GameObject(string.Format("LogicMap_{0}_Start", quest.questName));
+                                newLogicMap.transform.parent = goFolder.transform;
+                                quest.GetLogicMaps()[i] = newLogicMap.AddComponent<LogicMap.LogicMap>();
+                                if (LogicMap.LogicMapEditor.editor != null)
+                                {
+                                    LogicMap.LogicMapEditor.editor.Close();
+                                }
+                                LogicMap.LogicMapEditor.logicMap = quest.GetLogicMaps()[i];
+                                LogicMap.LogicMapEditor.ShowEditor();
+                            }
+                        }
+                        else
+                        {
+                            if (GUILayout.Button("Edit", new GUILayoutOption[] { GUILayout.Width(100) }))
+                            {
+                                if (LogicMap.LogicMapEditor.editor != null)
+                                {
+                                    LogicMap.LogicMapEditor.editor.Close();
+                                }
+                                LogicMap.LogicMapEditor.logicMap = quest.GetLogicMaps()[i];
+                                LogicMap.LogicMapEditor.ShowEditor();
+                            }
+                        }
 
-                    EditorGUILayout.EndHorizontal();
+                        EditorGUILayout.EndHorizontal();
+                    }
                 }
                 GUILayout.Space(10);
                 if (GUILayout.Button(string.Format("File Notes ({0})", quest.notes.Count)))

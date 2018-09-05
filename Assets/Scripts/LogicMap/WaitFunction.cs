@@ -61,6 +61,35 @@ namespace BadDetective.LogicMap
             {
                 waitAction.timer = timeline.GetTime() + GameTime.ConvertToFloat(waitTime);
             }
+            else if(waitType == WaitType.ABSOLUTE_HOURS)
+            {
+
+                GameTime curTime = GameTime.Convert(timeline.GetTime());
+                if (curTime.GetDayHour() <= waitTime)
+                {
+                    GameTime resultTime = new GameTime()
+                    {
+                        minutes = waitTime.minutes,
+                        hours = waitTime.hours,
+                        days = curTime.days,
+                        weeks = curTime.weeks,
+                        months = curTime.months
+                    };
+                    waitAction.timer = GameTime.ConvertToFloat(resultTime);
+                }
+                else if (curTime.GetDayHour() > waitTime)
+                {
+                    GameTime resultTime = new GameTime()
+                    {
+                        minutes = waitTime.minutes,
+                        hours = waitTime.hours,
+                        days = curTime.days + 1,
+                        weeks = curTime.weeks,
+                        months = curTime.months
+                    };
+                    waitAction.timer = GameTime.ConvertToFloat(resultTime);
+                }
+            }
             timeline.RegistrateAction(waitAction);
         }
     }
@@ -68,6 +97,7 @@ namespace BadDetective.LogicMap
     public enum WaitType
     {
         RELATION,
-        ABSOLUTE
+        ABSOLUTE,
+        ABSOLUTE_HOURS
     }
 }
