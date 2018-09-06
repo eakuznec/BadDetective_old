@@ -80,11 +80,6 @@ namespace BadDetective
             return retVal.ToArray();
         }
 
-        public Character GetCharacterOwner()
-        {
-            return null;
-        }
-
         public List<LogicMap.LogicMap> GetLogicMaps()
         {
             return logicMaps;
@@ -113,6 +108,38 @@ namespace BadDetective
                 retVal.Add(questObjective.objective);
             }
             return retVal;
+        }
+
+        public List<QuestState> GetQuestStates()
+        {
+            return questStates;
+        }
+
+        public List<string> GetQuestStateName()
+        {
+            List<string> retVal = new List<string>();
+            foreach(QuestState state in questStates)
+            {
+                if (state != null)
+                {
+                    retVal.Add(state.stateName);
+                }
+                else
+                {
+                    retVal.Add("");
+                }
+            }
+            return retVal;
+        }
+
+        public Character GetCharacterOwner()
+        {
+            return null;
+        }
+
+        public Team GetTeam()
+        {
+            return null;
         }
     }
 }

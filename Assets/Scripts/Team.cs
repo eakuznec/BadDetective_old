@@ -12,6 +12,7 @@ namespace BadDetective
         public iActivityPlace curTarget;
         public List<QuestTask> targetTasks = new List<QuestTask>();
         public QuestTask curTask;
+        public List<Item> items = new List<Item>();
 
         [HideInInspector]
         public DetectiveActivity activity;
@@ -264,7 +265,6 @@ namespace BadDetective
                 {
                     if(task!=null && task.mainState == MainState.Started)
                     {
-                        curTask = task;
                         curTask.Realize(this);
                         break;
                     }

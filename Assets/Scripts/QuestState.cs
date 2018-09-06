@@ -12,6 +12,5 @@ namespace BadDetective
         public bool boolValue;
         public string specialValue;
         public List<string> possibleValue = new List<string>();
-
     }
 }

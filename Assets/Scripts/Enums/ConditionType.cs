@@ -7,5 +7,6 @@ public enum ConditionType
     NONE,
     QUEST_MAINSTATE,
     QUEST_STATE,
-    CUR_TIME_IN_HOUR_RANGE
+    CUR_TIME_IN_HOUR_RANGE,
+    TASK_MAINSTATE
 }

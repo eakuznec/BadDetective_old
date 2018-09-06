@@ -17,6 +17,7 @@ namespace BadDetective
         public Dialog.Dialog dialog;
         public LogicMap.LogicMapOwnerType logicMapOwner;
         public LogicMap.LogicMap logicMap;
+        public Item item;
         public int intValue;
         public bool boolValue;
 
@@ -68,10 +69,42 @@ namespace BadDetective
                 int questIndex = questManager.GetQuestInstances().IndexOf(quest);
                 questManager.GetQuestInstances()[questIndex].notes.Add(fileNote);
             }
-            else if(type == EffectType.START_DIALOG)
+            else if(type == EffectType.ADD_ITEM)
             {
-                Character owner = effectsContainer.GetCharacterOwner();
-                Dialog.DialogManager.GetInstantiate().StartDialog(dialog, owner);
+                Team owner = effectsContainer.GetTeam();
+                if (owner != null)
+                {
+                    Item newItem = Instantiate(item, owner.transform);
+                    owner.items.Add(newItem);
+                }
+                else
+                {
+                    Agency agency = Agency.GetInstantiate();
+                    Item newItem = Instantiate(item, agency.transform);
+                    agency.items.Add(newItem);
+                }
+            }
+            else if(type == EffectType.REALIZE_TASK)
+            {
+                int questIndex = questManager.GetQuests().IndexOf(quest);
+                int eventIndex = -1;
+                int taskIndex = -1;
+                if (questIndex != -1)
+                {
+                    eventIndex = questManager.GetQuests()[questIndex].GetEvents().IndexOf(questEvent);
+                    taskIndex = questManager.GetQuests()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
+                }
+                else
+                {
+                    questIndex = questManager.GetQuestInstances().IndexOf(quest);
+                    eventIndex = questManager.GetQuestInstances()[questIndex].GetEvents().IndexOf(questEvent);
+                    taskIndex = questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
+                }
+                Team owner = effectsContainer.GetTeam();
+                if (owner != null)
+                {
+                    questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex].GetTask()[taskIndex].Realize(owner);
+                }
             }
             else if(type == EffectType.REALIZE_LOGIC_MAP)
             {
@@ -88,7 +121,12 @@ namespace BadDetective
                     logicMap.RealizeLogicMap(ownerTask);
                 }
             }
-            else if(type == EffectType.CHECK_QUEST)
+            else if (type == EffectType.START_DIALOG)
+            {
+                Character owner = effectsContainer.GetCharacterOwner();
+                Dialog.DialogManager.GetInstantiate().StartDialog(dialog, owner);
+            }
+            else if (type == EffectType.CHECK_QUEST)
             {
 
             }

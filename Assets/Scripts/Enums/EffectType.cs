@@ -13,7 +13,9 @@ namespace BadDetective
         START_DIALOG,
         REALIZE_LOGIC_MAP,
         CHECK_QUEST,
-        CHANGE_OBJECTIVE
+        CHANGE_OBJECTIVE,
+        ADD_ITEM,
+        REALIZE_TASK
     }
 
 }

@@ -30,7 +30,7 @@ namespace BadDetective.LogicMap
         [MenuItem("Window/Logic Map Editor")]
         public static void ShowEditor()
         {
-            editor = EditorWindow.GetWindow<LogicMapEditor>(false, "Logic Map Editor");
+            editor = EditorWindow.GetWindow<LogicMapEditor>(false, "Logic Map");
 
             //editor.serializedObject = new SerializedObject(editor);
             //editor.property = editor.serializedObject.FindProperty("prefab");
@@ -288,7 +288,7 @@ namespace BadDetective.LogicMap
                                         }
                                         else if (selectFunctionNode is ChallengeNode)
                                         {
-                                            ((ChallengeFunction)selectFunctionNode.logicFunction).SetOutputLink(((ChallengeNode)node).logicFunction);
+                                            ((ChallengeFunction)selectFunctionNode.logicFunction).SetOutputLink(((EffectNode)node).logicFunction);
                                             ((EffectNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
                                             if (((EffectNode)node).logicFunction == logicMap.startFunction)
                                             {

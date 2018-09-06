@@ -12,10 +12,23 @@ namespace BadDetective.Dialog
         public List<DialogPhrase> phrases = new List<DialogPhrase>();
         [HideInInspector]
         public Character owner;
+        public Team teamOwner;
 
         public Character GetCharacterOwner()
         {
-            return owner;
+            if (teamOwner == null)
+            {
+                return owner;
+            }
+            else
+            {
+                return teamOwner.detectives[0];
+            }
+        }
+
+        public Team GetTeam()
+        {
+            return teamOwner;
         }
     }
 }

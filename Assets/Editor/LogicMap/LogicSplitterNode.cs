@@ -140,6 +140,26 @@ namespace BadDetective.LogicMap
                         GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                     }
                 }
+                else if (logicSplitter.actionInput is ChallengeFunction)
+                {
+                    ChallengeFunction input = (ChallengeFunction)logicSplitter.actionInput;
+                    if (input.trueOutput == logicSplitter && !input.realizeTrue)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.trueOutput == logicSplitter && input.realizeTrue)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.falseOutput == logicSplitter && !input.realizeFalse)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.falseOutput == logicSplitter && input.realizeFalse)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                }
             }
             GUILayout.FlexibleSpace();
             GUILayout.BeginVertical();

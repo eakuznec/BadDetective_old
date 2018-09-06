@@ -40,6 +40,11 @@ namespace BadDetective
 
         public void Realize(Team team)
         {
+            if (!team.targetTasks.Contains(this))
+            {
+                team.targetTasks.Add(this);
+            }
+            team.curTask = this;
             curTeam = team;
             startLogicMap.RealizeLogicMap(this);
         }

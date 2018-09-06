@@ -6,6 +6,7 @@ namespace BadDetective
 {
     public interface iEffectsContainer
     {
+        Team GetTeam();
         Character GetCharacterOwner();
     }
 }

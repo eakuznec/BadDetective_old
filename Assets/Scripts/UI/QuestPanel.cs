@@ -29,6 +29,11 @@ namespace BadDetective.UI
             return null;
         }
 
+        public Team GetTeam()
+        {
+            return null;
+        }
+
         public List<string> GetLogicMapNames()
         {
             return null;

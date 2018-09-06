@@ -20,6 +20,8 @@ namespace BadDetective
         private Money money;
         [HideInInspector]
         public List<Quest> quests = new List<Quest>();
+        [HideInInspector]
+        public List<Item> items = new List<Item>();
 
         [Header("Folders")]
         [HideInInspector]

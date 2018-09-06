@@ -98,6 +98,62 @@ namespace BadDetective.LogicMap
                         GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                     }
                 }
+                else if (logicEffect.actionInput is ChallengeFunction)
+                {
+                    ChallengeFunction input = (ChallengeFunction)logicEffect.actionInput;
+                    if (input.trueOutput == logicEffect && !input.realizeTrue)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.trueOutput == logicEffect && input.realizeTrue)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.falseOutput == logicEffect && !input.realizeFalse)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.falseOutput == logicEffect && input.realizeFalse)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                }
+                else if (logicEffect.actionInput is ChooseMethodFunction)
+                {
+                    ChooseMethodFunction input = (ChooseMethodFunction)logicEffect.actionInput;
+                    if (input.brutalOutput == logicEffect && !input.realizeBrutal)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.brutalOutput == logicEffect && input.realizeBrutal)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.carefulOutput == logicEffect && !input.realizeCareful)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.carefulOutput == logicEffect && input.realizeCareful)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.diplomatOutput == logicEffect && !input.realizeDiplomat)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.diplomatOutput == logicEffect && input.realizeDiplomat)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.scienceOutput == logicEffect && !input.realizeScience)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.scienceOutput == logicEffect && input.realizeScience)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                }
             }
 
             GUILayout.FlexibleSpace();
