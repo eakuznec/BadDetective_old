@@ -133,6 +133,62 @@ namespace BadDetective.LogicMap
                         GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                     }
                 }
+                else if (waitFunction.actionInput is ChallengeFunction)
+                {
+                    ChallengeFunction input = (ChallengeFunction)waitFunction.actionInput;
+                    if (input.trueOutput == waitFunction && !input.realizeTrue)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.trueOutput == waitFunction && input.realizeTrue)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.falseOutput == waitFunction && !input.realizeFalse)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.falseOutput == waitFunction && input.realizeFalse)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                }
+                else if (waitFunction.actionInput is ChooseMethodFunction)
+                {
+                    ChooseMethodFunction input = (ChooseMethodFunction)waitFunction.actionInput;
+                    if (input.brutalOutput == waitFunction && !input.realizeBrutal)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.brutalOutput == waitFunction && input.realizeBrutal)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.carefulOutput == waitFunction && !input.realizeCareful)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.carefulOutput == waitFunction && input.realizeCareful)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.diplomatOutput == waitFunction && !input.realizeDiplomat)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.diplomatOutput == waitFunction && input.realizeDiplomat)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.scienceOutput == waitFunction && !input.realizeScience)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.scienceOutput == waitFunction && input.realizeScience)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                }
             }
             GUILayout.FlexibleSpace();
             EditorGUILayout.BeginVertical();
@@ -203,13 +259,13 @@ namespace BadDetective.LogicMap
                 {
                     LogicSplitter output = (LogicSplitter)waitFunction.actionOutput;
                     int index = output.actionOutputs.IndexOf(waitFunction);
-                    if (index == -1)
+                    if (output.actionInput != waitFunction)
                     {
                         GUILayout.Box(GUIContent.none, noneActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                     }
                     else
                     {
-                        if (!output.realizeOutputs[index])
+                        if (!waitFunction.realize)
                         {
                             GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                         }

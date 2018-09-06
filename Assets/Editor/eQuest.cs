@@ -11,6 +11,7 @@ namespace BadDetective
         bool showStates;
         bool showNotes;
         bool showLogicMap;
+        bool showObjectives;
 
         public override void OnInspectorGUI()
         {
@@ -86,77 +87,7 @@ namespace BadDetective
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("type"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("mainState"));
                 GUILayout.Space(10);
-                if (GUILayout.Button(string.Format("Logic Maps ({0})", quest.logicMaps.Count)))
-                {
-                    showLogicMap = !showLogicMap;
-                }
-                if (showLogicMap)
-                {
-                    int logicMapCount = EditorGUILayout.IntField("Logic Maps Count", quest.logicMaps.Count);
-                    int dif = logicMapCount - quest.logicMaps.Count;
-                    if (dif > 0)
-                    {
-                        for(int i = 0; i < dif; i++)
-                        {
-                            quest.logicMaps.Add(null);
-                        }
-                    }
-                    else if (dif < 0)
-                    {
-                        for (int i = 0; i < -dif; i++)
-                        {
-                            quest.logicMaps.RemoveAt(quest.logicMaps.Count-1);
-                        }
-                    }
-                    for (int i=0; i < quest.GetLogicMaps().Count; i++)
-                    {
-                        EditorGUILayout.BeginHorizontal();
-                        if (quest.logicMaps[i] != null)
-                        {
-                            quest.logicMaps[i].logicMapName = EditorGUILayout.TextField(quest.logicMaps[i].logicMapName);
-                        }
-                        EditorGUILayout.PropertyField(serializedObject.FindProperty(string.Format("logicMaps.Array.data[{0}]", i)), GUIContent.none);
-                        if (quest.GetLogicMaps()[i] == null)
-                        {
-                            if (GUILayout.Button("Create", new GUILayoutOption[] { GUILayout.Width(100) }))
-                            {
-                                GameObject goFolder = null;
-                                if (quest.transform.Find("LogicMaps"))
-                                {
-                                    goFolder = quest.transform.Find("LogicMaps").gameObject;
-                                }
-                                if (goFolder == null)
-                                {
-                                    goFolder = new GameObject("LogicMaps");
-                                    goFolder.transform.parent = quest.transform;
-                                }
-                                GameObject newLogicMap = new GameObject(string.Format("LogicMap_{0}_Start", quest.questName));
-                                newLogicMap.transform.parent = goFolder.transform;
-                                quest.GetLogicMaps()[i] = newLogicMap.AddComponent<LogicMap.LogicMap>();
-                                if (LogicMap.LogicMapEditor.editor != null)
-                                {
-                                    LogicMap.LogicMapEditor.editor.Close();
-                                }
-                                LogicMap.LogicMapEditor.logicMap = quest.GetLogicMaps()[i];
-                                LogicMap.LogicMapEditor.ShowEditor();
-                            }
-                        }
-                        else
-                        {
-                            if (GUILayout.Button("Edit", new GUILayoutOption[] { GUILayout.Width(100) }))
-                            {
-                                if (LogicMap.LogicMapEditor.editor != null)
-                                {
-                                    LogicMap.LogicMapEditor.editor.Close();
-                                }
-                                LogicMap.LogicMapEditor.logicMap = quest.GetLogicMaps()[i];
-                                LogicMap.LogicMapEditor.ShowEditor();
-                            }
-                        }
-
-                        EditorGUILayout.EndHorizontal();
-                    }
-                }
+                eUtils.DrawLogicMapList(quest.logicMaps, quest.transform, ref showLogicMap, serializedObject);
                 GUILayout.Space(10);
                 if (GUILayout.Button(string.Format("File Notes ({0})", quest.notes.Count)))
                 {
@@ -227,6 +158,8 @@ namespace BadDetective
                         AddQuestState();
                     }
                 }
+                GUILayout.Space(10);
+                eUtils.DrawQuestObjectiveList(quest.questObjectives, quest.transform, ref showObjectives);
                 GUILayout.Space(10);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("questEvents"), true);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("notes"), true);

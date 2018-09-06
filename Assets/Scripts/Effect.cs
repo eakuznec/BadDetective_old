@@ -12,6 +12,7 @@ namespace BadDetective
         public MainState mainState;
         public QuestEvent questEvent;
         public QuestTask task;
+        public QuestObjective objective;
         public FileNote fileNote;
         public Dialog.Dialog dialog;
         public LogicMap.LogicMapOwnerType logicMapOwner;
@@ -30,10 +31,37 @@ namespace BadDetective
             else if (type == EffectType.CHANGE_TASK)
             {
                 int questIndex = questManager.GetQuests().IndexOf(quest);
-                int eventIndex = questManager.GetQuests()[questIndex].GetEvents().IndexOf(questEvent);
-                int taskIndex = questManager.GetQuests()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
+                int eventIndex = -1;
+                int taskIndex = -1;
+                if (questIndex != -1)
+                {
+                    eventIndex = questManager.GetQuests()[questIndex].GetEvents().IndexOf(questEvent);
+                    taskIndex = questManager.GetQuests()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
+                }
+                else
+                {
+                    questIndex = questManager.GetQuestInstances().IndexOf(quest);
+                    eventIndex = questManager.GetQuestInstances()[questIndex].GetEvents().IndexOf(questEvent);
+                    taskIndex = questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
+                }
                 QuestEvent qEvent = questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex];
                 qEvent.ChangeTask(qEvent.GetTask()[taskIndex], mainState);
+            }
+            else if(type == EffectType.CHANGE_OBJECTIVE)
+            {
+                int questIndex = questManager.GetQuests().IndexOf(quest);
+                int objectiveIndex = -1;
+                if(questIndex != -1)
+                {
+                    objectiveIndex = questManager.GetQuests()[questIndex].questObjectives.IndexOf(objective);
+                }
+                else
+                {
+                    questIndex = questManager.GetQuestInstances().IndexOf(quest);
+                    objectiveIndex = questManager.GetQuestInstances()[questIndex].questObjectives.IndexOf(objective);
+                }
+                QuestObjective qObjective = questManager.GetQuestInstances()[questIndex].questObjectives[objectiveIndex];
+                qObjective.state = mainState;
             }
             else if(type == EffectType.ADD_FILE_NOTE)
             {
@@ -64,6 +92,7 @@ namespace BadDetective
             {
 
             }
+            
         }
 
         public void copyContentFrom(Effect other)

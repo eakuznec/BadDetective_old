@@ -12,7 +12,8 @@ namespace BadDetective
         ADD_FILE_NOTE,
         START_DIALOG,
         REALIZE_LOGIC_MAP,
-        CHECK_QUEST
+        CHECK_QUEST,
+        CHANGE_OBJECTIVE
     }
 
 }

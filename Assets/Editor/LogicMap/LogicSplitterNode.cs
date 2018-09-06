@@ -104,6 +104,42 @@ namespace BadDetective.LogicMap
                         GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                     }
                 }
+                else if (logicSplitter.actionInput is ChooseMethodFunction)
+                {
+                    ChooseMethodFunction input = (ChooseMethodFunction)logicSplitter.actionInput;
+                    if (input.brutalOutput == logicSplitter && !input.realizeBrutal)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.brutalOutput == logicSplitter && input.realizeBrutal)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.carefulOutput == logicSplitter && !input.realizeCareful)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.carefulOutput == logicSplitter && input.realizeCareful)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.diplomatOutput == logicSplitter && !input.realizeDiplomat)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.diplomatOutput == logicSplitter && input.realizeDiplomat)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.scienceOutput == logicSplitter && !input.realizeScience)
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (input.scienceOutput == logicSplitter && input.realizeScience)
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                }
             }
             GUILayout.FlexibleSpace();
             GUILayout.BeginVertical();

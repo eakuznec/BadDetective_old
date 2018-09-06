@@ -22,17 +22,59 @@ namespace BadDetective
         private float timeInWay;
         public bool destroy = false;
 
-        public int GetLeaderMethodValue(Method method, Tag tag = Tag.NULL)
+        public bool IsLeaderHaveTag(Tag tag)
         {
-            return GetDetectiveInTeamMethodValue(detectives[0], method, tag);
+            return detectives[0].HaveTag(tag);
         }
 
-        public int GetTeamMethodValue(Method method, Tag tag = Tag.NULL)
+        public bool IsTeamHaveTag(Tag tag)
         {
-            int retVal = 0;
-            //
+            bool retVal = false;
+            foreach(Detective detective in detectives)
+            {
+                if (detective.HaveTag(tag))
+                {
+                    retVal = true;
+                    break;
+                }
+            }
             return retVal;
         }
+
+        public bool IsLeaderChallenge(Method method, int level, int difficult, Tag tag = Tag.NULL)
+        {
+            int methodValue = GetDetectiveInTeamMethodValue(detectives[0], method, tag);
+            if (methodValue < level)
+            {
+                methodValue = methodValue / 2;
+            }
+            return methodValue >= difficult;
+        }
+
+        public bool IsTeamChallenge(Method method, int level, int difficult, Tag tag = Tag.NULL)
+        {
+            int teamValue = 0;
+            foreach(Detective detective in detectives)
+            {
+                int methodValue = GetDetectiveInTeamMethodValue(detective, method, tag);
+                if (methodValue < level)
+                {
+                    methodValue = methodValue / 2;
+                }
+                teamValue += methodValue;
+            }
+            return teamValue >= difficult;
+        }
+
+        public Method GetPriorityMethod(bool brutal, bool careful, bool diplomat, bool science)
+        {
+            return detectives[0].GetPriorityMethod(brutal, careful, diplomat, science);
+        }
+
+        //public int GetLeaderMethodValue(Method method, Tag tag = Tag.NULL)
+        //{
+        //    return GetDetectiveInTeamMethodValue(detectives[0], method, tag);
+        //}
 
         public Detective GetTeacher(Detective forWhom, out int result, Method method, Tag tag = Tag.NULL)
         {
@@ -53,33 +95,33 @@ namespace BadDetective
             return teacher;
         }
 
-        public int GetHighestMethodValue(Method method, Tag tag = Tag.NULL)
-        {
-            int retVal = 0;
-            foreach(Detective detective in detectives)
-            {
-                int value = GetDetectiveInTeamMethodValue(detective, method, tag);
-                if (retVal < value)
-                {
-                    retVal = value;
-                }
-            }
-            return retVal;
-        }
+        //public int GetHighestMethodValue(Method method, Tag tag = Tag.NULL)
+        //{
+        //    int retVal = 0;
+        //    foreach(Detective detective in detectives)
+        //    {
+        //        int value = GetDetectiveInTeamMethodValue(detective, method, tag);
+        //        if (retVal < value)
+        //        {
+        //            retVal = value;
+        //        }
+        //    }
+        //    return retVal;
+        //}
 
-        public int GetLowesMethodValue(Method method, Tag tag = Tag.NULL)
-        {
-            int retVal = 999;
-            foreach (Detective detective in detectives)
-            {
-                int value = GetDetectiveInTeamMethodValue(detective, method, tag);
-                if (retVal > value)
-                {
-                    retVal = value;
-                }
-            }
-            return retVal;
-        }
+        //public int GetLowesMethodValue(Method method, Tag tag = Tag.NULL)
+        //{
+        //    int retVal = 999;
+        //    foreach (Detective detective in detectives)
+        //    {
+        //        int value = GetDetectiveInTeamMethodValue(detective, method, tag);
+        //        if (retVal > value)
+        //        {
+        //            retVal = value;
+        //        }
+        //    }
+        //    return retVal;
+        //}
 
         private int GetDetectiveInTeamMethodValue(Detective detective, Method method, Tag tag = Tag.NULL)
         {

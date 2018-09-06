@@ -304,6 +304,23 @@ namespace BadDetective
 
 
             }
+            else if (effect.type == EffectType.CHANGE_OBJECTIVE)
+            {
+                int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(effect.quest), questManager.GetQuestNames());
+                if (index != -1)
+                {
+                    effect.quest = questManager.GetQuests()[index];
+                }
+                if (effect.quest != null)
+                {
+                    index = EditorGUILayout.Popup(effect.quest.GetQuestObjectives().IndexOf(effect.objective), effect.quest.GetQuestObjectiveNames().ToArray());
+                    if(index != -1)
+                    {
+                        effect.objective = effect.quest.GetQuestObjectives()[index];
+                    }
+                    EditorGUILayout.PropertyField(soEffect.FindProperty("mainState"), GUIContent.none);
+                }
+            }
             else if (effect.type == EffectType.ADD_FILE_NOTE)
             {
                 int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(effect.quest), questManager.GetQuestNames());
@@ -417,18 +434,30 @@ namespace BadDetective
                             GameObject newLogicMap = new GameObject(string.Format("LogicMap_{0}", parent.name));
                             newLogicMap.transform.parent = goFolder.transform;
                             logicMaps[i] = newLogicMap.AddComponent<LogicMap.LogicMap>();
+                            LogicMap.LogicMapEditor.logicMap = logicMaps[i];
+                            if (LogicMap.LogicMapEditor.editor == null)
+                            {
+                                LogicMap.LogicMapEditor.ShowEditor();
+                            }
+                            else
+                            {
+                                LogicMap.LogicMapEditor.editor.LoadLogicMap();
+                            }
                         }
                     }
                     else
                     {
                         if (GUILayout.Button("Edit", new GUILayoutOption[] { GUILayout.Width(100) }))
                         {
-                            if (LogicMap.LogicMapEditor.editor != null)
-                            {
-                                LogicMap.LogicMapEditor.editor.Close();
-                            }
                             LogicMap.LogicMapEditor.logicMap = logicMaps[i];
-                            LogicMap.LogicMapEditor.ShowEditor();
+                            if(LogicMap.LogicMapEditor.editor == null)
+                            {
+                                LogicMap.LogicMapEditor.ShowEditor();
+                            }
+                            else
+                            {
+                                LogicMap.LogicMapEditor.editor.LoadLogicMap();
+                            }
                         }
                         if (GUILayout.Button("Delete", new GUILayoutOption[] { GUILayout.Width(100) }))
                         {
@@ -455,6 +484,53 @@ namespace BadDetective
                     newLogicMap.transform.parent = goFolder.transform;
                     logicMaps.Add(newLogicMap.AddComponent<LogicMap.LogicMap>());
                 }
+            }
+        }
+
+        public static void DrawQuestObjectiveList(List<QuestObjective> questObjectives, Transform parent, ref bool show)
+        {
+            if (GUILayout.Button(string.Format("Quest Objectives ({0})", questObjectives.Count)))
+            {
+                show = !show;
+            }
+            if (show)
+            {
+                EditorGUILayout.BeginVertical("box");
+                for (int i = 0; i < questObjectives.Count; i++)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    if (questObjectives[i] != null)
+                    {
+                        questObjectives[i].objective = EditorGUILayout.TextField(questObjectives[i].objective);
+                        GUILayout.Label("Main", new GUILayoutOption[] { GUILayout.Width(40) });
+                        questObjectives[i].main = EditorGUILayout.Toggle(GUIContent.none, questObjectives[i].main, new GUILayoutOption[] { GUILayout.Width(40) });
+                        questObjectives[i].state = (MainState)EditorGUILayout.EnumPopup(questObjectives[i].state, new GUILayoutOption[] { GUILayout.Width(100) });
+                        if (GUILayout.Button("Delete", new GUILayoutOption[] { GUILayout.Width(100) }))
+                        {
+                            DestroyImmediate(questObjectives[i].gameObject);
+                            questObjectives.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    EditorGUILayout.EndHorizontal();
+                }
+                if (GUILayout.Button("Add New Objective"))
+                {
+                    GameObject goFolder = null;
+                    if (parent.Find("Objectives"))
+                    {
+                        goFolder = parent.Find("Objectives").gameObject;
+                    }
+                    if (goFolder == null)
+                    {
+                        goFolder = new GameObject("Objectives");
+                        goFolder.transform.parent = parent;
+                    }
+                    GameObject newObjective = new GameObject(string.Format("Objective_{0}", parent.name));
+                    newObjective.transform.parent = goFolder.transform;
+                    questObjectives.Add(newObjective.AddComponent<QuestObjective>());
+                }
+                EditorGUILayout.EndVertical();
             }
         }
 

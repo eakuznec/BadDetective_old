@@ -129,6 +129,23 @@ namespace BadDetective.LogicMap
             {
                 ((WaitFunction)function).CreateWaitAction(delegate{ RealizeFunction(((WaitFunction)function).actionOutput, isTest); });
             }
+            else if (function is ChallengeFunction)
+            {
+                ChallengeFunction challengeFunction = (ChallengeFunction)function;
+                bool result = challengeFunction.Realize(curOwner);
+                if (result)
+                {
+                    challengeFunction.realizeTrue = true;
+                    challengeFunction.realizeFalse = false;
+                    RealizeFunction(challengeFunction.trueOutput, isTest);
+                }
+                else
+                {
+                    challengeFunction.realizeTrue = false;
+                    challengeFunction.realizeFalse = true;
+                    RealizeFunction(challengeFunction.falseOutput, isTest);
+                }
+            }
         }
 
         private void ClearCheck()

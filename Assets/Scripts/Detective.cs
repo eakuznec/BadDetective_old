@@ -376,5 +376,49 @@ namespace BadDetective
                 }
             }
         }
+
+        public Method GetPriorityMethod(bool brutal, bool careful, bool diplomat, bool science)
+        {
+            List<Method> m = new List<Method>();
+            List<int> mV = new List<int>();
+            for(int i=0; i<m.Count; i++)
+            {
+                m.Add(methods[i]);
+                mV.Add(methodsValues[i]);
+            }
+            for (int i=0; i< mV.Count-1; i++)
+            {
+                for(int j=i+1; j< mV.Count; j++)
+                {
+                    if (mV[i] < mV[j])
+                    {
+                        m.Insert(i, m[j]);
+                        m.RemoveAt(j + 1);
+                        mV.Insert(i, mV[j]);
+                        mV.RemoveAt(j + 1);
+                    }
+                }
+            }
+            foreach(Method method in m)
+            {
+                if(method == Method.Brutal && brutal)
+                {
+                    return Method.Brutal;
+                }
+                else if (method == Method.Careful && careful)
+                {
+                    return Method.Careful;
+                }
+                else if (method == Method.Diplomatic && diplomat)
+                {
+                    return Method.Diplomatic;
+                }
+                else if (method == Method.Scientific && science)
+                {
+                    return Method.Scientific;
+                }
+            }
+            return m[0];
+        }
     }
 }

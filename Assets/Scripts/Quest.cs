@@ -26,6 +26,7 @@ namespace BadDetective
         public List<LogicMap.LogicMap> logicMaps = new List<LogicMap.LogicMap>();
         public List<QuestState> questStates = new List<QuestState>();
         public List<QuestEvent> questEvents = new List<QuestEvent>();
+        public List<QuestObjective> questObjectives = new List<QuestObjective>();
 
         void Start()
         {
@@ -33,12 +34,6 @@ namespace BadDetective
             {
                 CreateQuestAction(MainState.Started);
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         public void ChangeMainState(MainState newMainState)
@@ -101,6 +96,21 @@ namespace BadDetective
             foreach(LogicMap.LogicMap logiMap in logicMaps)
             {
                 retVal.Add(logiMap.logicMapName);
+            }
+            return retVal;
+        }
+
+        public List<QuestObjective> GetQuestObjectives()
+        {
+            return questObjectives;
+        }
+
+        public List<string> GetQuestObjectiveNames()
+        {
+            List<string> retVal = new List<string>();
+            foreach (QuestObjective questObjective in questObjectives)
+            {
+                retVal.Add(questObjective.objective);
             }
             return retVal;
         }
