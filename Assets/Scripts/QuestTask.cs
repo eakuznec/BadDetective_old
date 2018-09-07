@@ -80,5 +80,10 @@ namespace BadDetective
             }
             return retVal;
         }
+
+        public Quest GetQuest()
+        {
+            return transform.GetComponentInParent<Quest>();
+        }
     }
 }

@@ -31,10 +31,11 @@ namespace BadDetective.Dialog
             GetInstantiate();
         }
 
-        public void StartDialog(Dialog dialog, Character owner)
+        public void StartDialog(Dialog dialog, Character owner, Quest quest)
         {
             Game game = Game.GetInstantiate();
             dialog.owner = owner;
+            dialog.questOwner = quest;
             dialogs.Add(dialog);
             if (dialogs.Count == 1)
             {
@@ -71,7 +72,7 @@ namespace BadDetective.Dialog
             {
                 effect.Realize(curDialog);
             }
-            interfaceManager.dialogPanel.Set(phrase, curDialog.owner);
+            interfaceManager.dialogPanel.Set(phrase, curDialog.owner, curDialog.questOwner);
         }
 
         public void RealizeChoose(DialogChoose choose)
@@ -88,7 +89,7 @@ namespace BadDetective.Dialog
                     bool flag = true;
                     foreach (Condition condition in link.conditions)
                     {
-                        if (!condition.isFulfilled())
+                        if (!condition.isFulfilled(curDialog.questOwner))
                         {
                             flag = false;
                             break;

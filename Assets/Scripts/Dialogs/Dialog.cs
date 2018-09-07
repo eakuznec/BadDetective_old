@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BadDetective.Dialog
 {
-    public class Dialog : MonoBehaviour, iEffectsContainer
+    public class Dialog : MonoBehaviour, iEffectsContainer, iConditionContainer
     {
         public string dialogName;
         public string pathToSave;
@@ -13,6 +13,7 @@ namespace BadDetective.Dialog
         [HideInInspector]
         public Character owner;
         public Team teamOwner;
+        public Quest questOwner;
 
         public Character GetCharacterOwner()
         {
@@ -29,6 +30,11 @@ namespace BadDetective.Dialog
         public Team GetTeam()
         {
             return teamOwner;
+        }
+
+        public Quest GetQuest()
+        {
+            return questOwner;
         }
     }
 }

@@ -8,8 +8,8 @@ namespace BadDetective
     {
         public EffectType type;
         iEffectsContainer effectsContainer;
-        public Quest quest;
         public MainState mainState;
+        public Quest quest;
         public QuestEvent questEvent;
         public QuestTask task;
         public QuestObjective objective;
@@ -24,50 +24,39 @@ namespace BadDetective
         public void Realize(iEffectsContainer effectsContainer)
         {
             this.effectsContainer = effectsContainer;
+            Agency agency = Agency.GetInstantiate();
             QuestManager questManager = QuestManager.GetInstantiate();
-            if (type == EffectType.CHANGE_QUEST)
+            if(type == EffectType.INSTANTIATE_QUEST)
             {
-                questManager.GetQuestInstance(quest).ChangeMainState(mainState);
+                GameObject goFolder = null;
+                if (agency.transform.Find("Quests"))
+                {
+                    goFolder = agency.transform.Find("Quests").gameObject;
+                }
+                else
+                {
+                    goFolder = new GameObject("Quests");
+                    goFolder.transform.parent = agency.transform;
+                }
+                Quest questInstance = Instantiate(quest, goFolder.transform);
+                agency.quests.Add(questInstance);
+                questInstance.Realize();
+            }
+            else if (type == EffectType.CHANGE_QUEST)
+            {
+                GetQuest().ChangeMainState(mainState);
             }
             else if (type == EffectType.CHANGE_TASK)
             {
-                int questIndex = questManager.GetQuests().IndexOf(quest);
-                int eventIndex = -1;
-                int taskIndex = -1;
-                if (questIndex != -1)
-                {
-                    eventIndex = questManager.GetQuests()[questIndex].GetEvents().IndexOf(questEvent);
-                    taskIndex = questManager.GetQuests()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
-                }
-                else
-                {
-                    questIndex = questManager.GetQuestInstances().IndexOf(quest);
-                    eventIndex = questManager.GetQuestInstances()[questIndex].GetEvents().IndexOf(questEvent);
-                    taskIndex = questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
-                }
-                QuestEvent qEvent = questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex];
-                qEvent.ChangeTask(qEvent.GetTask()[taskIndex], mainState);
+                questEvent.ChangeTask(task, mainState);
             }
             else if(type == EffectType.CHANGE_OBJECTIVE)
             {
-                int questIndex = questManager.GetQuests().IndexOf(quest);
-                int objectiveIndex = -1;
-                if(questIndex != -1)
-                {
-                    objectiveIndex = questManager.GetQuests()[questIndex].questObjectives.IndexOf(objective);
-                }
-                else
-                {
-                    questIndex = questManager.GetQuestInstances().IndexOf(quest);
-                    objectiveIndex = questManager.GetQuestInstances()[questIndex].questObjectives.IndexOf(objective);
-                }
-                QuestObjective qObjective = questManager.GetQuestInstances()[questIndex].questObjectives[objectiveIndex];
-                qObjective.state = mainState;
+                objective.state = mainState;
             }
             else if(type == EffectType.ADD_FILE_NOTE)
             {
-                int questIndex = questManager.GetQuestInstances().IndexOf(quest);
-                questManager.GetQuestInstances()[questIndex].notes.Add(fileNote);
+                GetQuest().notes.Add(fileNote);
             }
             else if(type == EffectType.ADD_ITEM)
             {
@@ -79,58 +68,38 @@ namespace BadDetective
                 }
                 else
                 {
-                    Agency agency = Agency.GetInstantiate();
                     Item newItem = Instantiate(item, agency.transform);
                     agency.items.Add(newItem);
                 }
             }
             else if(type == EffectType.REALIZE_TASK)
             {
-                int questIndex = questManager.GetQuests().IndexOf(quest);
-                int eventIndex = -1;
-                int taskIndex = -1;
-                if (questIndex != -1)
-                {
-                    eventIndex = questManager.GetQuests()[questIndex].GetEvents().IndexOf(questEvent);
-                    taskIndex = questManager.GetQuests()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
-                }
-                else
-                {
-                    questIndex = questManager.GetQuestInstances().IndexOf(quest);
-                    eventIndex = questManager.GetQuestInstances()[questIndex].GetEvents().IndexOf(questEvent);
-                    taskIndex = questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
-                }
                 Team owner = effectsContainer.GetTeam();
                 if (owner != null)
                 {
-                    questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex].GetTask()[taskIndex].Realize(owner);
+                    task.Realize(owner);
                 }
             }
             else if(type == EffectType.REALIZE_LOGIC_MAP)
             {
-                if(logicMapOwner == LogicMap.LogicMapOwnerType.QUEST)
+                if (logicMapOwner == LogicMap.LogicMapOwnerType.QUEST)
                 {
-                    logicMap.RealizeLogicMap(questManager.GetQuestInstance(quest));
+                    logicMap.RealizeLogicMap(GetQuest());
                 }
                 else if (logicMapOwner == LogicMap.LogicMapOwnerType.QUEST_TASK)
                 {
-                    int questIndex = questManager.GetQuests().IndexOf(quest);
-                    int eventIndex = questManager.GetQuests()[questIndex].GetEvents().IndexOf(questEvent);
-                    int taskIndex = questManager.GetQuests()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
-                    QuestTask ownerTask = questManager.GetQuestInstance(quest).GetEvents()[eventIndex].GetTask()[taskIndex];
-                    logicMap.RealizeLogicMap(ownerTask);
+                    logicMap.RealizeLogicMap(task);
                 }
             }
             else if (type == EffectType.START_DIALOG)
             {
                 Character owner = effectsContainer.GetCharacterOwner();
-                Dialog.DialogManager.GetInstantiate().StartDialog(dialog, owner);
+                Dialog.DialogManager.GetInstantiate().StartDialog(dialog, owner, GetQuest());
             }
             else if (type == EffectType.CHECK_QUEST)
             {
 
             }
-            
         }
 
         public void copyContentFrom(Effect other)
@@ -138,6 +107,18 @@ namespace BadDetective
             type = other.type;
             quest = other.quest;
             mainState = other.mainState;
+        }
+
+        public Quest GetQuest()
+        {
+            if(effectsContainer != null)
+            {
+                return effectsContainer.GetQuest();
+            }
+            else
+            {
+                return transform.GetComponentInParent<Quest>();
+            }
         }
     }
 }

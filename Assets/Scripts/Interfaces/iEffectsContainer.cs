@@ -8,5 +8,11 @@ namespace BadDetective
     {
         Team GetTeam();
         Character GetCharacterOwner();
+        Quest GetQuest();
+    }
+
+    public interface iConditionContainer
+    {
+        Quest GetQuest();
     }
 }

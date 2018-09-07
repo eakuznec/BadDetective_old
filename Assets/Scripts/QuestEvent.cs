@@ -11,7 +11,6 @@ namespace BadDetective
         public string eventDescription;
         [HideInInspector]
         public Tier tier;
-        [HideInInspector]
         public PointOnMap point;
         public List<QuestTask> tasks = new List<QuestTask>();
         public List<Detective> detectivesOnEvent = new List<Detective>();
@@ -20,7 +19,7 @@ namespace BadDetective
 
         private Team teamOnEvent;
 
-        private void Start()
+        private void Awake()
         {
             MapManager mapManager = MapManager.GetInstantiate();
             for (int i = 0; i < mapManager.ring.GetTiers().Count; i++)

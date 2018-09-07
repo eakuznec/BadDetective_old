@@ -23,6 +23,7 @@ namespace BadDetective
         public List<FileNote> notes = new List<FileNote>();
         public QuestType type;
         public MainState mainState;
+        public LogicMap.LogicMap startLogicMap;
         public List<LogicMap.LogicMap> logicMaps = new List<LogicMap.LogicMap>();
         public List<QuestState> questStates = new List<QuestState>();
         public List<QuestEvent> questEvents = new List<QuestEvent>();
@@ -140,6 +141,16 @@ namespace BadDetective
         public Team GetTeam()
         {
             return null;
+        }
+
+        public Quest GetQuest()
+        {
+            return this;
+        }
+
+        public void Realize()
+        {
+            startLogicMap.RealizeLogicMap(this);
         }
     }
 }

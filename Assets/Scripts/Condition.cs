@@ -6,11 +6,11 @@ namespace BadDetective
 {
     public class Condition : MonoBehaviour
     {
+        iConditionContainer conditionContainer;
         public ConditionType type;
-        public Quest quest;
         public MainState mainState;
-        public QuestState questState;
         public QuestEvent questEvent;
+        public QuestState questState;
         public QuestTask task;
         public GameTime minTime;
         public GameTime maxTime;
@@ -19,8 +19,9 @@ namespace BadDetective
         public bool boolValue;
         public string stringValue;
 
-        public bool isFulfilled()
+        public bool isFulfilled(iConditionContainer conditionContainer)
         {
+            this.conditionContainer = conditionContainer;
             QuestManager questManager = QuestManager.GetInstantiate();
             if(type == ConditionType.CUR_TIME_IN_HOUR_RANGE)
             {
@@ -30,78 +31,49 @@ namespace BadDetective
             }
             else if (type == ConditionType.TASK_MAINSTATE)
             {
-                int questIndex = questManager.GetQuests().IndexOf(quest);
-                int eventIndex = -1;
-                int taskIndex = -1;
-                if(questIndex != -1)
-                {
-                    eventIndex = questManager.GetQuests()[questIndex].GetEvents().IndexOf(questEvent);
-                    taskIndex = questManager.GetQuests()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
-                }
-                else
-                {
-                    questIndex = questManager.GetQuestInstances().IndexOf(quest);
-                    eventIndex = questManager.GetQuestInstances()[questIndex].GetEvents().IndexOf(questEvent);
-                    taskIndex = questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex].GetTask().IndexOf(task);
-                }
-                return questManager.GetQuestInstances()[questIndex].GetEvents()[eventIndex].GetTask()[taskIndex].mainState == mainState;
+                return task.mainState == mainState;
             }
             else if(type == ConditionType.QUEST_MAINSTATE)
             {
-                int questIndex = questManager.GetQuests().IndexOf(quest);
-                if (questIndex == -1)
-                {
-                    questIndex = questManager.GetQuestInstances().IndexOf(quest);
-                }
-                return questManager.GetQuestInstances()[questIndex].mainState == mainState;
+                Quest quest = this.conditionContainer.GetQuest();
+                return quest.mainState == mainState;
             }
             else if(type == ConditionType.QUEST_STATE)
             {
-                int questIndex = questManager.GetQuests().IndexOf(quest);
-                int stateIndex = -1;
-                if (questIndex != -1)
-                {
-                    stateIndex = questManager.GetQuests()[questIndex].GetQuestStates().IndexOf(questState);
-                }
-                else
-                {
-                    questIndex = questManager.GetQuestInstances().IndexOf(quest);
-                    stateIndex = questManager.GetQuestInstances()[questIndex].GetQuestStates().IndexOf(questState);
-                }
                 if(questState.type == QuestStateType.BOOL)
                 {
-                    return questManager.GetQuestInstances()[questIndex].GetQuestStates()[stateIndex].boolValue == boolValue;
+                    return questState.boolValue == boolValue;
                 }
                 else if (questState.type == QuestStateType.INT)
                 {
                     if(comparator == Comparator.EQUAL)
                     {
-                        return questManager.GetQuestInstances()[questIndex].GetQuestStates()[stateIndex].intValue == intValue;
+                        return questState.intValue == intValue;
                     }
                     else if(comparator == Comparator.NOT_EQUAL)
                     {
-                        return questManager.GetQuestInstances()[questIndex].GetQuestStates()[stateIndex].intValue != intValue;
+                        return questState.intValue != intValue;
                     }
                     else if (comparator == Comparator.LESS)
                     {
-                        return questManager.GetQuestInstances()[questIndex].GetQuestStates()[stateIndex].intValue < intValue;
+                        return questState.intValue < intValue;
                     }
                     else if (comparator == Comparator.LESS_OR_EQUAL)
                     {
-                        return questManager.GetQuestInstances()[questIndex].GetQuestStates()[stateIndex].intValue <= intValue;
+                        return questState.intValue <= intValue;
                     }
                     else if (comparator == Comparator.MORE)
                     {
-                        return questManager.GetQuestInstances()[questIndex].GetQuestStates()[stateIndex].intValue > intValue;
+                        return questState.intValue > intValue;
                     }
                     else if (comparator == Comparator.MORE_OR_EQUAL)
                     {
-                        return questManager.GetQuestInstances()[questIndex].GetQuestStates()[stateIndex].intValue >= intValue;
+                        return questState.intValue >= intValue;
                     }
                 }
                 else if (questState.type == QuestStateType.SPECIAL)
                 {
-                    return questManager.GetQuestInstances()[questIndex].GetQuestStates()[stateIndex].specialValue == stringValue;
+                    return questState.specialValue == stringValue;
                 }
             }
             return false;
@@ -110,12 +82,16 @@ namespace BadDetective
         public void copyContentFrom(Condition other)
         {
             type = other.type;
-            quest = other.quest;
             mainState = other.mainState;
             questState = other.questState;
             intValue = other.intValue;
             boolValue = other.boolValue;
             stringValue = other.stringValue;
+        }
+
+        public Quest GetQuest()
+        {
+            return conditionContainer.GetQuest();
         }
     }
 

@@ -25,7 +25,8 @@ namespace BadDetective.LogicMap
             {
                 checkNode = true;
             }
-            result = condition.isFulfilled();
+            LogicMap logicMap = transform.GetComponentInParent<LogicMap>();
+            result = condition.isFulfilled(((iConditionContainer)logicMap.curOwner).GetQuest());
             return result;
         }
 

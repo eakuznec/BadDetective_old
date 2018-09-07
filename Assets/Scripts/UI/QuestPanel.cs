@@ -34,6 +34,11 @@ namespace BadDetective.UI
             return null;
         }
 
+        public Quest GetQuest()
+        {
+            return null;
+        }
+
         public List<string> GetLogicMapNames()
         {
             return null;

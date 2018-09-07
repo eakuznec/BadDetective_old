@@ -15,7 +15,8 @@ namespace BadDetective
         CHECK_QUEST,
         CHANGE_OBJECTIVE,
         ADD_ITEM,
-        REALIZE_TASK
+        REALIZE_TASK,
+        INSTANTIATE_QUEST
     }
 
 }

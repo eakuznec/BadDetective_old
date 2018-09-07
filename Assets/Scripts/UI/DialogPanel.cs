@@ -20,7 +20,7 @@ namespace BadDetective.UI
         [SerializeField]
         private ChoosePanel choosePanel;
 
-        public void Set(DialogPhrase phrase, Character owner)
+        public void Set(DialogPhrase phrase, Character owner, Quest quest)
         {
             this.phrase = phrase;
             if (phrase.speekerType == DialogSpeekerType.OWNER)
@@ -40,7 +40,7 @@ namespace BadDetective.UI
                 bool flag = true;
                 foreach(Condition condition in choose.conditions)
                 {
-                    if (!condition.isFulfilled())
+                    if (!condition.isFulfilled(quest))
                     {
                         flag = false;
                         break;

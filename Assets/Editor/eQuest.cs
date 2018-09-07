@@ -86,6 +86,11 @@ namespace BadDetective
                 GUILayout.Space(10);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("type"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("mainState"));
+                int startIndex = EditorGUILayout.Popup("Start Logic Map", quest.GetLogicMaps().IndexOf(quest.startLogicMap), quest.GetLogicMapNames().ToArray());
+                if (startIndex != -1)
+                {
+                    quest.startLogicMap = quest.logicMaps[startIndex];
+                }
                 GUILayout.Space(10);
                 eUtils.DrawLogicMapList(quest.logicMaps, quest.transform, ref showLogicMap, serializedObject);
                 GUILayout.Space(10);

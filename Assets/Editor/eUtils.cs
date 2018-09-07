@@ -119,6 +119,49 @@ namespace BadDetective
             }
         }
 
+        public static void DrawPointOnMapSelector(ref Tier tier, ref PointOnMap point)
+        {
+            MapManager mapManager = MapManager.GetInstantiate();
+            Ring ring = mapManager.ring;
+            List<Tier> tiers = ring.GetTiers();
+            int tierIndex = tiers.IndexOf(tier);
+            int pointIndex = -1;
+            if (tierIndex != -1)
+            {
+                pointIndex = tier.GetPoints().IndexOf(point);
+            }
+            tierIndex = EditorGUILayout.Popup(tierIndex, ring.GetTierNames().ToArray());
+            if (tierIndex != -1)
+            {
+                tier = tiers[tierIndex];
+                if (tiers[tierIndex].GetPoints().Count <= pointIndex)
+                {
+                    pointIndex = -1;
+                }
+                if (tiers[tierIndex].GetPoints().Count > 0)
+                {
+                    pointIndex = EditorGUILayout.Popup(pointIndex, tiers[tierIndex].GetPointNames().ToArray());
+                    if (pointIndex != -1)
+                    {
+                        point = tiers[tierIndex].GetPoints()[pointIndex];
+                    }
+                    else
+                    {
+                        point = null;
+                    }
+                }
+                else
+                {
+                    point = null;
+                }
+            }
+            else
+            {
+                tier = null;
+                point = null;
+            }
+        }
+
         public static void DrawEffectsSelector(List<Effect> effects, Transform parent, ref bool show)
         {
             EditorGUILayout.Separator();
@@ -182,49 +225,6 @@ namespace BadDetective
             }
         }
 
-        public static void DrawPointOnMapSelector(ref Tier tier, ref PointOnMap point)
-        {
-            MapManager mapManager = MapManager.GetInstantiate();
-            Ring ring = mapManager.ring;
-            List<Tier> tiers = ring.GetTiers();
-            int tierIndex = tiers.IndexOf(tier);
-            int pointIndex = -1;
-            if (tierIndex != -1)
-            {
-                pointIndex = tier.GetPoints().IndexOf(point);
-            }
-            tierIndex = EditorGUILayout.Popup(tierIndex, ring.GetTierNames().ToArray());
-            if (tierIndex != -1)
-            {
-                tier = tiers[tierIndex];
-                if (tiers[tierIndex].GetPoints().Count <= pointIndex)
-                {
-                    pointIndex = -1;
-                }
-                if (tiers[tierIndex].GetPoints().Count > 0)
-                {
-                    pointIndex = EditorGUILayout.Popup(pointIndex, tiers[tierIndex].GetPointNames().ToArray());
-                    if (pointIndex != -1)
-                    {
-                        point = tiers[tierIndex].GetPoints()[pointIndex];
-                    }
-                    else
-                    {
-                        point = null;
-                    }
-                }
-                else
-                {
-                    point = null;
-                }
-            }
-            else
-            {
-                tier = null;
-                point = null;
-            }
-        }
-
         public static void DrawConditionSelector(Condition condition)
         {
             QuestManager questManager = QuestManager.GetInstantiate();
@@ -254,17 +254,13 @@ namespace BadDetective
             }
             else if (condition.type == ConditionType.TASK_MAINSTATE)
             {
-                int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(condition.quest), questManager.GetQuestNames());
-                if (index != -1)
+                Quest quest = condition.GetQuest();
+                if (quest != null)
                 {
-                    condition.quest = questManager.GetQuests()[index];
-                }
-                if (condition.quest != null)
-                {
-                    int eventIndex = EditorGUILayout.Popup(condition.quest.GetEvents().IndexOf(condition.questEvent), condition.quest.GetEventNames());
+                    int eventIndex = EditorGUILayout.Popup(quest.GetEvents().IndexOf(condition.questEvent), quest.GetEventNames());
                     if (eventIndex != -1)
                     {
-                        condition.questEvent = condition.quest.GetEvents()[eventIndex];
+                        condition.questEvent = quest.GetEvents()[eventIndex];
                     }
                     if (condition.questEvent != null)
                     {
@@ -282,17 +278,13 @@ namespace BadDetective
             }
             else if (condition.type == ConditionType.QUEST_STATE)
             {
-                int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(condition.quest), questManager.GetQuestNames());
-                if (index != -1)
+                Quest quest = condition.GetQuest();
+                if (quest != null)
                 {
-                    condition.quest = questManager.GetQuests()[index];
-                }
-                if (condition.quest != null)
-                {
-                    index = EditorGUILayout.Popup(condition.quest.GetQuestStates().IndexOf(condition.questState), condition.quest.GetQuestStateName().ToArray());
+                    int index = EditorGUILayout.Popup(quest.GetQuestStates().IndexOf(condition.questState), quest.GetQuestStateName().ToArray());
                     if(index != -1)
                     {
-                        condition.questState = condition.quest.GetQuestStates()[index];
+                        condition.questState = quest.GetQuestStates()[index];
                         if(condition.questState.type == QuestStateType.BOOL)
                         {
                             EditorGUILayout.PropertyField(soCondition.FindProperty("boolValue"), GUIContent.none);
@@ -325,31 +317,31 @@ namespace BadDetective
             ItemManager itemManager = ItemManager.GetInstantiate();
             EditorGUILayout.BeginVertical();
             EditorGUILayout.PropertyField(soEffect.FindProperty("type"), GUIContent.none);
-            if (effect.type == EffectType.CHANGE_QUEST)
+            if (effect.type == EffectType.INSTANTIATE_QUEST)
             {
                 int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(effect.quest), questManager.GetQuestNames());
                 if (index != -1)
                 {
                     effect.quest = questManager.GetQuests()[index];
                 }
-                if (effect.quest != null)
+            }
+            else if (effect.type == EffectType.CHANGE_QUEST)
+            {
+                Quest quest = effect.GetQuest();
+                if (quest != null)
                 {
                     EditorGUILayout.PropertyField(soEffect.FindProperty("mainState"), GUIContent.none);
                 }
             }
             else if (effect.type == EffectType.CHANGE_TASK)
             {
-                int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(effect.quest), questManager.GetQuestNames());
-                if (index != -1)
+                Quest quest = effect.GetQuest();
+                if (quest != null)
                 {
-                    effect.quest = questManager.GetQuests()[index];
-                }
-                if (effect.quest != null)
-                {
-                    int eventIndex = EditorGUILayout.Popup(effect.quest.GetEvents().IndexOf(effect.questEvent), effect.quest.GetEventNames());
+                    int eventIndex = EditorGUILayout.Popup(quest.GetEvents().IndexOf(effect.questEvent), quest.GetEventNames());
                     if (eventIndex != -1)
                     {
-                        effect.questEvent = effect.quest.GetEvents()[eventIndex];
+                        effect.questEvent = quest.GetEvents()[eventIndex];
                     }
                     if (effect.questEvent != null)
                     {
@@ -367,29 +359,21 @@ namespace BadDetective
             }
             else if (effect.type == EffectType.CHANGE_OBJECTIVE)
             {
-                int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(effect.quest), questManager.GetQuestNames());
-                if (index != -1)
+                Quest quest = effect.GetQuest();
+                if (quest != null)
                 {
-                    effect.quest = questManager.GetQuests()[index];
-                }
-                if (effect.quest != null)
-                {
-                    index = EditorGUILayout.Popup(effect.quest.GetQuestObjectives().IndexOf(effect.objective), effect.quest.GetQuestObjectiveNames().ToArray());
+                    int index = EditorGUILayout.Popup(quest.GetQuestObjectives().IndexOf(effect.objective), quest.GetQuestObjectiveNames().ToArray());
                     if(index != -1)
                     {
-                        effect.objective = effect.quest.GetQuestObjectives()[index];
+                        effect.objective = quest.GetQuestObjectives()[index];
                     }
                     EditorGUILayout.PropertyField(soEffect.FindProperty("mainState"), GUIContent.none);
                 }
             }
             else if (effect.type == EffectType.ADD_FILE_NOTE)
             {
-                int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(effect.quest), questManager.GetQuestNames());
-                if (index != -1)
-                {
-                    effect.quest = questManager.GetQuests()[index];
-                }
-                if (effect.quest != null)
+                Quest quest = effect.GetQuest();
+                if (quest != null)
                 {
                     EditorGUILayout.PropertyField(soEffect.FindProperty("fileNote"), GUIContent.none);
                 }
@@ -407,33 +391,25 @@ namespace BadDetective
                 EditorGUILayout.PropertyField(soEffect.FindProperty("logicMapOwner"), GUIContent.none);
                 if (effect.logicMapOwner == LogicMap.LogicMapOwnerType.QUEST)
                 {
-                    int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(effect.quest), questManager.GetQuestNames());
-                    if (index != -1)
+                    Quest quest = effect.GetQuest();
+                    if(quest != null)
                     {
-                        effect.quest = questManager.GetQuests()[index];
-                    }
-                    if(effect.quest != null)
-                    {
-                        index = EditorGUILayout.Popup(effect.quest.GetLogicMaps().IndexOf(effect.logicMap), effect.quest.GetLogicMapNames().ToArray());
+                        int index = EditorGUILayout.Popup(quest.GetLogicMaps().IndexOf(effect.logicMap), quest.GetLogicMapNames().ToArray());
                         if (index != -1)
                         {
-                            effect.logicMap = effect.quest.GetLogicMaps()[index];
+                            effect.logicMap = quest.GetLogicMaps()[index];
                         }
                     }
                 }
                 else if (effect.logicMapOwner == LogicMap.LogicMapOwnerType.QUEST_TASK)
                 {
-                    int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(effect.quest), questManager.GetQuestNames());
-                    if (index != -1)
+                    Quest quest = effect.GetQuest();
+                    if (quest != null)
                     {
-                        effect.quest = questManager.GetQuests()[index];
-                    }
-                    if (effect.quest != null)
-                    {
-                        int eventIndex = EditorGUILayout.Popup(effect.quest.GetEvents().IndexOf(effect.questEvent), effect.quest.GetEventNames());
+                        int eventIndex = EditorGUILayout.Popup(quest.GetEvents().IndexOf(effect.questEvent), quest.GetEventNames());
                         if (eventIndex != -1)
                         {
-                            effect.questEvent = effect.quest.GetEvents()[eventIndex];
+                            effect.questEvent = quest.GetEvents()[eventIndex];
                         }
                         if (effect.questEvent != null)
                         {
@@ -444,7 +420,7 @@ namespace BadDetective
                             }
                             if (effect.task != null)
                             {
-                                index = EditorGUILayout.Popup(effect.task.GetLogicMaps().IndexOf(effect.logicMap), effect.task.GetLogicMapNames().ToArray());
+                                int index = EditorGUILayout.Popup(effect.task.GetLogicMaps().IndexOf(effect.logicMap), effect.task.GetLogicMapNames().ToArray());
                                 if (index != -1)
                                 {
                                     effect.logicMap = effect.task.GetLogicMaps()[index];
@@ -456,17 +432,13 @@ namespace BadDetective
             }
             else if (effect.type == EffectType.REALIZE_TASK)
             {
-                int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(effect.quest), questManager.GetQuestNames());
-                if (index != -1)
+                Quest quest = effect.GetQuest();
+                if (quest != null)
                 {
-                    effect.quest = questManager.GetQuests()[index];
-                }
-                if (effect.quest != null)
-                {
-                    int eventIndex = EditorGUILayout.Popup(effect.quest.GetEvents().IndexOf(effect.questEvent), effect.quest.GetEventNames());
+                    int eventIndex = EditorGUILayout.Popup(quest.GetEvents().IndexOf(effect.questEvent), quest.GetEventNames());
                     if (eventIndex != -1)
                     {
-                        effect.questEvent = effect.quest.GetEvents()[eventIndex];
+                        effect.questEvent = quest.GetEvents()[eventIndex];
                     }
                     if (effect.questEvent != null)
                     {
@@ -484,11 +456,6 @@ namespace BadDetective
             }
             else if (effect.type == EffectType.CHECK_QUEST)
             {
-                int index = EditorGUILayout.Popup(questManager.GetQuests().IndexOf(effect.quest), questManager.GetQuestNames());
-                if (index != -1)
-                {
-                    effect.quest = questManager.GetQuests()[index];
-                }
             }
             EditorGUILayout.EndVertical();
             soEffect.ApplyModifiedProperties();

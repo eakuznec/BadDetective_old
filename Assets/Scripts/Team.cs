@@ -265,7 +265,7 @@ namespace BadDetective
                 {
                     if(task!=null && task.mainState == MainState.Started)
                     {
-                        curTask.Realize(this);
+                        task.Realize(this);
                         break;
                     }
                 }
