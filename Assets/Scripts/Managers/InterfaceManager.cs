@@ -10,8 +10,12 @@ namespace BadDetective.UI
         private static InterfaceManager instance;
         public ActivitiesPanel activitiesPanel;
         public DetectiveRow detectiveRow;
+        public HUDButtonsPanel hudButtonPanel;
         public DialogPanel dialogPanel;
+        public QuestBureau questBureau;
         public FilesPanel filesPanel;
+        public DetectiveFile detectiveFile;
+        public QuestFile questFile;
         [Header("Sprites")]
         public Sprite officePictogram;
         public Sprite homePictogram;

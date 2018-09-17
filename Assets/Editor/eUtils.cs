@@ -11,12 +11,15 @@ namespace BadDetective
         {
             Money newMoney = new Money();
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Crown");
-            newMoney.crown = EditorGUILayout.DelayedIntField(money.crown);
-            GUILayout.Label("Libra");
-            newMoney.libra = EditorGUILayout.DelayedIntField(money.libra);
-            GUILayout.Label("Penny");
-            newMoney.penny = EditorGUILayout.DelayedIntField(money.penny);
+            GUILayout.Label("Crown", new GUILayoutOption[] { GUILayout.Width(50) });
+            newMoney.crown = EditorGUILayout.DelayedIntField(money.crown, new GUILayoutOption[] { GUILayout.Width(50)});
+            GUILayout.FlexibleSpace();
+            GUILayout.Label("Libra", new GUILayoutOption[] { GUILayout.Width(50) });
+            newMoney.libra = EditorGUILayout.DelayedIntField(money.libra, new GUILayoutOption[] { GUILayout.Width(50) });
+            GUILayout.FlexibleSpace();
+            GUILayout.Label("Penny", new GUILayoutOption[] { GUILayout.Width(50) });
+            newMoney.penny = EditorGUILayout.DelayedIntField(money.penny, new GUILayoutOption[] { GUILayout.Width(50) });
+            GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
             money = Utility.SetMoney(newMoney);
         }
@@ -305,6 +308,61 @@ namespace BadDetective
                     }
                 }
             }
+            else if (condition.type == ConditionType.DIALOG_STATE)
+            {
+                Dialog.Dialog dialog = condition.GetDialog();
+                if (dialog != null)
+                {
+                    int index = EditorGUILayout.Popup(dialog.GetDialogStates().IndexOf(condition.questState), dialog.GetDialogStateNames().ToArray());
+                    if (index != -1)
+                    {
+                        condition.questState = dialog.GetDialogStates()[index];
+                        if (condition.questState.type == QuestStateType.BOOL)
+                        {
+                            EditorGUILayout.PropertyField(soCondition.FindProperty("boolValue"), GUIContent.none);
+                        }
+                        else if (condition.questState.type == QuestStateType.INT)
+                        {
+                            EditorGUILayout.PropertyField(soCondition.FindProperty("comparator"), GUIContent.none);
+                            EditorGUILayout.PropertyField(soCondition.FindProperty("intValue"), GUIContent.none);
+                        }
+                        else if (condition.questState.type == QuestStateType.SPECIAL)
+                        {
+                            index = EditorGUILayout.Popup(condition.questState.possibleValue.IndexOf(condition.stringValue), condition.questState.possibleValue.ToArray());
+                            if (index == -1)
+                            {
+                                condition.stringValue = condition.questState.possibleValue[index];
+                            }
+                        }
+                    }
+                }
+            }
+            else if (condition.type == ConditionType.GLOBAL_STATE)
+            {
+                Agency agency = Agency.GetInstantiate();
+                int index = EditorGUILayout.Popup(agency.GetGlobalStates().IndexOf(condition.questState), agency.GetGlobalStateNames().ToArray());
+                if (index != -1)
+                {
+                    condition.questState = agency.GetGlobalStates()[index];
+                    if (condition.questState.type == QuestStateType.BOOL)
+                    {
+                        EditorGUILayout.PropertyField(soCondition.FindProperty("boolValue"), GUIContent.none);
+                    }
+                    else if (condition.questState.type == QuestStateType.INT)
+                    {
+                        EditorGUILayout.PropertyField(soCondition.FindProperty("comparator"), GUIContent.none);
+                        EditorGUILayout.PropertyField(soCondition.FindProperty("intValue"), GUIContent.none);
+                    }
+                    else if (condition.questState.type == QuestStateType.SPECIAL)
+                    {
+                        index = EditorGUILayout.Popup(condition.questState.possibleValue.IndexOf(condition.stringValue), condition.questState.possibleValue.ToArray());
+                        if (index == -1)
+                        {
+                            condition.stringValue = condition.questState.possibleValue[index];
+                        }
+                    }
+                }
+            }
             EditorGUILayout.EndVertical();
             soCondition.ApplyModifiedProperties();
             EditorUtility.SetDirty(condition.gameObject);
@@ -368,6 +426,87 @@ namespace BadDetective
                         effect.objective = quest.GetQuestObjectives()[index];
                     }
                     EditorGUILayout.PropertyField(soEffect.FindProperty("mainState"), GUIContent.none);
+                }
+            }
+            else if (effect.type == EffectType.CHANGE_QUEST_STATE)
+            {
+                Quest quest = effect.GetQuest();
+                if (quest != null)
+                {
+                    int index = EditorGUILayout.Popup(quest.GetQuestStates().IndexOf(effect.questState), quest.GetQuestStateName().ToArray());
+                    if (index != -1)
+                    {
+                        effect.questState = quest.GetQuestStates()[index];
+                        if (effect.questState.type == QuestStateType.BOOL)
+                        {
+                            EditorGUILayout.PropertyField(soEffect.FindProperty("boolValue"), GUIContent.none);
+                        }
+                        else if (effect.questState.type == QuestStateType.INT)
+                        {
+                            EditorGUILayout.PropertyField(soEffect.FindProperty("intValue"), GUIContent.none);
+                        }
+                        else if (effect.questState.type == QuestStateType.SPECIAL)
+                        {
+                            index = EditorGUILayout.Popup(effect.questState.possibleValue.IndexOf(effect.stringValue), effect.questState.possibleValue.ToArray());
+                            if (index == -1)
+                            {
+                                effect.stringValue = effect.questState.possibleValue[index];
+                            }
+                        }
+                    }
+                }
+            }
+            else if (effect.type == EffectType.CHANGE_DIALOG_STATE)
+            {
+                Dialog.Dialog dialog = effect.GetDialog();
+                if (dialog != null)
+                {
+                    int index = EditorGUILayout.Popup(dialog.GetDialogStates().IndexOf(effect.questState), dialog.GetDialogStateNames().ToArray());
+                    if (index != -1)
+                    {
+                        effect.questState = dialog.GetDialogStates()[index];
+                        if (effect.questState.type == QuestStateType.BOOL)
+                        {
+                            EditorGUILayout.PropertyField(soEffect.FindProperty("boolValue"), GUIContent.none);
+                        }
+                        else if (effect.questState.type == QuestStateType.INT)
+                        {
+                            EditorGUILayout.PropertyField(soEffect.FindProperty("intValue"), GUIContent.none);
+                        }
+                        else if (effect.questState.type == QuestStateType.SPECIAL)
+                        {
+                            index = EditorGUILayout.Popup(effect.questState.possibleValue.IndexOf(effect.stringValue), effect.questState.possibleValue.ToArray());
+                            if (index == -1)
+                            {
+                                effect.stringValue = effect.questState.possibleValue[index];
+                            }
+                        }
+                    }
+                }
+            }
+            else if (effect.type == EffectType.CHANGE_GLOBAL_STATE)
+            {
+                Agency agency = Agency.GetInstantiate();
+                int index = EditorGUILayout.Popup(agency.GetGlobalStates().IndexOf(effect.questState), agency.GetGlobalStateNames().ToArray());
+                if (index != -1)
+                {
+                    effect.questState = agency.GetGlobalStates()[index];
+                    if (effect.questState.type == QuestStateType.BOOL)
+                    {
+                        EditorGUILayout.PropertyField(soEffect.FindProperty("boolValue"), GUIContent.none);
+                    }
+                    else if (effect.questState.type == QuestStateType.INT)
+                    {
+                        EditorGUILayout.PropertyField(soEffect.FindProperty("intValue"), GUIContent.none);
+                    }
+                    else if (effect.questState.type == QuestStateType.SPECIAL)
+                    {
+                        index = EditorGUILayout.Popup(effect.questState.possibleValue.IndexOf(effect.stringValue), effect.questState.possibleValue.ToArray());
+                        if (index == -1)
+                        {
+                            effect.stringValue = effect.questState.possibleValue[index];
+                        }
+                    }
                 }
             }
             else if (effect.type == EffectType.ADD_FILE_NOTE)
@@ -453,6 +592,7 @@ namespace BadDetective
             else if (effect.type == EffectType.START_DIALOG)
             {
                 EditorGUILayout.PropertyField(soEffect.FindProperty("dialog"), GUIContent.none);
+                effect.dialog.questOwner = effect.GetQuest();
             }
             else if (effect.type == EffectType.CHECK_QUEST)
             {
@@ -476,7 +616,7 @@ namespace BadDetective
                     {
                         logicMaps[i].logicMapName = EditorGUILayout.TextField(logicMaps[i].logicMapName);
                     }
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty(string.Format("logicMaps.Array.data[{0}]", i)), GUIContent.none);
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty(string.Format("logicMaps.Array.data[{0}]", i)), GUIContent.none, new GUILayoutOption[] { GUILayout.Width(100) });
                     if (logicMaps[i] == null)
                     {
                         if (GUILayout.Button("Create", new GUILayoutOption[] { GUILayout.Width(100) }))
@@ -507,7 +647,7 @@ namespace BadDetective
                     }
                     else
                     {
-                        if (GUILayout.Button("Edit", new GUILayoutOption[] { GUILayout.Width(100) }))
+                        if (GUILayout.Button("Edit", new GUILayoutOption[] { GUILayout.Width(60) }))
                         {
                             LogicMap.LogicMapEditor.logicMap = logicMaps[i];
                             if(LogicMap.LogicMapEditor.editor == null)
@@ -519,7 +659,7 @@ namespace BadDetective
                                 LogicMap.LogicMapEditor.editor.LoadLogicMap();
                             }
                         }
-                        if (GUILayout.Button("Delete", new GUILayoutOption[] { GUILayout.Width(100) }))
+                        if (GUILayout.Button("Delete", new GUILayoutOption[] { GUILayout.Width(60) }))
                         {
                             DestroyImmediate(logicMaps[i].gameObject);
                             logicMaps.RemoveAt(i);
@@ -543,6 +683,60 @@ namespace BadDetective
                     GameObject newLogicMap = new GameObject(string.Format("LogicMap_{0}", parent.name));
                     newLogicMap.transform.parent = goFolder.transform;
                     logicMaps.Add(newLogicMap.AddComponent<LogicMap.LogicMap>());
+                }
+            }
+        }
+
+        public static void DrawDialogList(List<Dialog.Dialog> dialogs, Transform parent, ref bool show) 
+        {
+            if (GUILayout.Button(string.Format("Dialogs ({0})", dialogs.Count)))
+            {
+                show = !show;
+            }
+            if (show)
+            {
+                for (int i = 0; i < dialogs.Count; i++)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    if (dialogs[i] != null)
+                    {
+                        dialogs[i].dialogName = EditorGUILayout.TextField(dialogs[i].dialogName);
+                        if (GUILayout.Button("Edit", new GUILayoutOption[] { GUILayout.Width(60) }))
+                        {
+                            DialogEditor.dialog = dialogs[i];
+                            if (DialogEditor.editor == null)
+                            {
+                                DialogEditor.ShowEditor();
+                            }
+                            else
+                            {
+                                DialogEditor.editor.LoadDialog();
+                            }
+                        }
+                        if (GUILayout.Button("Delete", new GUILayoutOption[] { GUILayout.Width(60) }))
+                        {
+                            DestroyImmediate(dialogs[i].gameObject);
+                            dialogs.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    EditorGUILayout.EndHorizontal();
+                }
+                if (GUILayout.Button("Add Dialog"))
+                {
+                    GameObject goFolder = null;
+                    if (parent.Find("Dialogs"))
+                    {
+                        goFolder = parent.Find("Dialogs").gameObject;
+                    }
+                    if (goFolder == null)
+                    {
+                        goFolder = new GameObject("Dialogs");
+                        goFolder.transform.parent = parent;
+                    }
+                    GameObject newDialog = new GameObject(string.Format("Dialog_{0}", parent.name));
+                    newDialog.transform.parent = goFolder.transform;
+                    dialogs.Add(newDialog.AddComponent<Dialog.Dialog>());
                 }
             }
         }
@@ -591,6 +785,152 @@ namespace BadDetective
                     questObjectives.Add(newObjective.AddComponent<QuestObjective>());
                 }
                 EditorGUILayout.EndVertical();
+            }
+        }
+
+        public static void DrawQuestEventList(List<QuestEvent> questEvents, Transform parent, ref bool show)
+        {
+            if (GUILayout.Button(string.Format("Quest Events ({0})", questEvents.Count)))
+            {
+                show = !show;
+            }
+            if (show)
+            {
+                EditorGUILayout.BeginVertical("box");
+                for (int i = 0; i < questEvents.Count; i++)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    if (questEvents[i] != null)
+                    {
+                        questEvents[i].eventName = EditorGUILayout.TextField(questEvents[i].eventName);
+                        if (GUILayout.Button("Edit", new GUILayoutOption[] { GUILayout.Width(60) }))
+                        {
+                            Selection.activeGameObject = questEvents[i].gameObject;
+                            break;
+                        }
+                        if (GUILayout.Button("Delete", new GUILayoutOption[] { GUILayout.Width(60) }))
+                        {
+                            DestroyImmediate(questEvents[i].gameObject);
+                            questEvents.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    EditorGUILayout.EndHorizontal();
+                }
+                if (GUILayout.Button("Add New Event"))
+                {
+                    GameObject newEvent = new GameObject(string.Format("Event_{0}", parent.name));
+                    newEvent.transform.parent = parent;
+                    questEvents.Add(newEvent.AddComponent<QuestEvent>());
+                }
+                EditorGUILayout.EndVertical();
+            }
+        }
+
+        public static void DrawQuestTaskList(List<QuestTask> questTasks, Transform parent)
+        {
+            EditorGUILayout.BeginVertical("box");
+            for (int i = 0; i < questTasks.Count; i++)
+            {
+                EditorGUILayout.BeginHorizontal();
+                if (questTasks[i] != null)
+                {
+                    questTasks[i].taskName = EditorGUILayout.TextField(questTasks[i].taskName);
+                    if (GUILayout.Button("Edit", new GUILayoutOption[] { GUILayout.Width(60) }))
+                    {
+                        Selection.activeGameObject = questTasks[i].gameObject;
+                        break;
+                    }
+                    if (GUILayout.Button("Delete", new GUILayoutOption[] { GUILayout.Width(60) }))
+                    {
+                        DestroyImmediate(questTasks[i].gameObject);
+                        questTasks.RemoveAt(i);
+                        break;
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+            if (GUILayout.Button("Add New Task"))
+            {
+                GameObject newTask = new GameObject(string.Format("Task_{0}", parent.name));
+                newTask.transform.parent = parent;
+                questTasks.Add(newTask.AddComponent<QuestTask>());
+            }
+            EditorGUILayout.EndVertical();
+        }
+
+        public static void DrawQuestStateList(List<QuestState> list, Transform parent, ref bool show, string title)
+        {
+            if (GUILayout.Button(string.Format("{1} ({0})", list.Count, title)))
+            {
+                show = !show;
+            }
+            if (show)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    QuestState state = list[i];
+                    SerializedObject soState = new SerializedObject(state);
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.BeginVertical();
+                    EditorGUILayout.PropertyField(soState.FindProperty("stateName"));
+                    if (state.stateName != state.name)
+                    {
+                        state.name = state.stateName;
+                    }
+                    EditorGUILayout.PropertyField(soState.FindProperty("type"));
+                    if (state.type == QuestStateType.INT)
+                    {
+                        EditorGUILayout.PropertyField(soState.FindProperty("intValue"));
+                    }
+                    else if (state.type == QuestStateType.BOOL)
+                    {
+                        EditorGUILayout.PropertyField(soState.FindProperty("boolValue"));
+                    }
+                    else if (state.type == QuestStateType.SPECIAL)
+                    {
+                        int index = state.possibleValue.IndexOf(state.specialValue);
+                        index = EditorGUILayout.Popup(index, state.possibleValue.ToArray());
+                        if (index == -1)
+                        {
+                            state.specialValue = "";
+                        }
+                        else
+                        {
+                            state.specialValue = state.possibleValue[index];
+                        }
+                        EditorGUILayout.PropertyField(soState.FindProperty("possibleValue"), true);
+                    }
+                    EditorGUILayout.EndVertical();
+                    soState.ApplyModifiedProperties();
+                    if (GUILayout.Button("Delete", new GUILayoutOption[] { GUILayout.Width(60) }))
+                    {
+                        list.RemoveAt(i);
+                        DestroyImmediate(state.gameObject);
+                        i--;
+                        break;
+                    }
+                    EditorGUILayout.EndHorizontal();
+                    GUILayout.Box("", new GUILayoutOption[] { GUILayout.Height(1), GUILayout.ExpandWidth(true) });
+                }
+                if (GUILayout.Button(string.Format("Add {0}", title)))
+                {
+                    GameObject goFolder;
+                    if (parent.Find("QuestStates") != null)
+                    {
+                        goFolder = parent.Find("QuestStates").gameObject;
+                    }
+                    else
+                    {
+                        goFolder = new GameObject("QuestStates");
+                        goFolder.transform.parent = parent;
+                    }
+                    GameObject goState = new GameObject("QuestState");
+                    goState.transform.parent = goFolder.transform;
+                    QuestState state = goState.AddComponent<QuestState>();
+                    state.stateName = state.name;
+                    list.Add(state);
+                }
             }
         }
 

@@ -17,10 +17,13 @@ namespace BadDetective.UI
         private Image shadowPanel;
         [SerializeField]
         private Image activityPictogram;
+        [SerializeField]
+        private Button fileButton;
 
         private void Awake()
         {
             icon = gameObject.GetComponent<Image>();
+            fileButton.onClick.AddListener(OpenFile);
         }
 
         public Detective detective
@@ -73,6 +76,11 @@ namespace BadDetective.UI
             {
                 ControlManager.GetInstantiate().mouseover = null;
             }
+        }
+
+        private void OpenFile()
+        {
+            InterfaceManager.GetInstantiate().detectiveFile.Open(detective);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace BadDetective
             EditorGUILayout.PropertyField(serializedObject.FindProperty("eventDescription"));
             eUtils.DrawPointOnMapSelector(ref questEvent.tier, ref questEvent.point);
             GUILayout.Space(10);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("tasks"), true);
+            eUtils.DrawQuestTaskList(questEvent.tasks, questEvent.transform);
             serializedObject.ApplyModifiedProperties();
             EditorUtility.SetDirty(questEvent);
         }

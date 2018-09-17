@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BadDetective.LogicMap;
+using BadDetective.Dialog;
 
 namespace BadDetective
 {
@@ -12,9 +13,6 @@ namespace BadDetective
         public string shortDescription;
         public Character client;
         public Money reward;
-        public bool haveStartTime;
-        public bool relativeStartTime;
-        public float startTime;
         public bool withDeadline;
         public bool relativeDeadline;
         public float deadline;
@@ -25,17 +23,10 @@ namespace BadDetective
         public MainState mainState;
         public LogicMap.LogicMap startLogicMap;
         public List<LogicMap.LogicMap> logicMaps = new List<LogicMap.LogicMap>();
+        public List<Dialog.Dialog> dialogs = new List<Dialog.Dialog>();
         public List<QuestState> questStates = new List<QuestState>();
         public List<QuestEvent> questEvents = new List<QuestEvent>();
         public List<QuestObjective> questObjectives = new List<QuestObjective>();
-
-        void Start()
-        {
-            if (haveStartTime && !relativeStartTime)
-            {
-                CreateQuestAction(MainState.Started);
-            }
-        }
 
         public void ChangeMainState(MainState newMainState)
         {
@@ -51,13 +42,6 @@ namespace BadDetective
             questAction.actionType = TimelineActionType.CHANGE_QUEST;
             questAction.quest = this;
             questAction.mainState = state;
-            if (state == MainState.Started)
-            {
-                if(haveStartTime && !relativeStartTime)
-                {
-                    questAction.timer = startTime;
-                }
-            }
             timeline.RegistrateAction(questAction);
         }
 
@@ -151,6 +135,11 @@ namespace BadDetective
         public void Realize()
         {
             startLogicMap.RealizeLogicMap(this);
+        }
+
+        public Dialog.Dialog GetDialog()
+        {
+            return null;
         }
     }
 }

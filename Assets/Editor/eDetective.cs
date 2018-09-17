@@ -43,6 +43,8 @@ namespace BadDetective
             EditorGUILayout.PropertyField(serializedObject.FindProperty("age"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("characterStory"));
             GUILayout.Space(10);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("temper"));
+            GUILayout.Space(10);
             GUILayout.Space(10);
             EditorGUILayout.LabelField("Parameters", boldStyle);
             EditorGUILayout.BeginHorizontal();
@@ -56,6 +58,10 @@ namespace BadDetective
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PropertyField(serializedObject.FindProperty("curLoyalty"), new GUIContent("Loyalty"));
             EditorGUILayout.LabelField(string.Format("{0}/{1}", detective.minLoyalty, detective.maxLoyalty));
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("curConfidence"), new GUIContent("Confidence"));
+            EditorGUILayout.LabelField(string.Format("{0}/{1}", detective.minConfidence, detective.maxConfidence));
             EditorGUILayout.EndHorizontal();
             GUILayout.Space(10);
             EditorGUILayout.LabelField("Methods", boldStyle);

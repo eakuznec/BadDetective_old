@@ -6,7 +6,7 @@ namespace BadDetective.LogicMap
 {
     public abstract class LogicFunction : BaseFunction, iHaveNode
     {
-        public LogicFunction actionInput;
+        public List<LogicFunction> actionInputs = new List<LogicFunction>();
         public bool startFunction;
 
         public abstract void RemoveActionInput(LogicFunction logicFunction);
@@ -16,11 +16,10 @@ namespace BadDetective.LogicMap
 
         public void SetActionInputLink(LogicFunction input)
         {
-            if (actionInput != null)
+            if (!actionInputs.Contains(input))
             {
-                actionInput.RemoveActionOutput(this);
+                actionInputs.Add(input);
             }
-            actionInput = input;
         }
 
         public Rect GetWindowRect()

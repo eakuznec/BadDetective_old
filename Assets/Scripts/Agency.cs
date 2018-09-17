@@ -22,6 +22,7 @@ namespace BadDetective
         public List<Quest> quests = new List<Quest>();
         [HideInInspector]
         public List<Item> items = new List<Item>();
+        [HideInInspector] public List<QuestState> globalStates = new List<QuestState>();
 
         [Header("Folders")]
         [HideInInspector]
@@ -86,6 +87,28 @@ namespace BadDetective
         public void ChangeMoney(Money value)
         {
             money += value;
+        }
+
+        public List<QuestState> GetGlobalStates()
+        {
+            return globalStates;
+        }
+
+        public List<string> GetGlobalStateNames()
+        {
+            List<string> retVal = new List<string>();
+            foreach (QuestState state in globalStates)
+            {
+                if (state != null)
+                {
+                    retVal.Add(state.stateName);
+                }
+                else
+                {
+                    retVal.Add("-NULL-");
+                }
+            }
+            return retVal;
         }
     }
 }

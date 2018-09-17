@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace BadDetective.LogicMap
 {
@@ -13,12 +14,18 @@ namespace BadDetective.LogicMap
         public bool realizeTrue;
         public LogicFunction falseOutput;
         public bool realizeFalse;
+        public WaitType waitType = WaitType.RELATION;
+        public GameTime waitTime;
 
         public override void RemoveActionInput(LogicFunction logicFunction)
         {
-            if (actionInput == logicFunction)
+            for(int i=0; i<actionInputs.Count; i++)
             {
-                actionInput = null;
+                if(actionInputs[i] == logicFunction)
+                {
+                    actionInputs.RemoveAt(i);
+                    break;
+                }
             }
         }
 
@@ -65,7 +72,7 @@ namespace BadDetective.LogicMap
             }
         }
 
-        public bool Realize(iLogicMapContainer owner)
+        private bool Realize(iLogicMapContainer owner)
         {
             Team team = null;
             if(owner is QuestTask)
@@ -73,6 +80,65 @@ namespace BadDetective.LogicMap
                 team = ((QuestTask)owner).GetTeam();
             }
             return challenge.Challage(team);
+        }
+
+        public void CreateWaitAction(iLogicMapContainer owner, UnityAction trueAction, UnityAction falseAction)
+        {
+            Timeline timeline = Timeline.GetInstantiate();
+            GameObject goAction = new GameObject(string.Format("TimelineAction_WaitChallenge"));
+            goAction.transform.parent = timeline.transform;
+            TimelineAction waitAction = goAction.AddComponent<TimelineAction>();
+            waitAction.actionType = TimelineActionType.WAIT;
+            waitAction.action = delegate
+            {
+                bool result = Realize(owner);
+                if (result)
+                {
+                    trueAction();
+                }
+                else
+                {
+                    falseAction();
+                }
+            };
+            if (waitType == WaitType.ABSOLUTE)
+            {
+                waitAction.timer = GameTime.ConvertToFloat(waitTime);
+            }
+            else if (waitType == WaitType.RELATION)
+            {
+                waitAction.timer = timeline.GetTime() + GameTime.ConvertToFloat(waitTime);
+            }
+            else if (waitType == WaitType.ABSOLUTE_HOURS)
+            {
+
+                GameTime curTime = GameTime.Convert(timeline.GetTime());
+                if (curTime.GetDayHour() <= waitTime)
+                {
+                    GameTime resultTime = new GameTime()
+                    {
+                        minutes = waitTime.minutes,
+                        hours = waitTime.hours,
+                        days = curTime.days,
+                        weeks = curTime.weeks,
+                        months = curTime.months
+                    };
+                    waitAction.timer = GameTime.ConvertToFloat(resultTime);
+                }
+                else if (curTime.GetDayHour() > waitTime)
+                {
+                    GameTime resultTime = new GameTime()
+                    {
+                        minutes = waitTime.minutes,
+                        hours = waitTime.hours,
+                        days = curTime.days + 1,
+                        weeks = curTime.weeks,
+                        months = curTime.months
+                    };
+                    waitAction.timer = GameTime.ConvertToFloat(resultTime);
+                }
+            }
+            timeline.RegistrateAction(waitAction);
         }
     }
 }

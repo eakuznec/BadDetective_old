@@ -10,7 +10,7 @@ public class DialogEditor : EditorWindow
     public static DialogEditor editor;
     public GameObject prefab;
 
-    public Dialog dialog;
+    public static Dialog dialog;
     public string defaultName = "Dialog";
     public List<DialogPhraseNode> nodes = new List<DialogPhraseNode>();
     public List<DialogLinkNode> links = new List<DialogLinkNode>();
@@ -23,21 +23,27 @@ public class DialogEditor : EditorWindow
     public Vector2 mousePos;
 
     [MenuItem("Window/Dialog Editor")]
-    public static void Init()
+    public static void ShowEditor()
     {
         // Get existing open window or if none, make a new one:
         editor = (DialogEditor)EditorWindow.GetWindow(typeof(DialogEditor));
-        editor.Show();
     }
 
     private void Awake()
     {
-        GameObject newDialog = new GameObject("Dialog");
-        dialog = newDialog.AddComponent<Dialog>();
-        dialog.dialogName = defaultName;
-        prefab = null;
-        nodes.Clear();
-        links.Clear();
+        if (dialog == null)
+        {
+            GameObject newDialog = new GameObject("Dialog");
+            dialog = newDialog.AddComponent<Dialog>();
+            dialog.dialogName = defaultName;
+            prefab = null;
+            nodes.Clear();
+            links.Clear();
+        }
+        else
+        {
+            LoadDialog();
+        }
     }
 
     void OnGUI()
@@ -152,7 +158,7 @@ public class DialogEditor : EditorWindow
                 {
                     for (int i = 0; i < nodes.Count; i++)
                     {
-                        nodes[i].windowRect.position -= e.delta;
+                        nodes[i].phrase.nodePosition.position += e.delta;
                     }
                 }
             }
@@ -290,10 +296,10 @@ public class DialogEditor : EditorWindow
                 }
             }
         }
-        else if (clb == "saveDialog")
-        {
-            SaveDialog();
-        }
+        //else if (clb == "saveDialog")
+        //{
+        //    SaveDialog();
+        //}
         else if (clb.Contains("link_"))
         {
             string node = clb.Substring(clb.IndexOf("_") + 1);
@@ -336,7 +342,7 @@ public class DialogEditor : EditorWindow
             dialog.phrases.Add(dialogPhrase.GetComponent<DialogPhrase>());
             dialogPhrase.transform.parent = dialog.transform;
         }
-        phraseNode.windowRect = new Rect(position, new Vector2(400, 150));
+        phraseNode.windowRect = new Rect(position, new Vector2(400, 170));
         nodes.Add(phraseNode);
         if (dialog.startPhrase == null)
         {
@@ -346,59 +352,59 @@ public class DialogEditor : EditorWindow
         return phraseNode;
     }
 
-    private void SaveDialog()
-    {
-        string path = "Assets/Prefabs/Dialogs/";
-        if (!string.IsNullOrEmpty(dialog.pathToSave))
-        {
-            path = dialog.pathToSave;
-        }
-        if (!Directory.Exists(path))
-        {
-            Directory.CreateDirectory(path);
-        }
+    //private void SaveDialog()
+    //{
+    //    string path = "Assets/Prefabs/Dialogs/";
+    //    if (!string.IsNullOrEmpty(dialog.pathToSave))
+    //    {
+    //        path = dialog.pathToSave;
+    //    }
+    //    if (!Directory.Exists(path))
+    //    {
+    //        Directory.CreateDirectory(path);
+    //    }
 
-        path = EditorUtility.SaveFilePanelInProject("Save dialog", dialog.dialogName, "prefab", "Please enter a file name to save dialog to", path);
-        if (!string.IsNullOrEmpty(path))
-        {
-            dialog.dialogName = path.Substring(path.LastIndexOf('/') + 1, path.LastIndexOf(".prefab") - (path.LastIndexOf('/') + 1));
-            dialog.name = dialog.dialogName;
-            dialog.pathToSave = path.Substring(0, path.LastIndexOf('/') + 1);
-            foreach (DialogPhraseNode node in nodes)
-            {
-                node.phrase.nodePosition = node.windowRect;
-                foreach(DialogChooseNode chooseNode in node.chooseNodes)
-                {
-                    chooseNode.choose.nodePosition = chooseNode.windowRect;
-                    foreach (DialogLinkNode link in chooseNode.outputLinks)
-                    {
-                        link.link.nodePosition = link.windowRect;
-                    }
-                }
-            }
-            if (!File.Exists(path))
-            {
-                PrefabUtility.CreatePrefab(path, dialog.gameObject);
-            }
-            else
-            {
-                GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject));
-                prefab = PrefabUtility.ReplacePrefab(dialog.gameObject, prefab, ReplacePrefabOptions.ReplaceNameBased);
-            }
-        }
-    }
+    //    path = EditorUtility.SaveFilePanelInProject("Save dialog", dialog.dialogName, "prefab", "Please enter a file name to save dialog to", path);
+    //    if (!string.IsNullOrEmpty(path))
+    //    {
+    //        dialog.dialogName = path.Substring(path.LastIndexOf('/') + 1, path.LastIndexOf(".prefab") - (path.LastIndexOf('/') + 1));
+    //        dialog.name = dialog.dialogName;
+    //        dialog.pathToSave = path.Substring(0, path.LastIndexOf('/') + 1);
+    //        foreach (DialogPhraseNode node in nodes)
+    //        {
+    //            node.phrase.nodePosition = node.windowRect;
+    //            foreach(DialogChooseNode chooseNode in node.chooseNodes)
+    //            {
+    //                chooseNode.choose.nodePosition = chooseNode.windowRect;
+    //                foreach (DialogLinkNode link in chooseNode.outputLinks)
+    //                {
+    //                    link.link.nodePosition = link.windowRect;
+    //                }
+    //            }
+    //        }
+    //        if (!File.Exists(path))
+    //        {
+    //            PrefabUtility.CreatePrefab(path, dialog.gameObject);
+    //        }
+    //        else
+    //        {
+    //            GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject));
+    //            prefab = PrefabUtility.ReplacePrefab(dialog.gameObject, prefab, ReplacePrefabOptions.ReplaceNameBased);
+    //        }
+    //    }
+    //}
 
-    private void OnDestroy()
-    {
-        ClearAll();
-    }
+    //private void OnDestroy()
+    //{
+    //    ClearAll();
+    //}
 
     private void ClearAll()
     {
-        if (dialog != null)
-        {
-            DestroyImmediate(dialog.gameObject);
-        }
+        //if (dialog != null)
+        //{
+        //    DestroyImmediate(dialog.gameObject);
+        //}
         nodes.Clear();
         links.Clear();
         id = 0;
@@ -409,19 +415,19 @@ public class DialogEditor : EditorWindow
 
     public void LoadDialog()
     {
-        if (prefab != null)
-        {
-            if (prefab.GetComponent<Dialog>())
-            {
+        //if (prefab != null)
+        //{
+        //    if (prefab.GetComponent<Dialog>())
+        //    {
                 ClearAll();
-                GameObject loadDialog = Instantiate(prefab);
-                dialog = loadDialog.GetComponent<Dialog>();
-                loadDialog.name = prefab.name;
-                dialog.dialogName = prefab.name;
+                //GameObject loadDialog = Instantiate(prefab);
+                //dialog = loadDialog.GetComponent<Dialog>();
+                //loadDialog.name = prefab.name;
+                //dialog.dialogName = prefab.name;
                 BuildDialog();
                 Selection.activeGameObject = dialog.gameObject;
-            }
-        }
+        //    }
+        //}
     }
 
     public void BuildDialog()

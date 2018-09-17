@@ -13,6 +13,7 @@ namespace BadDetective
         public QuestEvent questEvent;
         public QuestTask task;
         public QuestObjective objective;
+        public QuestState questState;
         public FileNote fileNote;
         public Dialog.Dialog dialog;
         public LogicMap.LogicMapOwnerType logicMapOwner;
@@ -20,6 +21,7 @@ namespace BadDetective
         public Item item;
         public int intValue;
         public bool boolValue;
+        public string stringValue;
 
         public void Realize(iEffectsContainer effectsContainer)
         {
@@ -48,15 +50,55 @@ namespace BadDetective
             }
             else if (type == EffectType.CHANGE_TASK)
             {
-                questEvent.ChangeTask(task, mainState);
+                if (effectsContainer is QuestTask)
+                {
+                    effectsContainer.GetTeam().reportEvent.Add(questEvent);
+                    effectsContainer.GetTeam().reportChangeTask.Add(task);
+                    effectsContainer.GetTeam().reportTaskState.Add(mainState);
+                }
+                else
+                {
+                    questEvent.ChangeTask(task, mainState);
+                }
             }
             else if(type == EffectType.CHANGE_OBJECTIVE)
             {
-                objective.state = mainState;
+                if (effectsContainer is QuestTask)
+                {
+                    effectsContainer.GetTeam().reportChangeObjective.Add(objective);
+                    effectsContainer.GetTeam().reportObjectiveState.Add(mainState);
+                }
+                else
+                {
+                    objective.state = mainState;
+                }
+            }
+            else if(type == EffectType.CHANGE_QUEST_STATE || type == EffectType.CHANGE_DIALOG_STATE || type == EffectType.CHANGE_GLOBAL_STATE)
+            {
+                if(questState.type == QuestStateType.BOOL)
+                {
+                    questState.boolValue = boolValue;
+                }
+                else if(questState.type == QuestStateType.INT)
+                {
+                    questState.intValue = intValue;
+                }
+                else if(questState.type == QuestStateType.SPECIAL)
+                {
+                    questState.specialValue = stringValue;
+                }
             }
             else if(type == EffectType.ADD_FILE_NOTE)
             {
-                GetQuest().notes.Add(fileNote);
+                if (effectsContainer is QuestTask)
+                {
+                    effectsContainer.GetTeam().reportQuest.Add(GetQuest());
+                    effectsContainer.GetTeam().reportNotes.Add(fileNote);
+                }
+                else
+                {
+                    GetQuest().notes.Add(fileNote);
+                }
             }
             else if(type == EffectType.ADD_ITEM)
             {
@@ -115,9 +157,29 @@ namespace BadDetective
             {
                 return effectsContainer.GetQuest();
             }
-            else
+            else if(transform.GetComponentInParent<Quest>() != null)
             {
                 return transform.GetComponentInParent<Quest>();
+            }
+            else if (transform.GetComponentInParent<Dialog.Dialog>() != null)
+            {
+                return transform.GetComponentInParent<Dialog.Dialog>().questOwner;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Dialog.Dialog GetDialog()
+        {
+            if (effectsContainer != null)
+            {
+                return effectsContainer.GetDialog();
+            }
+            else
+            {
+                return transform.GetComponentInParent<Dialog.Dialog>();
             }
         }
     }

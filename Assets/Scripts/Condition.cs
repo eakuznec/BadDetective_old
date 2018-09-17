@@ -38,7 +38,7 @@ namespace BadDetective
                 Quest quest = this.conditionContainer.GetQuest();
                 return quest.mainState == mainState;
             }
-            else if(type == ConditionType.QUEST_STATE)
+            else if(type == ConditionType.QUEST_STATE || type == ConditionType.DIALOG_STATE || type == ConditionType.GLOBAL_STATE)
             {
                 if(questState.type == QuestStateType.BOOL)
                 {
@@ -91,7 +91,26 @@ namespace BadDetective
 
         public Quest GetQuest()
         {
-            return conditionContainer.GetQuest();
+            if(conditionContainer != null)
+            {
+                return conditionContainer.GetQuest();
+            }
+            else
+            {
+                return GetComponentInParent<Quest>();
+            }
+        }
+
+        public Dialog.Dialog GetDialog()
+        {
+            if(conditionContainer != null)
+            {
+                return conditionContainer.GetDialog();
+            }
+            else
+            {
+                return GetComponentInParent<Dialog.Dialog>();
+            }
         }
     }
 

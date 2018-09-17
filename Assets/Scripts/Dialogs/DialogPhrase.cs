@@ -6,6 +6,7 @@ namespace BadDetective.Dialog
 {
     public class DialogPhrase : MonoBehaviour
     {
+        public PhraseType type;
         public DialogSpeekerType speekerType;
         public Character speeker;
         public string phraseText;
@@ -14,5 +15,11 @@ namespace BadDetective.Dialog
         public List<Effect> effects = new List<Effect>();
         [HideInInspector]
         public Rect nodePosition;
+    }
+
+    public enum PhraseType
+    {
+        DIALOG_PHRASE,
+        REPORT
     }
 }

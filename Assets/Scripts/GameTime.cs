@@ -166,5 +166,10 @@ namespace BadDetective
             float T = this.minutes + this.hours * 60;
             return (T >= minT) && (T < maxT);
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0} m, {1} w, {2} d, {3}:{4}", months, weeks, days, hours, minutes.ToString("00"));
+        }
     }
 }

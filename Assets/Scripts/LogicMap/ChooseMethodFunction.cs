@@ -15,12 +15,22 @@ namespace BadDetective.LogicMap
         public bool realizeDiplomat;
         public LogicFunction scienceOutput;
         public bool realizeScience;
+        
+        public Dialog.Dialog dialog;
+        public List<LogicFunction> dialogOutputs = new List<LogicFunction>();
+        public List<bool> realizeDialogOutput = new List<bool>();
+        public int dialogOutputNum;
+        public bool dialogOutputFlag;
 
         public override void RemoveActionInput(LogicFunction logicFunction)
         {
-            if (actionInput == logicFunction)
+            for (int i = 0; i < actionInputs.Count; i++)
             {
-                actionInput = null;
+                if (actionInputs[i] == logicFunction)
+                {
+                    actionInputs.RemoveAt(i);
+                    break;
+                }
             }
         }
 
@@ -61,41 +71,59 @@ namespace BadDetective.LogicMap
                     scienceOutput = null;
                 }
             }
+            for(int i=0; i< dialogOutputs.Count;i++)
+            {
+                if(dialogOutputs[i] == logicFunction)
+                {
+                    dialogOutputs[i] = null;
+                }
+            }
         }
 
         public void SetOutputLink(LogicFunction output)
         {
-            if (method == 0)
+            if (!dialogOutputFlag)
             {
-                if (brutalOutput != null)
+                if (method == 0)
                 {
-                    brutalOutput.RemoveActionInput(this);
+                    if (brutalOutput != null)
+                    {
+                        brutalOutput.RemoveActionInput(this);
+                    }
+                    brutalOutput = output;
                 }
-                brutalOutput = output;
+                else if (method == 1)
+                {
+                    if (carefulOutput != null)
+                    {
+                        carefulOutput.RemoveActionInput(this);
+                    }
+                    carefulOutput = output;
+                }
+                else if (method == 2)
+                {
+                    if (diplomatOutput != null)
+                    {
+                        diplomatOutput.RemoveActionInput(this);
+                    }
+                    diplomatOutput = output;
+                }
+                else if (method == 3)
+                {
+                    if (scienceOutput != null)
+                    {
+                        scienceOutput.RemoveActionInput(this);
+                    }
+                    scienceOutput = output;
+                }
             }
-            else if (method == 1)
+            else
             {
-                if (carefulOutput != null)
+                if (dialogOutputs[dialogOutputNum] != null)
                 {
-                    carefulOutput.RemoveActionInput(this);
+                    dialogOutputs[dialogOutputNum].RemoveActionInput(this);
                 }
-                carefulOutput = output;
-            }
-            else if (method == 2)
-            {
-                if (diplomatOutput != null)
-                {
-                    diplomatOutput.RemoveActionInput(this);
-                }
-                diplomatOutput = output;
-            }
-            else if (method == 3)
-            {
-                if (scienceOutput != null)
-                {
-                    scienceOutput.RemoveActionInput(this);
-                }
-                scienceOutput = output;
+                dialogOutputs[dialogOutputNum] = output;
             }
         }
 

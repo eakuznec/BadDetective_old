@@ -23,9 +23,33 @@ namespace BadDetective
         private float timeInWay;
         public bool destroy = false;
 
+        [Header("Report")]
+        public List<Quest> reportQuest = new List<Quest>();
+        public List<FileNote> reportNotes = new List<FileNote>();
+        public List<QuestEvent> reportEvent = new List<QuestEvent>();
+        public List<QuestTask> reportChangeTask = new List<QuestTask>();
+        public List<MainState> reportTaskState = new List<MainState>();
+        public List<QuestObjective> reportChangeObjective = new List<QuestObjective>();
+        public List<MainState> reportObjectiveState = new List<MainState>();
+
+        public Detective GetLeader()
+        {
+            Detective retVal = null;
+            float max = 0;
+            foreach (Detective detective in detectives)
+            {
+                if (retVal == null || detective.GetTotalConfidece() > max)
+                {
+                    retVal = detective;
+                    max = detective.GetTotalConfidece();
+                }
+            }
+            return retVal;
+        }
+
         public bool IsLeaderHaveTag(Tag tag)
         {
-            return detectives[0].HaveTag(tag);
+            return GetLeader().HaveTag(tag);
         }
 
         public bool IsTeamHaveTag(Tag tag)
@@ -44,7 +68,7 @@ namespace BadDetective
 
         public bool IsLeaderChallenge(Method method, int level, int difficult, Tag tag = Tag.NULL)
         {
-            int methodValue = GetDetectiveInTeamMethodValue(detectives[0], method, tag);
+            int methodValue = GetDetectiveInTeamMethodValue(GetLeader(), method, tag);
             if (methodValue < level)
             {
                 methodValue = methodValue / 2;
@@ -69,13 +93,13 @@ namespace BadDetective
 
         public Method GetPriorityMethod(bool brutal, bool careful, bool diplomat, bool science)
         {
-            return detectives[0].GetPriorityMethod(brutal, careful, diplomat, science);
+            return GetLeader().GetPriorityMethod(brutal, careful, diplomat, science);
         }
 
-        //public int GetLeaderMethodValue(Method method, Tag tag = Tag.NULL)
-        //{
-        //    return GetDetectiveInTeamMethodValue(detectives[0], method, tag);
-        //}
+        public Temper GetPriorityTemper(bool rude, bool prudent, bool merciful, bool cruel, bool mercantile, bool principled)
+        {
+            return GetLeader().GetPriorityTemper(rude, prudent, merciful, cruel, mercantile, principled);
+        }
 
         public Detective GetTeacher(Detective forWhom, out int result, Method method, Tag tag = Tag.NULL)
         {
@@ -95,34 +119,6 @@ namespace BadDetective
             }
             return teacher;
         }
-
-        //public int GetHighestMethodValue(Method method, Tag tag = Tag.NULL)
-        //{
-        //    int retVal = 0;
-        //    foreach(Detective detective in detectives)
-        //    {
-        //        int value = GetDetectiveInTeamMethodValue(detective, method, tag);
-        //        if (retVal < value)
-        //        {
-        //            retVal = value;
-        //        }
-        //    }
-        //    return retVal;
-        //}
-
-        //public int GetLowesMethodValue(Method method, Tag tag = Tag.NULL)
-        //{
-        //    int retVal = 999;
-        //    foreach (Detective detective in detectives)
-        //    {
-        //        int value = GetDetectiveInTeamMethodValue(detective, method, tag);
-        //        if (retVal > value)
-        //        {
-        //            retVal = value;
-        //        }
-        //    }
-        //    return retVal;
-        //}
 
         private int GetDetectiveInTeamMethodValue(Detective detective, Method method, Tag tag = Tag.NULL)
         {
@@ -275,6 +271,29 @@ namespace BadDetective
         public WayType GetPriorityWay()
         {
             return detectives[0].priorityWay;
+        }
+
+        public void Report()
+        {
+            for(int i =0; i< reportNotes.Count; i++)
+            {
+                reportQuest[i].notes.Add(reportNotes[i]);
+            }
+            reportQuest.Clear();
+            reportNotes.Clear();
+            for (int i = 0; i < reportChangeTask.Count; i++)
+            {
+                reportEvent[i].ChangeTask(reportChangeTask[i], reportTaskState[i]);
+            }
+            reportEvent.Clear();
+            reportChangeTask.Clear();
+            reportTaskState.Clear();
+            for(int i=0; i< reportChangeObjective.Count; i++)
+            {
+                reportChangeObjective[i].state = reportObjectiveState[i];
+            }
+            reportChangeObjective.Clear();
+            reportObjectiveState.Clear();
         }
     }
 }

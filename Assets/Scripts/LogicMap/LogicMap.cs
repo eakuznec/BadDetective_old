@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace BadDetective.LogicMap
 {
@@ -132,18 +133,89 @@ namespace BadDetective.LogicMap
             else if (function is ChallengeFunction)
             {
                 ChallengeFunction challengeFunction = (ChallengeFunction)function;
-                bool result = challengeFunction.Realize(curOwner);
-                if (result)
+                challengeFunction.CreateWaitAction(curOwner, delegate
                 {
                     challengeFunction.realizeTrue = true;
                     challengeFunction.realizeFalse = false;
                     RealizeFunction(challengeFunction.trueOutput, isTest);
-                }
-                else
-                {
+                }, delegate {
                     challengeFunction.realizeTrue = false;
                     challengeFunction.realizeFalse = true;
                     RealizeFunction(challengeFunction.falseOutput, isTest);
+                });
+            }
+            else if(function is ChooseMethodFunction)
+            {
+                ChooseMethodFunction methodFunction = (ChooseMethodFunction)function;
+                if (methodFunction.dialog == null || !curOwner.GetTeam().GetLeader().IsObedient())
+                {
+                    Method method = methodFunction.Realize(curOwner);
+                    if(method == Method.Brutal)
+                    {
+                        RealizeFunction(methodFunction.brutalOutput, isTest);
+                    }
+                    else if (method == Method.Careful)
+                    {
+                        RealizeFunction(methodFunction.carefulOutput, isTest);
+                    }
+                    else if (method == Method.Diplomatic)
+                    {
+                        RealizeFunction(methodFunction.diplomatOutput, isTest);
+                    }
+                    else if (method == Method.Scientific)
+                    {
+                        RealizeFunction(methodFunction.scienceOutput, isTest);
+                    }
+                }
+                else
+                {
+                    UnityAction action = delegate
+                    {
+                        int index = methodFunction.dialog.GetEnds().IndexOf(methodFunction.dialog.end);
+                        RealizeFunction(methodFunction.dialogOutputs[index], isTest);
+                    };
+                    Dialog.DialogManager.GetInstantiate().StartDialog(methodFunction.dialog,curOwner.GetCharacterOwner(), ((iEffectsContainer)curOwner).GetQuest(), action);
+                }
+            }
+            else if (function is ChooseTemperFunction)
+            {
+                ChooseTemperFunction temperFunction = (ChooseTemperFunction)function;
+                if (temperFunction.dialog == null || !curOwner.GetTeam().GetLeader().IsObedient())
+                {
+                    Temper temper = temperFunction.Realize(curOwner);
+                    if (temper == Temper.RUDE)
+                    {
+                        RealizeFunction(temperFunction.rudeOutput, isTest);
+                    }
+                    else if (temper == Temper.PRUDENT)
+                    {
+                        RealizeFunction(temperFunction.prudentOutput, isTest);
+                    }
+                    else if (temper == Temper.MERCIFUL)
+                    {
+                        RealizeFunction(temperFunction.mercifulOutput, isTest);
+                    }
+                    else if (temper == Temper.CRUEL)
+                    {
+                        RealizeFunction(temperFunction.cruelOutput, isTest);
+                    }
+                    else if (temper == Temper.MERCANTILE)
+                    {
+                        RealizeFunction(temperFunction.mercantileOutput, isTest);
+                    }
+                    else if (temper == Temper.PRINCIPLED)
+                    {
+                        RealizeFunction(temperFunction.principledOutput, isTest);
+                    }
+                }
+                else
+                {
+                    UnityAction action = delegate
+                    {
+                        int index = temperFunction.dialog.GetEnds().IndexOf(temperFunction.dialog.end);
+                        RealizeFunction(temperFunction.dialogOutputs[index], isTest);
+                    };
+                    Dialog.DialogManager.GetInstantiate().StartDialog(temperFunction.dialog, curOwner.GetCharacterOwner(), ((iEffectsContainer)curOwner).GetQuest(), action);
                 }
             }
         }

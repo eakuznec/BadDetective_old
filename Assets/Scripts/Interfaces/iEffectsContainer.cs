@@ -9,10 +9,12 @@ namespace BadDetective
         Team GetTeam();
         Character GetCharacterOwner();
         Quest GetQuest();
+        Dialog.Dialog GetDialog();
     }
 
     public interface iConditionContainer
     {
         Quest GetQuest();
+        Dialog.Dialog GetDialog();
     }
 }

@@ -8,5 +8,7 @@ public enum ConditionType
     QUEST_MAINSTATE,
     QUEST_STATE,
     CUR_TIME_IN_HOUR_RANGE,
-    TASK_MAINSTATE
+    TASK_MAINSTATE,
+    DIALOG_STATE,
+    GLOBAL_STATE
 }

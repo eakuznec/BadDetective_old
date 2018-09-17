@@ -8,6 +8,8 @@ namespace BadDetective.Dialog
     [CustomEditor(typeof(Dialog))]
     public class eDialog : Editor
     {
+        public bool showDialogStates;
+
         public override void OnInspectorGUI()
         {
             Dialog dialog = (Dialog)target;
@@ -15,20 +17,18 @@ namespace BadDetective.Dialog
             {
                 if (dialog != null)
                 {
-                    DialogEditor.Init();
-                    if (eUtils.isPrefab(dialog))
+                    if(DialogEditor.editor == null)
                     {
-                        DialogEditor.editor.prefab = dialog.gameObject;
+                        DialogEditor.ShowEditor();
                     }
-                    else
-                    {
-                        DialogEditor.editor.prefab = ((Dialog)PrefabUtility.GetPrefabParent(dialog)).gameObject;
-                    }
+                    DialogEditor.dialog = dialog;
                     DialogEditor.editor.LoadDialog();
                 }
 
             }
             base.OnInspectorGUI();
+            GUILayout.Space(10);
+            eUtils.DrawQuestStateList(dialog.dialogStates, dialog.transform, ref showDialogStates, "Dialog States");
         }
     }
 }

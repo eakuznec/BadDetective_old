@@ -10,6 +10,7 @@ namespace BadDetective
         public Detective owner;
 
         public string traitName;
+        public TraitCategory category;
         [TextArea]
         public string traitDescription;
         [Space (10)]
@@ -27,6 +28,8 @@ namespace BadDetective
         public float liveTime;
         [HideInInspector]
         public int removePoint;
+        [HideInInspector]
+        public bool showInInterface = false;
 
         private void Start()
         {
@@ -78,5 +81,18 @@ namespace BadDetective
         {
 
         }
+
+        public bool HaveTag(Tag tag)
+        {
+            return tags.Contains(tag);
+        }
+    }
+
+    public enum TraitCategory
+    {
+        FENOTYPE,
+        TEMPER,
+        WEAPON,
+        WOUND
     }
 }

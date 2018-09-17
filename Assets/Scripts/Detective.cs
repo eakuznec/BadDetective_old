@@ -6,6 +6,7 @@ namespace BadDetective
 {
     public class Detective : Character
     {
+        public Temper temper;
         public float maxHealth = 100;
         public float minHealth = 0;
         public float curHealth = 100;
@@ -15,6 +16,9 @@ namespace BadDetective
         public float maxLoyalty = 100;
         public float minLoyalty = 0;
         public float curLoyalty;
+        public float minConfidence = 0;
+        public float maxConfidence = 100;
+        public float curConfidence;
         public int maxItemSlots = 4;
         public List<Method> methods = new List<Method>
     {
@@ -28,6 +32,7 @@ namespace BadDetective
 
         public List<Trait> traits = new List<Trait>();
         private List<Equipment> _equipments = new List<Equipment>();
+        public List<FileNote> notes = new List<FileNote>();
 
         private Money _salary;
         public DetectiveHome home;
@@ -309,6 +314,25 @@ namespace BadDetective
             }
         }
 
+        public float confidence
+        {
+            get
+            {
+                return curConfidence;
+            }
+            set
+            {
+                curConfidence += value;
+                if(curConfidence < 0)
+                {
+                    curConfidence = 0;
+                }
+                else if (curConfidence > maxConfidence)
+                {
+                    curConfidence = maxConfidence;
+                }
+            }
+        }
 
         private void CheckGoHome()
         {
@@ -420,5 +444,191 @@ namespace BadDetective
             }
             return m[0];
         }
+
+        public Temper GetPriorityTemper(bool rude, bool prudent, bool merciful, bool cruel, bool mercantile, bool principled)
+        {
+            if(rude && temper == Temper.RUDE)
+            {
+                return Temper.RUDE;
+            }
+            else if(prudent && temper == Temper.PRUDENT)
+            {
+                return Temper.PRUDENT;
+            }
+            else if (merciful && temper == Temper.MERCIFUL)
+            {
+                return Temper.MERCIFUL;
+            }
+            else if (cruel && temper == Temper.CRUEL)
+            {
+                return Temper.CRUEL;
+            }
+            else if (mercantile && temper == Temper.MERCANTILE)
+            {
+                return Temper.MERCANTILE;
+            }
+            else if (principled && temper == Temper.PRINCIPLED)
+            {
+                return Temper.PRINCIPLED;
+            }
+            else
+            {
+                List<Temper> tempers = new List<Temper>();
+                if (rude)
+                {
+                    tempers.Add(Temper.RUDE);
+                }
+                else if (prudent)
+                {
+                    tempers.Add(Temper.PRUDENT);
+                }
+                else if (merciful)
+                {
+                    tempers.Add(Temper.MERCIFUL);
+                }
+                else if (cruel)
+                {
+                    tempers.Add(Temper.CRUEL);
+                }
+                else if (mercantile)
+                {
+                    tempers.Add(Temper.MERCANTILE);
+                }
+                else if (principled)
+                {
+                    tempers.Add(Temper.PRINCIPLED);
+                }
+                if(temper == Temper.RUDE)
+                {
+                    tempers.Remove(Temper.PRUDENT);
+                }
+                else if (temper == Temper.PRUDENT)
+                {
+                    tempers.Remove(Temper.RUDE);
+                }
+                else if (temper == Temper.MERCIFUL)
+                {
+                    tempers.Remove(Temper.CRUEL);
+                }
+                else if (temper == Temper.CRUEL)
+                {
+                    tempers.Remove(Temper.MERCIFUL);
+                }
+                else if (temper == Temper.MERCANTILE)
+                {
+                    tempers.Remove(Temper.PRINCIPLED);
+                }
+                else if (temper == Temper.PRINCIPLED)
+                {
+                    tempers.Remove(Temper.MERCANTILE);
+                }
+                return tempers[Random.Range(0, tempers.Count)];
+            }
+        }
+
+        public string GetHealthDescription()
+        {
+            if (curHealth < 10)
+            {
+                return "присмерти";
+            }
+            else if (curHealth < 25)
+            {
+                return "изувечен";
+            }
+            else if (curHealth < 50)
+            {
+                return "серьезные ранения";
+            }
+            else if (curHealth< 75)
+            {
+                return "ранен";
+            }
+            else if (curHealth<90)
+            {
+                return "потрепан";
+            }
+            else
+            {
+                return "здоров";
+            }
+        }
+
+        public string GetStressDescription()
+        {
+            if (maxStress - curStress < 10)
+            {
+                return "невменяем";
+            }
+            else if (maxStress - curStress < 25)
+            {
+                return "на грани";
+            }
+            else if (maxStress - curStress < 50)
+            {
+                return "не в себе";
+            }
+            else if (maxStress - curStress < 75)
+            {
+                return "изнеможден";
+            }
+            else if (maxStress - curStress < 90)
+            {
+                return "утомлен";
+            }
+            else
+            {
+                return "сосредоточен";
+            }
+        }
+
+        public string GetMethodDescription(Method method)
+        {
+            if (GetMethodValue(method) < 10)
+            {
+                return "отвратительно";
+            }
+            else if (GetMethodValue(method) < 25)
+            {
+                return "плохо";
+            }
+            else if (GetMethodValue(method) < 50)
+            {
+                return "нормально";
+            }
+            else if (GetMethodValue(method) < 75)
+            {
+                return "хорошо";
+            }
+            else if (GetMethodValue(method) < 90)
+            {
+                return "отлично";
+            }
+            else
+            {
+                return "фантастически";
+            }
+        }
+        
+        public float GetTotalConfidece()
+        {
+            return curConfidence;
+        }
+
+        public bool IsObedient()
+        {
+            return curLoyalty >= GetTotalConfidece();
+        }
+
+    }
+
+    public enum Temper
+    {
+        RUDE,
+        PRUDENT,
+        MERCIFUL,
+        CRUEL,
+        MERCANTILE,
+        PRINCIPLED
     }
 }

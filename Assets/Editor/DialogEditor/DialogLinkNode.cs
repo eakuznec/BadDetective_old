@@ -8,21 +8,33 @@ namespace BadDetective.Dialog
     public class DialogLinkNode : ScriptableObject
     {
         public DialogLink link;
-        public Rect windowRect;
+        //public Rect windowRect;
         public DialogChooseNode parentChoose;
         public DialogPhraseNode parentPhrase;
         public DialogPhraseNode outputPhrase;
         Vector3 startPos;
         public int id;
 
+        public Rect windowRect
+        {
+            get
+            {
+                return link.nodePosition;
+            }
+            set
+            {
+                link.nodePosition = value;
+            }
+        }
+
         public void DrawWindow()
         {
             windowRect = new Rect(startPos.x, startPos.y-10, 20, 20);
             GUIStyle currentStyle = new GUIStyle(GUI.skin.box);
-            currentStyle.normal.background = eUtils.MakeTex((int)windowRect.x, (int)windowRect.y, Color.yellow);
+            currentStyle.normal.background = eUtils.MakeTex((int)windowRect.width, (int)windowRect.height, Color.yellow);
             if (Selection.activeGameObject != link.gameObject)
             {
-                currentStyle.normal.background = eUtils.MakeTex((int)windowRect.x, (int)windowRect.y, Color.gray);
+                currentStyle.normal.background = eUtils.MakeTex((int)windowRect.width, (int)windowRect.height, Color.gray);
             }
             GUI.Box(windowRect, string.Format("{0}", link.conditions.Count), currentStyle);
         }

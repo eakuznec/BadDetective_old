@@ -8,24 +8,38 @@ public class DialogPhraseNode : ScriptableObject
 {
     public DialogPhrase phrase;
     public int id;
-    public Rect windowRect;
+    //public Rect windowRect;
     public string windowTitle;
     public bool chooseOpen;
     public List<DialogChooseNode> chooseNodes = new List<DialogChooseNode>();
     public List<DialogLinkNode> inputLinks = new List<DialogLinkNode>();
 
+    public Rect windowRect
+    {
+        get
+        {
+            return phrase.nodePosition;
+        }
+        set
+        {
+            phrase.nodePosition = value;
+        }
+    }
+
     public void DrawWindow()
     {
-        windowRect.height = 150;
+        phrase.nodePosition.height = 170;
 
-        if (phrase.speeker== null)
+        if (phrase.type== PhraseType.DIALOG_PHRASE)
         {
-            windowTitle = "Empty phrase";
+            windowTitle = "Dialog phrase";
         }
-        else
+        else if (phrase.type == PhraseType.REPORT)
         {
-            windowTitle = phrase.speeker.characterName;
+            windowTitle = "File notes";
         }
+        SerializedObject soPhrase = new SerializedObject(phrase);
+        EditorGUILayout.PropertyField(soPhrase.FindProperty("type"), GUIContent.none, new GUILayoutOption[] { GUILayout.ExpandWidth(true) });
         GUILayout.BeginHorizontal();
         GUILayout.BeginVertical(new GUILayoutOption[] { GUILayout.Width(100) });
         if (phrase.speeker != null)
@@ -45,17 +59,25 @@ public class DialogPhraseNode : ScriptableObject
         }
         GUILayout.EndVertical();
         GUILayout.BeginVertical();
-        GUILayout.BeginHorizontal();
-        SerializedObject soPhrase = new SerializedObject(phrase);
-        EditorGUILayout.PropertyField(soPhrase.FindProperty("speekerType"), GUIContent.none, new GUILayoutOption[] { GUILayout.Width(100)});
-        if(phrase.speekerType== DialogSpeekerType.SPECIFIC)
+        if(phrase.type == PhraseType.DIALOG_PHRASE)
         {
-            GUILayout.FlexibleSpace();
-            EditorGUILayout.PropertyField(soPhrase.FindProperty("speeker"), GUIContent.none, new GUILayoutOption[] { GUILayout.Width(150) });
+            GUILayout.BeginHorizontal();
+            EditorGUILayout.PropertyField(soPhrase.FindProperty("speekerType"), GUIContent.none, new GUILayoutOption[] { GUILayout.Width(100) });
+            if (phrase.speekerType == DialogSpeekerType.SPECIFIC)
+            {
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.PropertyField(soPhrase.FindProperty("speeker"), GUIContent.none, new GUILayoutOption[] { GUILayout.Width(150) });
+            }
+            GUILayout.EndHorizontal();
         }
-        soPhrase.ApplyModifiedProperties();
-        GUILayout.EndHorizontal();
-        phrase.phraseText = EditorGUILayout.TextArea(phrase.phraseText, new GUILayoutOption[] { GUILayout.ExpandHeight(true), GUILayout.Width(250) });
+        if(phrase.type != PhraseType.REPORT)
+        {
+            phrase.phraseText = EditorGUILayout.TextArea(phrase.phraseText, new GUILayoutOption[] { GUILayout.ExpandHeight(true), GUILayout.Width(250) });
+        }
+        else
+        {
+            EditorGUILayout.LabelField("", new GUILayoutOption[] { GUILayout.ExpandHeight(true), GUILayout.Width(250) });
+        }
         GUILayout.Label(string.Format("Effects: {0}", phrase.effects.Count));
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
@@ -69,16 +91,16 @@ public class DialogPhraseNode : ScriptableObject
             float h = 70;
             for (int i = 0; i < chooseNodes.Count; i++)
             {
-                chooseNodes[i].DrawWindow(ref i, ref windowRect, ref h);
+                chooseNodes[i].DrawWindow(ref i, ref phrase.nodePosition, ref h);
             }
-            windowRect.height += 24;
+            phrase.nodePosition.height += 24;
             if (GUILayout.Button("Add choose"))
             {
                 EditorGUI.FocusTextInControl("");
                 CreateChooseNode(null);
             }
         }
-
+        soPhrase.ApplyModifiedProperties();
     }
 
     public DialogChooseNode CreateChooseNode(DialogChoose choose)
@@ -108,7 +130,8 @@ public class DialogPhraseNode : ScriptableObject
     public void DeleteNode()
     {
         DialogEditor editor = DialogEditor.editor;
-        editor.dialog.phrases.Remove(phrase);
+        Dialog dialog = DialogEditor.dialog;
+        dialog.phrases.Remove(phrase);
         for(int i=0; i < inputLinks.Count; i++)
         {
             inputLinks[i].DeleteLink();
@@ -118,9 +141,9 @@ public class DialogPhraseNode : ScriptableObject
         {
             chooseNodes[i].DeleteNode(ref i);
         }
-        if(editor.dialog.startPhrase == phrase)
+        if(dialog.startPhrase == phrase)
         {
-            editor.dialog.startPhrase = null;
+            dialog.startPhrase = null;
         }
         DestroyImmediate(phrase.gameObject);
         editor.nodes.Remove(this);

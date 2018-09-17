@@ -127,7 +127,7 @@ namespace BadDetective.LogicMap
             actionStyle.normal.background = eUtils.MakeTex(10, 10, Color.blue);
             GUIStyle realizeActionStyle = new GUIStyle();
             realizeActionStyle.normal.background = eUtils.MakeTex(10, 10, Color.magenta);
-            if (function.actionInput == null)
+            if (function.actionInputs.Count == 0)
             {
                 if (!function.startFunction)
                 {
@@ -147,113 +147,134 @@ namespace BadDetective.LogicMap
             }
             else
             {
-                if (function.actionInput is DataSplitter)
+                bool realizeFlag = false;
+                foreach(LogicFunction actionInput in function.actionInputs)
                 {
-                    DataSplitter input = (DataSplitter)function.actionInput;
-                    if (input.trueOutput == function && !input.realizeTrue)
+                    if (actionInput is DataSplitter)
                     {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.trueOutput == function && input.realizeTrue)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.falseOutput == function && !input.realizeFalse)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.falseOutput == function && input.realizeFalse)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                }
-                else if (function.actionInput is LogicSplitter)
-                {
-                    LogicSplitter input = (LogicSplitter)function.actionInput;
-                    int index = input.actionOutputs.IndexOf(function);
-                    if (index == -1)
-                    {
-                        GUILayout.Box(GUIContent.none, noneActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else
-                    {
-                        if (!input.realizeOutputs[index])
+                        DataSplitter input = (DataSplitter)actionInput;
+                        if (input.trueOutput == function && input.realizeTrue)
                         {
-                            GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.falseOutput == function && input.realizeFalse)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                    }
+                    else if (actionInput is LogicSplitter)
+                    {
+                        LogicSplitter input = (LogicSplitter)actionInput;
+                        int index = input.actionOutputs.IndexOf(function);
+                        if (input.realizeOutputs[index])
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                    }
+                    else if (actionInput is WaitFunction)
+                    {
+                        WaitFunction input = (WaitFunction)actionInput;
+                        if (input.actionOutput == function && input.realize)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                    }
+                    else if (actionInput is ChallengeFunction)
+                    {
+                        ChallengeFunction input = (ChallengeFunction)actionInput;
+                        if (input.trueOutput == function && input.realizeTrue)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.falseOutput == function && input.realizeFalse)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                    }
+                    else if (actionInput is ChooseMethodFunction)
+                    {
+                        ChooseMethodFunction input = (ChooseMethodFunction)actionInput;
+                        if (input.brutalOutput == function && input.realizeBrutal)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.carefulOutput == function && input.realizeCareful)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.diplomatOutput == function && input.realizeDiplomat)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.scienceOutput == function && input.realizeScience)
+                        {
+                            realizeFlag = true;
+                            break;
                         }
                         else
                         {
-                            GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                            for (int i = 0; i < input.dialogOutputs.Count; i++)
+                            {
+                                if (input.dialogOutputs[i] == logicFunction && input.realizeDialogOutput[i])
+                                {
+                                    realizeFlag = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if (actionInput is ChooseTemperFunction)
+                    {
+                        ChooseTemperFunction input = (ChooseTemperFunction)actionInput;
+                        if (input.rudeOutput == logicFunction && input.realizeRude)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.prudentOutput == logicFunction && input.realizePrudent)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.cruelOutput == logicFunction && input.realizeCruel)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.principledOutput == logicFunction && input.realizePrincipled)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else
+                        {
+                            for (int i = 0; i < input.dialogOutputs.Count; i++)
+                            {
+                                if (input.dialogOutputs[i] == logicFunction && input.realizeDialogOutput[i])
+                                {
+                                    realizeFlag = true;
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
-                else if (function.actionInput is WaitFunction)
+                if (realizeFlag)
                 {
-                    WaitFunction input = (WaitFunction)function.actionInput;
-                    if (input.actionOutput == function && !input.realize)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.actionOutput == function && input.realize)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
+                    GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                 }
-                else if (function.actionInput is ChallengeFunction)
+                else
                 {
-                    ChallengeFunction input = (ChallengeFunction)function.actionInput;
-                    if (input.trueOutput == function && !input.realizeTrue)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.trueOutput == function && input.realizeTrue)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.falseOutput == function && !input.realizeFalse)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.falseOutput == function && input.realizeFalse)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                }
-                else if (function.actionInput is ChooseMethodFunction)
-                {
-                    ChooseMethodFunction input = (ChooseMethodFunction)function.actionInput;
-                    if (input.brutalOutput == function && !input.realizeBrutal)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.brutalOutput == function && input.realizeBrutal)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.carefulOutput == function && !input.realizeCareful)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.carefulOutput == function && input.realizeCareful)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.diplomatOutput == function && !input.realizeDiplomat)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.diplomatOutput == function && input.realizeDiplomat)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.scienceOutput == function && !input.realizeScience)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.scienceOutput == function && input.realizeScience)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
+                    GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                 }
             }
             GUILayout.FlexibleSpace();
@@ -301,9 +322,9 @@ namespace BadDetective.LogicMap
         {
             base.DeleteNode();
             ChallengeFunction function = (ChallengeFunction)logicFunction;
-            if (function.actionInput != null)
+            foreach(LogicFunction actionInput in function.actionInputs)
             {
-                function.actionInput.RemoveActionOutput(function);
+                actionInput.RemoveActionOutput(function);
             }
             if (function.trueOutput != null)
             {

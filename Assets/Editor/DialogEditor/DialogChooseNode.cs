@@ -8,10 +8,22 @@ public class DialogChooseNode : ScriptableObject
 {
     public DialogChoose choose;
     public int id;
-    public Rect windowRect;
+    //public Rect windowRect;
     public List<DialogLinkNode> outputLinks = new List<DialogLinkNode>();
 
     public DialogPhraseNode parentNode;
+
+    public Rect windowRect
+    {
+        get
+        {
+            return choose.nodePosition;
+        }
+        set
+        {
+            choose.nodePosition = value;
+        }
+    }
 
     public void DrawWindow(ref int num, ref Rect rect, ref float h)
     {
@@ -23,6 +35,7 @@ public class DialogChooseNode : ScriptableObject
         {
             EditorGUI.FocusTextInControl("");
             DeleteNode(ref num);
+            return;
         }
         GUILayout.BeginVertical(new GUILayoutOption[] { GUILayout.Width(45) });
         GUILayout.FlexibleSpace();
@@ -50,10 +63,11 @@ public class DialogChooseNode : ScriptableObject
         }
         GUILayout.FlexibleSpace();
         GUILayout.EndVertical();
+        SerializedObject soChoose = new SerializedObject(choose);
         GUILayout.BeginVertical();
-        if (choose.next)
+        EditorGUILayout.PropertyField(soChoose.FindProperty("type"), GUIContent.none ,new GUILayoutOption[] { GUILayout.ExpandWidth(true) });
+        if (choose.type == ChooseType.CONTINUE)
         {
-            GUILayout.Label("Continue", new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
             GUILayout.FlexibleSpace();
         }
         else
@@ -63,14 +77,15 @@ public class DialogChooseNode : ScriptableObject
         GUILayout.BeginHorizontal();
         GUILayout.Label(string.Format("Conditions: {0}", choose.conditions.Count));
         GUILayout.Label(string.Format("Effects: {0}", choose.effects.Count));
+        choose.isOnce = GUILayout.Toggle(choose.isOnce, "isOnse");
         GUILayout.EndHorizontal();
         GUILayout.EndVertical();
-        choose.next = GUILayout.Toggle(choose.next, GUIContent.none, new GUILayoutOption[] { GUILayout.Width(20) });
         GUILayout.EndHorizontal();
 
         GUILayout.EndVertical();
         rect.height += windowRect.height;
         h += windowRect.height;
+        soChoose.ApplyModifiedProperties();
     }
 
     public void DeleteNode(ref int num)

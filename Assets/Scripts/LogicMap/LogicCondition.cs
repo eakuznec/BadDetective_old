@@ -26,7 +26,18 @@ namespace BadDetective.LogicMap
                 checkNode = true;
             }
             LogicMap logicMap = transform.GetComponentInParent<LogicMap>();
-            result = condition.isFulfilled(((iConditionContainer)logicMap.curOwner).GetQuest());
+            if (logicMap.curOwner != null)
+            {
+                result = condition.isFulfilled(((iConditionContainer)logicMap.curOwner).GetQuest());
+            }
+            else if(transform.GetComponentInParent<Quest>() != null)
+            {
+                result = condition.isFulfilled(transform.GetComponentInParent<Quest>());
+            }
+            else if (transform.GetComponentInParent<Dialog.Dialog>() != null)
+            {
+                result = condition.isFulfilled(transform.GetComponentInParent<Dialog.Dialog>().questOwner);
+            }
             return result;
         }
 

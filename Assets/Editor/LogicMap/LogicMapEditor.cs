@@ -31,9 +31,6 @@ namespace BadDetective.LogicMap
         public static void ShowEditor()
         {
             editor = EditorWindow.GetWindow<LogicMapEditor>(false, "Logic Map");
-
-            //editor.serializedObject = new SerializedObject(editor);
-            //editor.property = editor.serializedObject.FindProperty("prefab");
         }
 
         private void Awake()
@@ -72,7 +69,63 @@ namespace BadDetective.LogicMap
                 int select = -1;
                 if (e.button == 0)
                 {
-                    if (e.type == EventType.MouseUp)
+                    if (e.type == EventType.MouseDown)
+                    {
+                        Selection.activeGameObject = logicMap.gameObject;
+                        foreach (BaseLogicNode node in nodes)
+                        {
+                            if (node is WaitNode)
+                            {
+                                if (((WaitNode)node).logicFunction.GetWindowRect().Contains(mousePos))
+                                {
+                                    Selection.activeGameObject = ((WaitNode)node).logicFunction.gameObject;
+                                    break;
+                                }
+                            }
+                            else if (node is EffectNode)
+                            {
+                                if (((EffectNode)node).logicFunction.GetWindowRect().Contains(mousePos))
+                                {
+                                    Selection.activeGameObject = ((LogicEffect)((EffectNode)node).logicFunction).effect.gameObject;
+                                    break;
+                                }
+                            }
+                            else if (node is ConditionNode)
+                            {
+                                if (((ConditionNode)node).logicCondition.GetWindowRect().Contains(mousePos))
+                                {
+                                    Selection.activeGameObject = ((LogicCondition)((ConditionNode)node).logicCondition).condition.gameObject;
+                                    break;
+                                }
+                            }
+                            else if (node is ChallengeNode)
+                            {
+                                if (((ChallengeNode)node).logicFunction.GetWindowRect().Contains(mousePos))
+                                {
+                                    Selection.activeGameObject = ((ChallengeFunction)((ChallengeNode)node).logicFunction).gameObject;
+                                    break;
+                                }
+                            }
+                            else if (node is ChooseMethodNode)
+                            {
+                                if (((ChooseMethodNode)node).logicFunction.GetWindowRect().Contains(mousePos))
+                                {
+                                    Selection.activeGameObject = ((ChooseMethodNode)node).logicFunction.gameObject;
+                                    break;
+                                }
+                            }
+                            else if (node is ChooseTemperNode)
+                            {
+                                if (((ChooseTemperNode)node).logicFunction.GetWindowRect().Contains(mousePos))
+                                {
+                                    Selection.activeGameObject = ((ChooseTemperNode)node).logicFunction.gameObject;
+                                    break;
+                                }
+                            }
+                        }
+
+                    }
+                    else if (e.type == EventType.MouseUp)
                     {
                         if (actionLinkMod)
                         {
@@ -127,6 +180,15 @@ namespace BadDetective.LogicMap
                                         else if (selectFunctionNode is ChooseMethodNode)
                                         {
                                             ((ChooseMethodFunction)selectFunctionNode.logicFunction).SetOutputLink(((LogicSplitterNode)node).logicFunction);
+                                            ((LogicSplitterNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((LogicSplitterNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
+                                        else if (selectFunctionNode is ChooseTemperNode)
+                                        {
+                                            ((ChooseTemperFunction)selectFunctionNode.logicFunction).SetOutputLink(((LogicSplitterNode)node).logicFunction);
                                             ((LogicSplitterNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
                                             if (((LogicSplitterNode)node).logicFunction == logicMap.startFunction)
                                             {
@@ -190,6 +252,15 @@ namespace BadDetective.LogicMap
                                                 SetStartFunction(null);
                                             }
                                         }
+                                        else if (selectFunctionNode is ChooseTemperNode)
+                                        {
+                                            ((ChooseTemperFunction)selectFunctionNode.logicFunction).SetOutputLink(((DataSplitterNode)node).logicFunction);
+                                            ((DataSplitterNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((DataSplitterNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
                                         break;
                                     }
                                 }
@@ -241,6 +312,15 @@ namespace BadDetective.LogicMap
                                         else if (selectFunctionNode is ChooseMethodNode)
                                         {
                                             ((ChooseMethodFunction)selectFunctionNode.logicFunction).SetOutputLink(((WaitNode)node).logicFunction);
+                                            ((WaitNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((WaitNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
+                                        else if (selectFunctionNode is ChooseTemperNode)
+                                        {
+                                            ((ChooseTemperFunction)selectFunctionNode.logicFunction).SetOutputLink(((WaitNode)node).logicFunction);
                                             ((WaitNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
                                             if (((WaitNode)node).logicFunction == logicMap.startFunction)
                                             {
@@ -304,6 +384,15 @@ namespace BadDetective.LogicMap
                                                 SetStartFunction(null);
                                             }
                                         }
+                                        else if (selectFunctionNode is ChooseTemperNode)
+                                        {
+                                            ((ChooseTemperFunction)selectFunctionNode.logicFunction).SetOutputLink(((EffectNode)node).logicFunction);
+                                            ((EffectNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((EffectNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
                                         break;
                                     }
                                 }
@@ -355,6 +444,15 @@ namespace BadDetective.LogicMap
                                         else if (selectFunctionNode is ChooseMethodNode)
                                         {
                                             ((ChooseMethodFunction)selectFunctionNode.logicFunction).SetOutputLink(((ChallengeNode)node).logicFunction);
+                                            ((ChallengeNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((ChallengeNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
+                                        else if (selectFunctionNode is ChooseTemperNode)
+                                        {
+                                            ((ChooseTemperFunction)selectFunctionNode.logicFunction).SetOutputLink(((ChallengeNode)node).logicFunction);
                                             ((ChallengeNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
                                             if (((ChallengeNode)node).logicFunction == logicMap.startFunction)
                                             {
@@ -414,6 +512,81 @@ namespace BadDetective.LogicMap
                                             ((ChooseMethodFunction)selectFunctionNode.logicFunction).SetOutputLink(((ChooseMethodNode)node).logicFunction);
                                             ((ChooseMethodNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
                                             if (((ChooseMethodNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
+                                        else if (selectFunctionNode is ChooseTemperNode)
+                                        {
+                                            ((ChooseTemperFunction)selectFunctionNode.logicFunction).SetOutputLink(((ChooseMethodNode)node).logicFunction);
+                                            ((ChooseMethodNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((ChooseMethodNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                                else if (node is ChooseTemperNode)
+                                {
+                                    if (((ChooseTemperNode)node).logicFunction.GetWindowRect().Contains(mousePos))
+                                    {
+
+                                        if (selectFunctionNode == null)
+                                        {
+                                            SetStartFunction(((ChooseTemperNode)node).logicFunction);
+                                        }
+                                        else if (selectFunctionNode is LogicSplitterNode)
+                                        {
+                                            ((LogicSplitter)selectFunctionNode.logicFunction).SetOutputLink(((ChooseTemperNode)node).logicFunction);
+                                            ((ChooseTemperNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((ChooseTemperNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
+                                        else if (selectFunctionNode is DataSplitterNode)
+                                        {
+                                            ((DataSplitter)selectFunctionNode.logicFunction).SetOutputLink(((ChooseTemperNode)node).logicFunction);
+                                            ((ChooseTemperNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((ChooseTemperNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
+                                        else if (selectFunctionNode is WaitNode)
+                                        {
+                                            ((WaitFunction)selectFunctionNode.logicFunction).SetOutputLink(((ChooseTemperNode)node).logicFunction);
+                                            ((ChooseTemperNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((ChooseTemperNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
+                                        else if (selectFunctionNode is ChallengeNode)
+                                        {
+                                            ((ChallengeFunction)selectFunctionNode.logicFunction).SetOutputLink(((ChooseTemperNode)node).logicFunction);
+                                            ((ChooseTemperNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((ChooseTemperNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
+                                        else if (selectFunctionNode is ChooseMethodNode)
+                                        {
+                                            ((ChooseMethodFunction)selectFunctionNode.logicFunction).SetOutputLink(((ChooseTemperNode)node).logicFunction);
+                                            ((ChooseTemperNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((ChooseTemperNode)node).logicFunction == logicMap.startFunction)
+                                            {
+                                                SetStartFunction(null);
+                                            }
+                                        }
+                                        else if (selectFunctionNode is ChooseTemperNode)
+                                        {
+                                            ((ChooseTemperFunction)selectFunctionNode.logicFunction).SetOutputLink(((ChooseTemperNode)node).logicFunction);
+                                            ((ChooseTemperNode)node).logicFunction.SetActionInputLink(selectFunctionNode.logicFunction);
+                                            if (((ChooseTemperNode)node).logicFunction == logicMap.startFunction)
                                             {
                                                 SetStartFunction(null);
                                             }
@@ -610,26 +783,26 @@ namespace BadDetective.LogicMap
                         }
                         if (moveMod)
                         {
-                            logicMap.enterWindowRect.position -= e.delta;
+                            logicMap.enterWindowRect.position += e.delta;
                             foreach (LogicCondition function in logicMap.conditions)
                             {
-                                function.windowRect.position -= e.delta;
+                                function.windowRect.position += e.delta;
                             }
                             foreach (LogicDataFunction function in logicMap.dataFunc)
                             {
-                                function.windowRect.position -= e.delta;
+                                function.windowRect.position += e.delta;
                             }
                             foreach (DataVariable function in logicMap.dataVariables)
                             {
-                                function.windowRect.position -= e.delta;
+                                function.windowRect.position += e.delta;
                             }
                             foreach (LogicEffect function in logicMap.effects)
                             {
-                                function.windowRect.position -= e.delta;
+                                function.windowRect.position += e.delta;
                             }
                             foreach (LogicFunction function in logicMap.logicFunc)
                             {
-                                function.windowRect.position -= e.delta;
+                                function.windowRect.position += e.delta;
                             }
                         }
                     }
@@ -855,6 +1028,10 @@ namespace BadDetective.LogicMap
             {
                 CreateMethodNode(mousePos);
             }
+            else if(clb == "temperNode")
+            {
+                CreateTemperNode(mousePos);
+            }
             else if (clb == "setStartNode")
             {
                 foreach(BaseLogicNode node in nodes)
@@ -993,6 +1170,7 @@ namespace BadDetective.LogicMap
                         ChooseMethodNode methodNode = node as ChooseMethodNode;
                         ChooseMethodFunction methodFunction = (ChooseMethodFunction)methodNode.logicFunction;
                         methodFunction.method = 0;
+                        methodFunction.dialogOutputFlag = false;
                         actionLinkMod = true;
                         methodNode.SetActionOutputLink();
                         break;
@@ -1008,6 +1186,7 @@ namespace BadDetective.LogicMap
                         ChooseMethodNode methodNode = node as ChooseMethodNode;
                         ChooseMethodFunction methodFunction = (ChooseMethodFunction)methodNode.logicFunction;
                         methodFunction.method = 1;
+                        methodFunction.dialogOutputFlag = false;
                         actionLinkMod = true;
                         methodNode.SetActionOutputLink();
                         break;
@@ -1023,6 +1202,7 @@ namespace BadDetective.LogicMap
                         ChooseMethodNode methodNode = node as ChooseMethodNode;
                         ChooseMethodFunction methodFunction = (ChooseMethodFunction)methodNode.logicFunction;
                         methodFunction.method = 2;
+                        methodFunction.dialogOutputFlag = false;
                         actionLinkMod = true;
                         methodNode.SetActionOutputLink();
                         break;
@@ -1038,10 +1218,150 @@ namespace BadDetective.LogicMap
                         ChooseMethodNode methodNode = node as ChooseMethodNode;
                         ChooseMethodFunction methodFunction = (ChooseMethodFunction)methodNode.logicFunction;
                         methodFunction.method = 3;
+                        methodFunction.dialogOutputFlag = false;
                         actionLinkMod = true;
                         methodNode.SetActionOutputLink();
                         break;
                     }
+                }
+            }
+            else if (clb == "rudeOutput")
+            {
+                foreach (BaseLogicNode node in nodes)
+                {
+                    if (node is ChooseTemperNode && ((ChooseTemperNode)node).logicFunction.windowRect.Contains(mousePos))
+                    {
+                        ChooseTemperNode temperNode = node as ChooseTemperNode;
+                        ChooseTemperFunction methodFunction = (ChooseTemperFunction)temperNode.logicFunction;
+                        methodFunction.temper = 0;
+                        methodFunction.dialogOutputFlag = false;
+                        actionLinkMod = true;
+                        temperNode.SetActionOutputLink();
+                        break;
+                    }
+                }
+            }
+            else if (clb == "prudentOutput")
+            {
+                foreach (BaseLogicNode node in nodes)
+                {
+                    if (node is ChooseTemperNode && ((ChooseTemperNode)node).logicFunction.windowRect.Contains(mousePos))
+                    {
+                        ChooseTemperNode temperNode = node as ChooseTemperNode;
+                        ChooseTemperFunction methodFunction = (ChooseTemperFunction)temperNode.logicFunction;
+                        methodFunction.temper = 1;
+                        methodFunction.dialogOutputFlag = false;
+                        actionLinkMod = true;
+                        temperNode.SetActionOutputLink();
+                        break;
+                    }
+                }
+            }
+            else if (clb == "mercifulOutput")
+            {
+                foreach (BaseLogicNode node in nodes)
+                {
+                    if (node is ChooseTemperNode && ((ChooseTemperNode)node).logicFunction.windowRect.Contains(mousePos))
+                    {
+                        ChooseTemperNode temperNode = node as ChooseTemperNode;
+                        ChooseTemperFunction methodFunction = (ChooseTemperFunction)temperNode.logicFunction;
+                        methodFunction.temper = 2;
+                        methodFunction.dialogOutputFlag = false;
+                        actionLinkMod = true;
+                        temperNode.SetActionOutputLink();
+                        break;
+                    }
+                }
+            }
+            else if (clb == "cruelOutput")
+            {
+                foreach (BaseLogicNode node in nodes)
+                {
+                    if (node is ChooseTemperNode && ((ChooseTemperNode)node).logicFunction.windowRect.Contains(mousePos))
+                    {
+                        ChooseTemperNode temperNode = node as ChooseTemperNode;
+                        ChooseTemperFunction methodFunction = (ChooseTemperFunction)temperNode.logicFunction;
+                        methodFunction.temper = 3;
+                        methodFunction.dialogOutputFlag = false;
+                        actionLinkMod = true;
+                        temperNode.SetActionOutputLink();
+                        break;
+                    }
+                }
+            }
+            else if (clb == "mercantileOutput")
+            {
+                foreach (BaseLogicNode node in nodes)
+                {
+                    if (node is ChooseTemperNode && ((ChooseTemperNode)node).logicFunction.windowRect.Contains(mousePos))
+                    {
+                        ChooseTemperNode temperNode = node as ChooseTemperNode;
+                        ChooseTemperFunction methodFunction = (ChooseTemperFunction)temperNode.logicFunction;
+                        methodFunction.temper = 4;
+                        methodFunction.dialogOutputFlag = false;
+                        actionLinkMod = true;
+                        temperNode.SetActionOutputLink();
+                        break;
+                    }
+                }
+            }
+            else if (clb == "principledOutput")
+            {
+                foreach (BaseLogicNode node in nodes)
+                {
+                    if (node is ChooseTemperNode && ((ChooseTemperNode)node).logicFunction.windowRect.Contains(mousePos))
+                    {
+                        ChooseTemperNode temperNode = node as ChooseTemperNode;
+                        ChooseTemperFunction methodFunction = (ChooseTemperFunction)temperNode.logicFunction;
+                        methodFunction.temper = 5;
+                        methodFunction.dialogOutputFlag = false;
+                        actionLinkMod = true;
+                        temperNode.SetActionOutputLink();
+                        break;
+                    }
+                }
+            }
+            else if (clb == "dialogOutput")
+            {
+                foreach (BaseLogicNode node in nodes)
+                {
+                    if (node is ChooseMethodNode && ((ChooseMethodNode)node).logicFunction.GetWindowRect().Contains(mousePos))
+                    {
+                        ChooseMethodNode chooseMethodNode = (ChooseMethodNode)node;
+                        ChooseMethodFunction function = (ChooseMethodFunction)chooseMethodNode.logicFunction;
+                        for (int i = 0; i < function.dialogOutputs.Count; i++)
+                        {
+                            if (new Rect(function.windowRect.x, function.windowRect.yMax - 20 * (function.dialogOutputs.Count - i), function.windowRect.width, 20).Contains(mousePos))
+                            {
+                                ChooseMethodNode methodNode = node as ChooseMethodNode;
+                                ChooseMethodFunction methodFunction = (ChooseMethodFunction)methodNode.logicFunction;
+                                methodFunction.dialogOutputNum = i;
+                                methodFunction.dialogOutputFlag = true;
+                                actionLinkMod = true;
+                                methodNode.SetActionOutputLink();
+                                break;
+                            }
+                        }
+                    }
+                    else if (node is ChooseTemperNode && ((ChooseTemperNode)node).logicFunction.GetWindowRect().Contains(mousePos))
+                    {
+                        ChooseTemperNode chooseMethodNode = (ChooseTemperNode)node;
+                        ChooseTemperFunction function = (ChooseTemperFunction)chooseMethodNode.logicFunction;
+                        for (int i = 0; i < function.dialogOutputs.Count; i++)
+                        {
+                            if (new Rect(function.windowRect.x, function.windowRect.yMax - 20 * (function.dialogOutputs.Count - i), function.windowRect.width, 20).Contains(mousePos))
+                            {
+                                ChooseTemperNode methodNode = node as ChooseTemperNode;
+                                ChooseTemperFunction methodFunction = (ChooseTemperFunction)methodNode.logicFunction;
+                                methodFunction.dialogOutputNum = i;
+                                methodFunction.dialogOutputFlag = true;
+                                actionLinkMod = true;
+                                methodNode.SetActionOutputLink();
+                                break;
+                            }
+                        }
+                    }
+
                 }
             }
             else if (clb == "deleteNode")
@@ -1221,6 +1541,41 @@ namespace BadDetective.LogicMap
                 SetStartFunction(methodNode.logicFunction);
             }
             return methodNode;
+        }
+
+        private ChooseTemperNode CreateTemperNode(Vector2 mousePos, ChooseTemperFunction temperFunction = null)
+        {
+            GameObject goFolder;
+            if (logicMap.transform.Find("ChooseTempers") == null)
+            {
+                goFolder = new GameObject("ChooseTempers");
+                goFolder.transform.parent = logicMap.transform;
+            }
+            else
+            {
+                goFolder = logicMap.transform.Find("ChooseTempers").gameObject;
+            }
+            ChooseTemperNode temperNode = new ChooseTemperNode();
+            if (temperFunction == null)
+            {
+                GameObject go = new GameObject(string.Format("{0}_ChooseTemper", id));
+                temperNode.logicFunction = go.AddComponent<ChooseTemperFunction>();
+                go.transform.parent = goFolder.transform;
+                logicMap.logicFunc.Add(temperNode.logicFunction);
+                temperNode.logicFunction.windowRect = new Rect(mousePos, new Vector2(130, 155));
+            }
+            else
+            {
+                temperNode.logicFunction = temperFunction;
+            }
+            temperNode.id = id;
+            id++;
+            nodes.Add(temperNode);
+            if (logicMap.startFunction == null)
+            {
+                SetStartFunction(temperNode.logicFunction);
+            }
+            return temperNode;
         }
 
         private DataSplitterNode CreateDataSplitterNode(Vector2 mousePos, DataSplitter dataSplitter = null)
@@ -1472,8 +1827,8 @@ namespace BadDetective.LogicMap
             menu.AddItem(new GUIContent("Create Wait Node (only Quest, Task)"), false, ContextCallback, "waitNode");
             menu.AddItem(new GUIContent("Create Challenge Node (only Task)"), false, ContextCallback, "challengeNode");
             menu.AddItem(new GUIContent("Create Choose Method Node (only Task)"), false, ContextCallback, "methodNode");
+            menu.AddItem(new GUIContent("Create Choose Temper Node (only Task)"), false, ContextCallback, "temperNode");
             menu.AddSeparator("");
-            // menu.AddItem(new GUIContent("Save Logic Map"), false, ContextCallback, "save");
             menu.AddItem(new GUIContent("Test Logic Map"), false, ContextCallback, "test");
             menu.ShowAsContext();
             e.Use();
@@ -1591,6 +1946,59 @@ namespace BadDetective.LogicMap
             menu.AddItem(new GUIContent("Set Careful Output"), false, ContextCallback, "carefulOutput");
             menu.AddItem(new GUIContent("Set Diplomatic Output"), false, ContextCallback, "diplomatOutput");
             menu.AddItem(new GUIContent("Set Scientific Output"), false, ContextCallback, "scienceOutput");
+            foreach(BaseLogicNode node in nodes)
+            {
+                if (node is ChooseMethodNode && ((ChooseMethodNode)node).logicFunction.GetWindowRect().Contains(mousePos))
+                {
+                    ChooseMethodNode chooseMethodNode = (ChooseMethodNode)node;
+                    ChooseMethodFunction function = (ChooseMethodFunction)chooseMethodNode.logicFunction;
+                    for(int i=0; i < function.dialogOutputs.Count; i++)
+                    {
+                        if(new Rect(function.windowRect.x, function.windowRect.yMax - 20 * (function.dialogOutputs.Count - i), function.windowRect.width, 20).Contains(mousePos))
+                        {
+                            menu.AddSeparator("");
+                            menu.AddItem(new GUIContent(string.Format("Set Dialog Output {0}", i + 1)), false, ContextCallback, "dialogOutput");
+                            break;
+                        }
+                    }
+                }
+            }
+            menu.AddSeparator("");
+            menu.AddItem(new GUIContent("Delete Node"), false, ContextCallback, "deleteNode");
+            menu.AddSeparator("");
+            menu.AddItem(new GUIContent("Set Start Node"), false, ContextCallback, "setStartNode");
+            menu.ShowAsContext();
+            e.Use();
+        }
+
+        private void ChoosTemperNodeGenericMenu()
+        {
+            Event e = Event.current;
+            GenericMenu menu = new GenericMenu();
+            menu.AddItem(new GUIContent("Set Rude Output"), false, ContextCallback, "rudeOutput");
+            menu.AddItem(new GUIContent("Set Prudent Output"), false, ContextCallback, "prudentOutput");
+            menu.AddItem(new GUIContent("Set Merciful Output"), false, ContextCallback, "mercifulOutput");
+            menu.AddItem(new GUIContent("Set Cruel Output"), false, ContextCallback, "cruelOutput");
+            menu.AddItem(new GUIContent("Set Mercantile Output"), false, ContextCallback, "mercantileOutput");
+            menu.AddItem(new GUIContent("Set Principled Output"), false, ContextCallback, "principledOutput");
+
+            foreach (BaseLogicNode node in nodes)
+            {
+                if (node is ChooseTemperNode && ((ChooseTemperNode)node).logicFunction.GetWindowRect().Contains(mousePos))
+                {
+                    ChooseTemperNode chooseMethodNode = (ChooseTemperNode)node;
+                    ChooseTemperFunction function = (ChooseTemperFunction)chooseMethodNode.logicFunction;
+                    for (int i = 0; i < function.dialogOutputs.Count; i++)
+                    {
+                        if (new Rect(function.windowRect.x, function.windowRect.yMax - 20 * (function.dialogOutputs.Count - i), function.windowRect.width, 20).Contains(mousePos))
+                        {
+                            menu.AddSeparator("");
+                            menu.AddItem(new GUIContent(string.Format("Set Dialog Output {0}", i + 1)), false, ContextCallback, "dialogOutput");
+                            break;
+                        }
+                    }
+                }
+            }
             menu.AddSeparator("");
             menu.AddItem(new GUIContent("Delete Node"), false, ContextCallback, "deleteNode");
             menu.AddSeparator("");
@@ -1708,6 +2116,10 @@ namespace BadDetective.LogicMap
                 else if(function is ChooseMethodFunction)
                 {
                     CreateMethodNode(function.windowRect.position, (ChooseMethodFunction)function);
+                }
+                else if (function is ChooseTemperFunction)
+                {
+                    CreateTemperNode(function.windowRect.position, (ChooseTemperFunction)function);
                 }
             }
             if (PrefabUtility.GetPrefabParent(logicMap) != null)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BadDetective.UI;
+using UnityEngine.Events;
 
 namespace BadDetective.Dialog
 {
@@ -11,6 +12,7 @@ namespace BadDetective.Dialog
         private List<Dialog> dialogs = new List<Dialog>();
         private Dialog curDialog;
         private GameState prevState;
+        private UnityAction endAction;
 
         public static DialogManager GetInstantiate()
         {
@@ -31,7 +33,7 @@ namespace BadDetective.Dialog
             GetInstantiate();
         }
 
-        public void StartDialog(Dialog dialog, Character owner, Quest quest)
+        public void StartDialog(Dialog dialog, Character owner, Quest quest, UnityAction action = null)
         {
             Game game = Game.GetInstantiate();
             dialog.owner = owner;
@@ -40,6 +42,7 @@ namespace BadDetective.Dialog
             if (dialogs.Count == 1)
             {
                 prevState = game.GetGameState();
+                endAction = action;
                 game.ChangeGameState(GameState.IN_DIALOG);
                 curDialog = dialog;
                 StartPhrase(curDialog.startPhrase);
@@ -49,6 +52,10 @@ namespace BadDetective.Dialog
         private void FinalizeDialog()
         {
             dialogs.Remove(curDialog);
+            if (curDialog.teamOwner != null)
+            {
+                curDialog.teamOwner.Report();
+            }
             curDialog = null;
             if(dialogs.Count == 0)
             {
@@ -56,6 +63,10 @@ namespace BadDetective.Dialog
                 InterfaceManager interfaceManager = InterfaceManager.GetInstantiate();
                 interfaceManager.dialogPanel.gameObject.SetActive(false);
                 game.ChangeGameState(prevState);
+                if (endAction != null)
+                {
+                    endAction();
+                }
             }
             else
             {
@@ -72,41 +83,57 @@ namespace BadDetective.Dialog
             {
                 effect.Realize(curDialog);
             }
-            interfaceManager.dialogPanel.Set(phrase, curDialog.owner, curDialog.questOwner);
+            if(phrase.type == PhraseType.DIALOG_PHRASE)
+            {
+                interfaceManager.dialogPanel.Set(phrase, curDialog.owner, curDialog.questOwner);
+            }
+            else if (phrase.type == PhraseType.REPORT)
+            {
+                interfaceManager.dialogPanel.SetReport(curDialog.teamOwner.reportNotes, curDialog.teamOwner, curDialog.questOwner);
+            }
         }
 
         public void RealizeChoose(DialogChoose choose)
         {
             if (choose != null)
             {
+                choose.realized = true;
                 foreach (Effect effect in choose.effects)
                 {
                     effect.Realize(curDialog);
                 }
-                List<DialogLink> avaliableLinks = new List<DialogLink>();
-                foreach (DialogLink link in choose.links)
+                if(choose.type == ChooseType.END)
                 {
-                    bool flag = true;
-                    foreach (Condition condition in link.conditions)
-                    {
-                        if (!condition.isFulfilled(curDialog.questOwner))
-                        {
-                            flag = false;
-                            break;
-                        }
-                    }
-                    if (flag)
-                    {
-                        avaliableLinks.Add(link);
-                    }
-                }
-                if (avaliableLinks.Count > 0)
-                {
-                    StartPhrase(avaliableLinks[0].output);
+                    curDialog.end = choose;
+                    FinalizeDialog();
                 }
                 else
                 {
-                    FinalizeDialog();
+                    List<DialogLink> avaliableLinks = new List<DialogLink>();
+                    foreach (DialogLink link in choose.links)
+                    {
+                        bool flag = true;
+                        foreach (Condition condition in link.conditions)
+                        {
+                            if (!condition.isFulfilled(curDialog.questOwner))
+                            {
+                                flag = false;
+                                break;
+                            }
+                        }
+                        if (flag)
+                        {
+                            avaliableLinks.Add(link);
+                        }
+                    }
+                    if (avaliableLinks.Count > 0)
+                    {
+                        StartPhrase(avaliableLinks[0].output);
+                    }
+                    else
+                    {
+                        FinalizeDialog();
+                    }
                 }
             }
             else

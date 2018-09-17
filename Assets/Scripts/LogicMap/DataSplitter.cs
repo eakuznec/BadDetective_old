@@ -44,9 +44,13 @@ namespace BadDetective.LogicMap
 
         public override void RemoveActionInput(LogicFunction logicFunction)
         {
-            if (actionInput == logicFunction)
+            for (int i = 0; i < actionInputs.Count; i++)
             {
-                actionInput = null;
+                if (actionInputs[i] == logicFunction)
+                {
+                    actionInputs.RemoveAt(i);
+                    break;
+                }
             }
         }
 

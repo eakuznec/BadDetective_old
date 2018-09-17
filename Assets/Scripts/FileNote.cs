@@ -8,5 +8,7 @@ namespace BadDetective
     {
         [TextArea]
         public string note;
+        public List<Sprite> sprites = new List<Sprite>();
+        public int curSprite;
     }
 }

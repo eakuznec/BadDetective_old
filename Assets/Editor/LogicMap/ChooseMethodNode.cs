@@ -137,84 +137,144 @@ namespace BadDetective.LogicMap
                 }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
-
-            if (selectActionLink && function.method == 0)
+            for(int i=0; i<function.dialogOutputs.Count; i++)
             {
-                Event e = Event.current;
-                startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 25);
-                endPos = e.mousePosition;
-                Vector2 startTan = startPos + Vector2.right * 50;
-                Vector2 endTan = endPos + Vector2.left * 50;
-                Color activeColor = Color.yellow;
-                Color backColor = Color.black;
-                backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
-                int width = 2;
-
-                for (int i = 0; i < 3; i++)
+                if (function.dialogOutputs[i] != null)
                 {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
+                    startPos = new Vector2(function.GetWindowRect().xMax, function.windowRect.yMax - 20 * (function.dialogOutputs.Count - i) + 5);
+
+                    BaseLogicNode outputNode = null;
+                    foreach (BaseLogicNode node in LogicMapEditor.editor.nodes)
+                    {
+                        if (node is LogicFunctionNode && ((LogicFunctionNode)node).logicFunction == function.dialogOutputs[i])
+                        {
+                            outputNode = node;
+                        }
+                    }
+                    endPos = new Vector2(((LogicFunctionNode)outputNode).logicFunction.GetWindowRect().xMin, ((LogicFunctionNode)outputNode).logicFunction.GetWindowRect().y + 25);
+
+                    Vector2 startTan = startPos + Vector2.right * 50;
+                    Vector2 endTan = endPos + Vector2.left * 50;
+                    Color activeColor = Color.blue;
+                    Color backColor = Color.black;
+                    if (function.realizeDialogOutput[i])
+                    {
+                        activeColor = Color.magenta;
+                    }
+                    backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
+                    int width = 2;
+
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (j + 1) * 5);
+                    }
+                    Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
-                Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
-            else if (selectActionLink && function.method == 1)
-            {
-                Event e = Event.current;
-                startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 50);
-                endPos = e.mousePosition;
-                Vector2 startTan = startPos + Vector2.right * 50;
-                Vector2 endTan = endPos + Vector2.left * 50;
-                Color activeColor = Color.yellow;
-                Color backColor = Color.black;
-                backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
-                int width = 2;
 
-                for (int i = 0; i < 3; i++)
+            if (!function.dialogOutputFlag)
+            {
+                if (selectActionLink && function.method == 0)
                 {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
+                    Event e = Event.current;
+                    startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 25);
+                    endPos = e.mousePosition;
+                    Vector2 startTan = startPos + Vector2.right * 50;
+                    Vector2 endTan = endPos + Vector2.left * 50;
+                    Color activeColor = Color.yellow;
+                    Color backColor = Color.black;
+                    backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
+                    int width = 2;
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
+                    }
+                    Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
-                Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
+                else if (selectActionLink && function.method == 1)
+                {
+                    Event e = Event.current;
+                    startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 50);
+                    endPos = e.mousePosition;
+                    Vector2 startTan = startPos + Vector2.right * 50;
+                    Vector2 endTan = endPos + Vector2.left * 50;
+                    Color activeColor = Color.yellow;
+                    Color backColor = Color.black;
+                    backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
+                    int width = 2;
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
+                    }
+                    Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
+                }
+                else if (selectActionLink && function.method == 2)
+                {
+                    Event e = Event.current;
+                    startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 75);
+                    endPos = e.mousePosition;
+                    Vector2 startTan = startPos + Vector2.right * 50;
+                    Vector2 endTan = endPos + Vector2.left * 50;
+                    Color activeColor = Color.yellow;
+                    Color backColor = Color.black;
+                    backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
+                    int width = 2;
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
+                    }
+                    Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
+                }
+                else if (selectActionLink && function.method == 3)
+                {
+                    Event e = Event.current;
+                    startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 100);
+                    endPos = e.mousePosition;
+                    Vector2 startTan = startPos + Vector2.right * 50;
+                    Vector2 endTan = endPos + Vector2.left * 50;
+                    Color activeColor = Color.yellow;
+                    Color backColor = Color.black;
+                    backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
+                    int width = 2;
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
+                    }
+                    Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
+                }
             }
-            else if (selectActionLink && function.method == 2)
+            else
             {
-                Event e = Event.current;
-                startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 75);
-                endPos = e.mousePosition;
-                Vector2 startTan = startPos + Vector2.right * 50;
-                Vector2 endTan = endPos + Vector2.left * 50;
-                Color activeColor = Color.yellow;
-                Color backColor = Color.black;
-                backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
-                int width = 2;
-
-                for (int i = 0; i < 3; i++)
+                if (selectActionLink)
                 {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
-                Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
-            }
-            else if (selectActionLink && function.method == 3)
-            {
-                Event e = Event.current;
-                startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 100);
-                endPos = e.mousePosition;
-                Vector2 startTan = startPos + Vector2.right * 50;
-                Vector2 endTan = endPos + Vector2.left * 50;
-                Color activeColor = Color.yellow;
-                Color backColor = Color.black;
-                backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
-                int width = 2;
+                    Event e = Event.current;
+                        startPos = new Vector2(function.GetWindowRect().xMax, function.windowRect.yMax - 20 * (function.dialogOutputs.Count - function.dialogOutputNum) + 10);
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
+                    endPos = e.mousePosition;
+                    Vector2 startTan = startPos + Vector2.right * 50;
+                    Vector2 endTan = endPos + Vector2.left * 50;
+                    Color activeColor = Color.yellow;
+                    Color backColor = Color.black;
+                    backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
+                    int width = 2;
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
+                    }
+                    Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
-                Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
         }
 
         public override void DrawWindow()
         {
             ChooseMethodFunction function = logicFunction as ChooseMethodFunction;
+            SerializedObject soFunction = new SerializedObject(function);
             EditorGUILayout.BeginHorizontal();
             GUIStyle noneActionStyle = new GUIStyle();
             noneActionStyle.normal.background = eUtils.MakeTex(10, 10, Color.gray);
@@ -222,7 +282,7 @@ namespace BadDetective.LogicMap
             actionStyle.normal.background = eUtils.MakeTex(10, 10, Color.blue);
             GUIStyle realizeActionStyle = new GUIStyle();
             realizeActionStyle.normal.background = eUtils.MakeTex(10, 10, Color.magenta);
-            if (function.actionInput == null)
+            if (function.actionInputs.Count == 0)
             {
                 if (!function.startFunction)
                 {
@@ -242,113 +302,134 @@ namespace BadDetective.LogicMap
             }
             else
             {
-                if (function.actionInput is DataSplitter)
+                bool realizeFlag = false;
+                foreach (LogicFunction actionInput in function.actionInputs)
                 {
-                    DataSplitter input = (DataSplitter)function.actionInput;
-                    if (input.trueOutput == function && !input.realizeTrue)
+                    if (actionInput is DataSplitter)
                     {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.trueOutput == function && input.realizeTrue)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.falseOutput == function && !input.realizeFalse)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.falseOutput == function && input.realizeFalse)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                }
-                else if (function.actionInput is LogicSplitter)
-                {
-                    LogicSplitter input = (LogicSplitter)function.actionInput;
-                    int index = input.actionOutputs.IndexOf(function);
-                    if (index == -1)
-                    {
-                        GUILayout.Box(GUIContent.none, noneActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else
-                    {
-                        if (!input.realizeOutputs[index])
+                        DataSplitter input = (DataSplitter)actionInput;
+                        if (input.trueOutput == function && input.realizeTrue)
                         {
-                            GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.falseOutput == function && input.realizeFalse)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                    }
+                    else if (actionInput is LogicSplitter)
+                    {
+                        LogicSplitter input = (LogicSplitter)actionInput;
+                        int index = input.actionOutputs.IndexOf(function);
+                        if (input.realizeOutputs[index])
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                    }
+                    else if (actionInput is WaitFunction)
+                    {
+                        WaitFunction input = (WaitFunction)actionInput;
+                        if (input.actionOutput == function && input.realize)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                    }
+                    else if (actionInput is ChallengeFunction)
+                    {
+                        ChallengeFunction input = (ChallengeFunction)actionInput;
+                        if (input.trueOutput == function && input.realizeTrue)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.falseOutput == function && input.realizeFalse)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                    }
+                    else if (actionInput is ChooseMethodFunction)
+                    {
+                        ChooseMethodFunction input = (ChooseMethodFunction)actionInput;
+                        if (input.brutalOutput == function && input.realizeBrutal)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.carefulOutput == function && input.realizeCareful)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.diplomatOutput == function && input.realizeDiplomat)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.scienceOutput == function && input.realizeScience)
+                        {
+                            realizeFlag = true;
+                            break;
                         }
                         else
                         {
-                            GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                            for (int i = 0; i < input.dialogOutputs.Count; i++)
+                            {
+                                if (input.dialogOutputs[i] == logicFunction && input.realizeDialogOutput[i])
+                                {
+                                    realizeFlag = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if (actionInput is ChooseTemperFunction)
+                    {
+                        ChooseTemperFunction input = (ChooseTemperFunction)actionInput;
+                        if (input.rudeOutput == logicFunction && input.realizeRude)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.prudentOutput == logicFunction && input.realizePrudent)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.cruelOutput == logicFunction && input.realizeCruel)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else if (input.principledOutput == logicFunction && input.realizePrincipled)
+                        {
+                            realizeFlag = true;
+                            break;
+                        }
+                        else
+                        {
+                            for (int i = 0; i < input.dialogOutputs.Count; i++)
+                            {
+                                if (input.dialogOutputs[i] == logicFunction && input.realizeDialogOutput[i])
+                                {
+                                    realizeFlag = true;
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
-                else if (function.actionInput is WaitFunction)
+                if (realizeFlag)
                 {
-                    WaitFunction input = (WaitFunction)function.actionInput;
-                    if (input.actionOutput == function && !input.realize)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.actionOutput == function && input.realize)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
+                    GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                 }
-                else if (function.actionInput is ChallengeFunction)
+                else
                 {
-                    ChallengeFunction input = (ChallengeFunction)function.actionInput;
-                    if (input.trueOutput == function && !input.realizeTrue)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.trueOutput == function && input.realizeTrue)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.falseOutput == function && !input.realizeFalse)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.falseOutput == function && input.realizeFalse)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                }
-                else if(function.actionInput is ChooseMethodFunction)
-                {
-                    ChooseMethodFunction input = (ChooseMethodFunction)function.actionInput;
-                    if (input.brutalOutput == function && !input.realizeBrutal)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.brutalOutput == function && input.realizeBrutal)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.carefulOutput == function && !input.realizeCareful)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.carefulOutput == function && input.realizeCareful)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.diplomatOutput == function && !input.realizeDiplomat)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.diplomatOutput == function && input.realizeDiplomat)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.scienceOutput == function && !input.realizeScience)
-                    {
-                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
-                    else if (input.scienceOutput == function && input.realizeScience)
-                    {
-                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
-                    }
+                    GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
                 }
             }
             GUILayout.FlexibleSpace();
@@ -421,15 +502,87 @@ namespace BadDetective.LogicMap
 
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndHorizontal();
+            GUILayout.Box("", new GUILayoutOption[] { GUILayout.Height(1), GUILayout.ExpandWidth(true) });
+            EditorGUILayout.PropertyField(soFunction.FindProperty("dialog"), GUIContent.none, new GUILayoutOption[] { GUILayout.Width(120) });
+            EditorGUILayout.BeginVertical();
+            EditorGUILayout.EndVertical();
+            if (function.dialog != null)
+            {
+                int dif = function.dialogOutputs.Count - function.dialog.GetEnds().Count;
+                if (dif > 0)
+                {
+                    for(int i=0; i < dif; i++)
+                    {
+                        LogicFunction output = function.dialogOutputs[function.dialogOutputs.Count - 1];
+                        if (output != null)
+                        {
+                            output.SetActionInputLink(null);
+                        }
+                        function.dialogOutputs.RemoveAt(function.dialogOutputs.Count - 1);
+                        function.realizeDialogOutput.RemoveAt(function.dialogOutputs.Count - 1);
+                    }
+                }
+                else if (dif < 0)
+                {
+                    for(int i=0; i < -dif; i++)
+                    {
+                        function.dialogOutputs.Add(null);
+                        function.realizeDialogOutput.Add(false);
+                    }
+                }
+                for(int i=0; i<function.dialog.GetEnds().Count; i++)
+                {
+                    EditorGUILayout.BeginHorizontal(new GUILayoutOption[] { GUILayout.Height(20)});
+                    EditorGUILayout.LabelField(function.dialog.GetEnds()[i].chooseText, new GUILayoutOption[] { GUILayout.Width(100) });
+                    GUILayout.FlexibleSpace();
+                    LogicFunction output = function.dialogOutputs[i];
+                    EditorGUILayout.BeginVertical();
+                    GUILayout.FlexibleSpace();
+                    if (output == null)
+                    {
+                        GUILayout.Box(GUIContent.none, noneActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else if (function.realizeDialogOutput[i])
+                    {
+                        GUILayout.Box(GUIContent.none, realizeActionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    else
+                    {
+                        GUILayout.Box(GUIContent.none, actionStyle, new GUILayoutOption[] { GUILayout.Width(10), GUILayout.Height(10) });
+                    }
+                    GUILayout.FlexibleSpace();
+                    EditorGUILayout.EndVertical();
+                    EditorGUILayout.EndHorizontal();
+                }
+            }
+            else
+            {
+                for (int i = 0; i < function.dialogOutputs.Count; i++)
+                {
+                    LogicFunction output = function.dialogOutputs[function.dialogOutputs.Count - 1];
+                    if (output != null)
+                    {
+                        output.SetActionInputLink(null);
+                    }
+                    function.dialogOutputs.RemoveAt(function.dialogOutputs.Count - 1);
+                    function.realizeDialogOutput.RemoveAt(function.dialogOutputs.Count - 1);
+                }
+            }
+            soFunction.ApplyModifiedProperties();
+            function.windowRect.height = 115 + 25;
+            if (function.dialog != null)
+            {
+                function.windowRect.height+= 20 * function.dialog.GetEnds().Count;
+            }
         }
 
         public override void DeleteNode()
         {
             base.DeleteNode();
             ChooseMethodFunction function = (ChooseMethodFunction)logicFunction;
-            if (function.actionInput != null)
+            foreach (LogicFunction actionInput in function.actionInputs)
             {
-                function.actionInput.RemoveActionOutput(function);
+                actionInput.RemoveActionOutput(function);
             }
             if (function.brutalOutput != null)
             {
@@ -446,6 +599,10 @@ namespace BadDetective.LogicMap
             if (function.scienceOutput != null)
             {
                 function.scienceOutput.RemoveActionInput(function);
+            }
+            foreach (LogicFunction dialogOutput in function.dialogOutputs)
+            {
+                dialogOutput.RemoveActionInput(function);
             }
             LogicMapEditor.logicMap.logicFunc.Remove(function);
             DestroyImmediate(function.gameObject);

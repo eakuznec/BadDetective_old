@@ -39,6 +39,11 @@ namespace BadDetective.UI
             return null;
         }
 
+        public Dialog.Dialog GetDialog()
+        {
+            return null;
+        }
+
         public List<string> GetLogicMapNames()
         {
             return null;

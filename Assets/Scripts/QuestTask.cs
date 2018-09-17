@@ -85,5 +85,10 @@ namespace BadDetective
         {
             return transform.GetComponentInParent<Quest>();
         }
+
+        public Dialog.Dialog GetDialog()
+        {
+            return null;
+        }
     }
 }

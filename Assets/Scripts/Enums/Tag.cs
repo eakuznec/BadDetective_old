@@ -7,7 +7,6 @@ namespace BadDetective
     public enum Tag
     {
         NULL,
-        fenotype,
         wound,
         brawl,
         weapon,
