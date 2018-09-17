@@ -300,7 +300,7 @@ namespace BadDetective
                         else if(condition.questState.type == QuestStateType.SPECIAL)
                         {
                             index = EditorGUILayout.Popup(condition.questState.possibleValue.IndexOf(condition.stringValue), condition.questState.possibleValue.ToArray());
-                            if (index == -1)
+                            if (index != -1)
                             {
                                 condition.stringValue = condition.questState.possibleValue[index];
                             }
@@ -329,7 +329,7 @@ namespace BadDetective
                         else if (condition.questState.type == QuestStateType.SPECIAL)
                         {
                             index = EditorGUILayout.Popup(condition.questState.possibleValue.IndexOf(condition.stringValue), condition.questState.possibleValue.ToArray());
-                            if (index == -1)
+                            if (index != -1)
                             {
                                 condition.stringValue = condition.questState.possibleValue[index];
                             }
@@ -356,7 +356,7 @@ namespace BadDetective
                     else if (condition.questState.type == QuestStateType.SPECIAL)
                     {
                         index = EditorGUILayout.Popup(condition.questState.possibleValue.IndexOf(condition.stringValue), condition.questState.possibleValue.ToArray());
-                        if (index == -1)
+                        if (index != -1)
                         {
                             condition.stringValue = condition.questState.possibleValue[index];
                         }
@@ -448,7 +448,7 @@ namespace BadDetective
                         else if (effect.questState.type == QuestStateType.SPECIAL)
                         {
                             index = EditorGUILayout.Popup(effect.questState.possibleValue.IndexOf(effect.stringValue), effect.questState.possibleValue.ToArray());
-                            if (index == -1)
+                            if (index != -1)
                             {
                                 effect.stringValue = effect.questState.possibleValue[index];
                             }
@@ -476,7 +476,7 @@ namespace BadDetective
                         else if (effect.questState.type == QuestStateType.SPECIAL)
                         {
                             index = EditorGUILayout.Popup(effect.questState.possibleValue.IndexOf(effect.stringValue), effect.questState.possibleValue.ToArray());
-                            if (index == -1)
+                            if (index != -1)
                             {
                                 effect.stringValue = effect.questState.possibleValue[index];
                             }
@@ -502,7 +502,7 @@ namespace BadDetective
                     else if (effect.questState.type == QuestStateType.SPECIAL)
                     {
                         index = EditorGUILayout.Popup(effect.questState.possibleValue.IndexOf(effect.stringValue), effect.questState.possibleValue.ToArray());
-                        if (index == -1)
+                        if (index != -1)
                         {
                             effect.stringValue = effect.questState.possibleValue[index];
                         }

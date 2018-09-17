@@ -19,6 +19,7 @@ namespace BadDetective
         public MainState mainState;
         public UnityAction action;
         public FilePanel filePanel;
+        public Dialog.Dialog dialog;
         public Money money;
 
 
@@ -68,6 +69,10 @@ namespace BadDetective
             else if (actionType == TimelineActionType.WAIT)
             {
                 action();
+            }
+            else if (actionType == TimelineActionType.START_DIALOG)
+            {
+                Dialog.DialogManager.GetInstantiate().StartDialog(dialog, null, null);
             }
         }
     }

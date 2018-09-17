@@ -21,7 +21,7 @@ namespace BadDetective.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            chooseText.color = Color.yellow;
+            chooseText.color = Color.blue;
         }
 
         public void OnPointerExit(PointerEventData eventData)
