@@ -104,8 +104,6 @@ public class DialogChooseNode : ScriptableObject
     public DialogLinkNode CreateLinkNode(DialogLink link)
     {
         DialogLinkNode linkNode = new DialogLinkNode();
-        GameObject goLink = new GameObject("Link");
-        goLink.transform.parent = choose.transform;
         if (link != null)
         {
             linkNode.link = link;
@@ -113,6 +111,8 @@ public class DialogChooseNode : ScriptableObject
         }
         else
         {
+            GameObject goLink = new GameObject("Link");
+            goLink.transform.parent = choose.transform;
             DialogLink newLink = goLink.AddComponent<DialogLink>();
             choose.links.Add(newLink);
             linkNode.link = newLink;

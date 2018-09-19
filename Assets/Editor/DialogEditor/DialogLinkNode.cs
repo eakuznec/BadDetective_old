@@ -101,6 +101,10 @@ namespace BadDetective.Dialog
             {
                 outputPhrase.inputLinks.Remove(this);
             }
+            if (parentChoose != null)
+            {
+                parentChoose.outputLinks.Remove(this);
+            }
             DialogEditor.editor.links.Remove(this);
             link.Delete();
         }

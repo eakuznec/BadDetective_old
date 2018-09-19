@@ -35,18 +35,7 @@ namespace BadDetective.LogicMap
 
         private void Awake()
         {
-            if (logicMap == null)
-            {
-                int logicMapsCount = FindObjectsOfType<LogicMap>().Length;
-                GameObject newLogicMap = new GameObject(string.Format("LogicMap_{0}", logicMapsCount));
-                logicMap = newLogicMap.AddComponent<LogicMap>();
-                prefab = null;
-
-                ClearAll();
-
-                enterNode = new EnterNode(new Vector2(50, 50));
-            }
-            else
+            if (logicMap != null)
             {
                 LoadLogicMap();
             }

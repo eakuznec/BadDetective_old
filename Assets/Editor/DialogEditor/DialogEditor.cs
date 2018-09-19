@@ -31,16 +31,7 @@ public class DialogEditor : EditorWindow
 
     private void Awake()
     {
-        if (dialog == null)
-        {
-            GameObject newDialog = new GameObject("Dialog");
-            dialog = newDialog.AddComponent<Dialog>();
-            dialog.dialogName = defaultName;
-            prefab = null;
-            nodes.Clear();
-            links.Clear();
-        }
-        else
+        if (dialog != null)
         {
             LoadDialog();
         }
@@ -226,7 +217,17 @@ public class DialogEditor : EditorWindow
                             break;
                         }
                     }
-
+                        if (select == -1)
+                        {
+                            for (int i = 0; i < links.Count; i++)
+                            {
+                                if (links[i].windowRect.Contains(mousePos))
+                                {
+                                select = links[i].id;
+                                break;
+                                }
+                            }
+                        }
                     if (select == -1)
                     {
                         GenericMenu menuWindow = new GenericMenu();
@@ -238,28 +239,42 @@ public class DialogEditor : EditorWindow
                     }
                     else
                     {
-                        GenericMenu menuWindow = new GenericMenu();
-                        foreach (DialogPhraseNode node in nodes)
+                        foreach(DialogPhraseNode node in nodes)
                         {
-                            if (node.id == select && node.chooseOpen)
+                            if (node.windowRect.Contains(mousePos))
                             {
-                                foreach (DialogChooseNode chooseNode in node.chooseNodes)
+                                GenericMenu menuWindow = new GenericMenu();
+                                if (node.id == select && node.chooseOpen)
                                 {
-                                    if (chooseNode.windowRect.Contains(mousePos))
+                                    foreach (DialogChooseNode chooseNode in node.chooseNodes)
                                     {
-                                        menuWindow.AddItem(new GUIContent("Add link"), false, ContextCallback, string.Format("link_{0}_{1}", node.id, chooseNode.id));
-                                        menuWindow.AddSeparator("");
-                                        break;
+                                        if (chooseNode.windowRect.Contains(mousePos))
+                                        {
+                                            menuWindow.AddItem(new GUIContent("Add link"), false, ContextCallback, string.Format("link_{0}_{1}", node.id, chooseNode.id));
+                                            menuWindow.AddSeparator("");
+                                            break;
+                                        }
                                     }
                                 }
+                                menuWindow.AddItem(new GUIContent("Set started phrase"), false, ContextCallback, "startPhrase");
+                                menuWindow.AddSeparator("");
+                                menuWindow.AddItem(new GUIContent("Delete phrase"), false, ContextCallback, "deletePhrase");
+                                menuWindow.ShowAsContext();
+                                e.Use();
                                 break;
                             }
                         }
-                        menuWindow.AddItem(new GUIContent("Set started phrase"), false, ContextCallback, "startPhrase");
-                        menuWindow.AddSeparator("");
-                        menuWindow.AddItem(new GUIContent("Delete phrase"), false, ContextCallback, "deletePhrase");
-                        menuWindow.ShowAsContext();
-                        e.Use();
+                        foreach(DialogLinkNode link in links)
+                        {
+                            if (link.windowRect.Contains(mousePos))
+                            {
+                                GenericMenu menuWindow = new GenericMenu();
+                                menuWindow.AddItem(new GUIContent("Delete link"), false, ContextCallback, "deleteLink");
+                                menuWindow.ShowAsContext();
+                                e.Use();
+                                break;
+                            }
+                        }
                     }
                 }
             }
@@ -296,10 +311,6 @@ public class DialogEditor : EditorWindow
                 }
             }
         }
-        //else if (clb == "saveDialog")
-        //{
-        //    SaveDialog();
-        //}
         else if (clb.Contains("link_"))
         {
             string node = clb.Substring(clb.IndexOf("_") + 1);
@@ -321,6 +332,17 @@ public class DialogEditor : EditorWindow
                             break;
                         }
                     }
+                }
+            }
+        }
+        else if (clb.Contains("deleteLink"))
+        {
+            for(int i=0; i<links.Count; i++)
+            {
+                if (links[i].windowRect.Contains(mousePos))
+                {
+                    links[i].DeleteLink();
+                    break;
                 }
             }
         }
@@ -352,59 +374,8 @@ public class DialogEditor : EditorWindow
         return phraseNode;
     }
 
-    //private void SaveDialog()
-    //{
-    //    string path = "Assets/Prefabs/Dialogs/";
-    //    if (!string.IsNullOrEmpty(dialog.pathToSave))
-    //    {
-    //        path = dialog.pathToSave;
-    //    }
-    //    if (!Directory.Exists(path))
-    //    {
-    //        Directory.CreateDirectory(path);
-    //    }
-
-    //    path = EditorUtility.SaveFilePanelInProject("Save dialog", dialog.dialogName, "prefab", "Please enter a file name to save dialog to", path);
-    //    if (!string.IsNullOrEmpty(path))
-    //    {
-    //        dialog.dialogName = path.Substring(path.LastIndexOf('/') + 1, path.LastIndexOf(".prefab") - (path.LastIndexOf('/') + 1));
-    //        dialog.name = dialog.dialogName;
-    //        dialog.pathToSave = path.Substring(0, path.LastIndexOf('/') + 1);
-    //        foreach (DialogPhraseNode node in nodes)
-    //        {
-    //            node.phrase.nodePosition = node.windowRect;
-    //            foreach(DialogChooseNode chooseNode in node.chooseNodes)
-    //            {
-    //                chooseNode.choose.nodePosition = chooseNode.windowRect;
-    //                foreach (DialogLinkNode link in chooseNode.outputLinks)
-    //                {
-    //                    link.link.nodePosition = link.windowRect;
-    //                }
-    //            }
-    //        }
-    //        if (!File.Exists(path))
-    //        {
-    //            PrefabUtility.CreatePrefab(path, dialog.gameObject);
-    //        }
-    //        else
-    //        {
-    //            GameObject prefab = (GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject));
-    //            prefab = PrefabUtility.ReplacePrefab(dialog.gameObject, prefab, ReplacePrefabOptions.ReplaceNameBased);
-    //        }
-    //    }
-    //}
-
-    //private void OnDestroy()
-    //{
-    //    ClearAll();
-    //}
-
     private void ClearAll()
     {
-        //if (dialog != null)
-        //{
-        //    DestroyImmediate(dialog.gameObject);
-        //}
         nodes.Clear();
         links.Clear();
         id = 0;
@@ -415,19 +386,9 @@ public class DialogEditor : EditorWindow
 
     public void LoadDialog()
     {
-        //if (prefab != null)
-        //{
-        //    if (prefab.GetComponent<Dialog>())
-        //    {
-                ClearAll();
-                //GameObject loadDialog = Instantiate(prefab);
-                //dialog = loadDialog.GetComponent<Dialog>();
-                //loadDialog.name = prefab.name;
-                //dialog.dialogName = prefab.name;
-                BuildDialog();
-                Selection.activeGameObject = dialog.gameObject;
-        //    }
-        //}
+        ClearAll();
+        BuildDialog();
+        Selection.activeGameObject = dialog.gameObject;
     }
 
     public void BuildDialog()
@@ -447,9 +408,9 @@ public class DialogEditor : EditorWindow
             foreach (DialogLink link in chooseNode.choose.links)
             {
                 DialogLinkNode linkNode = chooseNode.CreateLinkNode(link);
-                foreach(DialogPhraseNode phraseNode in nodes)
+                foreach (DialogPhraseNode phraseNode in nodes)
                 {
-                    if(phraseNode.phrase == link.output)
+                    if (phraseNode.phrase == link.output)
                     {
                         linkNode.outputPhrase = phraseNode;
                         phraseNode.inputLinks.Add(linkNode);

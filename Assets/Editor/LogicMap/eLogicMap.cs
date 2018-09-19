@@ -20,12 +20,15 @@ namespace BadDetective.LogicMap
             {
                 if (GUILayout.Button("Edit"))
                 {
-                    if (LogicMapEditor.editor != null)
-                    {
-                        LogicMapEditor.editor.Close();
-                    }
                     LogicMapEditor.logicMap = logicMap;
-                    LogicMapEditor.ShowEditor();
+                    if (LogicMapEditor.editor == null)
+                    {
+                        LogicMapEditor.ShowEditor();
+                    }
+                    else
+                    {
+                        LogicMapEditor.editor.LoadLogicMap();
+                    }
                 }
             }
             base.OnInspectorGUI();

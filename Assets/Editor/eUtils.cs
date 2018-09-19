@@ -592,7 +592,10 @@ namespace BadDetective
             else if (effect.type == EffectType.START_DIALOG)
             {
                 EditorGUILayout.PropertyField(soEffect.FindProperty("dialog"), GUIContent.none);
-                effect.dialog.questOwner = effect.GetQuest();
+                if(effect.dialog != null)
+                {
+                    effect.dialog.questOwner = effect.GetQuest();
+                }
             }
             else if (effect.type == EffectType.CHECK_QUEST)
             {
