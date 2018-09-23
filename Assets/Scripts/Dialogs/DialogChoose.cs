@@ -6,7 +6,7 @@ namespace BadDetective.Dialog
 {
     public class DialogChoose : MonoBehaviour
     {
-        public ChooseType type;
+        public ChooseType type = ChooseType.CONTINUE;
         public string chooseText;
         [HideInInspector]
         public List<Condition> conditions = new List<Condition>();

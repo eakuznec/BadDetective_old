@@ -13,6 +13,9 @@ namespace BadDetective.Dialog
         private Dialog curDialog;
         private GameState prevState;
         private UnityAction endAction;
+        [Header("Standart dialogs")]
+        public Dialog endEventDialog;
+
 
         public static DialogManager GetInstantiate()
         {
@@ -33,10 +36,14 @@ namespace BadDetective.Dialog
             GetInstantiate();
         }
 
-        public void StartDialog(Dialog dialog, Character owner, Quest quest, UnityAction action = null)
+        public void StartDialog(Dialog dialog, Team teamOwner, Quest quest, UnityAction action = null)
         {
             Game game = Game.GetInstantiate();
-            dialog.owner = owner;
+            dialog.teamOwner = teamOwner;
+            if(teamOwner != null)
+            {
+                dialog.owner = teamOwner.GetLeader();
+            }
             dialog.questOwner = quest;
             dialogs.Add(dialog);
             if (dialogs.Count == 1)

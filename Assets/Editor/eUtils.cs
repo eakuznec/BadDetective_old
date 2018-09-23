@@ -597,6 +597,26 @@ namespace BadDetective
                     effect.dialog.questOwner = effect.GetQuest();
                 }
             }
+            else if (effect.type == EffectType.FINALIZE_TASK)
+            {
+                Quest quest = effect.GetQuest();
+                if (quest != null)
+                {
+                    int eventIndex = EditorGUILayout.Popup(quest.GetEvents().IndexOf(effect.questEvent), quest.GetEventNames());
+                    if (eventIndex != -1)
+                    {
+                        effect.questEvent = quest.GetEvents()[eventIndex];
+                    }
+                    if (effect.questEvent != null)
+                    {
+                        int taskIndex = EditorGUILayout.Popup(effect.questEvent.GetTask().IndexOf(effect.task), effect.questEvent.GetTaskNames());
+                        if (taskIndex != -1)
+                        {
+                            effect.task = effect.questEvent.GetTask()[taskIndex];
+                        }
+                    }
+                }
+            }
             else if (effect.type == EffectType.CHECK_QUEST)
             {
             }

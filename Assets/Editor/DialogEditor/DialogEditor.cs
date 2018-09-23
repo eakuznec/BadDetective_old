@@ -21,6 +21,7 @@ public class DialogEditor : EditorWindow
     public DialogLinkNode selectLink;
 
     public Vector2 mousePos;
+    private int counter;
 
     [MenuItem("Window/Dialog Editor")]
     public static void ShowEditor()
@@ -44,7 +45,15 @@ public class DialogEditor : EditorWindow
             Control();
             DrawLinks();
             DrawNodes();
-            Repaint();
+            counter++;
+            if (counter >= 2)
+            {
+                counter = 0;
+                if(linkMod || moveMod)
+                {
+                    Repaint();
+                }
+            }
         }
     }
 

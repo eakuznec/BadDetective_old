@@ -20,17 +20,23 @@ namespace BadDetective
 
         public void ChangeMainState(MainState newState)
         {
-            Agency agency = Agency.GetInstantiate();
             mainState = newState;
-            if(mainState == MainState.Completed || mainState == MainState.Failed)
+        }
+
+        public void FinalizeTask()
+        {
+            Agency agency = Agency.GetInstantiate();
+            Dialog.DialogManager dialogManager = Dialog.DialogManager.GetInstantiate();
+            curTeam.targetTasks.Remove(this);
+            if (curTeam.targetTasks.Count == 0)
             {
-                curTeam.targetTasks.Remove(this);
-                if (curTeam.targetTasks.Count == 0)
-                {
-                    curTeam.GoTo(agency.GetOffice(), curTeam.GetPriorityWay(), true);
-                }
-                curTeam = null;
+                dialogManager.StartDialog(dialogManager.endEventDialog, curTeam, GetQuest());
             }
+            else
+            {
+                curTeam.StartTask();
+            }
+            curTeam = null;
         }
 
         public Transform GetTransform()

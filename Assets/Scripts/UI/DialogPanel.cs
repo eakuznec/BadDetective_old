@@ -95,6 +95,8 @@ namespace BadDetective.UI
 
         public void SetReport(List<FileNote> notes, Team team, Quest quest)
         {
+            phrasePanel.gameObject.SetActive(false);
+            reportPanel.gameObject.SetActive(true);
             this.quest = quest;
             List<Detective> detectives = new List<Detective>();
             Detective leader = team.GetLeader();

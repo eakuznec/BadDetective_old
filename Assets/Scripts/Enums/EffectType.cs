@@ -19,7 +19,11 @@ namespace BadDetective
         INSTANTIATE_QUEST,
         CHANGE_DIALOG_STATE,
         CHANGE_QUEST_STATE,
-        CHANGE_GLOBAL_STATE
+        CHANGE_GLOBAL_STATE,
+        FINALIZE_TASK,
+        TEAM_GOTO_OFFICE,
+        TEAM_GOTO_HOMES,
+        TEAM_GOTO_EVENT
     }
 
 }

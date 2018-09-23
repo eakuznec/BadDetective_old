@@ -135,8 +135,20 @@ namespace BadDetective
             }
             else if (type == EffectType.START_DIALOG)
             {
-                Character owner = effectsContainer.GetCharacterOwner();
+                Team owner = effectsContainer.GetTeam();
                 Dialog.DialogManager.GetInstantiate().StartDialog(dialog, owner, GetQuest());
+            }
+            else if(type == EffectType.FINALIZE_TASK)
+            {
+                task.FinalizeTask();
+            }
+            else if(type == EffectType.TEAM_GOTO_OFFICE)
+            {
+                Team owner = effectsContainer.GetTeam();
+                if (owner != null)
+                {
+                    owner.GoTo(agency.GetOffice(), owner.GetPriorityWay(), true);
+                }
             }
             else if (type == EffectType.CHECK_QUEST)
             {

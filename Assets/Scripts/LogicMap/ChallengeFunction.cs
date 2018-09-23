@@ -139,6 +139,7 @@ namespace BadDetective.LogicMap
                 }
             }
             timeline.RegistrateAction(waitAction);
+            Debug.Log(string.Format("ждать челендж {0}", waitTime.ToString()), this);
         }
     }
 }

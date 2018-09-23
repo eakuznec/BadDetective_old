@@ -19,29 +19,35 @@ namespace BadDetective
             curTeam = team;
             if (curTeam != null)
             {
+                bool result = false;
                 if(type == ChallengeType.HAVE_TAG)
                 {
                     if (executor == ExecutorType.LEADER)
                     {
-                        return curTeam.IsLeaderHaveTag(_tag);
+                        result = curTeam.IsLeaderHaveTag(_tag);
                     }
                     else if (executor == ExecutorType.TEAM)
                     {
-                        return curTeam.IsTeamHaveTag(_tag);
+                        result = curTeam.IsTeamHaveTag(_tag);
                     }
+                    Debug.Log(string.Format("Челендж have_tag {0} - {1}", _tag, result), this);
+                    return result;
                 }
                 else if(type == ChallengeType.METHOD)
                 {
                     if(executor == ExecutorType.LEADER)
                     {
-                        return curTeam.IsLeaderChallenge(method, level, difficulty, _tag);
+                        result = curTeam.IsLeaderChallenge(method, level, difficulty, _tag);
                     }
                     else if(executor == ExecutorType.TEAM)
                     {
-                        return curTeam.IsTeamChallenge(method, level, difficulty, _tag);
+                        result = curTeam.IsTeamChallenge(method, level, difficulty, _tag);
                     }
+                    Debug.Log(string.Format("Челендж {0}, level {1}, difficult {2} - {3}", method, level, difficulty, result), this);
+                    return result;
                 }
             }
+            Debug.Log(string.Format("Челендж не прошел"), this);
             return false;
         }
     }

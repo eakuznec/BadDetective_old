@@ -90,6 +90,7 @@ namespace BadDetective.LogicMap
 
         public void RealizeLogicMap(iLogicMapContainer owner, bool isTest = false)
         {
+            Debug.Log(string.Format("Realize logic map"), this);
             curOwner = owner;
             ClearCheck();
             startRealize = true;
@@ -150,7 +151,8 @@ namespace BadDetective.LogicMap
                 if (methodFunction.dialog == null || !curOwner.GetTeam().GetLeader().IsObedient())
                 {
                     Method method = methodFunction.Realize(curOwner);
-                    if(method == Method.Brutal)
+                    Debug.Log(string.Format("ChooseMethod - {0}", method.ToString()), methodFunction);
+                    if (method == Method.Brutal)
                     {
                         RealizeFunction(methodFunction.brutalOutput, isTest);
                     }
@@ -169,12 +171,13 @@ namespace BadDetective.LogicMap
                 }
                 else
                 {
+                    Debug.Log(string.Format("ChooseMethod start dialog"), methodFunction);
                     UnityAction action = delegate
                     {
                         int index = methodFunction.dialog.GetEnds().IndexOf(methodFunction.dialog.end);
                         RealizeFunction(methodFunction.dialogOutputs[index], isTest);
                     };
-                    Dialog.DialogManager.GetInstantiate().StartDialog(methodFunction.dialog,curOwner.GetCharacterOwner(), ((iEffectsContainer)curOwner).GetQuest(), action);
+                    Dialog.DialogManager.GetInstantiate().StartDialog(methodFunction.dialog,curOwner.GetTeam(), ((iEffectsContainer)curOwner).GetQuest(), action);
                 }
             }
             else if (function is ChooseTemperFunction)
@@ -183,6 +186,7 @@ namespace BadDetective.LogicMap
                 if (temperFunction.dialog == null || !curOwner.GetTeam().GetLeader().IsObedient())
                 {
                     Temper temper = temperFunction.Realize(curOwner);
+                    Debug.Log(string.Format("ChooseTemper - {0}", temper.ToString()), temperFunction);
                     if (temper == Temper.RUDE)
                     {
                         RealizeFunction(temperFunction.rudeOutput, isTest);
@@ -210,12 +214,13 @@ namespace BadDetective.LogicMap
                 }
                 else
                 {
+                    Debug.Log(string.Format("ChooseTemper start dialog"), temperFunction);
                     UnityAction action = delegate
                     {
                         int index = temperFunction.dialog.GetEnds().IndexOf(temperFunction.dialog.end);
                         RealizeFunction(temperFunction.dialogOutputs[index], isTest);
                     };
-                    Dialog.DialogManager.GetInstantiate().StartDialog(temperFunction.dialog, curOwner.GetCharacterOwner(), ((iEffectsContainer)curOwner).GetQuest(), action);
+                    Dialog.DialogManager.GetInstantiate().StartDialog(temperFunction.dialog, curOwner.GetTeam(), ((iEffectsContainer)curOwner).GetQuest(), action);
                 }
             }
         }
