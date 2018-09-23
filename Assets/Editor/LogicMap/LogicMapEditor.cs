@@ -50,7 +50,7 @@ namespace BadDetective.LogicMap
 
         private void OnGUI()
         {
-            if (logicMap != null)
+            if (editor != null && logicMap != null)
             {
                 Event e = Event.current;
                 mousePos = e.mousePosition;
@@ -797,30 +797,31 @@ namespace BadDetective.LogicMap
                     }
                     else if (e.type == EventType.MouseUp)
                     {
-                        if (actionLinkMod)
-                        {
-                            actionLinkMod = false;
-                            enterNode.selectLink = false;
-                            if (selectFunctionNode != null)
-                            {
-                                selectFunctionNode.selectActionLink = false;
-                                if (selectFunctionNode is LogicSplitterNode && ((LogicSplitter)selectFunctionNode.logicFunction).actionOutputs.Contains(null))
-                                {
-                                    ((LogicSplitter)selectFunctionNode.logicFunction).actionOutputs.RemoveAt(((LogicSplitter)selectFunctionNode.logicFunction).actionOutputs.IndexOf(null));
-                                }
-                                selectFunctionNode = null;
-                            }
-                        }
-                        else if (dataLinkMod)
-                        {
-                            dataLinkMod = false;
-                            if (selectDataNode != null)
-                            {
-                                selectDataNode.SetSelectDataLink(false);
-                                selectDataNode = null;
-                            }
-                        }
-                        else if (moveMod)
+                        //if (actionLinkMod)
+                        //{
+                        //    actionLinkMod = false;
+                        //    enterNode.selectLink = false;
+                        //    if (selectFunctionNode != null)
+                        //    {
+                        //        selectFunctionNode.selectActionLink = false;
+                        //        if (selectFunctionNode is LogicSplitterNode && ((LogicSplitter)selectFunctionNode.logicFunction).actionOutputs.Contains(null))
+                        //        {
+                        //            ((LogicSplitter)selectFunctionNode.logicFunction).actionOutputs.RemoveAt(((LogicSplitter)selectFunctionNode.logicFunction).actionOutputs.IndexOf(null));
+                        //        }
+                        //        selectFunctionNode = null;
+                        //    }
+                        //}
+                        //else if (dataLinkMod)
+                        //{
+                        //    dataLinkMod = false;
+                        //    if (selectDataNode != null)
+                        //    {
+                        //        selectDataNode.SetSelectDataLink(false);
+                        //        selectDataNode = null;
+                        //    }
+                        //}
+                        //else 
+                        if (moveMod)
                         {
                             moveMod = false;
                         }
@@ -880,6 +881,12 @@ namespace BadDetective.LogicMap
                                 {
                                     select = node.id;
                                     ChooseMethodNodeGenericMenu();
+                                    break;
+                                }
+                                else if (node is ChooseTemperNode && ((ChooseTemperNode)node).logicFunction.GetWindowRect().Contains(mousePos))
+                                {
+                                    select = node.id;
+                                    ChooseTemperNodeGenericMenu();
                                     break;
                                 }
                             }
@@ -1960,7 +1967,7 @@ namespace BadDetective.LogicMap
             e.Use();
         }
 
-        private void ChoosTemperNodeGenericMenu()
+        private void ChooseTemperNodeGenericMenu()
         {
             Event e = Event.current;
             GenericMenu menu = new GenericMenu();

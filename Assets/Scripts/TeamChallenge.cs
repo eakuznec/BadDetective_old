@@ -7,7 +7,7 @@ namespace BadDetective
     public class TeamChallenge : MonoBehaviour
     {
         private Team curTeam;
-        public ChallengeType type;
+        public ChallengeType type = ChallengeType.METHOD;
         public Method method;
         public Tag _tag;
         public ExecutorType executor;

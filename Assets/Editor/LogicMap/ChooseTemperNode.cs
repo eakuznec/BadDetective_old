@@ -139,7 +139,7 @@ namespace BadDetective.LogicMap
             }
             if (function.mercantileOutput != null)
             {
-                startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 100);
+                startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 125);
                 BaseLogicNode outputNode = null;
                 foreach (BaseLogicNode node in LogicMapEditor.editor.nodes)
                 {
@@ -169,7 +169,7 @@ namespace BadDetective.LogicMap
             }
             if (function.principledOutput != null)
             {
-                startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 100);
+                startPos = new Vector2(function.GetWindowRect().xMax, function.GetWindowRect().y + 150);
                 BaseLogicNode outputNode = null;
                 foreach (BaseLogicNode node in LogicMapEditor.editor.nodes)
                 {
@@ -697,7 +697,7 @@ namespace BadDetective.LogicMap
                 }
             }
             soFunction.ApplyModifiedProperties();
-            function.windowRect.height = 160 + 25;
+            function.windowRect.height = 160 + 30;
             if (function.dialog != null)
             {
                 function.windowRect.height += 20 * function.dialog.GetEnds().Count;

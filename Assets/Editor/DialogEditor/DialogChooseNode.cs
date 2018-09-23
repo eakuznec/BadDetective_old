@@ -72,7 +72,7 @@ public class DialogChooseNode : ScriptableObject
         }
         else
         {
-            choose.chooseText = EditorGUILayout.TextArea(choose.chooseText, new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true) });
+            choose.chooseText = EditorGUILayout.TextArea(choose.chooseText, new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.Height(30) });
         }
         GUILayout.BeginHorizontal();
         GUILayout.Label(string.Format("Conditions: {0}", choose.conditions.Count));

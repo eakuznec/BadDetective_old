@@ -39,10 +39,13 @@ public class DialogEditor : EditorWindow
 
     void OnGUI()
     {
-        Control();
-        DrawLinks();
-        DrawNodes();
-        Repaint();
+        if(editor!=null && dialog != null)
+        {
+            Control();
+            DrawLinks();
+            DrawNodes();
+            Repaint();
+        }
     }
 
     private void DrawLinks()
