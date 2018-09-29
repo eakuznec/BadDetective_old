@@ -71,10 +71,6 @@ namespace BadDetective.LogicMap
                 backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                 int width = 2;
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
             if (function.diplomatOutput != null)
@@ -101,10 +97,6 @@ namespace BadDetective.LogicMap
                 backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                 int width = 2;
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
             if (function.scienceOutput != null)
@@ -131,10 +123,6 @@ namespace BadDetective.LogicMap
                 backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                 int width = 2;
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
             for(int i=0; i<function.dialogOutputs.Count; i++)
@@ -164,10 +152,6 @@ namespace BadDetective.LogicMap
                     backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                     int width = 2;
 
-                    for (int j = 0; j < 3; j++)
-                    {
-                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (j + 1) * 5);
-                    }
                     Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
             }

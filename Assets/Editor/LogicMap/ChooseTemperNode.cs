@@ -41,10 +41,6 @@ namespace BadDetective.LogicMap
                 backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                 int width = 2;
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
             if (function.prudentOutput != null)
@@ -71,10 +67,6 @@ namespace BadDetective.LogicMap
                 backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                 int width = 2;
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
             if (function.mercifulOutput != null)
@@ -101,10 +93,6 @@ namespace BadDetective.LogicMap
                 backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                 int width = 2;
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
             if (function.cruelOutput != null)
@@ -131,10 +119,6 @@ namespace BadDetective.LogicMap
                 backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                 int width = 2;
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
             if (function.mercantileOutput != null)
@@ -161,10 +145,6 @@ namespace BadDetective.LogicMap
                 backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                 int width = 2;
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
             if (function.principledOutput != null)
@@ -191,10 +171,6 @@ namespace BadDetective.LogicMap
                 backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                 int width = 2;
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
             for (int i = 0; i < function.dialogOutputs.Count; i++)
@@ -224,10 +200,6 @@ namespace BadDetective.LogicMap
                     backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                     int width = 2;
 
-                    for (int j = 0; j < 3; j++)
-                    {
-                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (j + 1) * 5);
-                    }
                     Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
             }
@@ -246,10 +218,6 @@ namespace BadDetective.LogicMap
                     backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                     int width = 2;
 
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                    }
                     Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
                 else if (selectActionLink && function.temper == 1)
@@ -264,10 +232,6 @@ namespace BadDetective.LogicMap
                     backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                     int width = 2;
 
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                    }
                     Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
                 else if (selectActionLink && function.temper == 2)
@@ -282,10 +246,6 @@ namespace BadDetective.LogicMap
                     backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                     int width = 2;
 
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                    }
                     Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
                 else if (selectActionLink && function.temper == 3)
@@ -300,10 +260,6 @@ namespace BadDetective.LogicMap
                     backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                     int width = 2;
 
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                    }
                     Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
                 else if (selectActionLink && function.temper == 4)
@@ -318,10 +274,6 @@ namespace BadDetective.LogicMap
                     backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                     int width = 2;
 
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                    }
                     Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
                 else if (selectActionLink && function.temper == 5)
@@ -336,10 +288,6 @@ namespace BadDetective.LogicMap
                     backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                     int width = 2;
 
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                    }
                     Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
             }
@@ -358,10 +306,6 @@ namespace BadDetective.LogicMap
                     backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                     int width = 2;
 
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                    }
                     Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
                 }
             }

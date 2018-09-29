@@ -189,21 +189,14 @@ namespace BadDetective
 
         public void DrawWay(float deltaTime, WayType wayType = WayType.MAINSTREET)
         {
-            timeInWay += deltaTime;
+            timeInWay += deltaTime * GetSpeedModifier();
             lineRenderer.positionCount = 1;
             lineRenderer.SetPosition(0, startPlace.GetPoint().transform.position);
             float timeToPoint = 0;
             for (int i = 0; i < curWay.pointsAndPaths.Count; i++)
             {
                 iWayPlace place = curWay.pointsAndPaths[i];
-                if(wayType == WayType.TRANSPORT)
-                {
-                    timeToPoint += place.GetTimeToWay();
-                }
-                else
-                {
-                    timeToPoint += place.GetTimeToWay() / GetSpeedModifier();
-                }
+                timeToPoint += place.GetTimeToWay();
                 if (place is PointOnMap)
                 {
                     lineRenderer.positionCount++;

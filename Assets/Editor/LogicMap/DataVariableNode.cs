@@ -201,10 +201,6 @@ namespace BadDetective.LogicMap
                 
                 int width = 2;
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
             else if (selectDataLink)
@@ -219,10 +215,6 @@ namespace BadDetective.LogicMap
                 backColor = new Color(backColor.r, backColor.g, backColor.b, 0.1f);
                 int width = 2;
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Handles.DrawBezier(startPos, endPos, startTan, endTan, backColor, null, (i + 1) * 5);
-                }
                 Handles.DrawBezier(startPos, endPos, startTan, endTan, activeColor, null, width);
             }
         }
