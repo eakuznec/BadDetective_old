@@ -9,6 +9,7 @@ namespace BadDetective
     public class eDetective : Editor
     {
         private static bool showTrait;
+        private static bool showEquipment;
 
         public override void OnInspectorGUI()
         {
@@ -83,6 +84,43 @@ namespace BadDetective
             eUtils.DrawMoneyInspecor(ref salary);
             detective.salary = salary;
             GUILayout.Space(10);
+            if(detective.GetMaxItemSlot() - detective.blockedSlots - detective.GetEquipment().Count < 0)
+            {
+                GUI.color = Color.red;
+            }
+            if (GUILayout.Button(string.Format("Equipment {0}/{1}", detective.GetEquipment().Count, detective.GetMaxItemSlot() - detective.blockedSlots)))
+            {
+                showEquipment = !showEquipment;
+            }
+            GUI.color = new Color(1, 1, 1);
+            if (showEquipment)
+            {
+                ItemManager itemManager = ItemManager.GetInstantiate();
+                for(int i=0; i < detective.GetEquipment().Count; i++)
+                {
+                    EditorGUILayout.BeginHorizontal("box");
+                    int lastIndex = itemManager.GetEquipment().IndexOf(detective.GetEquipment()[i].equipment);
+                    int index = EditorGUILayout.Popup(lastIndex, itemManager.GetEquipmentNames().ToArray());
+                    if (index != -1 && index !=lastIndex)
+                    {
+                        detective.GetEquipment()[i].equipment = itemManager.GetEquipment()[index];
+                        detective.GetEquipment()[i].gameObject.name = detective.GetEquipment()[i].equipment.name;
+                    }
+                    if(GUILayout.Button("Delete", new GUILayoutOption[] { GUILayout.Width(60) }))
+                    {
+                        DestroyImmediate(detective.GetEquipment()[i].gameObject);
+                        detective.GetEquipment().RemoveAt(i);
+                        break;
+                    }
+                    EditorGUILayout.EndHorizontal();
+                }
+                if(GUILayout.Button("Add equipmet"))
+                {
+                    detective.AddEquipment(null);
+                }
+            }
+            GUILayout.Space(10);
+
             EditorGUILayout.PropertyField(serializedObject.FindProperty("home"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("priorityWay"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("wayColor"));

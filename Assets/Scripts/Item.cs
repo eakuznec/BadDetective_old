@@ -7,7 +7,9 @@ namespace BadDetective
     public class Item : MonoBehaviour
     {
         public string itemName;
+        [TextArea]
         public string itemDescription;
+        public Sprite image;
         [HideInInspector]
         public List<ItemCondition> conditions = new List<ItemCondition>();
         [HideInInspector]

@@ -19,7 +19,7 @@ namespace BadDetective
         public float minConfidence = 0;
         public float maxConfidence = 100;
         public float curConfidence;
-        public int maxItemSlots = 4;
+        private int maxItemSlots = 4;
         public int blockedSlots;
         public float speedMod = 1;
 
@@ -34,7 +34,7 @@ namespace BadDetective
         public int[] maxMethodsValues = new int[4] { 100, 100, 100, 100 };
 
         public List<TraitContainer> traits = new List<TraitContainer>();
-        private List<Equipment> _equipments = new List<Equipment>();
+        private List<EquipmentContainer> _equipments = new List<EquipmentContainer>();
         private List<Item> items = new List<Item>();
         public List<FileNoteContainer> notes = new List<FileNoteContainer>();
 
@@ -48,6 +48,9 @@ namespace BadDetective
         public DetectiveActivity activity;
 
         public bool checkGoHome;
+
+        private GameObject equipmentFolder;
+        private GameObject traitFolder;
 
         private void Start()
         {
@@ -152,16 +155,16 @@ namespace BadDetective
             }
         }
 
-        public List<Equipment> GetEquipment()
+        public List<EquipmentContainer> GetEquipment()
         {
             return _equipments;
         }
 
-        public Equipment GetMainWeapon(out int maxBonus, Tag weaponType = Tag.NULL)
+        public EquipmentContainer GetMainWeapon(out int maxBonus, Tag weaponType = Tag.NULL)
         {
-            Equipment retVal = null;
+            EquipmentContainer retVal = null;
             maxBonus = 0;
-            foreach (Equipment equipment in _equipments)
+            foreach (EquipmentContainer equipment in _equipments)
             {
                 if (equipment.trait != null && equipment.trait.tags.Contains(Tag.weapon))
                 {
@@ -199,7 +202,7 @@ namespace BadDetective
         {
             int retVal = 0;
             int weaponBonus = 0;
-            Equipment weapon = GetMainWeapon(out weaponBonus, weaponType);
+            EquipmentContainer weapon = GetMainWeapon(out weaponBonus, weaponType);
             retVal += weaponBonus;
             if (weapon == null && (weaponType == Tag.NULL || weaponType == Tag.brawl))
             {
@@ -341,6 +344,33 @@ namespace BadDetective
                 curStress = minStress;
             }
         }
+
+        public void ChangeCurLoyalty(float value)
+        {
+            curLoyalty += value;
+            if (curLoyalty > maxLoyalty)
+            {
+                curLoyalty = maxLoyalty;
+            }
+            else if (curLoyalty < minLoyalty)
+            {
+                curHealth = minLoyalty;
+            }
+        }
+
+        public void ChangeCurConfidence(float value)
+        {
+            curConfidence += value;
+            if (curConfidence > maxConfidence)
+            {
+                curConfidence = maxConfidence;
+            }
+            else if (curConfidence < minConfidence)
+            {
+                curConfidence = minConfidence;
+            }
+        }
+
 
         public float confidence
         {
@@ -648,6 +678,14 @@ namespace BadDetective
             return curLoyalty >= GetTotalConfidece();
         }
 
+        public void AddTrait(Trait trait)
+        {
+            GameObject goTrait = new GameObject(trait.name);
+            goTrait.transform.parent = GetTraitFolder().transform;
+            TraitContainer traitContainer = goTrait.AddComponent<TraitContainer>();
+            traitContainer.trait = trait;
+        }
+
         public void AddItem(Item newItem)
         {
             if(newItem is Equipment)
@@ -667,14 +705,82 @@ namespace BadDetective
             }
         }
 
-        private void AddEquipment(Equipment newEquipment)
+        public void AddEquipment(Equipment newEquipment)
         {
-
+            GameObject goEquipment;
+            if (newEquipment != null)
+            {
+                goEquipment = new GameObject(newEquipment.name);
+            }
+            else
+            {
+                goEquipment = new GameObject("Equipment_");
+            }
+            goEquipment.transform.parent = GetEquipmentFolder().transform;
+            EquipmentContainer equipment = goEquipment.AddComponent<EquipmentContainer>();
+            equipment.equipment = newEquipment;
+            equipment.owner = this;
+            _equipments.Add(equipment);
         }
 
         public void ChangeBlockedSlot(int value)
         {
             blockedSlots += value;
+        }
+
+        public GameObject GetEquipmentFolder()
+        {
+            if(equipmentFolder == null)
+            {
+                if (transform.Find("Equipments"))
+                {
+                    equipmentFolder = transform.Find("Equipments").gameObject;
+                }
+            }
+            if (equipmentFolder == null)
+            {
+                equipmentFolder = new GameObject("Equipments");
+                equipmentFolder.transform.parent = transform;
+            }
+            return equipmentFolder;
+        }
+
+        public GameObject GetTraitFolder()
+        {
+            if (traitFolder == null)
+            {
+                if (transform.Find("Traits"))
+                {
+                    traitFolder = transform.Find("Traits").gameObject;
+                }
+            }
+            if (traitFolder == null)
+            {
+                traitFolder = new GameObject("Traits");
+                traitFolder.transform.parent = transform;
+            }
+            return traitFolder;
+        }
+
+        public int GetMaxItemSlot()
+        {
+            return maxItemSlots;
+        }
+
+        public void ChangeMaxItemSlot(int value)
+        {
+            maxItemSlots += value;
+            int dif = GetEquipment().Count - (maxItemSlots - blockedSlots);
+            if (dif > 0)
+            {
+                for(int i=0; i<dif; i++)
+                {
+                    EquipmentContainer equipmentContainer = GetEquipment()[GetEquipment().Count - 1 - dif];
+                    items.Add(equipmentContainer.equipment);
+                    Destroy(equipmentContainer.gameObject);
+                    GetEquipment().RemoveAt(GetEquipment().Count - 1 - dif);
+                }
+            }
         }
     }
 

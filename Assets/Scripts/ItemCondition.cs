@@ -16,7 +16,7 @@ namespace BadDetective
             int retVal = 0;
             if(type == ItemConditionType.HAVE_EMPTY_SLOT)
             {
-                int emptySlot = detective.maxItemSlots - detective.blockedSlots - detective.GetEquipment().Count;
+                int emptySlot = detective.GetMaxItemSlot() - detective.blockedSlots - detective.GetEquipment().Count;
                 return emptySlot * weight;
             }
             else if(type == ItemConditionType.HAVE_TAG)

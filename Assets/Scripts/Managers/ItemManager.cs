@@ -64,6 +64,24 @@ namespace BadDetective
             return equipments;
         }
 
+
+        public List<string> GetEquipmentNames()
+        {
+            List<string> retVal = new List<string>();
+            foreach (Equipment equipment in GetEquipment())
+            {
+                if (equipment != null)
+                {
+                    retVal.Add(equipment.itemName);
+                }
+                else
+                {
+                    retVal.Add("-NULL-");
+                }
+            }
+            return retVal;
+        }
+
         public void Registrate(Item item)
         {
             allItems.Add(item);

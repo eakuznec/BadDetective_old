@@ -193,9 +193,7 @@ public class DialogEditor : EditorWindow
                                 break;
                             }
                         }
-                        selectLink.outputPhrase = dialogPhraseNode;
-                        selectLink.link.output = dialogPhraseNode.phrase;
-                        dialogPhraseNode.inputLinks.Add(selectLink);
+                        selectLink.SetOutput(dialogPhraseNode);
                         linkMod = false;
                         Selection.activeGameObject = selectLink.link.gameObject;
                         selectLink = null;

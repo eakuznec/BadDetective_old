@@ -16,7 +16,7 @@ MonoBehaviour:
   traitDescription: 
   traitEffects:
   - {fileID: 11400000, guid: 2100f08355d53e94aa23bf943c343b26, type: 2}
-  - {fileID: 11400000, guid: abfb79b9b6879fe4c95e10b83f1c20a2, type: 2}
+  - {fileID: 11400000, guid: 493a5b724e36a0242800cebecc59f82d, type: 2}
   - {fileID: 11400000, guid: 902b8f088651f304d9b31521f52a75b0, type: 2}
   tags: 
   type: 0

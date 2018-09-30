@@ -18,6 +18,7 @@ namespace BadDetective
         CHANGE_MIN_STRESS,
         DETACH_TRAIT,
         CHANGE_SPEED_MOD,
-        CHANGE_BLOCKED_EQUIPMENT_SLOT
+        CHANGE_BLOCKED_EQUIPMENT_SLOT,
+        CHANGE_MAX_ITEM_SLOT
     }
 }

@@ -873,7 +873,7 @@ MonoBehaviour:
   quest: {fileID: 0}
   mainState: 0
   filePanel: {fileID: 0}
-  dialog: {fileID: 114648167493500262, guid: e22a9252bc7c22646942678060ca5136, type: 2}
+  dialog: {fileID: 114471061569649832, guid: f29e9d53b3c99b54eb336bd4e241b78c, type: 2}
   money:
     crown: 0
     libra: 0

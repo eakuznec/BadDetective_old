@@ -19,6 +19,7 @@ namespace BadDetective
         public LogicMap.LogicMapOwnerType logicMapOwner;
         public LogicMap.LogicMap logicMap;
         public Item item;
+        public Money money;
         public int intValue;
         public bool boolValue;
         public string stringValue;
@@ -114,6 +115,10 @@ namespace BadDetective
                     Item newItem = Instantiate(item, agency.transform);
                     agency.items.Add(newItem);
                 }
+            }
+            else if (type == EffectType.CHANGE_MONEY)
+            {
+                agency.ChangeMoney(money);
             }
             else if(type == EffectType.REALIZE_TASK)
             {

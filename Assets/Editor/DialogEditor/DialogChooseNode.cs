@@ -28,10 +28,10 @@ public class DialogChooseNode : ScriptableObject
     public void DrawWindow(ref int num, ref Rect rect, ref float h)
     {
         DialogPhrase phrase = parentNode.phrase;
-        windowRect = new Rect(rect.x, rect.y + h +82, rect.width, 70);
+        windowRect = new Rect(rect.x, rect.y + h +112, rect.width, 100);
         GUILayout.BeginVertical();
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Del", new GUILayoutOption[] { GUILayout.Width(45), GUILayout.Height(70) }))
+        if (GUILayout.Button("Del", new GUILayoutOption[] { GUILayout.Width(45), GUILayout.Height(100) }))
         {
             EditorGUI.FocusTextInControl("");
             DeleteNode(ref num);
@@ -72,13 +72,23 @@ public class DialogChooseNode : ScriptableObject
         }
         else
         {
-            choose.chooseText = EditorGUILayout.TextArea(choose.chooseText, new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.Height(30) });
+            choose.chooseText = EditorGUILayout.TextArea(choose.chooseText, new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.Height(35) });
         }
         GUILayout.BeginHorizontal();
         GUILayout.Label(string.Format("Conditions: {0}", choose.conditions.Count));
         GUILayout.Label(string.Format("Effects: {0}", choose.effects.Count));
         choose.isOnce = GUILayout.Toggle(choose.isOnce, "isOnse");
         GUILayout.EndHorizontal();
+        if (GUILayout.Button("Next Phrase ->"))
+        {
+            DialogPhraseNode dialogPhraseNode = DialogEditor.editor.CreatePhrase(new Vector2(parentNode.windowRect.xMax+40, parentNode.windowRect.yMin +num*(20+170)), null);
+            dialogPhraseNode.phrase.speekerType = phrase.speekerType;
+            dialogPhraseNode.phrase.speeker = phrase.speeker;
+            DialogLinkNode linkNode = CreateLinkNode(null);
+            DialogEditor.editor.selectLink = null;
+            DialogEditor.editor.linkMod = false;
+            linkNode.SetOutput(dialogPhraseNode);
+        }
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
 

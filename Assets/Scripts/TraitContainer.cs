@@ -8,8 +8,6 @@ namespace BadDetective
     {
         public Trait trait;
         [HideInInspector]
-        public TraitCategory category;
-        [HideInInspector]
         public Detective owner;
 
         [HideInInspector]
@@ -20,6 +18,8 @@ namespace BadDetective
         public Trait mimicryTrait;
         [HideInInspector]
         public int removePoint;
+        [HideInInspector]
+        public bool isDettached;
 
         [HideInInspector]
         public bool showInInterface = false;
@@ -30,6 +30,10 @@ namespace BadDetective
             if (trait.type == TraitType.TEMPORARY)
             {
                 CreateTemporaryTraitAction();
+            }
+            else if(trait.type == TraitType.REMOVABLE)
+            {
+                removePoint = trait.removePoint;
             }
             AttachEffects();
         }
@@ -57,65 +61,7 @@ namespace BadDetective
         {
             if (HaveTag(Tag.NULL))
             {
-                foreach(TraitEffect effect in trait.traitEffects)
-                {
-                    if(effect.type == TraitEffectType.CHANGE_BRUTAL)
-                    {
-                        owner.ChangeMethodValue(Method.Brutal, effect.value);
-                    }
-                    else if(effect.type == TraitEffectType.CHANGE_CAREFUL)
-                    {
-                        owner.ChangeMethodValue(Method.Careful, effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_DIPLOMATIC)
-                    {
-                        owner.ChangeMethodValue(Method.Diplomatic, effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_SCIENTIFIC)
-                    {
-                        owner.ChangeMethodValue(Method.Scientific, effect.value);
-                    }
-                    if (effect.type == TraitEffectType.CHANGE_MAX_BRUTAL)
-                    {
-                        owner.ChangeMaxMethodValue(Method.Brutal, effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_MAX_CAREFUL)
-                    {
-                        owner.ChangeMaxMethodValue(Method.Careful, effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_MAX_DIPLOMATIC)
-                    {
-                        owner.ChangeMaxMethodValue(Method.Diplomatic, effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_MAX_SCIENTIFIC)
-                    {
-                        owner.ChangeMaxMethodValue(Method.Scientific, effect.value);
-                    }
-                    else if(effect.type == TraitEffectType.CHANGE_MAX_HEALTH)
-                    {
-                        owner.ChangeMaxHealth(effect.value);
-                    }
-                    else if(effect.type == TraitEffectType.CHANGE_MIN_STRESS)
-                    {
-                        owner.ChangeMinStress(effect.value);
-                    }
-                    else if(effect.type == TraitEffectType.DETACH_TRAIT)
-                    {
-                        TraitContainer container = owner.GetTrait(trait);
-                        if (container != null)
-                        {
-                            container.DetachEffects();
-                        }
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_SPEED_MOD)
-                    {
-                        owner.speedMod *= effect.floatValue;
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_BLOCKED_EQUIPMENT_SLOT)
-                    {
-                        owner.ChangeBlockedSlot(effect.value);
-                    }
-                }
+                trait.AttachEffects(owner);
             }
         }
 
@@ -123,65 +69,7 @@ namespace BadDetective
         {
             if (HaveTag(Tag.NULL))
             {
-                foreach (TraitEffect effect in trait.traitEffects)
-                {
-                    if (effect.type == TraitEffectType.CHANGE_BRUTAL)
-                    {
-                        owner.ChangeMethodValue(Method.Brutal, -effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_CAREFUL)
-                    {
-                        owner.ChangeMethodValue(Method.Careful, -effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_DIPLOMATIC)
-                    {
-                        owner.ChangeMethodValue(Method.Diplomatic, -effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_SCIENTIFIC)
-                    {
-                        owner.ChangeMethodValue(Method.Scientific, -effect.value);
-                    }
-                    if (effect.type == TraitEffectType.CHANGE_MAX_BRUTAL)
-                    {
-                        owner.ChangeMaxMethodValue(Method.Brutal, -effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_MAX_CAREFUL)
-                    {
-                        owner.ChangeMaxMethodValue(Method.Careful, -effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_MAX_DIPLOMATIC)
-                    {
-                        owner.ChangeMaxMethodValue(Method.Diplomatic, -effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_MAX_SCIENTIFIC)
-                    {
-                        owner.ChangeMaxMethodValue(Method.Scientific, -effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_MAX_HEALTH)
-                    {
-                        owner.ChangeMaxHealth(-effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.CHANGE_MIN_STRESS)
-                    {
-                        owner.ChangeMinStress(-effect.value);
-                    }
-                    else if (effect.type == TraitEffectType.DETACH_TRAIT)
-                    {
-                        TraitContainer container = owner.GetTrait(trait);
-                        if (container != null)
-                        {
-                            container.AttachEffects();
-                        }
-                    }
-                    else if(effect.type == TraitEffectType.CHANGE_SPEED_MOD)
-                    {
-                        owner.speedMod /= effect.floatValue;
-                    }
-                    else if(effect.type == TraitEffectType.CHANGE_BLOCKED_EQUIPMENT_SLOT)
-                    {
-                        owner.ChangeBlockedSlot(-effect.value);
-                    }
-                }
+                trait.DetachEffects(owner);
             }
         }
 

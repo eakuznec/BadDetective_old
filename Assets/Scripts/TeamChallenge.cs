@@ -14,13 +14,20 @@ namespace BadDetective
         public int level;
         public int difficulty;
 
+        public List<DetectiveEffect> successEffects = new List<DetectiveEffect>();
+        public List<DetectiveEffect> successHardEffects = new List<DetectiveEffect>();
+        public List<DetectiveEffect> failEffects = new List<DetectiveEffect>();
+        public List<DetectiveEffect> failHardEffects = new List<DetectiveEffect>();
+
         public bool Challage(Team team)
         {
             curTeam = team;
             if (curTeam != null)
             {
                 bool result = false;
-                if(type == ChallengeType.HAVE_TAG)
+                List<Detective> successedDetective = new List<Detective>();
+                List<Detective> failedDetective = new List<Detective>();
+                if (type == ChallengeType.HAVE_TAG)
                 {
                     if (executor == ExecutorType.LEADER)
                     {
@@ -28,7 +35,7 @@ namespace BadDetective
                     }
                     else if (executor == ExecutorType.TEAM)
                     {
-                        result = curTeam.IsTeamHaveTag(_tag);
+                        result = curTeam.IsTeamHaveTag(successedDetective, failedDetective, _tag);
                     }
                     Debug.Log(string.Format("Челендж have_tag {0} - {1}", _tag, result), this);
                     return result;
@@ -41,9 +48,43 @@ namespace BadDetective
                     }
                     else if(executor == ExecutorType.TEAM)
                     {
-                        result = curTeam.IsTeamChallenge(method, level, difficulty, _tag);
+                        result = curTeam.IsTeamChallenge(successedDetective, failedDetective, method, level, difficulty, _tag);
                     }
                     Debug.Log(string.Format("Челендж {0}, level {1}, difficult {2} - {3}", method, level, difficulty, result), this);
+                    if (result)
+                    {
+                        foreach(Detective detective in successedDetective)
+                        {
+                            foreach (DetectiveEffect effect in successEffects)
+                            {
+                                effect.Realize(detective);
+                            }
+                        }
+                        foreach (Detective detective in failedDetective)
+                        {
+                            foreach (DetectiveEffect effect in successHardEffects)
+                            {
+                                effect.Realize(detective);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (Detective detective in successedDetective)
+                        {
+                            foreach (DetectiveEffect effect in failEffects)
+                            {
+                                effect.Realize(detective);
+                            }
+                        }
+                        foreach (Detective detective in failedDetective)
+                        {
+                            foreach (DetectiveEffect effect in failHardEffects)
+                            {
+                                effect.Realize(detective);
+                            }
+                        }
+                    }
                     return result;
                 }
             }

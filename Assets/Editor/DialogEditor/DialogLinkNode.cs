@@ -108,5 +108,12 @@ namespace BadDetective.Dialog
             DialogEditor.editor.links.Remove(this);
             link.Delete();
         }
+
+        public void SetOutput(DialogPhraseNode dialogPhraseNode)
+        {
+            outputPhrase = dialogPhraseNode;
+            link.output = dialogPhraseNode.phrase;
+            dialogPhraseNode.inputLinks.Add(this);
+        }
     }
 }

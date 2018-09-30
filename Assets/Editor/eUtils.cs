@@ -525,6 +525,10 @@ namespace BadDetective
                     effect.item = itemManager.GetItems()[index];
                 }
             }
+            else if (effect.type == EffectType.CHANGE_MONEY)
+            {
+                EditorGUILayout.PropertyField(soEffect.FindProperty("money"));
+            }
             else if (effect.type == EffectType.REALIZE_LOGIC_MAP)
             {
                 EditorGUILayout.PropertyField(soEffect.FindProperty("logicMapOwner"), GUIContent.none);
@@ -629,7 +633,7 @@ namespace BadDetective
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.BeginVertical();
             SerializedObject soCondition = new SerializedObject(condition);
-            EditorGUILayout.PropertyField(soCondition.FindProperty("type"));
+            EditorGUILayout.PropertyField(soCondition.FindProperty("type"), GUIContent.none);
             if(condition.type == ItemConditionType.HAVE_EMPTY_SLOT)
             {
 
@@ -704,16 +708,6 @@ namespace BadDetective
             EditorGUILayout.BeginVertical();
             EditorGUILayout.PropertyField(soTrait.FindProperty("category"));
             Trait lastTrait = trait.trait;
-            int index = EditorGUILayout.Popup(traitManager.GetTraits(trait.category).IndexOf(trait.trait), traitManager.GetTraitNames(trait.category).ToArray());
-            if (index != -1)
-            {
-                trait.trait = traitManager.GetTraits(trait.category)[index];
-                if(lastTrait != trait.trait)
-                {
-                    trait.name = trait.trait.name;
-                    trait.removePoint = trait.trait.removePoint;
-                }
-            }
             if (trait.trait != null)
             {
                 EditorGUILayout.PropertyField(soTrait.FindProperty("isHidden"));
@@ -722,7 +716,7 @@ namespace BadDetective
                 {
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PropertyField(soTrait.FindProperty("isMimicry"));
-                    index = EditorGUILayout.Popup(traitManager.GetTraits().IndexOf(trait.mimicryTrait), traitManager.GetTraitNames().ToArray());
+                    int index = EditorGUILayout.Popup(traitManager.GetTraits().IndexOf(trait.mimicryTrait), traitManager.GetTraitNames().ToArray());
                     if (index != -1)
                     {
                         trait.mimicryTrait = traitManager.GetTraits()[index];

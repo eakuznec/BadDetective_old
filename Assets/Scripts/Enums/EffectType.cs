@@ -23,7 +23,8 @@ namespace BadDetective
         FINALIZE_TASK,
         TEAM_GOTO_OFFICE,
         TEAM_GOTO_HOMES,
-        TEAM_GOTO_EVENT
+        TEAM_GOTO_EVENT,
+        CHANGE_MONEY
     }
 
 }

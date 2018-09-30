@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace BadDetective
 {
-    public class FileNote : MonoBehaviour
+    [CreateAssetMenu(fileName = "FileNote_", menuName = "File Note", order = 53)]
+    public class FileNote : ScriptableObject
     {
         [Tooltip("Для использования регулярных выражений используйте символ <key>")]
         [TextArea]

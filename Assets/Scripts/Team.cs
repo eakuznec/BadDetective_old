@@ -51,15 +51,19 @@ namespace BadDetective
             return GetLeader().HaveTag(tag);
         }
 
-        public bool IsTeamHaveTag(Tag tag)
+        public bool IsTeamHaveTag(List<Detective> successedDetectives, List<Detective> failedDetectives, Tag tag)
         {
             bool retVal = false;
             foreach(Detective detective in detectives)
             {
                 if (detective.HaveTag(tag))
                 {
+                    successedDetectives.Add(detective);
                     retVal = true;
-                    break;
+                }
+                else
+                {
+                    failedDetectives.Add(detective);
                 }
             }
             return retVal;
@@ -75,7 +79,7 @@ namespace BadDetective
             return methodValue >= difficult;
         }
 
-        public bool IsTeamChallenge(Method method, int level, int difficult, Tag tag = Tag.NULL)
+        public bool IsTeamChallenge(List<Detective> successedDetectives, List<Detective> failedDetectives, Method method, int level, int difficult, Tag tag = Tag.NULL)
         {
             int teamValue = 0;
             foreach(Detective detective in detectives)
@@ -83,7 +87,12 @@ namespace BadDetective
                 int methodValue = GetDetectiveInTeamMethodValue(detective, method, tag);
                 if (methodValue < level)
                 {
+                    failedDetectives.Add(detective);
                     methodValue = methodValue / 2;
+                }
+                else
+                {
+                    successedDetectives.Add(detective);
                 }
                 teamValue += methodValue;
             }

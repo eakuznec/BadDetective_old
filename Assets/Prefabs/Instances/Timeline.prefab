@@ -54,3 +54,4 @@ MonoBehaviour:
   secondsInGameHour: 7.5
   actions:
   - {fileID: 114866132383671380, guid: 3faef51ef3b842e4496a522b35b1e3b0, type: 2}
+  - {fileID: 114574326090130328, guid: 545f624c8d4d93c4da19562b74f57420, type: 2}

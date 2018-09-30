@@ -16,7 +16,14 @@ namespace BadDetective.UI
         public void SetChoose(DialogChoose choose, int index)
         {
             this.choose = choose;
-            chooseText.text = string.Format("{0}. {1}", index, choose.chooseText);
+            if(choose.type == ChooseType.CONTINUE)
+            {
+                chooseText.text = string.Format("{0}. {1}", index, "[Продолжить]");
+            }
+            else
+            {
+                chooseText.text = string.Format("{0}. {1}", index, choose.chooseText);
+            }
         }
 
         public void OnPointerEnter(PointerEventData eventData)
