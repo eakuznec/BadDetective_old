@@ -36,7 +36,7 @@ namespace BadDetective
         public List<TraitContainer> traits = new List<TraitContainer>();
         private List<Equipment> _equipments = new List<Equipment>();
         private List<Item> items = new List<Item>();
-        public List<FileNote> notes = new List<FileNote>();
+        public List<FileNoteContainer> notes = new List<FileNoteContainer>();
 
         private Money _salary;
         public DetectiveHome home;

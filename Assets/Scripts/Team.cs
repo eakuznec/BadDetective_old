@@ -24,7 +24,7 @@ namespace BadDetective
 
         [Header("Report")]
         public List<Quest> reportQuest = new List<Quest>();
-        public List<FileNote> reportNotes = new List<FileNote>();
+        public List<FileNoteContainer> reportNotes = new List<FileNoteContainer>();
         public List<QuestEvent> reportEvent = new List<QuestEvent>();
         public List<QuestTask> reportChangeTask = new List<QuestTask>();
         public List<MainState> reportTaskState = new List<MainState>();
@@ -282,6 +282,7 @@ namespace BadDetective
             for(int i =0; i< reportNotes.Count; i++)
             {
                 reportQuest[i].notes.Add(reportNotes[i]);
+                reportNotes[i].transform.parent = reportQuest[i].transform;
             }
             reportQuest.Clear();
             reportNotes.Clear();

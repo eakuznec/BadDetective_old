@@ -8,7 +8,7 @@ namespace BadDetective.UI
     public class NotePanel : MonoBehaviour
     {
         [HideInInspector]
-        public FileNote note;
+        public FileNoteContainer note;
         [SerializeField] private RectTransform imagePanel;
         [SerializeField] private Image noteImage;
         [SerializeField] private Button prevButton;
@@ -28,7 +28,7 @@ namespace BadDetective.UI
             nextButton.onClick.AddListener(NextImage);
         }
 
-        public void SetNote(FileNote note)
+        public void SetNote(FileNoteContainer note)
         {
             this.note = note;
             if (note != null)
@@ -57,7 +57,7 @@ namespace BadDetective.UI
                     }
                     noteText.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (rect.rect.width - offset - imagePanel.rect.width));
                 }
-                noteText.text = note.note;
+                noteText.text = note.GetText();
             }
             else
             {

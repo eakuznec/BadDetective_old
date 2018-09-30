@@ -92,12 +92,13 @@ namespace BadDetective
             {
                 if (effectsContainer is QuestTask)
                 {
-                    effectsContainer.GetTeam().reportQuest.Add(GetQuest());
-                    effectsContainer.GetTeam().reportNotes.Add(fileNote);
+                    Team team = effectsContainer.GetTeam();
+                    team.reportQuest.Add(GetQuest());
+                    team.reportNotes.Add(FileNoteContainer.Create(fileNote, team.transform));
                 }
                 else
                 {
-                    GetQuest().notes.Add(fileNote);
+                    GetQuest().notes.Add(FileNoteContainer.Create(fileNote, GetQuest().transform));
                 }
             }
             else if(type == EffectType.ADD_ITEM)
@@ -197,5 +198,6 @@ namespace BadDetective
                 return transform.GetComponentInParent<Dialog.Dialog>();
             }
         }
+
     }
 }

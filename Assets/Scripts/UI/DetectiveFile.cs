@@ -47,7 +47,7 @@ namespace BadDetective.UI
         [SerializeField] private NotePanel notePanel;
         private bool checkBio;
         private bool secondFrame;
-        private Dictionary<int, List<FileNote>> bioPages = new Dictionary<int, List<FileNote>>();
+        private Dictionary<int, List<FileNoteContainer>> bioPages = new Dictionary<int, List<FileNoteContainer>>();
 
         private void Awake()
         {
@@ -172,7 +172,7 @@ namespace BadDetective.UI
                     {
                         if (!bioPages.ContainsKey(counter))
                         {
-                            bioPages.Add(counter, new List<FileNote>());
+                            bioPages.Add(counter, new List<FileNoteContainer>());
                         }
                         bioPages[counter].Add(detective.notes[i]);
                         h += bioPage1.GetChild(i).GetComponent<NotePanel>().getHeight();
@@ -182,7 +182,7 @@ namespace BadDetective.UI
                         counter++;
                         if (!bioPages.ContainsKey(counter))
                         {
-                            bioPages.Add(counter, new List<FileNote>());
+                            bioPages.Add(counter, new List<FileNoteContainer>());
                         }
                         bioPages[counter].Add(detective.notes[i]);
                         h = bioPage1.GetChild(i).GetComponent<NotePanel>().getHeight();

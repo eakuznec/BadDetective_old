@@ -13,18 +13,25 @@ namespace BadDetective.Dialog
         public override void OnInspectorGUI()
         {
             Dialog dialog = (Dialog)target;
-            if (GUILayout.Button("Edit"))
+            if (eUtils.isPrefab(dialog))
             {
-                if (dialog != null)
+                EditorGUILayout.LabelField("---Для редактирования вытащите диалог на сцену!---");
+            }
+            else
+            {
+                if (GUILayout.Button("Edit"))
                 {
-                    if(DialogEditor.editor == null)
+                    if (dialog != null)
                     {
-                        DialogEditor.ShowEditor();
+                        if (DialogEditor.editor == null)
+                        {
+                            DialogEditor.ShowEditor();
+                        }
+                        DialogEditor.dialog = dialog;
+                        DialogEditor.editor.LoadDialog();
                     }
-                    DialogEditor.dialog = dialog;
-                    DialogEditor.editor.LoadDialog();
-                }
 
+                }
             }
             base.OnInspectorGUI();
             GUILayout.Space(10);

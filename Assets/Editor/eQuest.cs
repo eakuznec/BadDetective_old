@@ -99,9 +99,9 @@ namespace BadDetective
                 {
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("notes"), true);
                     GUI.skin.label.wordWrap = true;
-                    foreach (FileNote note in quest.notes)
+                    foreach (FileNoteContainer note in quest.notes)
                     {
-                        GUILayout.Label(note.note);
+                        GUILayout.Label(note.GetText());
                     }
                 }
 

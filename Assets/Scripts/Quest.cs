@@ -18,7 +18,7 @@ namespace BadDetective
         public float deadline;
         public bool canBeRegistrated;
         public bool registrated;
-        public List<FileNote> notes = new List<FileNote>();
+        public List<FileNoteContainer> notes = new List<FileNoteContainer>();
         public QuestType type;
         public MainState mainState;
         public LogicMap.LogicMap startLogicMap;

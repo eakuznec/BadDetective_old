@@ -57,7 +57,7 @@ namespace BadDetective.UI
             PrepareChooses();
         }
 
-        public void SetReport(DialogPhrase phrase, List<FileNote> notes, Team team, Quest quest)
+        public void SetReport(DialogPhrase phrase, List<FileNoteContainer> notes, Team team, Quest quest)
         {
             phrasePanel.gameObject.SetActive(false);
             reportPanel.gameObject.SetActive(true);

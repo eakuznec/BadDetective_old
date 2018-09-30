@@ -32,7 +32,7 @@ namespace BadDetective.UI
         [SerializeField] private NotePanel notePanel;
         private bool checkNote;
         private bool secondFrame;
-        private Dictionary<int, List<FileNote>> notePages = new Dictionary<int, List<FileNote>>();
+        private Dictionary<int, List<FileNoteContainer>> notePages = new Dictionary<int, List<FileNoteContainer>>();
 
         private void Awake()
         {
@@ -145,7 +145,7 @@ namespace BadDetective.UI
                     {
                         if (!notePages.ContainsKey(counter))
                         {
-                            notePages.Add(counter, new List<FileNote>());
+                            notePages.Add(counter, new List<FileNoteContainer>());
                         }
                         notePages[counter].Add(quest.notes[i]);
                         h += notePageR.GetChild(i).GetComponent<NotePanel>().getHeight();
@@ -155,7 +155,7 @@ namespace BadDetective.UI
                         counter++;
                         if (!notePages.ContainsKey(counter))
                         {
-                            notePages.Add(counter, new List<FileNote>());
+                            notePages.Add(counter, new List<FileNoteContainer>());
                         }
                         notePages[counter].Add(quest.notes[i]);
                         h = notePageR.GetChild(i).GetComponent<NotePanel>().getHeight();
