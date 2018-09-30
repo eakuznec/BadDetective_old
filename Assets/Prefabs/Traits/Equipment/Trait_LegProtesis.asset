@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd4b22052ba68044b03e36d99fb33e8, type: 3}
+  m_Name: Trait_LegProtesis
+  m_EditorClassIdentifier: 
+  traitName: "\u041F\u0440\u043E\u0442\u0435\u0437 \u043D\u043E\u0433\u0438"
+  category: 7
+  traitDescription: 
+  traitEffects:
+  - {fileID: 11400000, guid: 2100f08355d53e94aa23bf943c343b26, type: 2}
+  - {fileID: 11400000, guid: e4ba611d3ad14ac418658613bb7f8281, type: 2}
+  - {fileID: 11400000, guid: b80803de5ec972843a00aae87e09800a, type: 2}
+  - {fileID: 11400000, guid: 9c86ed07bcaebba49b5334e48f497a80, type: 2}
+  tags: 
+  type: 0
+  liveTime: 0
+  removePoint: 0

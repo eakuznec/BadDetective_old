@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd4b22052ba68044b03e36d99fb33e8, type: 3}
+  m_Name: Trait_Knuckles
+  m_EditorClassIdentifier: 
+  traitName: "\u041A\u0430\u0441\u0442\u0435\u0442\u044B"
+  category: 2
+  traitDescription: 
+  traitEffects:
+  - {fileID: 11400000, guid: 8e94015a1f493c44c82ed105f90a98c1, type: 2}
+  tags: 
+  type: 0
+  liveTime: 0
+  removePoint: 0
