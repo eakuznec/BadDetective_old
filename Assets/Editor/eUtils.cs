@@ -1107,6 +1107,71 @@ namespace BadDetective
             }
         }
 
+        public static void DrawDetectiveEffectSelector(DetectiveEffect effect)
+        {
+            SerializedObject soEffect = new SerializedObject(effect);
+            EditorGUILayout.BeginVertical();
+            EditorGUILayout.PropertyField(soEffect.FindProperty("type"), GUIContent.none);
+            if (effect.type == DetectiveEffectType.CHANCE_ADD_TRAIT)
+            {
+                TraitManager traitManager = TraitManager.GetInstantiate();
+                EditorGUILayout.PropertyField(soEffect.FindProperty("traitCategory"), GUIContent.none);
+                int index = EditorGUILayout.Popup(traitManager.GetTraits(effect.traitCategory).IndexOf(effect.trait), traitManager.GetTraitNames(effect.traitCategory).ToArray());
+                if (index != -1)
+                {
+                    effect.trait = traitManager.GetTraits(effect.traitCategory)[index];
+                }
+                EditorGUILayout.PropertyField(soEffect.FindProperty("floatValue"), new GUIContent("Chance"));
+            }
+            else if (effect.type == DetectiveEffectType.CHANGE_HEALTH || effect.type == DetectiveEffectType.CHANGE_STRESS || effect.type == DetectiveEffectType.CHANGE_LOYALTY || effect.type == DetectiveEffectType.CHANGE_CONFIDENCE)
+            {
+                EditorGUILayout.PropertyField(soEffect.FindProperty("value"));
+            }
+            EditorGUILayout.EndVertical();
+            soEffect.ApplyModifiedProperties();
+        }
+
+        public static void DrawDetectiveEffectList(List<DetectiveEffect> list, Transform parent, ref bool show, string title, string folderName)
+        {
+            if (GUILayout.Button(string.Format("{0} ({1})", title, list.Count)))
+            {
+                show = !show;
+            }
+            if (show)
+            {
+                for(int i=0; i < list.Count; i++)
+                {
+                    EditorGUILayout.BeginHorizontal("box");
+                    DrawDetectiveEffectSelector(list[i]);
+                    if(GUILayout.Button("Delete", new GUILayoutOption[] { GUILayout.Width(60) }))
+                    {
+                        DestroyImmediate(list[i].gameObject);
+                        list.RemoveAt(i);
+                        break;
+                    }
+                    EditorGUILayout.EndHorizontal();
+                }
+                if (GUILayout.Button(string.Format("Add {0}", title)))
+                {
+                    GameObject goFolder = null;
+                    if (parent.Find(folderName))
+                    {
+                        goFolder = parent.Find(folderName).gameObject;
+                    }
+                    if(goFolder == null)
+                    {
+                        goFolder = new GameObject(folderName);
+                        goFolder.transform.parent = parent;
+                    }
+                    GameObject goEffect = new GameObject(string.Format("{0}_{1}", title, list.Count));
+                    goEffect.transform.parent = goFolder.transform;
+                    DetectiveEffect detectiveEffect = goEffect.AddComponent<DetectiveEffect>();
+                    list.Add(detectiveEffect);
+                }
+            }
+
+        }
+
         public static bool isPrefab(Object obj)
         {
             return PrefabUtility.GetPrefabType(obj) == PrefabType.Prefab;

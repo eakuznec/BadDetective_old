@@ -8,6 +8,12 @@ namespace BadDetective.LogicMap
     [CustomEditor (typeof(ChallengeFunction))]
     public class eChallengeFunction : Editor
     {
+        public static bool showSuccessEffect;
+        public static bool showSuccessHardEffect;
+        public static bool showFailEffect;
+        public static bool showFailHardEffect;
+
+
         public override void OnInspectorGUI()
         {
             ChallengeFunction function = (ChallengeFunction)target;
@@ -21,6 +27,8 @@ namespace BadDetective.LogicMap
             {
                 EditorGUILayout.PropertyField(soChallenge.FindProperty("executor"));
                 EditorGUILayout.PropertyField(soChallenge.FindProperty("_tag"));
+                EditorGUILayout.Separator();
+
             }
             else if (function.challenge.type == ChallengeType.METHOD)
             {
@@ -29,6 +37,12 @@ namespace BadDetective.LogicMap
                 EditorGUILayout.PropertyField(soChallenge.FindProperty("_tag"));
                 EditorGUILayout.PropertyField(soChallenge.FindProperty("level"));
                 EditorGUILayout.PropertyField(soChallenge.FindProperty("difficulty"));
+                EditorGUILayout.Separator();
+                eUtils.DrawDetectiveEffectList(function.challenge.successEffects, function.challenge.transform, ref showSuccessEffect, "Success Effect", "SuccessEffects");
+                eUtils.DrawDetectiveEffectList(function.challenge.successHardEffects, function.challenge.transform, ref showSuccessHardEffect, "Success Hard Effect", "SuccessHardEffects");
+                EditorGUILayout.Separator();
+                eUtils.DrawDetectiveEffectList(function.challenge.failEffects, function.challenge.transform, ref showFailEffect, "Fail Effect", "FailEffects");
+                eUtils.DrawDetectiveEffectList(function.challenge.failHardEffects, function.challenge.transform, ref showFailHardEffect, "Fail Hard Effect", "FailHardEffects");
             }
             soChallenge.ApplyModifiedProperties();
             serializedObject.ApplyModifiedProperties();

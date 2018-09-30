@@ -23,6 +23,14 @@ namespace BadDetective
             this.words = keys;
         }
 
+        public FileNoteType noteType
+        {
+            get
+            {
+                return note.type;
+            }
+        }
+
         public string GetText()
         {
             string result = note.note;

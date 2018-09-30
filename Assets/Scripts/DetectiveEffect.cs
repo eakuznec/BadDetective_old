@@ -6,11 +6,12 @@ namespace BadDetective
 {
     public class DetectiveEffect : MonoBehaviour
     {
-        DetectiveEffectType type;
-        Trait trait;
-        int value;
-        float floatValue;
-        bool flag;
+       public DetectiveEffectType type;
+        public TraitCategory traitCategory;
+       public Trait trait;
+       public int value;
+       public float floatValue;
+       public bool flag;
         
         public void Realize(Detective detective)
         {
