@@ -154,18 +154,38 @@ namespace BadDetective.LogicMap
                     Debug.Log(string.Format("ChooseMethod - {0}", method.ToString()), methodFunction);
                     if (method == Method.Brutal)
                     {
+                        if (methodFunction.brutalFileNote != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(methodFunction.brutalFileNote, curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(methodFunction.brutalOutput, isTest);
                     }
                     else if (method == Method.Careful)
                     {
+                        if (methodFunction.carefulFileNote != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(methodFunction.carefulFileNote, curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(methodFunction.carefulOutput, isTest);
                     }
                     else if (method == Method.Diplomatic)
                     {
+                        if (methodFunction.diplomatFileNote != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(methodFunction.diplomatFileNote, curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(methodFunction.diplomatOutput, isTest);
                     }
                     else if (method == Method.Scientific)
                     {
+                        if (methodFunction.scienceFileNote != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(methodFunction.scienceFileNote, curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(methodFunction.scienceOutput, isTest);
                     }
                 }
@@ -175,6 +195,11 @@ namespace BadDetective.LogicMap
                     UnityAction action = delegate
                     {
                         int index = methodFunction.dialog.GetEnds().IndexOf(methodFunction.dialog.end);
+                        if (methodFunction.dialogFileNotes[index] != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(methodFunction.dialogFileNotes[index], curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(methodFunction.dialogOutputs[index], isTest);
                     };
                     Dialog.DialogManager.GetInstantiate().StartDialog(methodFunction.dialog,curOwner.GetTeam(), ((iEffectsContainer)curOwner).GetQuest(), action);
@@ -189,26 +214,56 @@ namespace BadDetective.LogicMap
                     Debug.Log(string.Format("ChooseTemper - {0}", temper.ToString()), temperFunction);
                     if (temper == Temper.RUDE)
                     {
+                        if (temperFunction.rudeFileNote != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(temperFunction.rudeFileNote, curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(temperFunction.rudeOutput, isTest);
                     }
                     else if (temper == Temper.PRUDENT)
                     {
+                        if (temperFunction.prudentFileNote != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(temperFunction.prudentFileNote, curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(temperFunction.prudentOutput, isTest);
                     }
                     else if (temper == Temper.MERCIFUL)
                     {
+                        if (temperFunction.mercifulFileNote != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(temperFunction.mercifulFileNote, curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(temperFunction.mercifulOutput, isTest);
                     }
                     else if (temper == Temper.CRUEL)
                     {
+                        if (temperFunction.cruelFileNote != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(temperFunction.cruelFileNote, curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(temperFunction.cruelOutput, isTest);
                     }
                     else if (temper == Temper.MERCANTILE)
                     {
+                        if (temperFunction.mercantileFileNote != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(temperFunction.mercantileFileNote, curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(temperFunction.mercantileOutput, isTest);
                     }
                     else if (temper == Temper.PRINCIPLED)
                     {
+                        if (temperFunction.principledFileNote != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(temperFunction.principledFileNote, curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(temperFunction.principledOutput, isTest);
                     }
                 }
@@ -218,6 +273,12 @@ namespace BadDetective.LogicMap
                     UnityAction action = delegate
                     {
                         int index = temperFunction.dialog.GetEnds().IndexOf(temperFunction.dialog.end);
+                        temperFunction.LoyaltyInfluence(temperFunction.dialogTemper[index], curOwner);
+                        if (temperFunction.dialogFileNotes[index] != null)
+                        {
+                            curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                            curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(temperFunction.dialogFileNotes[index], curOwner.GetTeam().transform));
+                        }
                         RealizeFunction(temperFunction.dialogOutputs[index], isTest);
                     };
                     Dialog.DialogManager.GetInstantiate().StartDialog(temperFunction.dialog, curOwner.GetTeam(), ((iEffectsContainer)curOwner).GetQuest(), action);

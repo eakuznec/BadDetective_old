@@ -9,22 +9,31 @@ namespace BadDetective.LogicMap
         public int temper;
         public LogicFunction rudeOutput;
         public bool realizeRude;
+        public FileNote rudeFileNote;
         public LogicFunction prudentOutput;
         public bool realizePrudent;
+        public FileNote prudentFileNote;
         public LogicFunction mercifulOutput;
         public bool realizeMerciful;
+        public FileNote mercifulFileNote;
         public LogicFunction cruelOutput;
         public bool realizeCruel;
+        public FileNote cruelFileNote;
         public LogicFunction mercantileOutput;
         public bool realizeMercantile;
+        public FileNote mercantileFileNote;
         public LogicFunction principledOutput;
         public bool realizePrincipled;
+        public FileNote principledFileNote;
 
         public Dialog.Dialog dialog;
         public List<LogicFunction> dialogOutputs = new List<LogicFunction>();
         public List<bool> realizeDialogOutput = new List<bool>();
+        public List<Temper> dialogTemper = new List<Temper>();
+        public List<FileNote> dialogFileNotes = new List<FileNote>();
         public int dialogOutputNum;
         public bool dialogOutputFlag;
+        public float loyaltyInfluence;
 
         public override void RemoveActionInput(LogicFunction logicFunction)
         {
@@ -173,6 +182,94 @@ namespace BadDetective.LogicMap
                 team = ((QuestTask)owner).GetTeam();
             }
             return team.GetPriorityTemper(rudeOutput != null, prudentOutput != null, mercifulOutput != null, cruelOutput != null, mercantileOutput != null, principledOutput != null);
+        }
+
+        public void LoyaltyInfluence(Temper temper, iLogicMapContainer owner)
+        {
+            Team team = null;
+            if (owner is QuestTask)
+            {
+                team = ((QuestTask)owner).GetTeam();
+            }
+            Agency agency = Agency.GetInstantiate();
+            float mod = 1f;
+            foreach(Detective detective in agency.GetDetectives())
+            {
+                if (team.detectives.Contains(detective))
+                {
+                    mod = 1f;
+                }
+                else
+                {
+                    mod = 0.25f;
+                }
+                if(temper == Temper.RUDE)
+                {
+                    if(detective.temper == Temper.RUDE)
+                    {
+                        detective.ChangeCurLoyalty(mod * loyaltyInfluence);
+                    }
+                    else if(detective.temper == Temper.PRUDENT)
+                    {
+                        detective.ChangeCurLoyalty(-mod * loyaltyInfluence);
+                    }
+                }
+                else if (temper == Temper.PRUDENT)
+                {
+                    if (detective.temper == Temper.PRUDENT)
+                    {
+                        detective.ChangeCurLoyalty(mod * loyaltyInfluence);
+                    }
+                    else if (detective.temper == Temper.RUDE)
+                    {
+                        detective.ChangeCurLoyalty(-mod * loyaltyInfluence);
+                    }
+                }
+                else if (temper == Temper.MERCIFUL)
+                {
+                    if (detective.temper == Temper.MERCIFUL)
+                    {
+                        detective.ChangeCurLoyalty(mod * loyaltyInfluence);
+                    }
+                    else if (detective.temper == Temper.CRUEL)
+                    {
+                        detective.ChangeCurLoyalty(-mod * loyaltyInfluence);
+                    }
+                }
+                else if (temper == Temper.CRUEL)
+                {
+                    if (detective.temper == Temper.CRUEL)
+                    {
+                        detective.ChangeCurLoyalty(mod * loyaltyInfluence);
+                    }
+                    else if (detective.temper == Temper.MERCIFUL)
+                    {
+                        detective.ChangeCurLoyalty(-mod * loyaltyInfluence);
+                    }
+                }
+                else if (temper == Temper.MERCANTILE)
+                {
+                    if (detective.temper == Temper.MERCANTILE)
+                    {
+                        detective.ChangeCurLoyalty(mod * loyaltyInfluence);
+                    }
+                    else if (detective.temper == Temper.PRINCIPLED)
+                    {
+                        detective.ChangeCurLoyalty(-mod * loyaltyInfluence);
+                    }
+                }
+                else if (temper == Temper.PRINCIPLED)
+                {
+                    if (detective.temper == Temper.PRINCIPLED)
+                    {
+                        detective.ChangeCurLoyalty(mod * loyaltyInfluence);
+                    }
+                    else if (detective.temper == Temper.MERCANTILE)
+                    {
+                        detective.ChangeCurLoyalty(-mod * loyaltyInfluence);
+                    }
+                }
+            }
         }
     }
 }

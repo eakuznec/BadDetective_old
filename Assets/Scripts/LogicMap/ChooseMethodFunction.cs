@@ -9,16 +9,21 @@ namespace BadDetective.LogicMap
         public int method;
         public LogicFunction brutalOutput;
         public bool realizeBrutal;
+        public FileNote brutalFileNote;
         public LogicFunction carefulOutput;
         public bool realizeCareful;
+        public FileNote carefulFileNote;
         public LogicFunction diplomatOutput;
         public bool realizeDiplomat;
+        public FileNote diplomatFileNote;
         public LogicFunction scienceOutput;
         public bool realizeScience;
+        public FileNote scienceFileNote;
         
         public Dialog.Dialog dialog;
         public List<LogicFunction> dialogOutputs = new List<LogicFunction>();
         public List<bool> realizeDialogOutput = new List<bool>();
+        public List<FileNote> dialogFileNotes = new List<FileNote>();
         public int dialogOutputNum;
         public bool dialogOutputFlag;
 

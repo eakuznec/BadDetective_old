@@ -791,6 +791,7 @@ namespace BadDetective
         MERCIFUL,
         CRUEL,
         MERCANTILE,
-        PRINCIPLED
+        PRINCIPLED,
+        NULL
     }
 }
