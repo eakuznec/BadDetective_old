@@ -8,6 +8,7 @@ namespace BadDetective.UI
     public class InterfaceManager : MonoBehaviour
     {
         private static InterfaceManager instance;
+        public TimePanel timePanel;
         public ActivitiesPanel activitiesPanel;
         public DetectiveRow detectiveRow;
         public HUDButtonsPanel hudButtonPanel;

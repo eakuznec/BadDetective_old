@@ -514,7 +514,23 @@ namespace BadDetective.LogicMap
                         function.realizeDialogOutput.Add(false);
                     }
                 }
-                for(int i=0; i<function.dialog.GetEnds().Count; i++)
+                dif = function.dialogOutputs.Count - function.dialogFileNotes.Count;
+                if (dif > 0)
+                {
+                    for (int i = 0; i < dif; i++)
+                    {
+                        function.dialogFileNotes.Add(null);
+                    }
+                }
+                else if (dif < 0)
+                {
+                    for (int i = 0; i < -dif; i++)
+                    {
+                        function.dialogFileNotes.RemoveAt(function.dialogFileNotes.Count - 1);
+                    }
+                }
+
+                for (int i=0; i<function.dialog.GetEnds().Count; i++)
                 {
                     EditorGUILayout.BeginHorizontal(new GUILayoutOption[] { GUILayout.Height(20)});
                     EditorGUILayout.LabelField(function.dialog.GetEnds()[i].chooseText, new GUILayoutOption[] { GUILayout.Width(100) });

@@ -86,6 +86,7 @@ namespace BadDetective
                     }
                 }
             }
+            UI.InterfaceManager.GetInstantiate().timePanel.CheckTime(GameTime.Convert(curTime));
         }
 
         public TimelineState GetTimelineState()
@@ -97,6 +98,7 @@ namespace BadDetective
         {
             prevState = state;
             state = newState;
+            UI.InterfaceManager.GetInstantiate().timePanel.CheckTimeSpeed(state);
         }
 
         public TimelineState GetPrevTimelineState()

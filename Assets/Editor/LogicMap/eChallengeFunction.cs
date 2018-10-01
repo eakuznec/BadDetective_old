@@ -38,11 +38,19 @@ namespace BadDetective.LogicMap
                 EditorGUILayout.PropertyField(soChallenge.FindProperty("level"));
                 EditorGUILayout.PropertyField(soChallenge.FindProperty("difficulty"));
                 EditorGUILayout.Separator();
+                EditorGUILayout.BeginVertical("box");
+                EditorGUILayout.LabelField("Success:");
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("trueFileNote"), GUIContent.none);
                 eUtils.DrawDetectiveEffectList(function.challenge.successEffects, function.challenge.transform, ref showSuccessEffect, "Success Effect", "SuccessEffects");
                 eUtils.DrawDetectiveEffectList(function.challenge.successHardEffects, function.challenge.transform, ref showSuccessHardEffect, "Success Hard Effect", "SuccessHardEffects");
+                EditorGUILayout.EndVertical();
                 EditorGUILayout.Separator();
+                EditorGUILayout.BeginVertical("box");
+                EditorGUILayout.LabelField("Fail:");
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("falseFileNote"), GUIContent.none);
                 eUtils.DrawDetectiveEffectList(function.challenge.failEffects, function.challenge.transform, ref showFailEffect, "Fail Effect", "FailEffects");
                 eUtils.DrawDetectiveEffectList(function.challenge.failHardEffects, function.challenge.transform, ref showFailHardEffect, "Fail Hard Effect", "FailHardEffects");
+                EditorGUILayout.EndVertical();
             }
             soChallenge.ApplyModifiedProperties();
             serializedObject.ApplyModifiedProperties();

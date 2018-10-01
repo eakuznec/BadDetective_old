@@ -138,10 +138,20 @@ namespace BadDetective.LogicMap
                 {
                     challengeFunction.realizeTrue = true;
                     challengeFunction.realizeFalse = false;
+                    if (challengeFunction.trueFileNote != null)
+                    {
+                        curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                        curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(challengeFunction.trueFileNote, curOwner.GetTeam().transform));
+                    }
                     RealizeFunction(challengeFunction.trueOutput, isTest);
                 }, delegate {
                     challengeFunction.realizeTrue = false;
                     challengeFunction.realizeFalse = true;
+                    if (challengeFunction.falseFileNote != null)
+                    {
+                        curOwner.GetTeam().reportQuest.Add(((iEffectsContainer)curOwner).GetQuest());
+                        curOwner.GetTeam().reportNotes.Add(FileNoteContainer.Create(challengeFunction.falseFileNote, curOwner.GetTeam().transform));
+                    }
                     RealizeFunction(challengeFunction.falseOutput, isTest);
                 });
             }

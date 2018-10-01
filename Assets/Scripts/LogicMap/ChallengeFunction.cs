@@ -11,8 +11,10 @@ namespace BadDetective.LogicMap
 
         public bool trueFlag;
         public LogicFunction trueOutput;
+        public FileNote trueFileNote;
         public bool realizeTrue;
         public LogicFunction falseOutput;
+        public FileNote falseFileNote;
         public bool realizeFalse;
         public WaitType waitType = WaitType.RELATION;
         public GameTime waitTime;

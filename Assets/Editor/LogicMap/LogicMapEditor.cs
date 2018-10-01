@@ -76,7 +76,15 @@ namespace BadDetective.LogicMap
                             {
                                 if (((EffectNode)node).logicFunction.GetWindowRect().Contains(mousePos))
                                 {
-                                    Selection.activeGameObject = ((LogicEffect)((EffectNode)node).logicFunction).effect.gameObject;
+                                    if(((LogicEffect)((EffectNode)node).logicFunction).type == LogicEffectType.SINGLE)
+                                    {
+                                        Selection.activeGameObject = ((LogicEffect)((EffectNode)node).logicFunction).effect.gameObject;
+                                    }
+                                    else if (((LogicEffect)((EffectNode)node).logicFunction).type == LogicEffectType.ARRAY)
+                                    {
+                                        Selection.activeGameObject = ((LogicEffect)((EffectNode)node).logicFunction).gameObject;
+                                    }
+
                                     break;
                                 }
                             }

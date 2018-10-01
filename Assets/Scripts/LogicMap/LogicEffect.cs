@@ -6,7 +6,10 @@ namespace BadDetective.LogicMap
 {
     public class LogicEffect : LogicFunction
     {
+        [HideInInspector]
+        public LogicEffectType type = LogicEffectType.SINGLE;
         public Effect effect;
+        public List<Effect> effects = new List<Effect>();
         public bool checkNode;
 
         public override void RemoveActionInput(LogicFunction logicFunction)
@@ -28,20 +31,44 @@ namespace BadDetective.LogicMap
         public void Realize(iLogicMapContainer owner, bool isTest = false)
         {
             checkNode = true;
-            if (!isTest)
+            if(type == LogicEffectType.SINGLE)
             {
-                //effect.owner = owner;
-                effect.Realize(owner);
-                //if (owner is TriggerZone)
-                //{
-                //    TriggerZone triggerZone = owner as TriggerZone;
-                //    triggerZone.Reactivate();
-                //}
+                if (!isTest)
+                {
+                    //effect.owner = owner;
+                    effect.Realize(owner);
+                    //if (owner is TriggerZone)
+                    //{
+                    //    TriggerZone triggerZone = owner as TriggerZone;
+                    //    triggerZone.Reactivate();
+                    //}
+                }
+                else
+                {
+                    Debug.Log(string.Format("Realize effect {0}", effect.type));
+                }
             }
-            else
+            else if(type == LogicEffectType.ARRAY)
             {
-                Debug.Log(string.Format("Realize effect {0}", effect.type));
+                foreach(Effect e in effects)
+                {
+                    if (!isTest)
+                    {
+                        e.Realize(owner);
+                    }
+                    else
+                    {
+                        Debug.Log(string.Format("Realize effect {0}", e.type));
+                    }
+
+                }
             }
         }
+    }
+
+    public enum LogicEffectType
+    {
+        SINGLE,
+        ARRAY
     }
 }

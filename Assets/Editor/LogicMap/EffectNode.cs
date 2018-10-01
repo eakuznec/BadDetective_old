@@ -16,9 +16,7 @@ namespace BadDetective.LogicMap
         public override void DrawWindow()
         {
             LogicEffect logicEffect = logicFunction as LogicEffect;
-
-            Effect effect = logicEffect.effect;
-            SerializedObject soEffect = new SerializedObject(effect);
+            
             EditorGUILayout.BeginHorizontal();
             GUIStyle noneActionStyle = new GUIStyle();
             noneActionStyle.normal.background = eUtils.MakeTex(10, 10, Color.gray);
@@ -177,7 +175,23 @@ namespace BadDetective.LogicMap
                 }
             }
             GUILayout.FlexibleSpace();
-            eUtils.DrawEffectSelector(effect);
+            if (logicEffect.type == LogicEffectType.SINGLE)
+            {
+                logicEffect.windowRect.height = 140;
+                Effect effect = logicEffect.effect;
+                SerializedObject soEffect = new SerializedObject(effect);
+                eUtils.DrawEffectSelector(effect);
+            }
+            else if (logicEffect.type == LogicEffectType.ARRAY)
+            {
+                logicEffect.windowRect.height = 40 + 22* logicEffect.effects.Count;
+                EditorGUILayout.BeginVertical();
+                for(int i=0; i<logicEffect.effects.Count; i++)
+                {
+                    EditorGUILayout.LabelField(logicEffect.effects[i].type.ToString());
+                }
+                EditorGUILayout.EndVertical();
+            }
             EditorGUILayout.EndHorizontal();
             GUILayout.FlexibleSpace();
             if (GUILayout.Button("Dublicate"))
