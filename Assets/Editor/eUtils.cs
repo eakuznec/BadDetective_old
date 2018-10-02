@@ -514,7 +514,46 @@ namespace BadDetective
                 Quest quest = effect.GetQuest();
                 if (quest != null)
                 {
-                    EditorGUILayout.PropertyField(soEffect.FindProperty("fileNote"), GUIContent.none);
+                    for(int i=0; i<effect.fileNotes.Count; i++)
+                    {
+                        
+                        EditorGUILayout.BeginHorizontal();
+                        if (i == 0)
+                        {
+                            EditorGUILayout.LabelField("", new GUILayoutOption[] { GUILayout.Width(45) });
+                        }
+                        else
+                        {
+                            if (GUILayout.Button("Up", new GUILayoutOption[] { GUILayout.Width(45) }))
+                            {
+                                effect.fileNotes.Insert(i - 1, effect.fileNotes[i]);
+                                effect.fileNotes.RemoveAt(i + 1);
+                            }
+                        }
+                        if (i != effect.fileNotes.Count - 1)
+                        {
+                            if (GUILayout.Button("Down", new GUILayoutOption[] { GUILayout.Width(45) }))
+                            {
+                                effect.fileNotes.Insert(i + 2, effect.fileNotes[i]);
+                                effect.fileNotes.RemoveAt(i);
+                            }
+                        }
+                        else
+                        {
+                            EditorGUILayout.LabelField("", new GUILayoutOption[] { GUILayout.Width(45) });
+                        }
+                        EditorGUILayout.PropertyField(soEffect.FindProperty(string.Format("fileNotes.Array.data[{0}]", i)), GUIContent.none);
+                        if(GUILayout.Button("Delete", new GUILayoutOption[] { GUILayout.Width(55) }))
+                        {
+                            effect.fileNotes.RemoveAt(i);
+                            break;
+                        }
+                        EditorGUILayout.EndHorizontal();
+                    }
+                    if(GUILayout.Button("+", new GUILayoutOption[] { GUILayout.Width(20) }))
+                    {
+                        effect.fileNotes.Add(null);
+                    }
                 }
             }
             else if (effect.type == EffectType.ADD_ITEM)

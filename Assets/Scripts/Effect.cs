@@ -14,7 +14,7 @@ namespace BadDetective
         public QuestTask task;
         public QuestObjective objective;
         public QuestState questState;
-        public FileNote fileNote;
+        public List<FileNote> fileNotes = new List<FileNote>();
         public Dialog.Dialog dialog;
         public LogicMap.LogicMapOwnerType logicMapOwner;
         public LogicMap.LogicMap logicMap;
@@ -91,15 +91,21 @@ namespace BadDetective
             }
             else if(type == EffectType.ADD_FILE_NOTE)
             {
-                if (effectsContainer is QuestTask)
+                foreach(FileNote fileNote in fileNotes)
                 {
-                    Team team = effectsContainer.GetTeam();
-                    team.reportQuest.Add(GetQuest());
-                    team.reportNotes.Add(FileNoteContainer.Create(fileNote, team.transform));
-                }
-                else
-                {
-                    GetQuest().notes.Add(FileNoteContainer.Create(fileNote, GetQuest().transform));
+                    if (fileNote != null)
+                    {
+                        if (effectsContainer is QuestTask)
+                        {
+                            Team team = effectsContainer.GetTeam();
+                            team.reportQuest.Add(GetQuest());
+                            team.reportNotes.Add(FileNoteContainer.Create(fileNote, team.transform));
+                        }
+                        else
+                        {
+                            GetQuest().notes.Add(FileNoteContainer.Create(fileNote, GetQuest().transform));
+                        }
+                    }
                 }
             }
             else if(type == EffectType.ADD_ITEM)
