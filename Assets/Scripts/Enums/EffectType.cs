@@ -24,7 +24,9 @@ namespace BadDetective
         TEAM_GOTO_OFFICE,
         TEAM_GOTO_HOMES,
         TEAM_GOTO_EVENT,
-        CHANGE_MONEY
+        CHANGE_MONEY,
+        TELEPORT_TO_EVENT,
+        TIMELINE_ACTION_CHANGE_QUEST_STATE
     }
 
 }

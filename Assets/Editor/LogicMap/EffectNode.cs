@@ -184,11 +184,18 @@ namespace BadDetective.LogicMap
             }
             else if (logicEffect.type == LogicEffectType.ARRAY)
             {
-                logicEffect.windowRect.height = 40 + 22* logicEffect.effects.Count;
+                if (logicEffect.effects.Count > 0)
+                {
+                    logicEffect.windowRect.height = 42 + 20 * logicEffect.effects.Count;
+                }
+                else
+                {
+                    logicEffect.windowRect.height = 60;
+                }
                 EditorGUILayout.BeginVertical();
                 for(int i=0; i<logicEffect.effects.Count; i++)
                 {
-                    EditorGUILayout.LabelField(logicEffect.effects[i].type.ToString());
+                    EditorGUILayout.LabelField(logicEffect.effects[i].type.ToString(), new GUILayoutOption[] { GUILayout.Width(140) });
                 }
                 EditorGUILayout.EndVertical();
             }

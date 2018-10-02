@@ -1464,7 +1464,7 @@ namespace BadDetective.LogicMap
                 waitNode.logicFunction = go.AddComponent<WaitFunction>();
                 go.transform.parent = goFolder.transform;
                 logicMap.logicFunc.Add(waitNode.logicFunction);
-                waitNode.logicFunction.windowRect = new Rect(mousePos, new Vector2(220, 140));
+                waitNode.logicFunction.windowRect = new Rect(mousePos, new Vector2(110, 80));
             }
             else
             {
@@ -1770,9 +1770,10 @@ namespace BadDetective.LogicMap
                 GameObject effect = new GameObject("Effect");
                 effect.transform.parent = logicEffect.transform;
                 ((LogicEffect)effectNode.logicFunction).effect = effect.AddComponent<Effect>();
+                ((LogicEffect)effectNode.logicFunction).type = LogicEffectType.ARRAY;
                 logicEffect.transform.parent = goEffects.transform;
                 logicMap.effects.Add((LogicEffect)effectNode.logicFunction);
-                effectNode.logicFunction.windowRect = new Rect(mousePos, new Vector2(240, 140));
+                effectNode.logicFunction.windowRect = new Rect(mousePos, new Vector2(180, 60));
             }
             else
             {

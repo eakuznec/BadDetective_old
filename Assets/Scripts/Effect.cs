@@ -23,6 +23,8 @@ namespace BadDetective
         public int intValue;
         public bool boolValue;
         public string stringValue;
+        public LogicMap.WaitType waitType;
+        public GameTime waitTime;
 
         public void Realize(iEffectsContainer effectsContainer)
         {
@@ -164,6 +166,38 @@ namespace BadDetective
                 {
                     owner.GoTo(agency.GetOffice(), owner.GetPriorityWay(), true);
                 }
+            }
+            else if(type == EffectType.TELEPORT_TO_EVENT)
+            {
+                Team owner = effectsContainer.GetTeam();
+                if(owner.curTarget is QuestEvent)
+                {
+                    ((QuestEvent)owner.startPlace).RemoveTeam(owner);
+                    owner.startPlace = questEvent;
+                    questEvent.AddTeam(owner);
+                }
+
+            }
+            else if(type == EffectType.TIMELINE_ACTION_CHANGE_QUEST_STATE)
+            {
+                Timeline timeline = Timeline.GetInstantiate();
+                GameObject goAction = new GameObject(string.Format("TimelineAction_ChangeQuestState"));
+                goAction.transform.parent = timeline.transform;
+                TimelineAction action = goAction.AddComponent<TimelineAction>();
+                action.actionType = TimelineActionType.CHANGE_QUEST_STATE;
+                action.questState = questState;
+                action.flag = boolValue;
+                action.value = intValue;
+                action.specialValue = stringValue;
+                if (waitType == LogicMap.WaitType.ABSOLUTE)
+                {
+                    action.timer = GameTime.ConvertToFloat(waitTime);
+                }
+                else if (waitType == LogicMap.WaitType.RELATION)
+                {
+                    action.timer = timeline.GetTime() + GameTime.ConvertToFloat(waitTime);
+                }
+                timeline.RegistrateAction(action);
             }
             else if (type == EffectType.CHECK_QUEST)
             {

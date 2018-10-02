@@ -209,27 +209,16 @@ namespace BadDetective.LogicMap
             }
             GUILayout.FlexibleSpace();
             EditorGUILayout.BeginVertical();
-            EditorGUILayout.PropertyField(soWait.FindProperty("waitType"), GUIContent.none);
-            float min = EditorGUILayout.FloatField("Minutes", waitFunction.waitTime.minutes);
-            int hour = EditorGUILayout.IntField("Hours", waitFunction.waitTime.hours);
-            int day = 0;
-            int week = 0;
-            int month = 0;
-            if (waitFunction.waitType == WaitType.RELATION || waitFunction.waitType == WaitType.ABSOLUTE)
+            EditorGUILayout.LabelField(waitFunction.waitType.ToString(), new GUILayoutOption[] { GUILayout.Width(100) });
+            if(waitFunction.waitType == WaitType.ABSOLUTE || waitFunction.waitType == WaitType.RELATION)
             {
-                day = EditorGUILayout.IntField("Days", waitFunction.waitTime.days);
-                week = EditorGUILayout.IntField("Weeks", waitFunction.waitTime.weeks);
-                month = EditorGUILayout.IntField("Months", waitFunction.waitTime.months);
+                EditorGUILayout.LabelField(string.Format("{0}m, {1}w, {2}d", waitFunction.waitTime.months, waitFunction.waitTime.weeks, waitFunction.waitTime.days), new GUILayoutOption[] { GUILayout.Width(100) });
+                EditorGUILayout.LabelField(string.Format("{0}:{1}", waitFunction.waitTime.hours, waitFunction.waitTime.minutes.ToString("00")), new GUILayoutOption[] { GUILayout.Width(100) });
             }
-            GameTime gameTime = new GameTime 
-{
-                minutes = min,
-                hours = hour,
-                days = day,
-                weeks = week,
-                months = month
-            };
-            waitFunction.waitTime = GameTime.Convert(gameTime);
+            else if(waitFunction.waitType == WaitType.ABSOLUTE_HOURS)
+            {
+                EditorGUILayout.LabelField(string.Format("{0}:{1}", waitFunction.waitTime.hours, waitFunction.waitTime.minutes.ToString("00")), new GUILayoutOption[] { GUILayout.Width(100) });
+            }
             EditorGUILayout.EndVertical();
             GUILayout.FlexibleSpace();
             if (waitFunction.actionOutput == null)

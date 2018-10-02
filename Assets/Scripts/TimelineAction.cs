@@ -16,11 +16,15 @@ namespace BadDetective
         public Detective detective;
         public TraitContainer trait;
         public Quest quest;
+        public QuestState questState;
         public MainState mainState;
         public UnityAction action;
         public FilePanel filePanel;
         public Dialog.Dialog dialog;
         public Money money;
+        public int value;
+        public bool flag;
+        public string specialValue;
 
 
         public int CompareTo(object obj)
@@ -73,6 +77,21 @@ namespace BadDetective
             else if (actionType == TimelineActionType.START_DIALOG)
             {
                 Dialog.DialogManager.GetInstantiate().StartDialog(dialog, null, null);
+            }
+            else if (actionType == TimelineActionType.CHANGE_QUEST_STATE)
+            {
+                if (questState.type == QuestStateType.BOOL)
+                {
+                    questState.boolValue = flag;
+                }
+                else if (questState.type == QuestStateType.INT)
+                {
+                    questState.intValue = value;
+                }
+                else if (questState.type == QuestStateType.SPECIAL)
+                {
+                    questState.specialValue = specialValue;
+                }
             }
         }
     }

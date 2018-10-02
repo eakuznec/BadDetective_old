@@ -13,6 +13,7 @@ namespace BadDetective
         TEMPORARY_TRAIT,
         SHOW_FILE_PANEL,
         WAIT,
-        START_DIALOG
+        START_DIALOG,
+        CHANGE_QUEST_STATE
     }
 }

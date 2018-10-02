@@ -566,7 +566,7 @@ namespace BadDetective
             }
             else if (effect.type == EffectType.CHANGE_MONEY)
             {
-                EditorGUILayout.PropertyField(soEffect.FindProperty("money"));
+                EditorGUILayout.PropertyField(soEffect.FindProperty("money"), true);
             }
             else if (effect.type == EffectType.REALIZE_LOGIC_MAP)
             {
@@ -632,6 +632,18 @@ namespace BadDetective
                     }
                 }
             }
+            else if(effect.type == EffectType.TELEPORT_TO_EVENT)
+            {
+                Quest quest = effect.GetQuest();
+                if (quest != null)
+                {
+                    int eventIndex = EditorGUILayout.Popup(quest.GetEvents().IndexOf(effect.questEvent), quest.GetEventNames());
+                    if (eventIndex != -1)
+                    {
+                        effect.questEvent = quest.GetEvents()[eventIndex];
+                    }
+                }
+            }
             else if (effect.type == EffectType.START_DIALOG)
             {
                 EditorGUILayout.PropertyField(soEffect.FindProperty("dialog"), GUIContent.none);
@@ -656,6 +668,37 @@ namespace BadDetective
                         if (taskIndex != -1)
                         {
                             effect.task = effect.questEvent.GetTask()[taskIndex];
+                        }
+                    }
+                }
+            }
+            else if(effect.type == EffectType.TIMELINE_ACTION_CHANGE_QUEST_STATE)
+            {
+                EditorGUILayout.PropertyField(soEffect.FindProperty("waitType"), GUIContent.none);
+                EditorGUILayout.PropertyField(soEffect.FindProperty("waitTime"), GUIContent.none, true);
+                EditorGUILayout.Separator();
+                Quest quest = effect.GetQuest();
+                if (quest != null)
+                {
+                    int index = EditorGUILayout.Popup(quest.GetQuestStates().IndexOf(effect.questState), quest.GetQuestStateName().ToArray());
+                    if (index != -1)
+                    {
+                        effect.questState = quest.GetQuestStates()[index];
+                        if (effect.questState.type == QuestStateType.BOOL)
+                        {
+                            EditorGUILayout.PropertyField(soEffect.FindProperty("boolValue"), GUIContent.none);
+                        }
+                        else if (effect.questState.type == QuestStateType.INT)
+                        {
+                            EditorGUILayout.PropertyField(soEffect.FindProperty("intValue"), GUIContent.none);
+                        }
+                        else if (effect.questState.type == QuestStateType.SPECIAL)
+                        {
+                            index = EditorGUILayout.Popup(effect.questState.possibleValue.IndexOf(effect.stringValue), effect.questState.possibleValue.ToArray());
+                            if (index != -1)
+                            {
+                                effect.stringValue = effect.questState.possibleValue[index];
+                            }
                         }
                     }
                 }

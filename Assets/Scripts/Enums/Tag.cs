@@ -23,6 +23,7 @@ namespace BadDetective
         sickler = 14,
         mutant = 15,
         //psyhic_trauma = 16,
-        teacher = 17
+        teacher = 17,
+        chemical_protection = 18
     }
 }
