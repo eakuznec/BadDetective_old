@@ -26,9 +26,9 @@ namespace BadDetective
         public List<Method> methods = new List<Method>
     {
         Method.Brutal,
-        Method.Careful,
-        Method.Diplomatic,
-        Method.Scientific
+        Method.Accuracy,
+        Method.Diplomacy,
+        Method.Science
     };
         public int[] methodsValues = new int[4];
         public int[] maxMethodsValues = new int[4] { 100, 100, 100, 100 };
@@ -96,11 +96,11 @@ namespace BadDetective
                         retVal += GetBattleBonus(tag);
                     }
                 }
-                else if (method == Method.Careful)
+                else if (method == Method.Accuracy)
                 {
 
                 }
-                else if (method == Method.Diplomatic)
+                else if (method == Method.Diplomacy)
                 {
                     if (tag == Tag.steppefolk)
                     {
@@ -113,7 +113,7 @@ namespace BadDetective
                         }
                     }
                 }
-                else if (method == Method.Scientific)
+                else if (method == Method.Science)
                 {
 
                 }
@@ -371,26 +371,25 @@ namespace BadDetective
             }
         }
 
-
-        public float confidence
-        {
-            get
-            {
-                return curConfidence;
-            }
-            set
-            {
-                curConfidence += value;
-                if(curConfidence < 0)
-                {
-                    curConfidence = 0;
-                }
-                else if (curConfidence > maxConfidence)
-                {
-                    curConfidence = maxConfidence;
-                }
-            }
-        }
+        //public float confidence
+        //{
+        //    get
+        //    {
+        //        return curConfidence;
+        //    }
+        //    set
+        //    {
+        //        curConfidence += value;
+        //        if(curConfidence < 0)
+        //        {
+        //            curConfidence = 0;
+        //        }
+        //        else if (curConfidence > maxConfidence)
+        //        {
+        //            curConfidence = maxConfidence;
+        //        }
+        //    }
+        //}
 
         private void CheckGoHome()
         {
@@ -401,6 +400,17 @@ namespace BadDetective
             //    Agency.GetInstantiate().
             //    GoTo(home, priorityWay, true);
             //}
+        }
+
+        public void ReturnToHome()
+        {
+            Agency agency = Agency.GetInstantiate();
+            foreach(Team team in agency.teams)
+            {
+                team.RemoveDetective(this);
+            }
+            DetectiveManager detectiveManager = DetectiveManager.GetInstantiate();
+            detectiveManager.TeamOnTarget(new List<Detective> { this }, home, null, activityPlace);
         }
 
         private void Update()
@@ -487,17 +497,17 @@ namespace BadDetective
                 {
                     return Method.Brutal;
                 }
-                else if (method == Method.Careful && careful)
+                else if (method == Method.Accuracy && careful)
                 {
-                    return Method.Careful;
+                    return Method.Accuracy;
                 }
-                else if (method == Method.Diplomatic && diplomat)
+                else if (method == Method.Diplomacy && diplomat)
                 {
-                    return Method.Diplomatic;
+                    return Method.Diplomacy;
                 }
-                else if (method == Method.Scientific && science)
+                else if (method == Method.Science && science)
                 {
-                    return Method.Scientific;
+                    return Method.Science;
                 }
             }
             return m[0];

@@ -5,7 +5,7 @@ using UnityEngine;
 public enum Method
 {
     Brutal,
-    Careful,
-    Diplomatic,
-    Scientific
+    Accuracy,
+    Diplomacy,
+    Science
 }

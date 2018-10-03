@@ -10,10 +10,13 @@ namespace BadDetective.UI
     {
         private Detective _detective;
         [SerializeField] private Button fileButton;
+        [SerializeField] private Button homeButton;
+
 
         private void Awake()
         {
             fileButton.onClick.AddListener(OpenFile);
+            homeButton.onClick.AddListener(ReturnToHome);
         }
 
         public Detective detective
@@ -34,9 +37,23 @@ namespace BadDetective.UI
             }
         }
 
+        public bool canReturnHome
+        {
+            set
+            {
+                homeButton.gameObject.SetActive(value);
+            }
+        }
+
         private void OpenFile()
         {
             InterfaceManager.GetInstantiate().detectiveFile.Open(detective);
+        }
+
+        private void ReturnToHome()
+        {
+            _detective.ReturnToHome();
+            InterfaceManager.GetInstantiate().dialogPanel.ResetDetectives();
         }
     }
 }

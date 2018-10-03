@@ -13,11 +13,13 @@ namespace BadDetective
         [HideInInspector]
         public float timer;
         public Office office;
+        public Team team;
         public Detective detective;
         public TraitContainer trait;
         public Quest quest;
         public QuestState questState;
         public MainState mainState;
+        public iActivityPlace activityPlace;
         public UnityAction action;
         public FilePanel filePanel;
         public Dialog.Dialog dialog;
@@ -92,6 +94,10 @@ namespace BadDetective
                 {
                     questState.specialValue = specialValue;
                 }
+            }
+            else if (actionType == TimelineActionType.TEAM_GO_TO)
+            {
+                team.GoTo(activityPlace, team.GetPriorityWay(), true);
             }
         }
     }

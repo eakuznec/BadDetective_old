@@ -110,9 +110,9 @@ namespace BadDetective.UI
             // experience.text = string.Format("Experience: {0}/{1}/{2}", detective., (int)detective.curLoyalty, detective.maxLoyalty);
             stress.text = string.Format("Stress: {0} {1}/{2}/{3}", detective.GetStressDescription(), detective.minStress, (int)detective.curStress, detective.maxStress);
             brutal.text = string.Format("- {0}: {1} {2}/{3}", Method.Brutal.ToString(), detective.GetMethodDescription(Method.Brutal), detective.GetMethodValue(Method.Brutal), detective.GetMaxMethodValue(Method.Brutal));
-            careful.text = string.Format("- {0}: {1} {2}/{3}", Method.Careful.ToString(), detective.GetMethodDescription(Method.Careful), detective.GetMethodValue(Method.Careful), detective.GetMaxMethodValue(Method.Careful));
-            diplomatic.text = string.Format("- {0}: {1} {2}/{3}", Method.Diplomatic.ToString(), detective.GetMethodDescription(Method.Diplomatic), detective.GetMethodValue(Method.Diplomatic), detective.GetMaxMethodValue(Method.Diplomatic));
-            science.text = string.Format("- {0}: {1} {2}/{3}", Method.Scientific.ToString(), detective.GetMethodDescription(Method.Scientific), detective.GetMethodValue(Method.Scientific), detective.GetMaxMethodValue(Method.Scientific));
+            careful.text = string.Format("- {0}: {1} {2}/{3}", Method.Accuracy.ToString(), detective.GetMethodDescription(Method.Accuracy), detective.GetMethodValue(Method.Accuracy), detective.GetMaxMethodValue(Method.Accuracy));
+            diplomatic.text = string.Format("- {0}: {1} {2}/{3}", Method.Diplomacy.ToString(), detective.GetMethodDescription(Method.Diplomacy), detective.GetMethodValue(Method.Diplomacy), detective.GetMaxMethodValue(Method.Diplomacy));
+            science.text = string.Format("- {0}: {1} {2}/{3}", Method.Science.ToString(), detective.GetMethodDescription(Method.Science), detective.GetMethodValue(Method.Science), detective.GetMaxMethodValue(Method.Science));
             List<TraitContainer> traits = new List<TraitContainer>();
             for (int i=0; i<traitPanel.childCount; i++)
             {

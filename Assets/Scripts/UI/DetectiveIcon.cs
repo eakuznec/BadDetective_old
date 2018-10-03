@@ -19,11 +19,13 @@ namespace BadDetective.UI
         private Image activityPictogram;
         [SerializeField]
         private Button fileButton;
+        [SerializeField] private Button homeButton;
 
         private void Awake()
         {
             icon = gameObject.GetComponent<Image>();
             fileButton.onClick.AddListener(OpenFile);
+            homeButton.onClick.AddListener(ReturnToHome);
         }
 
         public Detective detective
@@ -44,21 +46,25 @@ namespace BadDetective.UI
                 }
                 if (_detective.activity == DetectiveActivity.IN_OFFICE)
                 {
+                    homeButton.gameObject.SetActive(true);
                     shadowPanel.gameObject.SetActive(false);
                     activityPictogram.sprite = interfaceManager.officePictogram;
                 }
                 else if (_detective.activity == DetectiveActivity.IN_HOME)
                 {
+                    homeButton.gameObject.SetActive(false);
                     shadowPanel.gameObject.SetActive(true);
                     activityPictogram.sprite = interfaceManager.homePictogram;
                 }
                 else if (_detective.activity == DetectiveActivity.IN_WAY)
                 {
+                    homeButton.gameObject.SetActive(false);
                     shadowPanel.gameObject.SetActive(true);
                     activityPictogram.sprite = interfaceManager.walkPictogram;
                 }
                 else if (_detective.activity == DetectiveActivity.IN_EVENT)
                 {
+                    homeButton.gameObject.SetActive(false);
                     shadowPanel.gameObject.SetActive(true);
                     activityPictogram.sprite = interfaceManager.eventPictogram;
                 }
@@ -81,6 +87,11 @@ namespace BadDetective.UI
         private void OpenFile()
         {
             InterfaceManager.GetInstantiate().detectiveFile.Open(detective);
+        }
+
+        private void ReturnToHome()
+        {
+            detective.ReturnToHome();
         }
     }
 }

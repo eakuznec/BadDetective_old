@@ -177,6 +177,11 @@ namespace BadDetective
                 {
                     destroy = true;
                 }
+                else if(activity == DetectiveActivity.IN_HOME)
+                {
+                    startPlace = detectives[0].home;
+                    GoToAction(Agency.GetInstantiate().GetOffice(), 10);
+                }
                 InterfaceManager.GetInstantiate().detectiveRow.ResetRow();
             }
             else if (detectives[0].activityPlace != newPlace)
@@ -191,6 +196,7 @@ namespace BadDetective
         public void GoTo(iActivityPlace target, WayType wayType, bool colorWay)
         {
             curTarget = target;
+            ResetWayColor();
             curWay = MapManager.GetInstantiate().pathfinder.GetWay(wayType, startPlace.GetPoint(), target.GetPoint(), transform);
             showWay = colorWay;
             ChangeActivity(DetectiveActivity.IN_WAY, curWay.pointsAndPaths[0]);
@@ -258,12 +264,17 @@ namespace BadDetective
         public void CreateLineRenderer()
         {
             lineRenderer = gameObject.AddComponent<LineRenderer>();
-            lineRenderer.startColor = new Color(detectives[0].wayColor.r, detectives[0].wayColor.g, detectives[0].wayColor.b, 0);
-            lineRenderer.endColor = detectives[0].wayColor;
+            ResetWayColor();
             lineRenderer.positionCount = 0;
             lineRenderer.startWidth = 0.1f;
             lineRenderer.endWidth = 0.1f;
             lineRenderer.material = Game.GetInstantiate().materialForWays;
+        }
+
+        private void ResetWayColor()
+        {
+            lineRenderer.startColor = new Color(detectives[0].wayColor.r, detectives[0].wayColor.g, detectives[0].wayColor.b, 0);
+            lineRenderer.endColor = detectives[0].wayColor;
         }
 
         public void StartTask()
@@ -339,6 +350,31 @@ namespace BadDetective
                 }
             }
             return retVal;
+        }
+
+        public void RemoveDetective(Detective detective)
+        {
+            if (detectives.Contains(detective))
+            {
+                detectives.Remove(detective);
+            }
+            if (detectives.Count == 0)
+            {
+                destroy = true;
+            }
+        }
+
+        public void GoToAction(iActivityPlace target, float relativeTime)
+        {
+            Timeline timeline = Timeline.GetInstantiate();
+            GameObject goAction = new GameObject(string.Format("TimelineAction_TeamGoTo"));
+            goAction.transform.parent = timeline.transform;
+            TimelineAction action = goAction.AddComponent<TimelineAction>();
+            action.actionType = TimelineActionType.TEAM_GO_TO;
+            action.team = this;
+            action.activityPlace = target;
+            action.timer = timeline.GetTime() + relativeTime; //выплата через неделю.
+            timeline.RegistrateAction(action);
         }
     }
 }

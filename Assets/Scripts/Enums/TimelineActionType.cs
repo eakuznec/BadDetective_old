@@ -14,6 +14,7 @@ namespace BadDetective
         SHOW_FILE_PANEL,
         WAIT,
         START_DIALOG,
-        CHANGE_QUEST_STATE
+        CHANGE_QUEST_STATE,
+        TEAM_GO_TO
     }
 }

@@ -46,15 +46,15 @@ namespace BadDetective
                     }
                     else if (effect.type == TraitEffectType.CHANGE_CAREFUL)
                     {
-                        owner.ChangeMethodValue(Method.Careful, effect.value);
+                        owner.ChangeMethodValue(Method.Accuracy, effect.value);
                     }
                     else if (effect.type == TraitEffectType.CHANGE_DIPLOMATIC)
                     {
-                        owner.ChangeMethodValue(Method.Diplomatic, effect.value);
+                        owner.ChangeMethodValue(Method.Diplomacy, effect.value);
                     }
                     else if (effect.type == TraitEffectType.CHANGE_SCIENTIFIC)
                     {
-                        owner.ChangeMethodValue(Method.Scientific, effect.value);
+                        owner.ChangeMethodValue(Method.Science, effect.value);
                     }
                     if (effect.type == TraitEffectType.CHANGE_MAX_BRUTAL)
                     {
@@ -62,15 +62,15 @@ namespace BadDetective
                     }
                     else if (effect.type == TraitEffectType.CHANGE_MAX_CAREFUL)
                     {
-                        owner.ChangeMaxMethodValue(Method.Careful, effect.value);
+                        owner.ChangeMaxMethodValue(Method.Accuracy, effect.value);
                     }
                     else if (effect.type == TraitEffectType.CHANGE_MAX_DIPLOMATIC)
                     {
-                        owner.ChangeMaxMethodValue(Method.Diplomatic, effect.value);
+                        owner.ChangeMaxMethodValue(Method.Diplomacy, effect.value);
                     }
                     else if (effect.type == TraitEffectType.CHANGE_MAX_SCIENTIFIC)
                     {
-                        owner.ChangeMaxMethodValue(Method.Scientific, effect.value);
+                        owner.ChangeMaxMethodValue(Method.Science, effect.value);
                     }
                     else if (effect.type == TraitEffectType.CHANGE_MAX_HEALTH)
                     {
@@ -114,15 +114,15 @@ namespace BadDetective
                     }
                     else if (effect.type == TraitEffectType.CHANGE_CAREFUL)
                     {
-                        owner.ChangeMethodValue(Method.Careful, -effect.value);
+                        owner.ChangeMethodValue(Method.Accuracy, -effect.value);
                     }
                     else if (effect.type == TraitEffectType.CHANGE_DIPLOMATIC)
                     {
-                        owner.ChangeMethodValue(Method.Diplomatic, -effect.value);
+                        owner.ChangeMethodValue(Method.Diplomacy, -effect.value);
                     }
                     else if (effect.type == TraitEffectType.CHANGE_SCIENTIFIC)
                     {
-                        owner.ChangeMethodValue(Method.Scientific, -effect.value);
+                        owner.ChangeMethodValue(Method.Science, -effect.value);
                     }
                     if (effect.type == TraitEffectType.CHANGE_MAX_BRUTAL)
                     {
@@ -130,15 +130,15 @@ namespace BadDetective
                     }
                     else if (effect.type == TraitEffectType.CHANGE_MAX_CAREFUL)
                     {
-                        owner.ChangeMaxMethodValue(Method.Careful, -effect.value);
+                        owner.ChangeMaxMethodValue(Method.Accuracy, -effect.value);
                     }
                     else if (effect.type == TraitEffectType.CHANGE_MAX_DIPLOMATIC)
                     {
-                        owner.ChangeMaxMethodValue(Method.Diplomatic, -effect.value);
+                        owner.ChangeMaxMethodValue(Method.Diplomacy, -effect.value);
                     }
                     else if (effect.type == TraitEffectType.CHANGE_MAX_SCIENTIFIC)
                     {
-                        owner.ChangeMaxMethodValue(Method.Scientific, -effect.value);
+                        owner.ChangeMaxMethodValue(Method.Science, -effect.value);
                     }
                     else if (effect.type == TraitEffectType.CHANGE_MAX_HEALTH)
                     {

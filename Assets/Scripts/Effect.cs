@@ -167,6 +167,18 @@ namespace BadDetective
                     owner.GoTo(agency.GetOffice(), owner.GetPriorityWay(), true);
                 }
             }
+            else if(type == EffectType.TEAM_GOTO_HOMES)
+            {
+                Team owner = effectsContainer.GetTeam();
+                if (owner != null)
+                {
+                    for(int i=0;i< owner.detectives.Count;i++)
+                    {
+                        owner.detectives[i].ReturnToHome();
+                        i--;
+                    }
+                }
+            }
             else if(type == EffectType.TELEPORT_TO_EVENT)
             {
                 Team owner = effectsContainer.GetTeam();

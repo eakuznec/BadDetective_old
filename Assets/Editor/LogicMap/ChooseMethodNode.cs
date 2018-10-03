@@ -617,11 +617,11 @@ namespace BadDetective.LogicMap
             EditorGUILayout.BeginVertical();
             EditorGUILayout.LabelField(Method.Brutal.ToString(), new GUILayoutOption[] { GUILayout.Width(100) });
             GUILayout.FlexibleSpace();
-            EditorGUILayout.LabelField(Method.Careful.ToString(), new GUILayoutOption[] { GUILayout.Width(100) });
+            EditorGUILayout.LabelField(Method.Accuracy.ToString(), new GUILayoutOption[] { GUILayout.Width(100) });
             GUILayout.FlexibleSpace();
-            EditorGUILayout.LabelField(Method.Diplomatic.ToString(), new GUILayoutOption[] { GUILayout.Width(100) });
+            EditorGUILayout.LabelField(Method.Diplomacy.ToString(), new GUILayoutOption[] { GUILayout.Width(100) });
             GUILayout.FlexibleSpace();
-            EditorGUILayout.LabelField(Method.Scientific.ToString(), new GUILayoutOption[] { GUILayout.Width(100) });
+            EditorGUILayout.LabelField(Method.Science.ToString(), new GUILayoutOption[] { GUILayout.Width(100) });
             EditorGUILayout.EndVertical();
         }
     }

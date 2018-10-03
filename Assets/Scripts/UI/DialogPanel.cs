@@ -32,6 +32,7 @@ namespace BadDetective.UI
         private ChoosePanel choosePanel;
 
         private Quest quest;
+        private Team team;
 
         private void Awake()
         {
@@ -62,38 +63,11 @@ namespace BadDetective.UI
             phrasePanel.gameObject.SetActive(false);
             reportPanel.gameObject.SetActive(true);
             this.quest = quest;
+            this.team = team;
             this.phrase = phrase;
-            List<Detective> detectives = new List<Detective>();
-            Detective leader = team.GetLeader();
-            detectives.Add(leader);
-            foreach(Detective detective in team.detectives)
-            {
-                if (detective != leader)
-                {
-                    detectives.Add(detective);
-                }
-            }
-            int dif = portraitsPanel.childCount - detectives.Count;
-            if (dif > 0)
-            {
-                for(int i = 0; i < dif; i++)
-                {
-                    Destroy(portraitsPanel.GetChild(portraitsPanel.childCount - 1 - i).gameObject);
-                }
-            }
-            else if (dif < 0)
-            {
-                for (int i = 0; i < -dif; i++)
-                {
-                    Instantiate(detectiveIcon, portraitsPanel);
-                }
-            }
-            for(int i = 0; i < detectives.Count; i++)
-            {
-                portraitsPanel.GetChild(i).GetComponent<DetectiveReportIcon>().detective = detectives[i];
-            }
+            ResetDetectives();
             questName.text = quest.questName;
-            dif = notesPanel.childCount - notes.Count;
+            int dif = notesPanel.childCount - notes.Count;
             if (dif > 0)
             {
                 for(int i = 0; i < dif; i++)
@@ -193,6 +167,41 @@ namespace BadDetective.UI
         private void ShowQuestFile()
         {
             InterfaceManager.GetInstantiate().questFile.Open(quest);
+        }
+
+        public void ResetDetectives()
+        {
+            List<Detective> detectives = new List<Detective>();
+            Detective leader = team.GetLeader();
+            detectives.Add(leader);
+            foreach (Detective detective in team.detectives)
+            {
+                if (detective != leader)
+                {
+                    detectives.Add(detective);
+                }
+            }
+            int dif = portraitsPanel.childCount - detectives.Count;
+            if (dif > 0)
+            {
+                for (int i = 0; i < dif; i++)
+                {
+                    Destroy(portraitsPanel.GetChild(portraitsPanel.childCount - 1 - i).gameObject);
+                }
+            }
+            else if (dif < 0)
+            {
+                for (int i = 0; i < -dif; i++)
+                {
+                    Instantiate(detectiveIcon, portraitsPanel);
+                }
+            }
+            for (int i = 0; i < detectives.Count; i++)
+            {
+                DetectiveReportIcon icon = portraitsPanel.GetChild(i).GetComponent<DetectiveReportIcon>();
+                icon.detective = detectives[i];
+                icon.canReturnHome = detectives.Count > 1;
+            }
         }
     }
 }

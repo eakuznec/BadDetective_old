@@ -171,7 +171,7 @@ namespace BadDetective.LogicMap
                         }
                         RealizeFunction(methodFunction.brutalOutput, isTest);
                     }
-                    else if (method == Method.Careful)
+                    else if (method == Method.Accuracy)
                     {
                         if (methodFunction.carefulFileNote != null)
                         {
@@ -180,7 +180,7 @@ namespace BadDetective.LogicMap
                         }
                         RealizeFunction(methodFunction.carefulOutput, isTest);
                     }
-                    else if (method == Method.Diplomatic)
+                    else if (method == Method.Diplomacy)
                     {
                         if (methodFunction.diplomatFileNote != null)
                         {
@@ -189,7 +189,7 @@ namespace BadDetective.LogicMap
                         }
                         RealizeFunction(methodFunction.diplomatOutput, isTest);
                     }
-                    else if (method == Method.Scientific)
+                    else if (method == Method.Science)
                     {
                         if (methodFunction.scienceFileNote != null)
                         {
