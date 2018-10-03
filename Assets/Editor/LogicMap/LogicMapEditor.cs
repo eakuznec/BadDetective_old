@@ -960,7 +960,7 @@ namespace BadDetective.LogicMap
                 }
                 EndWindows();
                 counter++;
-                if (counter >= 2)
+                if (counter >= 5)
                 {
                     counter = 0;
                     if (actionLinkMod || dataLinkMod || moveMod)
