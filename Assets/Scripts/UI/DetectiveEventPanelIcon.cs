@@ -8,7 +8,7 @@ namespace BadDetective.UI
     [RequireComponent (typeof(Image))]
     public class DetectiveEventPanelIcon : MonoBehaviour
     {
-        private Detective detective;
+        private Detective _detective;
         private Image icon;
         [SerializeField]
         private Image shadowPanel;
@@ -20,6 +20,14 @@ namespace BadDetective.UI
             icon = GetComponent<Image>();
         }
 
+        public Detective detective
+        {
+            get
+            {
+                return _detective;
+            }
+        }
+
         public void SetDetective(Detective detective, bool active)
         {
             if (detective != null)
@@ -27,7 +35,7 @@ namespace BadDetective.UI
                 InterfaceManager interfaceManager = InterfaceManager.GetInstantiate();
                 if (this.detective != detective)
                 {
-                    this.detective = detective;
+                    _detective = detective;
                     icon.sprite = detective.characterAvatar;
                     name = string.Format("DetectiveEventIcon_{0}", detective.characterName);
                     shadowPanel.gameObject.SetActive(!active);
@@ -35,7 +43,7 @@ namespace BadDetective.UI
             }
             else
             {
-                this.detective = detective;
+                _detective = detective;
                 icon.sprite = defaultSprite;
                 name = string.Format("DetectiveIcon_Default");
                 name = string.Format("DetectiveEventIcon_Default");

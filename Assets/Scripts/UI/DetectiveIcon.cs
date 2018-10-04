@@ -8,7 +8,7 @@ using BadDetective.Control;
 namespace BadDetective.UI
 {
     [RequireComponent (typeof(Image))]
-    public class DetectiveIcon : MonoBehaviour, iMouseoverUI
+    public class DetectiveIcon : MonoBehaviour, iMouseoverUI, iRolloverOwner
     {
         [SerializeField]
         private Detective _detective;
@@ -74,6 +74,7 @@ namespace BadDetective.UI
         public void OnPointerEnter(PointerEventData eventData)
         {
             ControlManager.GetInstantiate().mouseover = this;
+            InterfaceManager.GetInstantiate().detectiveRollover.Show(this);
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -82,6 +83,7 @@ namespace BadDetective.UI
             {
                 ControlManager.GetInstantiate().mouseover = null;
             }
+            InterfaceManager.GetInstantiate().detectiveRollover.Hide();
         }
 
         private void OpenFile()
@@ -92,6 +94,11 @@ namespace BadDetective.UI
         private void ReturnToHome()
         {
             detective.ReturnToHome();
+        }
+
+        public RectTransform GetRectTransform()
+        {
+            return gameObject.GetComponent<RectTransform>();
         }
     }
 }

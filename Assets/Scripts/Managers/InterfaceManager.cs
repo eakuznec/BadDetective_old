@@ -17,6 +17,8 @@ namespace BadDetective.UI
         public FilesPanel filesPanel;
         public DetectiveFile detectiveFile;
         public QuestFile questFile;
+        [Header("Rollovers")]
+        public DetectiveRollover detectiveRollover;
         [Header("Sprites")]
         public Sprite officePictogram;
         public Sprite homePictogram;

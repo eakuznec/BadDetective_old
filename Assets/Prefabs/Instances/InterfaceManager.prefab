@@ -2668,13 +2668,14 @@ GameObject:
   - component: {fileID: 224376620311615880}
   - component: {fileID: 222428743498872768}
   - component: {fileID: 114350254835552652}
+  - component: {fileID: 114268672620997116}
   m_Layer: 5
   m_Name: DetectiveRollover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1990079106021176
 GameObject:
   m_ObjectHideFlags: 1
@@ -4226,6 +4227,25 @@ MonoBehaviour:
   nextPageButton: {fileID: 114750981064096074}
   notePanel: {fileID: 114325291772704432, guid: 9123ed207f090dd4ca2f289a7755a6ec,
     type: 2}
+--- !u!114 &114268672620997116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1981734705907332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407e550f700c2124f8136e294a6cd0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectiveName: {fileID: 114161031211723826}
+  temper: {fileID: 114803855265956278}
+  health: {fileID: 114239255851580366}
+  stress: {fileID: 114723711919929712}
+  brutal: {fileID: 114471264744111496}
+  accuracy: {fileID: 114756273127311520}
+  diplomacy: {fileID: 114521736682148736}
+  science: {fileID: 114309200772338048}
 --- !u!114 &114278287569489808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8271,6 +8291,7 @@ MonoBehaviour:
   filesPanel: {fileID: 114122769897554790}
   detectiveFile: {fileID: 114395590198836720}
   questFile: {fileID: 114263994779726204}
+  detectiveRollover: {fileID: 114268672620997116}
   officePictogram: {fileID: 21300000, guid: e6ec70e3ef735f7478439e48254629ff, type: 3}
   homePictogram: {fileID: 21300000, guid: d8cba0e27e9607b4c8a16a496b8e6f41, type: 3}
   eventPictogram: {fileID: 21300000, guid: 6eef368d6e61e664ea5820641fe4595a, type: 3}
