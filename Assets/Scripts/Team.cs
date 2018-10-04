@@ -361,6 +361,11 @@ namespace BadDetective
             if (detectives.Count == 0)
             {
                 destroy = true;
+                Game game = Game.GetInstantiate();
+                if (game.GetGameState() == GameState.WAIT_ACTIVITY_CHOICE)
+                {
+                    game.ChangeGameState(GameState.IN_GAME);
+                }
             }
         }
 

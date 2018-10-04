@@ -6,6 +6,8 @@ namespace BadDetective
 {
     public class Office : MonoBehaviour, iActivityPlace
     {
+        [TextArea]
+        public string officeDescription;
         [HideInInspector]
         public Tier tier;
         [HideInInspector]

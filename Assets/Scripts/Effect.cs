@@ -29,8 +29,11 @@ namespace BadDetective
         public void Realize(iEffectsContainer effectsContainer)
         {
             this.effectsContainer = effectsContainer;
+            Game game = Game.GetInstantiate();
             Agency agency = Agency.GetInstantiate();
             QuestManager questManager = QuestManager.GetInstantiate();
+            DetectiveManager detectiveManager = DetectiveManager.GetInstantiate();
+            UI.InterfaceManager interfaceManager = UI.InterfaceManager.GetInstantiate();
             if(type == EffectType.INSTANTIATE_QUEST)
             {
                 GameObject goFolder = null;
@@ -177,6 +180,16 @@ namespace BadDetective
                         owner.detectives[i].ReturnToHome();
                         i--;
                     }
+                }
+            }
+            else if(type == EffectType.TEAM_GOTO_EVENT)
+            {
+                Team owner = effectsContainer.GetTeam();
+                if (owner != null)
+                {
+                    game.ChangeGameState(GameState.WAIT_ACTIVITY_CHOICE);
+                    detectiveManager.teamOnWait = owner;
+                    interfaceManager.detectiveRow.ResetRow();
                 }
             }
             else if(type == EffectType.TELEPORT_TO_EVENT)

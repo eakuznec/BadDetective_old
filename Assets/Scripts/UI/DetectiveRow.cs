@@ -11,7 +11,7 @@ namespace BadDetective.UI
         private DetectiveIcon detectiveIcon;
         private List<DetectiveIcon> icons = new List<DetectiveIcon>();
 
-public void ResetRow()
+        public void ResetRow()
         {
             List<Detective> detectives = Agency.GetInstantiate().GetDetectives();
             int dif = detectives.Count - icons.Count;

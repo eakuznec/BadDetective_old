@@ -9,6 +9,7 @@ namespace BadDetective
         private static DetectiveManager instance;
         [SerializeField]
         private List<Detective> allDetectives = new List<Detective>();
+        public Team teamOnWait;
 
         public static DetectiveManager GetInstantiate()
         {

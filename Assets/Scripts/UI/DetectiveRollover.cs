@@ -24,7 +24,8 @@ namespace BadDetective.UI
             owner = rolloverOwner;
             Detective detective = null;
             RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
-            rectTransform.SetPositionAndRotation(new Vector2(owner.GetRectTransform().offsetMin.x + owner.GetRectTransform().rect.center.x, owner.GetRectTransform().offsetMax.y+10), Quaternion.identity);
+            transform.parent = owner.GetRectTransform();
+            rectTransform.SetPositionAndRotation(new Vector2(owner.GetRectTransform().position.x, rectTransform.position.y), Quaternion.identity);
             if (owner is DetectiveIcon)
             {
                 detective = ((DetectiveIcon)owner).detective;
@@ -33,20 +34,21 @@ namespace BadDetective.UI
             else if (owner is DetectiveReportIcon)
             {
                 detective = ((DetectiveReportIcon)owner).detective;
-                rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, owner.GetRectTransform().rect.yMin - 10, rectTransform.rect.height);
+                rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, owner.GetRectTransform().rect.yMin + 10 + rectTransform.rect.height, rectTransform.rect.height);
             }
             else if (owner is DetectiveEventPanelIcon)
             {
                 detective = ((DetectiveEventPanelIcon)owner).detective;
-                rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, owner.GetRectTransform().rect.yMin - 10, rectTransform.rect.height);
+                rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, owner.GetRectTransform().rect.yMin + 10 + rectTransform.rect.height, rectTransform.rect.height);
             }
-            if (rectTransform.rect.xMin < 0)
+            transform.parent = InterfaceManager.GetInstantiate().canvas.transform;
+            if (rectTransform.offsetMin.x < -Screen.width/2)
             {
-                rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 10, rectTransform.rect.width);
+                rectTransform.SetPositionAndRotation(new Vector2(rectTransform.position.x-(rectTransform.offsetMin.x + Screen.width / 2)+10, rectTransform.position.y), Quaternion.identity);
             }
-            else if (rectTransform.rect.xMax > Screen.width)
+            else if (rectTransform.offsetMax.x > Screen.width/2)
             {
-                rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Right, Screen.width - 10, rectTransform.rect.width);
+                rectTransform.SetPositionAndRotation(new Vector2(rectTransform.position.x + (Screen.width / 2 - rectTransform.offsetMin.x) - 10, rectTransform.position.y), Quaternion.identity);
             }
             if (detective != null)
             {

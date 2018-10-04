@@ -63,7 +63,7 @@ namespace BadDetective.Dialog
             {
                 curDialog.teamOwner.Report();
             }
-            curDialog = null;
+            //curDialog = null;
             if(dialogs.Count == 0)
             {
                 Game game = Game.GetInstantiate();
@@ -105,17 +105,21 @@ namespace BadDetective.Dialog
             if (choose != null)
             {
                 choose.realized = true;
-                foreach (Effect effect in choose.effects)
-                {
-                    effect.Realize(curDialog);
-                }
                 if(choose.type == ChooseType.END)
                 {
                     curDialog.end = choose;
                     FinalizeDialog();
+                    foreach (Effect effect in choose.effects)
+                    {
+                        effect.Realize(curDialog);
+                    }
                 }
                 else
                 {
+                    foreach (Effect effect in choose.effects)
+                    {
+                        effect.Realize(curDialog);
+                    }
                     List<DialogLink> avaliableLinks = new List<DialogLink>();
                     foreach (DialogLink link in choose.links)
                     {

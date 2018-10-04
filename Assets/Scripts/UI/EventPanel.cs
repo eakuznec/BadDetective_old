@@ -69,45 +69,54 @@ namespace BadDetective.UI
 
         public void CheckDetectives()
         {
-            int dif = detectivePanel.childCount - _questEvent.GetAllDetectivesCount() - 1;
-            if (dif > 0)
+            InterfaceManager interfaceManager = InterfaceManager.GetInstantiate();
+            if (interfaceManager.activitiesPanel.prevState == GameState.WAIT_ACTIVITY_CHOICE)
             {
-                for (int i = 0; i < dif; i++)
-                {
-                    Destroy(detectivePanel.GetChild(i).gameObject);
-                }
+                detectivePanel.gameObject.SetActive(false);
             }
-            else if (dif < 0)
+            else
             {
-                for (int i = 0; i < -dif; i++)
+                detectivePanel.gameObject.SetActive(true);
+                int dif = detectivePanel.childCount - _questEvent.GetAllDetectivesCount() - 1;
+                if (dif > 0)
                 {
-                    Instantiate(detectiveIcon, detectivePanel);
+                    for (int i = 0; i < dif; i++)
+                    {
+                        Destroy(detectivePanel.GetChild(i).gameObject);
+                    }
                 }
+                else if (dif < 0)
+                {
+                    for (int i = 0; i < -dif; i++)
+                    {
+                        Instantiate(detectiveIcon, detectivePanel);
+                    }
+                }
+                for (int i = 0; i < detectivePanel.childCount; i++)
+                {
+                    if (i < _questEvent.detectivesOnEvent.Count)
+                    {
+                        detectivePanel.GetChild(i).GetComponent<DetectiveEventPanelIcon>().SetDetective(_questEvent.detectivesOnEvent[i], true);
+                    }
+                    else if (i < _questEvent.detectivesOnEvent.Count + _questEvent.potencialDetectivesOnEvent.Count)
+                    {
+                        int index = i - _questEvent.detectivesOnEvent.Count;
+                        detectivePanel.GetChild(i).GetComponent<DetectiveEventPanelIcon>().SetDetective(_questEvent.potencialDetectivesOnEvent[index], false);
+                    }
+                    else if (i < _questEvent.GetAllDetectivesCount())
+                    {
+                        int index = i - _questEvent.detectivesOnEvent.Count - _questEvent.potencialDetectivesOnEvent.Count;
+                        detectivePanel.GetChild(i).GetComponent<DetectiveEventPanelIcon>().SetDetective(_questEvent.plannedDetectivesOnEvent[index], true);
+                    }
+                    else
+                    {
+                        detectivePanel.GetChild(i).GetComponent<DetectiveEventPanelIcon>().SetDetective(null, false);
+                    }
+                }
+                float iconWidth = detectivePanel.GetChild(0).GetComponent<RectTransform>().rect.width;
+                detectivePanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (_questEvent.GetAllDetectivesCount() + 1) * iconWidth + _questEvent.GetAllDetectivesCount() * 10);
+                interfaceManager.activitiesPanel.CheckAccept();
             }
-            for (int i = 0; i < detectivePanel.childCount; i++)
-            {
-                if (i < _questEvent.detectivesOnEvent.Count)
-                {
-                    detectivePanel.GetChild(i).GetComponent<DetectiveEventPanelIcon>().SetDetective(_questEvent.detectivesOnEvent[i], true);
-                }
-                else if (i < _questEvent.detectivesOnEvent.Count + _questEvent.potencialDetectivesOnEvent.Count)
-                {
-                    int index = i - _questEvent.detectivesOnEvent.Count;
-                    detectivePanel.GetChild(i).GetComponent<DetectiveEventPanelIcon>().SetDetective(_questEvent.potencialDetectivesOnEvent[index], false);
-                }
-                else if (i < _questEvent.GetAllDetectivesCount())
-                {
-                    int index = i - _questEvent.detectivesOnEvent.Count - _questEvent.potencialDetectivesOnEvent.Count;
-                    detectivePanel.GetChild(i).GetComponent<DetectiveEventPanelIcon>().SetDetective(_questEvent.plannedDetectivesOnEvent[index], true);
-                }
-                else
-                {
-                    detectivePanel.GetChild(i).GetComponent<DetectiveEventPanelIcon>().SetDetective(null, false);
-                }
-            }
-            float iconWidth = detectivePanel.GetChild(0).GetComponent<RectTransform>().rect.width;
-            detectivePanel.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (_questEvent.GetAllDetectivesCount() + 1) * iconWidth + _questEvent.GetAllDetectivesCount() * 10);
-            InterfaceManager.GetInstantiate().activitiesPanel.CheckAccept();
         }
 
         public float GetHeight()
@@ -130,13 +139,9 @@ namespace BadDetective.UI
 
         public void Accept()
         {
-            List<Detective> detectives = new List<Detective>();
+            DetectiveManager detectiveManager = DetectiveManager.GetInstantiate();
+            InterfaceManager interfaceManager = InterfaceManager.GetInstantiate();
             List<QuestTask> tasks = new List<QuestTask>();
-            foreach(Detective detective in _questEvent.plannedDetectivesOnEvent)
-            {
-                detectives.Add(detective);
-                _questEvent.potencialDetectivesOnEvent.Add(detective);
-            }
             for(int i=0; i<tasksPanel.childCount; i++)
             {
                 TaskPanel panel = tasksPanel.GetChild(i).GetComponent<TaskPanel>();
@@ -145,7 +150,23 @@ namespace BadDetective.UI
                     tasks.Add(panel.task);
                 }
             }
-            DetectiveManager.GetInstantiate().TeamOnTarget(detectives, questEvent, tasks);
+            if(interfaceManager.activitiesPanel.prevState == GameState.WAIT_ACTIVITY_CHOICE)
+            {
+                Team team = detectiveManager.teamOnWait;
+                team.targetTasks = tasks;
+                team.GoTo(questEvent, team.GetPriorityWay(), true);
+                interfaceManager.activitiesPanel.prevState = GameState.IN_GAME;
+            }
+            else
+            {
+                List<Detective> detectives = new List<Detective>();
+                foreach (Detective detective in _questEvent.plannedDetectivesOnEvent)
+                {
+                    detectives.Add(detective);
+                    _questEvent.potencialDetectivesOnEvent.Add(detective);
+                }
+                detectiveManager.TeamOnTarget(detectives, questEvent, tasks);
+            }
             _questEvent.plannedDetectivesOnEvent.Clear();
         }
 

@@ -21,6 +21,8 @@ namespace BadDetective.UI
         private Button fileButton;
         [SerializeField] private Button homeButton;
 
+        private bool _active;
+
         private void Awake()
         {
             icon = gameObject.GetComponent<Image>();
@@ -36,7 +38,9 @@ namespace BadDetective.UI
             }
             set
             {
+                Game game = Game.GetInstantiate();
                 InterfaceManager interfaceManager = InterfaceManager.GetInstantiate();
+                DetectiveManager detectiveManager = DetectiveManager.GetInstantiate();
                 if (this._detective != value)
                 {
                     this._detective = value;
@@ -47,27 +51,45 @@ namespace BadDetective.UI
                 if (_detective.activity == DetectiveActivity.IN_OFFICE)
                 {
                     homeButton.gameObject.SetActive(true);
-                    shadowPanel.gameObject.SetActive(false);
                     activityPictogram.sprite = interfaceManager.officePictogram;
                 }
                 else if (_detective.activity == DetectiveActivity.IN_HOME)
                 {
                     homeButton.gameObject.SetActive(false);
-                    shadowPanel.gameObject.SetActive(true);
                     activityPictogram.sprite = interfaceManager.homePictogram;
                 }
                 else if (_detective.activity == DetectiveActivity.IN_WAY)
                 {
                     homeButton.gameObject.SetActive(false);
-                    shadowPanel.gameObject.SetActive(true);
                     activityPictogram.sprite = interfaceManager.walkPictogram;
                 }
                 else if (_detective.activity == DetectiveActivity.IN_EVENT)
                 {
                     homeButton.gameObject.SetActive(false);
-                    shadowPanel.gameObject.SetActive(true);
                     activityPictogram.sprite = interfaceManager.eventPictogram;
                 }
+                if (game.GetGameState()!= GameState.WAIT_ACTIVITY_CHOICE)
+                {
+                    active = _detective.activity == DetectiveActivity.IN_OFFICE;
+                }
+                else if (game.GetGameState() == GameState.WAIT_ACTIVITY_CHOICE)
+                {
+                    active = detectiveManager.teamOnWait.detectives.Contains(_detective);
+                }
+            }
+        }
+
+        public bool active
+        {
+            get
+            {
+                return _active;
+            }
+            set
+            {
+                _active = value;
+                homeButton.gameObject.SetActive(_active);
+                shadowPanel.gameObject.SetActive(!_active);
             }
         }
 

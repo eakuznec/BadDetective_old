@@ -8,9 +8,12 @@ namespace BadDetective.UI
     public class ActivitiesPanel : MonoBehaviour
     {
         [HideInInspector]
+        public GameState prevState;
+        [HideInInspector]
         public List<iActivityPlace> activities = new List<iActivityPlace>(); 
         [SerializeField]
         private EventPanel eventPanelPrefab;
+        [SerializeField] OfficePanel officePanelPrefab;
         [Header("UI")]
         [SerializeField]
         private RectTransform activitiesContent;
@@ -27,6 +30,7 @@ namespace BadDetective.UI
         {
             Game game = Game.GetInstantiate();
             gameObject.SetActive(true);
+            prevState = game.GetGameState();
             game.ChangeGameState(GameState.IN_ACTIVITIES_PANEL);
             activities = openedActivities;
             float height = 0;
@@ -38,6 +42,13 @@ namespace BadDetective.UI
                     eventPanel.questEvent = (QuestEvent)activity;
                     eventPanel.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, height, eventPanel.GetHeight());
                     height += eventPanel.GetHeight();
+                }
+                else if(activity is Office)
+                {
+                    OfficePanel officePanel = Instantiate(officePanelPrefab, activitiesContent);
+                    officePanel.office = (Office)activity;
+                    officePanel.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, height, officePanel.GetHeight());
+                    height += officePanel.GetHeight();
                 }
             }
             height += 20;
@@ -57,7 +68,7 @@ namespace BadDetective.UI
         {
             Game game = Game.GetInstantiate();
             gameObject.SetActive(false);
-            game.ChangeGameState(GameState.IN_GAME);
+            game.ChangeGameState(prevState);
             for(int i=0; i<activitiesContent.childCount; i++)
             {
                 Destroy(activitiesContent.GetChild(i).gameObject);
@@ -69,7 +80,7 @@ namespace BadDetective.UI
             for (int i = 0; i < activitiesContent.childCount; i++)
             {
                 EventPanel eventPanel = activitiesContent.GetChild(i).GetComponent<EventPanel>();
-                if (eventPanel.CheckAccept())
+                if (eventPanel != null && (eventPanel.CheckAccept() || prevState == GameState.WAIT_ACTIVITY_CHOICE))
                 {
                     eventPanel.Accept();
                 }
@@ -83,7 +94,7 @@ namespace BadDetective.UI
             for(int i=0; i< activitiesContent.childCount; i++)
             {
                 EventPanel eventPanel = activitiesContent.GetChild(i).GetComponent<EventPanel>();
-                if (eventPanel.CheckAccept())
+                if (eventPanel!=null && (eventPanel.CheckAccept() || prevState == GameState.WAIT_ACTIVITY_CHOICE))
                 {
                     flag = true;
                 }

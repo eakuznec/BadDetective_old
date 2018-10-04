@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace BadDetective.UI
 {
     [RequireComponent(typeof(Image))]
-    public class DetectiveReportIcon : MonoBehaviour
+    public class DetectiveReportIcon : MonoBehaviour, iRolloverOwner
     {
         private Detective _detective;
         [SerializeField] private Button fileButton;
@@ -54,6 +55,21 @@ namespace BadDetective.UI
         {
             _detective.ReturnToHome();
             InterfaceManager.GetInstantiate().dialogPanel.ResetDetectives();
+        }
+
+        public RectTransform GetRectTransform()
+        {
+            return gameObject.GetComponent<RectTransform>();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            InterfaceManager.GetInstantiate().detectiveRollover.Show(this);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            InterfaceManager.GetInstantiate().detectiveRollover.Hide();
         }
     }
 }
