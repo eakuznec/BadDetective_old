@@ -88,7 +88,7 @@ public class DialogPhraseNode : ScriptableObject
         }
         if (chooseOpen)
         {
-            float h = 70;
+            float h = 170;
             for (int i = 0; i < chooseNodes.Count; i++)
             {
                 chooseNodes[i].DrawWindow(ref i, ref phrase.nodePosition, ref h);
