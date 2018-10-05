@@ -38,20 +38,36 @@ namespace BadDetective
         {
             string result = note.note;
             result = result.Replace(@"<DateTime>", recordTime.ToString());
-            if (word != "")
+            if (word!="" && word!=null)
             {
                 result = result.Replace(@"<key>", word);
             }
             else if (words.Count > 0)
             {
-                string pattern = "";
+                List<string> array = new List<string>();
                 for (int i = 0; i < words.Count; i++)
                 {
-                    pattern += words[i];
-                    if (i != words.Count - 1)
+                    if (result.Contains(string.Format("<{0}>", i)))
                     {
-                        pattern += ", ";
+                        result = result.Replace(string.Format("<{0}>", i), words[i]);
                     }
+                    else
+                    {
+                        array.Add(words[i]);
+                    }
+                }
+                if (array.Count > 0)
+                {
+                    string pattern = "";
+                    for(int i = 0; i < array.Count; i++)
+                    {
+                        pattern += array[i];
+                        if (i < array.Count - 1)
+                        {
+                            pattern += ", ";
+                        }
+                    }
+                    result = result.Replace(@"<array>", pattern);
                 }
             }
             return result;

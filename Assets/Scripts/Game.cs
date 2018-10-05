@@ -61,6 +61,8 @@ namespace BadDetective
 
         public void ChangeGameState(GameState newState)
         {
+            InterfaceManager.GetInstantiate().detectiveRollover.Hide();
+            InterfaceManager.GetInstantiate().activitiesRollover.Hide();
             state = newState;
         }
     }

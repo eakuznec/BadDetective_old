@@ -134,7 +134,7 @@ namespace BadDetective
 
         public void Realize()
         {
-            startLogicMap.RealizeLogicMap(this);
+            startLogicMap.RealizeLogicMap(this, null);
         }
 
         public Dialog.Dialog GetDialog()

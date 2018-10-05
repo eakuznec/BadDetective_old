@@ -203,5 +203,17 @@ namespace BadDetective.UI
                 icon.canReturnHome = detectives.Count > 1;
             }
         }
+
+        public DialogChoose GetChoose(int num)
+        {
+            if (choosesPanel.childCount < num)
+            {
+                return null;
+            }
+            else
+            {
+                return choosesPanel.GetChild(num - 1).GetComponent<ChoosePanel>().GetChoose();
+            }
+        }
     }
 }

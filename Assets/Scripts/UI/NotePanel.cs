@@ -69,6 +69,7 @@ namespace BadDetective.UI
                 else if (note.noteType == FileNoteType.TECH)
                 {
                     noteText.fontStyle = FontStyle.Bold;
+                    noteText.color = Color.red;
                 }
 
             }

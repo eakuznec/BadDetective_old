@@ -23,6 +23,7 @@ namespace BadDetective.Control
         private TimelineControl timelineControl;
         private MapControl mapControl;
         private MapUIControl mapUIControl;
+        private DialogControl dialogControl;
 
         public static ControlManager GetInstantiate()
         {
@@ -69,6 +70,16 @@ namespace BadDetective.Control
             {
                 mapUIControl = gameObject.AddComponent<MapUIControl>();
             }
+
+            if (dialogControl == null)
+            {
+                dialogControl = FindObjectOfType<DialogControl>();
+            }
+            if (dialogControl == null)
+            {
+                dialogControl = gameObject.AddComponent<DialogControl>();
+            }
+
         }
     }
 }

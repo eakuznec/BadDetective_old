@@ -13,6 +13,11 @@ namespace BadDetective.UI
         [SerializeField]
         private Text chooseText;
 
+        public DialogChoose GetChoose()
+        {
+            return choose;
+        }
+
         public void SetChoose(DialogChoose choose, int index)
         {
             this.choose = choose;

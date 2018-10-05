@@ -2050,7 +2050,7 @@ namespace BadDetective.LogicMap
 
         private void TestLogicMap()
         {
-            logicMap.RealizeLogicMap(null, true);
+            logicMap.RealizeLogicMap(null, null, true);
         }
 
         //private void SavePrefab()

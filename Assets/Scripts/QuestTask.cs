@@ -53,7 +53,7 @@ namespace BadDetective
             }
             team.curTask = this;
             curTeam = team;
-            startLogicMap.RealizeLogicMap(this);
+            startLogicMap.RealizeLogicMap(this, team);
         }
 
         public Team GetTeam()

@@ -16,6 +16,9 @@ namespace BadDetective.Dialog
         [Header("Standart dialogs")]
         public Dialog endEventDialog;
 
+        [Header("Standart notes")]
+        public FileNote addItemNote;
+        public FileNote newTaskNote;
 
         public static DialogManager GetInstantiate()
         {
@@ -88,7 +91,7 @@ namespace BadDetective.Dialog
             interfaceManager.dialogPanel.gameObject.SetActive(true);
             foreach (Effect effect in phrase.effects)
             {
-                effect.Realize(curDialog);
+                effect.Realize(curDialog, curDialog.teamOwner);
             }
             if(phrase.type == PhraseType.DIALOG_PHRASE)
             {
@@ -111,14 +114,14 @@ namespace BadDetective.Dialog
                     FinalizeDialog();
                     foreach (Effect effect in choose.effects)
                     {
-                        effect.Realize(curDialog);
+                        effect.Realize(curDialog, curDialog.teamOwner);
                     }
                 }
                 else
                 {
                     foreach (Effect effect in choose.effects)
                     {
-                        effect.Realize(curDialog);
+                        effect.Realize(curDialog, curDialog.teamOwner);
                     }
                     List<DialogLink> avaliableLinks = new List<DialogLink>();
                     foreach (DialogLink link in choose.links)

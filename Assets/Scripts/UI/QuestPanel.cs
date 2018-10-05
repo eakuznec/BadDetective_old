@@ -130,7 +130,7 @@ namespace BadDetective.UI
                 ignorButton.onClick.RemoveAllListeners();
                 if (ignorLogicMap != null)
                 {
-                    ignorButton.onClick.AddListener(delegate { ignorLogicMap.RealizeLogicMap(this); });
+                    ignorButton.onClick.AddListener(delegate { ignorLogicMap.RealizeLogicMap(this, null); });
                 }
                 ignorButton.onClick.AddListener(Close);
             }
@@ -139,7 +139,7 @@ namespace BadDetective.UI
                 acceptButton.onClick.RemoveAllListeners();
                 if (acceptLogicMap != null)
                 {
-                    acceptButton.onClick.AddListener(delegate { acceptLogicMap.RealizeLogicMap(this); });
+                    acceptButton.onClick.AddListener(delegate { acceptLogicMap.RealizeLogicMap(this, null); });
                 }
                 acceptButton.onClick.AddListener(Close);
 

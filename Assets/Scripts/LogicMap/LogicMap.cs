@@ -11,6 +11,7 @@ namespace BadDetective.LogicMap
         public string logicMapName;
         public iLogicMapContainer curOwner;
         public List<iLogicMapContainer> owners = new List<iLogicMapContainer>();
+        public Team team;
         public bool startRealize;
         public LogicFunction startFunction;
         public List<LogicFunction> logicFunc = new List<LogicFunction>();
@@ -88,10 +89,11 @@ namespace BadDetective.LogicMap
             return boolVariable;
         }
 
-        public void RealizeLogicMap(iLogicMapContainer owner, bool isTest = false)
+        public void RealizeLogicMap(iLogicMapContainer owner, Team team, bool isTest = false)
         {
             Debug.Log(string.Format("Realize logic map"), this);
             curOwner = owner;
+            this.team = team;
             ClearCheck();
             startRealize = true;
             RealizeFunction(startFunction, isTest);
@@ -125,7 +127,7 @@ namespace BadDetective.LogicMap
             }
             else if (function is LogicEffect)
             {
-                ((LogicEffect)function).Realize(curOwner, isTest); 
+                ((LogicEffect)function).Realize(curOwner, team, isTest); 
             }
             else if (function is WaitFunction)
             {
@@ -338,7 +340,7 @@ namespace BadDetective.LogicMap
         public bool haveFinish()
         {
             bool retVal = false;
-            RealizeLogicMap(null, true);
+            RealizeLogicMap(null, null, true);
             foreach(LogicEffect effect in effects)
             {
                 if (effect.checkNode)

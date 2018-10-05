@@ -42,6 +42,34 @@ namespace BadDetective
             GetComponent<SphereCollider>().radius = MapManager.GetInstantiate().pointRadius;
         }
 
+        public List<iActivityPlace> GetActiveActivity()
+        {
+            List<iActivityPlace> retVal = new List<iActivityPlace>();
+            foreach(iActivityPlace place in pointContainer)
+            {
+                if(place is Office)
+                {
+                    retVal.Add(place);
+                }
+                else if (place is DetectiveHome && ((DetectiveHome)place).characterInHome)
+                {
+                    retVal.Add(place);
+                }
+                else if (place is QuestEvent)
+                {
+                    foreach(QuestTask task in ((QuestEvent)place).tasks)
+                    {
+                        if(task.mainState == MainState.Started)
+                        {
+                            retVal.Add(place);
+                            break;
+                        }
+                    }
+                }
+            }
+            return retVal;
+        }
+
         private void  OnDrawGizmos()
         {
             Gizmos.color = Color.red;
@@ -78,7 +106,7 @@ namespace BadDetective
 
         private void LateUpdate()
         {
-            if (pointContainer.Count > 0)
+            if (GetActiveActivity().Count > 0)
             {
                 Game game = Game.GetInstantiate();
                 InterfaceManager interfaceManager = InterfaceManager.GetInstantiate();
@@ -91,11 +119,11 @@ namespace BadDetective
                     curLabelIndex++;
                     labelTime = 0;
                 }
-                if (curLabelIndex >= pointContainer.Count)
+                if (curLabelIndex >= GetActiveActivity().Count)
                 {
                     curLabelIndex = 0;
                 }
-                if(pointContainer[curLabelIndex] is Office)
+                if(GetActiveActivity()[curLabelIndex] is Office)
                 {
                     if (mouseover)
                     {
@@ -106,7 +134,7 @@ namespace BadDetective
                         label.sprite = mapManager.officeSprite;
                     }
                 }
-                else if(pointContainer[curLabelIndex] is DetectiveHome)
+                else if(GetActiveActivity()[curLabelIndex] is DetectiveHome)
                 {
                     if (mouseover)
                     {
@@ -117,7 +145,7 @@ namespace BadDetective
                         label.sprite = mapManager.homeSprite;
                     }
                 }
-                else if (pointContainer[curLabelIndex] is QuestEvent)
+                else if (GetActiveActivity()[curLabelIndex] is QuestEvent)
                 {
                     if (mouseover)
                     {
@@ -135,7 +163,7 @@ namespace BadDetective
                         showRollover = mouseover;
                         if (showRollover)
                         {
-                            interfaceManager.activitiesRollover.Show(pointContainer, Camera.main.WorldToScreenPoint(transform.position));
+                            interfaceManager.activitiesRollover.Show(GetActiveActivity(), Camera.main.WorldToScreenPoint(transform.position));
                         }
                         else
                         {

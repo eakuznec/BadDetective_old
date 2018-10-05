@@ -53,3 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endEventDialog: {fileID: 114379349264016848, guid: 6e1b056fd4f61cd49983cf4525bfb3ef,
     type: 2}
+  addItemNote: {fileID: 11400000, guid: ac3309ee278f297499f55112493dea5e, type: 2}
+  newTaskNote: {fileID: 11400000, guid: c27d853fab400b545b3763a71ada1039, type: 2}

@@ -53,16 +53,17 @@ namespace BadDetective
 
         public void ChangeTask(QuestTask curTask, MainState state)
         {
-            curTask.ChangeMainState(state);
-            if(state == MainState.Started)
+            if(state == MainState.Started && curTask.mainState== MainState.NotStarted)
             {
-                if (!point.pointContainer.Contains(this))
-                {
-                    point.pointContainer.Add(this);
-                }
+                curTask.ChangeMainState(state);
+                    if (!point.pointContainer.Contains(this))
+                    {
+                        point.pointContainer.Add(this);
+                    }
             }
-            else if (state == MainState.Completed || state == MainState.Failed)
+            else if ((state == MainState.Completed || state == MainState.Failed) && (curTask.mainState != MainState.Completed && curTask.mainState != MainState.Failed))
             {
+                curTask.ChangeMainState(state);
                 bool flag = false;
                 foreach (QuestTask task in tasks)
                 {

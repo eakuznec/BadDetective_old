@@ -28,7 +28,7 @@ namespace BadDetective.LogicMap
         {
         }
 
-        public void Realize(iLogicMapContainer owner, bool isTest = false)
+        public void Realize(iLogicMapContainer owner, Team team, bool isTest = false)
         {
             checkNode = true;
             if(type == LogicEffectType.SINGLE)
@@ -36,7 +36,7 @@ namespace BadDetective.LogicMap
                 if (!isTest)
                 {
                     //effect.owner = owner;
-                    effect.Realize(owner);
+                    effect.Realize(owner, team);
                     //if (owner is TriggerZone)
                     //{
                     //    TriggerZone triggerZone = owner as TriggerZone;
@@ -54,7 +54,7 @@ namespace BadDetective.LogicMap
                 {
                     if (!isTest)
                     {
-                        e.Realize(owner);
+                        e.Realize(owner, team);
                     }
                     else
                     {

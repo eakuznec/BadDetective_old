@@ -16,7 +16,7 @@ namespace BadDetective.UI
         public Text eventDescription;
         public RectTransform tasksPanel;
         public RectTransform detectivePanel;
-        [Header ("Samples")]
+        [Header("Samples")]
         public DetectiveEventPanelIcon detectiveIcon;
         public TaskPanel taskPanel;
 
@@ -142,7 +142,7 @@ namespace BadDetective.UI
             DetectiveManager detectiveManager = DetectiveManager.GetInstantiate();
             InterfaceManager interfaceManager = InterfaceManager.GetInstantiate();
             List<QuestTask> tasks = new List<QuestTask>();
-            for(int i=0; i<tasksPanel.childCount; i++)
+            for (int i = 0; i < tasksPanel.childCount; i++)
             {
                 TaskPanel panel = tasksPanel.GetChild(i).GetComponent<TaskPanel>();
                 if (panel.taskToggle.isOn)
@@ -150,15 +150,16 @@ namespace BadDetective.UI
                     tasks.Add(panel.task);
                 }
             }
-            if(interfaceManager.activitiesPanel.prevState == GameState.WAIT_ACTIVITY_CHOICE)
+            if (interfaceManager.activitiesPanel.prevState == GameState.WAIT_ACTIVITY_CHOICE)
             {
                 Team team = detectiveManager.teamOnWait;
                 team.targetTasks = tasks;
-                if(team.startPlace == questEvent)
+                if (team.startPlace == questEvent)
                 {
                     interfaceManager.activitiesPanel.prevState = GameState.IN_GAME;
                     questEvent.AddTeam(team);
                     team.StartTask();
+                    interfaceManager.detectiveRow.ResetRow();
                 }
                 else
                 {
@@ -181,9 +182,10 @@ namespace BadDetective.UI
 
         public bool CheckAccept()
         {
+            InterfaceManager interfaceManager = InterfaceManager.GetInstantiate();
             bool detectiveFlag = false;
             bool taskFlag = false;
-            if (questEvent.plannedDetectivesOnEvent.Count > 0)
+            if (questEvent.plannedDetectivesOnEvent.Count > 0 || interfaceManager.activitiesPanel.prevState == GameState.WAIT_ACTIVITY_CHOICE)
             {
                 detectiveFlag = true;
             }

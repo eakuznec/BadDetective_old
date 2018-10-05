@@ -9,9 +9,10 @@ namespace BadDetective
     {
         public FileNoteType type = FileNoteType.REPORT;
         [Tooltip("Для использования регулярных выражений используйте символ <key>")]
-        [TextArea]
-        public string note;
         public List<Sprite> sprites = new List<Sprite>();
+
+        [TextArea(20, 100)]
+        public string note;
     }
 
     public enum FileNoteType

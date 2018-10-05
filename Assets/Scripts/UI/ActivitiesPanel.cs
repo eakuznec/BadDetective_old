@@ -94,7 +94,7 @@ namespace BadDetective.UI
             for(int i=0; i< activitiesContent.childCount; i++)
             {
                 EventPanel eventPanel = activitiesContent.GetChild(i).GetComponent<EventPanel>();
-                if (eventPanel!=null && (eventPanel.CheckAccept() || prevState == GameState.WAIT_ACTIVITY_CHOICE))
+                if (eventPanel!=null && eventPanel.CheckAccept())
                 {
                     flag = true;
                 }

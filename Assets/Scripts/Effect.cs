@@ -26,7 +26,7 @@ namespace BadDetective
         public LogicMap.WaitType waitType;
         public GameTime waitTime;
 
-        public void Realize(iEffectsContainer effectsContainer)
+        public void Realize(iEffectsContainer effectsContainer, Team team)
         {
             this.effectsContainer = effectsContainer;
             Game game = Game.GetInstantiate();
@@ -58,9 +58,16 @@ namespace BadDetective
             {
                 if (effectsContainer is QuestTask)
                 {
-                    effectsContainer.GetTeam().reportEvent.Add(questEvent);
-                    effectsContainer.GetTeam().reportChangeTask.Add(task);
-                    effectsContainer.GetTeam().reportTaskState.Add(mainState);
+                    team.reportEvent.Add(questEvent);
+                    team.reportChangeTask.Add(task);
+                    team.reportTaskState.Add(mainState);
+                    if(mainState == MainState.Started && task.mainState == MainState.NotStarted)
+                    {
+                        team.reportQuest.Add(GetQuest());
+                        List<string> keys = new List<string>() { questEvent.eventName, task.taskName };
+                        FileNoteContainer noteContainer = FileNoteContainer.Create(Dialog.DialogManager.GetInstantiate().newTaskNote, team.transform, keys);
+                        team.reportNotes.Add(noteContainer);
+                    }
                 }
                 else
                 {
@@ -71,8 +78,8 @@ namespace BadDetective
             {
                 if (effectsContainer is QuestTask)
                 {
-                    effectsContainer.GetTeam().reportChangeObjective.Add(objective);
-                    effectsContainer.GetTeam().reportObjectiveState.Add(mainState);
+                    team.reportChangeObjective.Add(objective);
+                    team.reportObjectiveState.Add(mainState);
                 }
                 else
                 {
@@ -102,7 +109,6 @@ namespace BadDetective
                     {
                         if (effectsContainer is QuestTask)
                         {
-                            Team team = effectsContainer.GetTeam();
                             team.reportQuest.Add(GetQuest());
                             team.reportNotes.Add(FileNoteContainer.Create(fileNote, team.transform));
                         }
@@ -115,11 +121,13 @@ namespace BadDetective
             }
             else if(type == EffectType.ADD_ITEM)
             {
-                Team owner = effectsContainer.GetTeam();
-                if (owner != null)
+                if (team != null)
                 {
                     Item newItem = Instantiate(item);
-                    owner.AddItem(newItem);
+                    team.AddItem(newItem);
+                    team.reportQuest.Add(GetQuest());
+                    FileNoteContainer noteContainer = FileNoteContainer.Create(Dialog.DialogManager.GetInstantiate().addItemNote, team.transform, newItem.itemName);
+                    team.reportNotes.Add(noteContainer);
                 }
                 else
                 {
@@ -146,17 +154,16 @@ namespace BadDetective
             {
                 if (logicMapOwner == LogicMap.LogicMapOwnerType.QUEST)
                 {
-                    logicMap.RealizeLogicMap(GetQuest());
+                    logicMap.RealizeLogicMap(GetQuest(), team);
                 }
                 else if (logicMapOwner == LogicMap.LogicMapOwnerType.QUEST_TASK)
                 {
-                    logicMap.RealizeLogicMap(task);
+                    logicMap.RealizeLogicMap(task, team);
                 }
             }
             else if (type == EffectType.START_DIALOG)
             {
-                Team owner = effectsContainer.GetTeam();
-                Dialog.DialogManager.GetInstantiate().StartDialog(dialog, owner, GetQuest());
+                Dialog.DialogManager.GetInstantiate().StartDialog(dialog, team, GetQuest());
             }
             else if(type == EffectType.FINALIZE_TASK)
             {
@@ -164,42 +171,38 @@ namespace BadDetective
             }
             else if(type == EffectType.TEAM_GOTO_OFFICE)
             {
-                Team owner = effectsContainer.GetTeam();
-                if (owner != null)
+                if (team != null)
                 {
-                    owner.GoTo(agency.GetOffice(), owner.GetPriorityWay(), true);
+                    team.GoTo(agency.GetOffice(), team.GetPriorityWay(), true);
                 }
             }
             else if(type == EffectType.TEAM_GOTO_HOMES)
             {
-                Team owner = effectsContainer.GetTeam();
-                if (owner != null)
+                if (team != null)
                 {
-                    for(int i=0;i< owner.detectives.Count;i++)
+                    for(int i=0;i< team.detectives.Count;i++)
                     {
-                        owner.detectives[i].ReturnToHome();
+                        team.detectives[i].ReturnToHome();
                         i--;
                     }
                 }
             }
             else if(type == EffectType.TEAM_GOTO_EVENT)
             {
-                Team owner = effectsContainer.GetTeam();
-                if (owner != null)
+                if (team != null)
                 {
                     game.ChangeGameState(GameState.WAIT_ACTIVITY_CHOICE);
-                    detectiveManager.teamOnWait = owner;
+                    detectiveManager.teamOnWait = team;
                     interfaceManager.detectiveRow.ResetRow();
                 }
             }
             else if(type == EffectType.TELEPORT_TO_EVENT)
             {
-                Team owner = effectsContainer.GetTeam();
-                if(owner.curTarget is QuestEvent)
+                if(team.curTarget is QuestEvent)
                 {
-                    ((QuestEvent)owner.startPlace).RemoveTeam(owner);
-                    owner.startPlace = questEvent;
-                    questEvent.AddTeam(owner);
+                    ((QuestEvent)team.startPlace).RemoveTeam(team);
+                    team.startPlace = questEvent;
+                    questEvent.AddTeam(team);
                 }
 
             }
