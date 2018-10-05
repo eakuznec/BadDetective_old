@@ -154,8 +154,17 @@ namespace BadDetective.UI
             {
                 Team team = detectiveManager.teamOnWait;
                 team.targetTasks = tasks;
-                team.GoTo(questEvent, team.GetPriorityWay(), true);
-                interfaceManager.activitiesPanel.prevState = GameState.IN_GAME;
+                if(team.startPlace == questEvent)
+                {
+                    interfaceManager.activitiesPanel.prevState = GameState.IN_GAME;
+                    questEvent.AddTeam(team);
+                    team.StartTask();
+                }
+                else
+                {
+                    team.GoTo(questEvent, team.GetPriorityWay(), true);
+                    interfaceManager.activitiesPanel.prevState = GameState.IN_GAME;
+                }
             }
             else
             {

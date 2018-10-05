@@ -58,7 +58,7 @@ namespace BadDetective.UI
                     noteText.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (rect.rect.width - offset - imagePanel.rect.width));
                 }
                 noteText.text = note.GetText();
-                if(note.noteType == FileNoteType.RAPORT)
+                if(note.noteType == FileNoteType.REPORT)
                 {
                     noteText.fontStyle = FontStyle.Normal;
                 }

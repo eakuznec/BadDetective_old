@@ -20,6 +20,7 @@ namespace BadDetective.UI
         public QuestFile questFile;
         [Header("Rollovers")]
         public DetectiveRollover detectiveRollover;
+        public ActivitiesRollover activitiesRollover;
         [Header("Sprites")]
         public Sprite officePictogram;
         public Sprite homePictogram;

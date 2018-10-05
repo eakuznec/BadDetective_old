@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,12 +32,17 @@ namespace BadDetective
             GetInstantiate();
             DontDestroyOnLoad(instance);
             //Начало игры
-            curTime = 8;
+            curTime = 8+24;
             //
             for(int i=0; i<actions.Count;i++)
             {
                 actions[i] = Instantiate(actions[i], transform);
             }
+        }
+
+        internal GameTime GetGameTime()
+        {
+            return GameTime.Convert(curTime);
         }
 
         private void Update()

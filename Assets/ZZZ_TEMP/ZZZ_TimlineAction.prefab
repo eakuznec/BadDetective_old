@@ -866,11 +866,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionType: 7
-  timer: 8
+  timer: 32
   office: {fileID: 0}
+  team: {fileID: 0}
   detective: {fileID: 0}
   trait: {fileID: 0}
   quest: {fileID: 0}
+  questState: {fileID: 0}
   mainState: 0
   filePanel: {fileID: 0}
   dialog: {fileID: 114471061569649832, guid: f29e9d53b3c99b54eb336bd4e241b78c, type: 2}
@@ -878,6 +880,9 @@ MonoBehaviour:
     crown: 0
     libra: 0
     penny: 0
+  value: 0
+  flag: 0
+  specialValue: 
 --- !u!114 &114618684966876524
 MonoBehaviour:
   m_ObjectHideFlags: 1

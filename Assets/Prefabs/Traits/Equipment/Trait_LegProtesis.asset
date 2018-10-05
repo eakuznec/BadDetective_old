@@ -15,8 +15,8 @@ MonoBehaviour:
   category: 7
   traitDescription: 
   traitEffects:
-  - {fileID: 11400000, guid: 2100f08355d53e94aa23bf943c343b26, type: 2}
   - {fileID: 11400000, guid: e4ba611d3ad14ac418658613bb7f8281, type: 2}
+  - {fileID: 11400000, guid: 2100f08355d53e94aa23bf943c343b26, type: 2}
   - {fileID: 11400000, guid: b80803de5ec972843a00aae87e09800a, type: 2}
   - {fileID: 11400000, guid: 9c86ed07bcaebba49b5334e48f497a80, type: 2}
   tags: 

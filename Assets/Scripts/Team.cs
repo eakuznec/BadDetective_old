@@ -157,15 +157,11 @@ namespace BadDetective
                 activity = newActivity;
                 foreach (Detective detective in detectives)
                 {
-                    detective.ChangeActivity(newActivity);
+                    detective.ChangeActivity(newActivity, newPlace);
                 }
                 if (activity == DetectiveActivity.IN_WAY)
                 {
-                    foreach (Detective detective in detectives)
-                    {
-                        timeInWay = 0;
-                        detective.activityPlace = newPlace;
-                    }
+                    timeInWay = 0;
                 }
                 else if(activity == DetectiveActivity.IN_EVENT)
                 {

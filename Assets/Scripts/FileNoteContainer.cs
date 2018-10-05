@@ -6,6 +6,7 @@ namespace BadDetective
 {
     public class FileNoteContainer : MonoBehaviour
     {
+        private GameTime recordTime;
         private FileNote note;
         private string word;
         private List<string> words = new List<string>();
@@ -13,12 +14,14 @@ namespace BadDetective
 
         public void Set(FileNote fileNote, string key = "")
         {
+            recordTime = Timeline.GetInstantiate().GetGameTime();
             note = fileNote;
             this.word = key;
         }
 
         public void Set(FileNote fileNote, List<string> keys)
         {
+            recordTime = Timeline.GetInstantiate().GetGameTime();
             note = fileNote;
             this.words = keys;
         }
@@ -34,6 +37,7 @@ namespace BadDetective
         public string GetText()
         {
             string result = note.note;
+            result = result.Replace(@"<DateTime>", recordTime.ToString());
             if (word != "")
             {
                 result = result.Replace(@"<key>", word);

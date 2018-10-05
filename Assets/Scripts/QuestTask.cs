@@ -30,6 +30,7 @@ namespace BadDetective
             curTeam.targetTasks.Remove(this);
             if (curTeam.targetTasks.Count == 0)
             {
+                GetQuestEvent().RemoveTeam(curTeam);
                 dialogManager.StartDialog(dialogManager.endEventDialog, curTeam, GetQuest());
             }
             else
@@ -90,6 +91,11 @@ namespace BadDetective
         public Quest GetQuest()
         {
             return transform.GetComponentInParent<Quest>();
+        }
+
+        public QuestEvent GetQuestEvent()
+        {
+            return transform.GetComponentInParent<QuestEvent>();
         }
 
         public Dialog.Dialog GetDialog()

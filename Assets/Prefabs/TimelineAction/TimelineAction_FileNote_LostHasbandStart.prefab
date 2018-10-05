@@ -52,15 +52,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionType: 5
-  timer: 9
+  timer: 33
   office: {fileID: 0}
+  team: {fileID: 0}
   detective: {fileID: 0}
   trait: {fileID: 0}
   quest: {fileID: 0}
+  questState: {fileID: 0}
   mainState: 0
   filePanel: {fileID: 114392316127515112, guid: e58f701b30ac6b94fafb4c0dc64aaae4,
     type: 2}
+  dialog: {fileID: 0}
   money:
     crown: 0
     libra: 0
     penny: 0
+  value: 0
+  flag: 0
+  specialValue: 

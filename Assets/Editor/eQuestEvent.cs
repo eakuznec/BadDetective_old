@@ -13,6 +13,8 @@ namespace BadDetective
             QuestEvent questEvent = (QuestEvent)target;
             EditorGUILayout.PropertyField(serializedObject.FindProperty("eventName"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("eventDescription"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("stressPerHour"));
+            EditorGUILayout.Separator();
             eUtils.DrawPointOnMapSelector(ref questEvent.tier, ref questEvent.point);
             GUILayout.Space(10);
             eUtils.DrawQuestTaskList(questEvent.tasks, questEvent.transform);

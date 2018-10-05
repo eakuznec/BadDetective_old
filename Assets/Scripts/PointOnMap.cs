@@ -21,6 +21,7 @@ namespace BadDetective
         private SpriteRenderer label;
         private float labelTime;
         private int curLabelIndex;
+        private bool showRollover;
         // Use this for initialization
 
         private void Awake()
@@ -79,6 +80,8 @@ namespace BadDetective
         {
             if (pointContainer.Count > 0)
             {
+                Game game = Game.GetInstantiate();
+                InterfaceManager interfaceManager = InterfaceManager.GetInstantiate();
                 MapManager mapManager = MapManager.GetInstantiate();
                 label.gameObject.SetActive(true);
                 label.transform.LookAt(Camera.main.transform);
@@ -123,6 +126,29 @@ namespace BadDetective
                     else
                     {
                         label.sprite = mapManager.eventSprite;
+                    }
+                }
+                if(game.GetGameState()== GameState.IN_GAME || game.GetGameState() == GameState.WAIT_ACTIVITY_CHOICE)
+                {
+                    if (mouseover != showRollover)
+                    {
+                        showRollover = mouseover;
+                        if (showRollover)
+                        {
+                            interfaceManager.activitiesRollover.Show(pointContainer, Camera.main.WorldToScreenPoint(transform.position));
+                        }
+                        else
+                        {
+                            interfaceManager.activitiesRollover.Hide();
+                        }
+                    }
+                }
+                else
+                {
+                    if(mouseover && showRollover)
+                    {
+                        showRollover = false;
+                        interfaceManager.activitiesRollover.Hide();
                     }
                 }
             }

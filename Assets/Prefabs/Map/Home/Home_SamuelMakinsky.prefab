@@ -56,6 +56,6 @@ MonoBehaviour:
   potentialPoints:
   - {fileID: 114475147693229298, guid: fa7d1037e5079eb46a876a693452aa88, type: 2}
   point: {fileID: 0}
-  stressPerHour: -1.2
+  stressPerHour: -2.4
   owner: {fileID: 0}
   characterInHome: 0

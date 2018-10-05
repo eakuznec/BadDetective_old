@@ -7,7 +7,7 @@ namespace BadDetective
     [CreateAssetMenu(fileName = "FileNote_", menuName = "File Note", order = 53)]
     public class FileNote : ScriptableObject
     {
-        public FileNoteType type = FileNoteType.RAPORT;
+        public FileNoteType type = FileNoteType.REPORT;
         [Tooltip("Для использования регулярных выражений используйте символ <key>")]
         [TextArea]
         public string note;
@@ -16,7 +16,7 @@ namespace BadDetective
 
     public enum FileNoteType
     {
-        RAPORT,
+        REPORT,
         DIALOG,
         TECH
     }

@@ -788,7 +788,11 @@ namespace BadDetective
             TraitManager traitManager = TraitManager.GetInstantiate();
             SerializedObject soTrait = new SerializedObject(trait);
             EditorGUILayout.BeginVertical();
-            EditorGUILayout.PropertyField(soTrait.FindProperty("category"));
+            int index = EditorGUILayout.Popup(traitManager.GetTraits().IndexOf(trait.trait), traitManager.GetTraitNames().ToArray());
+            if (index != -1)
+            {
+                trait.trait = traitManager.GetTraits()[index];
+            }
             Trait lastTrait = trait.trait;
             if (trait.trait != null)
             {
@@ -798,7 +802,7 @@ namespace BadDetective
                 {
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PropertyField(soTrait.FindProperty("isMimicry"));
-                    int index = EditorGUILayout.Popup(traitManager.GetTraits().IndexOf(trait.mimicryTrait), traitManager.GetTraitNames().ToArray());
+                    index = EditorGUILayout.Popup(traitManager.GetTraits().IndexOf(trait.mimicryTrait), traitManager.GetTraitNames().ToArray());
                     if (index != -1)
                     {
                         trait.mimicryTrait = traitManager.GetTraits()[index];

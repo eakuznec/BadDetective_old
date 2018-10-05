@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126832b28210cc941b70861a909ffc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  officeDescription: 
   tier: {fileID: 114866963642262910, guid: fa7d1037e5079eb46a876a693452aa88, type: 2}
   point: {fileID: 114461726304303082, guid: fa7d1037e5079eb46a876a693452aa88, type: 2}
   cost:
@@ -61,5 +62,5 @@ MonoBehaviour:
     crown: 0
     libra: 0
     penny: 0
-  stressPerHour: 0.5
+  stressPerHour: 2
   detectivesInOffice: []

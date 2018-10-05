@@ -1141,7 +1141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointName: 
   timeToWay: 0
-  stressPerHour: 0
+  stressPerHour: 1.5
   avaliablePaths: []
   shortWay: {fileID: 0}
   label: {fileID: 0}
@@ -1161,8 +1161,8 @@ MonoBehaviour:
   points:
   - {fileID: 114724054117270170}
   - {fileID: 114873492155433644}
-  timeToWay: 0.5
-  stressPerHour: 0
+  timeToWay: 0.083333336
+  stressPerHour: 1.5
 --- !u!114 &114461726304303082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1176,7 +1176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointName: 
   timeToWay: 0
-  stressPerHour: 0
+  stressPerHour: 2
   avaliablePaths: []
   shortWay: {fileID: 0}
   label: {fileID: 0}
@@ -1196,8 +1196,8 @@ MonoBehaviour:
   points:
   - {fileID: 114475147693229298}
   - {fileID: 114283723518270170}
-  timeToWay: 2
-  stressPerHour: 0
+  timeToWay: 0.33333334
+  stressPerHour: 1.5
 --- !u!114 &114475147693229298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointName: 
   timeToWay: 0
-  stressPerHour: 0
+  stressPerHour: 1.5
   avaliablePaths: []
   shortWay: {fileID: 0}
   label: {fileID: 0}
@@ -1231,8 +1231,8 @@ MonoBehaviour:
   points:
   - {fileID: 114461726304303082}
   - {fileID: 114818541881638724}
-  timeToWay: 1
-  stressPerHour: 0
+  timeToWay: 0.16666667
+  stressPerHour: 1.5
 --- !u!114 &114543803123080074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1249,8 +1249,8 @@ MonoBehaviour:
   points:
   - {fileID: 114873492155433644}
   - {fileID: 114753472554677394}
-  timeToWay: 1
-  stressPerHour: 0
+  timeToWay: 0.083333336
+  stressPerHour: 1.5
 --- !u!114 &114587775320129128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1267,8 +1267,8 @@ MonoBehaviour:
   points:
   - {fileID: 114461726304303082}
   - {fileID: 114475147693229298}
-  timeToWay: 1
-  stressPerHour: 0
+  timeToWay: 0.1
+  stressPerHour: 1.5
 --- !u!114 &114672270563153006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1285,8 +1285,8 @@ MonoBehaviour:
   points:
   - {fileID: 114818541881638724}
   - {fileID: 114724054117270170}
-  timeToWay: 1
-  stressPerHour: 0
+  timeToWay: 0.33333334
+  stressPerHour: 1.5
 --- !u!114 &114724054117270170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1300,7 +1300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointName: 
   timeToWay: 0
-  stressPerHour: 0
+  stressPerHour: 1.5
   avaliablePaths: []
   shortWay: {fileID: 0}
   label: {fileID: 0}
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointName: 
   timeToWay: 0
-  stressPerHour: 0
+  stressPerHour: 1.5
   avaliablePaths: []
   shortWay: {fileID: 0}
   label: {fileID: 0}
@@ -1362,8 +1362,8 @@ MonoBehaviour:
   points:
   - {fileID: 114283723518270170}
   - {fileID: 114753472554677394}
-  timeToWay: 0.5
-  stressPerHour: 0
+  timeToWay: 0.125
+  stressPerHour: 1.5
 --- !u!114 &114818541881638724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointName: 
   timeToWay: 0
-  stressPerHour: 0
+  stressPerHour: 3
   avaliablePaths: []
   shortWay: {fileID: 0}
   label: {fileID: 0}
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointName: 
   timeToWay: 0
-  stressPerHour: 0
+  stressPerHour: 1.5
   avaliablePaths: []
   shortWay: {fileID: 0}
   label: {fileID: 0}

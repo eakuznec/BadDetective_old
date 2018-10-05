@@ -34,7 +34,7 @@ namespace BadDetective
         public int[] maxMethodsValues = new int[4] { 100, 100, 100, 100 };
 
         public List<TraitContainer> traits = new List<TraitContainer>();
-        private List<EquipmentContainer> _equipments = new List<EquipmentContainer>();
+        public List<EquipmentContainer> _equipments = new List<EquipmentContainer>();
         private List<Item> items = new List<Item>();
         public List<FileNoteContainer> notes = new List<FileNoteContainer>();
 
@@ -60,7 +60,7 @@ namespace BadDetective
             //Учет выплаты в таймлайне
             CreateSalaryAction();
             //
-            ChangeActivity(DetectiveActivity.IN_OFFICE);
+            ChangeActivity(DetectiveActivity.IN_OFFICE, Agency.GetInstantiate().GetOffice());
             BadDetective.UI.InterfaceManager.GetInstantiate().detectiveRow.ResetRow();
         }
 
@@ -433,7 +433,7 @@ namespace BadDetective
             timeline.RegistrateAction(salaryAction);
         }
 
-        public void ChangeActivity(DetectiveActivity newActivity)
+        public void ChangeActivity(DetectiveActivity newActivity, iActivityPlace newPlace)
         {
             if (activity != newActivity)
             {
@@ -464,7 +464,11 @@ namespace BadDetective
                 }
                 else if (activity == DetectiveActivity.IN_WAY)
                 {
-
+                    activityPlace = newPlace;
+                }
+                else if(activity == DetectiveActivity.IN_EVENT)
+                {
+                    activityPlace = newPlace;
                 }
             }
         }

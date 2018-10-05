@@ -13,7 +13,7 @@ namespace BadDetective.Dialog
         public List<DialogChoose> chooses = new List<DialogChoose>();
         [HideInInspector]
         public List<Effect> effects = new List<Effect>();
-        [HideInInspector]
+        //[HideInInspector]
         public Rect nodePosition;
     }
 

@@ -9,6 +9,7 @@ namespace BadDetective
         public string eventName;
         [TextArea]
         public string eventDescription;
+        public float stressPerHour;
         [HideInInspector]
         public Tier tier;
         public PointOnMap point;
@@ -47,7 +48,7 @@ namespace BadDetective
 
         public float GetStressPerHour()
         {
-            return 0;
+            return stressPerHour;
         }
 
         public void ChangeTask(QuestTask curTask, MainState state)
@@ -117,7 +118,7 @@ namespace BadDetective
             {
                 teamOnEvent = newTeam;
             }
-            else
+            else if (teamOnEvent != newTeam)
             {
                 foreach (Detective detective in newTeam.detectives)
                 {

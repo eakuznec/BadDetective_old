@@ -72,7 +72,7 @@ public class DialogPhraseNode : ScriptableObject
         }
         if(phrase.type != PhraseType.REPORT)
         {
-            phrase.phraseText = EditorGUILayout.TextArea(phrase.phraseText, new GUILayoutOption[] { GUILayout.ExpandHeight(true), GUILayout.Width(250) });
+            phrase.phraseText = EditorGUILayout.TextArea(phrase.phraseText, new GUILayoutOption[] { GUILayout.Height(70), GUILayout.Width(250) });
         }
         else
         {
