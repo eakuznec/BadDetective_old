@@ -82,7 +82,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\u041F\u0440\u043E\u0442\u0435\u0437 \u043D\u043E\u0433\u0438"
   itemDescription: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: b927d5d46759f0c4fb439e603fdc2408, type: 3}
+  inventoryImage: {fileID: 21300000, guid: f01fc6a1e6ff6fb4cae2fd4cbfe8c28d, type: 3}
   conditions: []
   weights: 
   trait: {fileID: 11400000, guid: 3d4b895b769ff11429e226e3a3b72a22, type: 2}

@@ -10,6 +10,7 @@ namespace BadDetective
         [TextArea]
         public string itemDescription;
         public Sprite image;
+        public Sprite inventoryImage;
         [HideInInspector]
         public List<ItemCondition> conditions = new List<ItemCondition>();
         [HideInInspector]

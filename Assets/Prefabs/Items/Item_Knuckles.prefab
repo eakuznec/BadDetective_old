@@ -142,7 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\u041A\u0430\u0441\u0442\u0435\u0442"
   itemDescription: 
-  image: {fileID: 21300000, guid: e812c333d258a1d49b1eb70454d2c714, type: 3}
+  image: {fileID: 21300000, guid: 49982ebc0ec98f2418bb369f8bda1f71, type: 3}
+  inventoryImage: {fileID: 21300000, guid: 26cf79a2c7dfc9e47914b5654b21ad45, type: 3}
   conditions:
   - {fileID: 114740212483372582}
   - {fileID: 114975657428570108}

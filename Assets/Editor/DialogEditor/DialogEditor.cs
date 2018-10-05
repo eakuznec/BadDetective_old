@@ -46,7 +46,7 @@ public class DialogEditor : EditorWindow
             DrawLinks();
             DrawNodes();
             counter++;
-            if (counter >= 2)
+            if (counter >= 3)
             {
                 counter = 0;
                 if(linkMod || moveMod)
@@ -152,17 +152,6 @@ public class DialogEditor : EditorWindow
                 if (select == -1)
                 {
                     Selection.activeGameObject = dialog.gameObject;
-                    moveMod = true;
-                }
-            }
-            else if (e.type == EventType.MouseDrag)
-            {
-                if (moveMod)
-                {
-                    for (int i = 0; i < nodes.Count; i++)
-                    {
-                        nodes[i].phrase.nodePosition.position += e.delta;
-                    }
                 }
             }
             else if (e.type == EventType.MouseUp)
@@ -176,10 +165,6 @@ public class DialogEditor : EditorWindow
                     }
                 }
 
-                if (moveMod)
-                {
-                    moveMod = false;
-                }
                 if (linkMod)
                 {
                     if (select != -1)
@@ -209,15 +194,31 @@ public class DialogEditor : EditorWindow
         }
         else if (e.button == 1)
         {
-            if (e.type == EventType.MouseDown)
+            if(e.type == EventType.MouseDown)
             {
-                if (linkMod)
+
+            }
+            else if (e.type == EventType.MouseDrag)
+            {
+                if (moveMod)
                 {
-                    selectLink.DeleteLink();
-                    linkMod = false;
-                    selectLink = null;
+                    for (int i = 0; i < nodes.Count; i++)
+                    {
+                        nodes[i].phrase.nodePosition.position += e.delta;
+                    }
                 }
-                else
+                else if (e.delta != Vector2.zero)
+                {
+                    moveMod = true;
+                }
+            }
+            else if (e.type == EventType.MouseUp)
+            {
+                if (moveMod)
+                    {
+                    moveMod = false;
+                }
+                else if(!linkMod)
                 {
                     for (int i = 0; i < nodes.Count; i++)
                     {
@@ -227,17 +228,17 @@ public class DialogEditor : EditorWindow
                             break;
                         }
                     }
-                        if (select == -1)
+                    if (select == -1)
+                    {
+                        for (int i = 0; i < links.Count; i++)
                         {
-                            for (int i = 0; i < links.Count; i++)
+                            if (links[i].windowRect.Contains(mousePos))
                             {
-                                if (links[i].windowRect.Contains(mousePos))
-                                {
                                 select = links[i].id;
                                 break;
-                                }
                             }
                         }
+                    }
                     if (select == -1)
                     {
                         GenericMenu menuWindow = new GenericMenu();
@@ -249,7 +250,7 @@ public class DialogEditor : EditorWindow
                     }
                     else
                     {
-                        foreach(DialogPhraseNode node in nodes)
+                        foreach (DialogPhraseNode node in nodes)
                         {
                             if (node.windowRect.Contains(mousePos))
                             {
@@ -274,7 +275,7 @@ public class DialogEditor : EditorWindow
                                 break;
                             }
                         }
-                        foreach(DialogLinkNode link in links)
+                        foreach (DialogLinkNode link in links)
                         {
                             if (link.windowRect.Contains(mousePos))
                             {

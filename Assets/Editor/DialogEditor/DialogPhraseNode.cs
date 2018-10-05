@@ -28,7 +28,7 @@ public class DialogPhraseNode : ScriptableObject
 
     public void DrawWindow()
     {
-        phrase.nodePosition.height = 170;
+        phrase.nodePosition.height = 250;
 
         if (phrase.type== PhraseType.DIALOG_PHRASE)
         {
@@ -72,7 +72,7 @@ public class DialogPhraseNode : ScriptableObject
         }
         if(phrase.type != PhraseType.REPORT)
         {
-            phrase.phraseText = EditorGUILayout.TextArea(phrase.phraseText, new GUILayoutOption[] { GUILayout.Height(70), GUILayout.Width(250) });
+            phrase.phraseText = EditorGUILayout.TextArea(phrase.phraseText, new GUILayoutOption[] { GUILayout.Height(150), GUILayout.Width(250) });
         }
         else
         {
