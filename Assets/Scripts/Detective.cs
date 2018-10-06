@@ -155,6 +155,34 @@ namespace BadDetective
             }
         }
 
+        public void EquipeItem(Equipment equipment, bool flag)
+        {
+            if (flag)
+            {
+                items.Remove(equipment);
+                AddEquipment(equipment);
+            }
+            else
+            {
+                items.Add(equipment);
+                for (int i = 0; i < _equipments.Count; i++)
+                {
+                    if (_equipments[i].equipment == equipment)
+                    {
+                        _equipments[i].DetachEffects();
+                        Destroy(_equipments[i].gameObject);
+                        _equipments.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
+        }
+
+        public List<Item> GetItems()
+        {
+            return items;
+        }
+
         public List<EquipmentContainer> GetEquipment()
         {
             return _equipments;
@@ -734,6 +762,7 @@ namespace BadDetective
             EquipmentContainer equipment = goEquipment.AddComponent<EquipmentContainer>();
             equipment.equipment = newEquipment;
             equipment.owner = this;
+            equipment.AttachEffects();
             _equipments.Add(equipment);
         }
 

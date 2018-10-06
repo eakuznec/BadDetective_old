@@ -8,6 +8,7 @@ namespace BadDetective
     {
         public Equipment equipment;
         public Detective owner;
+        private bool attach;
 
         private void Start()
         {
@@ -31,17 +32,25 @@ namespace BadDetective
 
         public void AttachEffects()
         {
-            if (HaveTag(Tag.NULL))
+            if (!attach)
             {
-                equipment.trait.AttachEffects(owner);
+                if (HaveTag(Tag.NULL))
+                {
+                    equipment.trait.AttachEffects(owner);
+                }
+                attach = true;
             }
         }
 
         public void DetachEffects()
         {
-            if (HaveTag(Tag.NULL))
+            if (attach)
             {
-                equipment.trait.DetachEffects(owner);
+                if (HaveTag(Tag.NULL))
+                {
+                    equipment.trait.DetachEffects(owner);
+                }
+                attach = false;
             }
         }
 

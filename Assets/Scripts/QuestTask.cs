@@ -9,7 +9,6 @@ namespace BadDetective
         public string taskName;
         [TextArea]
         public string taskDescription;
-        public bool isMain;
         public MainState mainState;
         public bool showTask;
         private Team curTeam;

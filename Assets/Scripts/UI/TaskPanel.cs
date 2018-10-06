@@ -27,16 +27,8 @@ namespace BadDetective.UI
             {
                 _task = value;
                 taskLabel.text = _task.taskName;
-                if (_task.isMain)
-                {
-                    taskToggle.isOn = true;
-                    taskToggle.interactable = false;
-                }
-                else
-                {
                     taskToggle.isOn = false;
                     taskToggle.interactable = true;
-                }
             }
 
         }
