@@ -21,6 +21,7 @@ namespace BadDetective.UI
         [Header("Rollovers")]
         public DetectiveRollover detectiveRollover;
         public ActivitiesRollover activitiesRollover;
+        public ItemRollover itemRollover;
         [Header("Sprites")]
         public Sprite officePictogram;
         public Sprite homePictogram;

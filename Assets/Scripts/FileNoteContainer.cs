@@ -38,6 +38,7 @@ namespace BadDetective
         {
             string result = note.note;
             result = result.Replace(@"<DateTime>", recordTime.ToString());
+            result = result.Replace(@"<AgencyName>", Agency.GetInstantiate().agencyName);
             if (word!="" && word!=null)
             {
                 result = result.Replace(@"<key>", word);

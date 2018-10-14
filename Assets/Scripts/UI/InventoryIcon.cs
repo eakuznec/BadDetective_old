@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace BadDetective.UI
 {
     [RequireComponent(typeof(Image))]
-    public class InventoryIcon : MonoBehaviour, iMouseoverUI
+    public class InventoryIcon : MonoBehaviour, iMouseoverUI, iRolloverOwner
     {
         public Item item;
         [SerializeField] private Sprite blockedSlot;
@@ -23,12 +23,20 @@ namespace BadDetective.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-
+            //ControlManager.GetInstantiate().mouseover = this;
+            if (item!=null)
+            {
+                InterfaceManager.GetInstantiate().itemRollover.Show(this);
+            }
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-
+            //if (ControlManager.GetInstantiate().mouseover == this)
+            //{
+            //    ControlManager.GetInstantiate().mouseover = null;
+            //}
+            InterfaceManager.GetInstantiate().itemRollover.Hide();
         }
 
         public void Redraw(Item item, bool equipe=false, bool block = false)
@@ -74,6 +82,11 @@ namespace BadDetective.UI
             Detective detective = interfaceManager.detectiveFile.GetDetective();
             detective.EquipeItem((Equipment)item, !isEquiped);
             interfaceManager.detectiveFile.SetInventory();
+        }
+
+        public RectTransform GetRectTransform()
+        {
+            return GetComponent<RectTransform>();
         }
     }
 }

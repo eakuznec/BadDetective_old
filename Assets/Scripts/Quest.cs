@@ -22,6 +22,7 @@ namespace BadDetective
         public QuestType type;
         public MainState mainState;
         public LogicMap.LogicMap startLogicMap;
+        public LogicMap.LogicMap endLogicMap;
         public List<LogicMap.LogicMap> logicMaps = new List<LogicMap.LogicMap>();
         public List<Dialog.Dialog> dialogs = new List<Dialog.Dialog>();
         public List<QuestState> questStates = new List<QuestState>();

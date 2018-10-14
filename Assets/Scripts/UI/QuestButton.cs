@@ -12,6 +12,8 @@ namespace BadDetective.UI
         private Text questName;
         [SerializeField]
         private Text questState;
+        [SerializeField] private Button endQuestButton;
+        [SerializeField] private Button fileButton;
 
         public void SetQuest(Quest quest)
         {
@@ -34,7 +36,11 @@ namespace BadDetective.UI
             {
                 questState.color = Color.red;
             }
-            GetComponent<Button>().onClick.AddListener(ShowQuest);
+            fileButton.onClick.RemoveAllListeners();
+            fileButton.onClick.AddListener(ShowQuest);
+
+            endQuestButton.onClick.RemoveAllListeners();
+            endQuestButton.onClick.AddListener(delegate { quest.endLogicMap.RealizeLogicMap(quest, null); });
         }
 
         private void ShowQuest()
@@ -42,5 +48,7 @@ namespace BadDetective.UI
             InterfaceManager interfaceManager = InterfaceManager.GetInstantiate();
             interfaceManager.questFile.Open(quest);
         }
+
+
     }
 }

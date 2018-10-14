@@ -459,6 +459,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1085220312083622
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4463582303518442}
+  - component: {fileID: 114761288662345840}
+  m_Layer: 0
+  m_Name: Choose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1093829459382676
 GameObject:
   m_ObjectHideFlags: 1
@@ -2138,6 +2154,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1463791101571542
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4004991188319572}
+  - component: {fileID: 114762874641295956}
+  m_Layer: 0
+  m_Name: Choose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1470620610527264
 GameObject:
   m_ObjectHideFlags: 1
@@ -2313,22 +2345,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1536315176396606
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4578250529668404}
-  - component: {fileID: 114309984201213286}
-  m_Layer: 0
-  m_Name: Choose
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1537038269107888
 GameObject:
   m_ObjectHideFlags: 1
@@ -2372,22 +2388,6 @@ GameObject:
   - component: {fileID: 114204645574557402}
   m_Layer: 0
   m_Name: Choose
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1539151870735624
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4414095122980352}
-  - component: {fileID: 114720482780831766}
-  m_Layer: 0
-  m_Name: _DialogPhrase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2729,22 +2729,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1630988926372334
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4549337534900102}
-  - component: {fileID: 114060323389358760}
-  m_Layer: 0
-  m_Name: Link
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1631887622768414
 GameObject:
   m_ObjectHideFlags: 1
@@ -2756,6 +2740,22 @@ GameObject:
   - component: {fileID: 114471254973421948}
   m_Layer: 0
   m_Name: Condition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1645617393594654
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4407890140844608}
+  - component: {fileID: 114294765491347988}
+  m_Layer: 0
+  m_Name: Link
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2985,6 +2985,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1721374898078354
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4331443406342270}
+  - component: {fileID: 114600675573561364}
+  m_Layer: 0
+  m_Name: Choose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1730743214206278
 GameObject:
   m_ObjectHideFlags: 1
@@ -3204,6 +3220,22 @@ GameObject:
   - component: {fileID: 114229643816438944}
   m_Layer: 0
   m_Name: Link
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1773566435415820
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4535396824706260}
+  - component: {fileID: 114989864152973142}
+  m_Layer: 0
+  m_Name: Choose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3476,6 +3508,22 @@ GameObject:
   - component: {fileID: 114011320047121674}
   m_Layer: 0
   m_Name: _DialogPhrase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1873370016130778
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4180012312952532}
+  - component: {fileID: 114367159977455150}
+  m_Layer: 0
+  m_Name: Choose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3897,22 +3945,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1979330762330776
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4816618710059314}
-  - component: {fileID: 114801275697828408}
-  m_Layer: 0
-  m_Name: Link
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1980458641258900
 GameObject:
   m_ObjectHideFlags: 1
@@ -4019,6 +4051,19 @@ Transform:
   m_Father: {fileID: 4773026774099128}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4004991188319572
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463791101571542}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4271104324359238}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4017552286692654
 Transform:
   m_ObjectHideFlags: 1
@@ -4044,7 +4089,7 @@ Transform:
   m_Children:
   - {fileID: 4868801930552026}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 37
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4024217545181868
 Transform:
@@ -4168,7 +4213,7 @@ Transform:
   - {fileID: 4067937823557738}
   - {fileID: 4727502315026586}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 40
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4058173424267988
 Transform:
@@ -4182,7 +4227,7 @@ Transform:
   m_Children:
   - {fileID: 4167583540881706}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 42
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4059311525744230
 Transform:
@@ -4196,7 +4241,7 @@ Transform:
   m_Children:
   - {fileID: 4664673532757046}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 44
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4061961377883240
 Transform:
@@ -4266,7 +4311,7 @@ Transform:
   m_Children:
   - {fileID: 4809661965535976}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 59
+  m_RootOrder: 58
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4081132514070316
 Transform:
@@ -4277,9 +4322,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4331443406342270}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 64
+  m_RootOrder: 63
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4081186510465272
 Transform:
@@ -4391,7 +4437,7 @@ Transform:
   - {fileID: 4039498471341750}
   - {fileID: 4883228919352788}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4106766950607182
 Transform:
@@ -4432,7 +4478,7 @@ Transform:
   m_Children:
   - {fileID: 4152797447999518}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4115915891741836
 Transform:
@@ -4474,7 +4520,7 @@ Transform:
   - {fileID: 4081186510465272}
   - {fileID: 4090124931617346}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 58
+  m_RootOrder: 57
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4132319610839294
 Transform:
@@ -4515,7 +4561,7 @@ Transform:
   m_Children:
   - {fileID: 4484412588849862}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 30
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4145898230214044
 Transform:
@@ -4533,7 +4579,7 @@ Transform:
   - {fileID: 4032322272856716}
   - {fileID: 4816365267494634}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 60
+  m_RootOrder: 59
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4147375668903540
 Transform:
@@ -4573,7 +4619,7 @@ Transform:
   m_Children:
   - {fileID: 4231756971888102}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4152797447999518
 Transform:
@@ -4601,7 +4647,7 @@ Transform:
   m_Children:
   - {fileID: 4593496324390890}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 39
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4167583540881706
 Transform:
@@ -4670,7 +4716,7 @@ Transform:
   m_Children:
   - {fileID: 4170984292674222}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4178389273439832
 Transform:
@@ -4696,6 +4742,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4039498471341750}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4180012312952532
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873370016130778}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4488226509424904}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4182676588531994
@@ -4735,9 +4794,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4535396824706260}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 65
+  m_RootOrder: 64
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4192327195891776
 Transform:
@@ -4765,7 +4825,7 @@ Transform:
   m_Children:
   - {fileID: 4613572620731670}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 29
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4196157232666574
 Transform:
@@ -4779,7 +4839,7 @@ Transform:
   m_Children:
   - {fileID: 4709859210020594}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 36
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4197942151674468
 Transform:
@@ -4890,7 +4950,7 @@ Transform:
   m_Children:
   - {fileID: 4535927607441544}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 53
+  m_RootOrder: 52
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4212029538392142
 Transform:
@@ -4905,7 +4965,7 @@ Transform:
   - {fileID: 4190533313858896}
   - {fileID: 4207182445120252}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4218434482332064
 Transform:
@@ -4919,7 +4979,7 @@ Transform:
   m_Children:
   - {fileID: 4055222790635594}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 57
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4219308180827898
 Transform:
@@ -4930,9 +4990,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4463582303518442}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 62
+  m_RootOrder: 61
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4231756971888102
 Transform:
@@ -5066,9 +5127,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4004991188319572}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 63
+  m_RootOrder: 62
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4278266609217950
 Transform:
@@ -5082,7 +5144,7 @@ Transform:
   m_Children:
   - {fileID: 4957679295486914}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4278678448952440
 Transform:
@@ -5166,7 +5228,7 @@ Transform:
   - {fileID: 4237757113461770}
   - {fileID: 4661932596164416}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4303903954614808
 Transform:
@@ -5197,7 +5259,7 @@ Transform:
   - {fileID: 4442563354078870}
   - {fileID: 4061961377883240}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4309097306822388
 Transform:
@@ -5252,6 +5314,19 @@ Transform:
   m_Father: {fileID: 4145898230214044}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4331443406342270
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1721374898078354}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4081132514070316}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4334989009336446
 Transform:
   m_ObjectHideFlags: 1
@@ -5264,7 +5339,7 @@ Transform:
   m_Children:
   - {fileID: 4363130237497394}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 52
+  m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4345533248851204
 Transform:
@@ -5292,7 +5367,7 @@ Transform:
   m_Children:
   - {fileID: 4297405499488662}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4354726480913512
 Transform:
@@ -5386,7 +5461,7 @@ Transform:
   m_Children:
   - {fileID: 4208859589176428}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 32
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4389087857055158
 Transform:
@@ -5443,7 +5518,7 @@ Transform:
   - {fileID: 4884194551591914}
   - {fileID: 4951092682532064}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4393572726879656
 Transform:
@@ -5483,21 +5558,20 @@ Transform:
   m_Children:
   - {fileID: 4916187741228374}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4414095122980352
+--- !u!4 &4407890140844608
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1539151870735624}
+  m_GameObject: {fileID: 1645617393594654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4578250529668404}
-  m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 2
+  m_Children: []
+  m_Father: {fileID: 4754183257122434}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4417222913627976
 Transform:
@@ -5551,7 +5625,7 @@ Transform:
   m_Children:
   - {fileID: 4591359946252054}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4438953207949984
 Transform:
@@ -5645,7 +5719,7 @@ Transform:
   m_Children:
   - {fileID: 4582176293462376}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4461311873864374
 Transform:
@@ -5660,6 +5734,19 @@ Transform:
   m_Father: {fileID: 4864002903804062}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4463582303518442
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1085220312083622}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4219308180827898}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4467944427965222
 Transform:
   m_ObjectHideFlags: 1
@@ -5672,7 +5759,7 @@ Transform:
   m_Children:
   - {fileID: 4095306847220786}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 45
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4468220593995752
 Transform:
@@ -5687,7 +5774,7 @@ Transform:
   - {fileID: 4389934086794116}
   - {fileID: 4685317198884232}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 56
+  m_RootOrder: 55
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4478722964197874
 Transform:
@@ -5701,7 +5788,7 @@ Transform:
   m_Children:
   - {fileID: 4025736626346320}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4484025937227694
 Transform:
@@ -5739,9 +5826,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4180012312952532}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 61
+  m_RootOrder: 60
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4488768810152626
 Transform:
@@ -5782,7 +5870,7 @@ Transform:
   m_Children:
   - {fileID: 4948734308804154}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4493063557541322
 Transform:
@@ -5796,7 +5884,7 @@ Transform:
   m_Children:
   - {fileID: 4303903954614808}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4493706476877872
 Transform:
@@ -5904,7 +5992,7 @@ Transform:
   m_Children:
   - {fileID: 4192327195891776}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 38
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4533930406430448
 Transform:
@@ -5919,6 +6007,19 @@ Transform:
   - {fileID: 4740326475804938}
   m_Father: {fileID: 4886843432665766}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4535396824706260
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773566435415820}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4191069363707692}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4535927607441544
 Transform:
@@ -5959,7 +6060,7 @@ Transform:
   m_Children:
   - {fileID: 4491858360988766}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4548909765519748
 Transform:
@@ -5973,33 +6074,6 @@ Transform:
   m_Children:
   - {fileID: 4660956280766654}
   m_Father: {fileID: 4584569133221568}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4549337534900102
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1630988926372334}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4578250529668404}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4578250529668404
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1536315176396606}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4549337534900102}
-  m_Father: {fileID: 4414095122980352}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4582171487603088
@@ -6041,7 +6115,7 @@ Transform:
   m_Children:
   - {fileID: 4548909765519748}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 46
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4591359946252054
 Transform:
@@ -6150,7 +6224,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4612998578021622
 Transform:
@@ -6193,7 +6267,7 @@ Transform:
   - {fileID: 4599004425767784}
   - {fileID: 4687954474640238}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 54
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4618470884261864
 Transform:
@@ -6207,7 +6281,7 @@ Transform:
   m_Children:
   - {fileID: 4638819962984550}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 55
+  m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4618722028904966
 Transform:
@@ -6247,7 +6321,7 @@ Transform:
   m_Children:
   - {fileID: 4892616335079192}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4623634425267506
 Transform:
@@ -6315,7 +6389,6 @@ Transform:
   m_Children:
   - {fileID: 4210146666364740}
   - {fileID: 4290450472448202}
-  - {fileID: 4414095122980352}
   - {fileID: 4723723684984068}
   - {fileID: 4177288957155486}
   - {fileID: 4150231753533504}
@@ -6476,7 +6549,7 @@ Transform:
   m_Children:
   - {fileID: 4093004406590694}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 41
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4682378741620234
 Transform:
@@ -6490,7 +6563,7 @@ Transform:
   m_Children:
   - {fileID: 4514490166971544}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 35
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4684033169550574
 Transform:
@@ -6504,7 +6577,7 @@ Transform:
   m_Children:
   - {fileID: 4779205241559640}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 49
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4685317198884232
 Transform:
@@ -6666,7 +6739,7 @@ Transform:
   m_Children:
   - {fileID: 4603053631088774}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4727502315026586
 Transform:
@@ -6698,7 +6771,7 @@ Transform:
   - {fileID: 4267781798991492}
   - {fileID: 4894803189299532}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4735955431742936
 Transform:
@@ -6763,7 +6836,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4816618710059314}
+  - {fileID: 4407890140844608}
   m_Father: {fileID: 4290450472448202}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6779,7 +6852,7 @@ Transform:
   m_Children:
   - {fileID: 4676035219820622}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4766830312902724
 Transform:
@@ -6793,7 +6866,7 @@ Transform:
   m_Children:
   - {fileID: 4239991988512908}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 51
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4767141150498570
 Transform:
@@ -6823,7 +6896,7 @@ Transform:
   - {fileID: 4145522026505496}
   - {fileID: 4792932807828934}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 48
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4772389263722670
 Transform:
@@ -6905,7 +6978,7 @@ Transform:
   m_Children:
   - {fileID: 4703961771502658}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 47
+  m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4786807160422400
 Transform:
@@ -6919,7 +6992,7 @@ Transform:
   m_Children:
   - {fileID: 4809896817289896}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 33
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4789764249722394
 Transform:
@@ -6933,7 +7006,7 @@ Transform:
   m_Children:
   - {fileID: 4170346954396920}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4791550707919836
 Transform:
@@ -6973,7 +7046,7 @@ Transform:
   m_Children:
   - {fileID: 4704555213200874}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4809661965535976
 Transform:
@@ -7042,19 +7115,6 @@ Transform:
   m_Father: {fileID: 4145898230214044}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4816618710059314
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1979330762330776}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4754183257122434}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4816951429637912
 Transform:
   m_ObjectHideFlags: 1
@@ -7081,7 +7141,7 @@ Transform:
   - {fileID: 4345533248851204}
   - {fileID: 4071411789295764}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 34
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4861441419818198
 Transform:
@@ -7095,7 +7155,7 @@ Transform:
   m_Children:
   - {fileID: 4182676588531994}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4864002903804062
 Transform:
@@ -7111,7 +7171,7 @@ Transform:
   - {fileID: 4439855367499438}
   - {fileID: 4461311873864374}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 43
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4864844682773880
 Transform:
@@ -7221,7 +7281,7 @@ Transform:
   - {fileID: 4752268667879062}
   - {fileID: 4533930406430448}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4889751086698738
 Transform:
@@ -7423,7 +7483,7 @@ Transform:
   m_Children:
   - {fileID: 4278683620060490}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 31
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4983522892098950
 Transform:
@@ -7463,7 +7523,7 @@ Transform:
   m_Children:
   - {fileID: 4047104847038606}
   m_Father: {fileID: 4652337003066686}
-  m_RootOrder: 50
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4999931126070014
 Transform:
@@ -7531,8 +7591,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -1803
-    y: 1077
+    x: 5007
+    y: 1094
     width: 400
     height: 250
 --- !u!114 &114017870839941254
@@ -7624,8 +7684,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -256
-    y: 353
+    x: 6554
+    y: 370
     width: 400
     height: 250
 --- !u!114 &114039120032885436
@@ -7644,8 +7704,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -2312
-    y: 2407
+    x: 4498
+    y: 2424
     width: 20
     height: 20
 --- !u!114 &114039863996558898
@@ -7727,8 +7787,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 600
-    y: 1244
+    x: 7410
+    y: 1261
     width: 400
     height: 250
 --- !u!114 &114052213052893994
@@ -7747,8 +7807,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -876
-    y: 1983
+    x: 5934
+    y: 2000
     width: 20
     height: 20
 --- !u!114 &114054729971163490
@@ -7767,8 +7827,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 522
-    y: 1344
+    x: 7332
+    y: 1361
     width: 20
     height: 20
 --- !u!114 &114055726848638366
@@ -7797,26 +7857,6 @@ MonoBehaviour:
     height: 100
   isOnce: 0
   realized: 0
---- !u!114 &114060323389358760
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1630988926372334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64f257119cf6d874bb9ecf01600992d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: {fileID: 114309984201213286}
-  output: {fileID: 114186622145561764}
-  conditions: []
-  nodePosition:
-    serializedVersion: 2
-    x: -6375
-    y: 111
-    width: 20
-    height: 20
 --- !u!114 &114062209452485368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7859,8 +7899,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 655
-    y: 964
+    x: 7465
+    y: 715.6667
     width: 20
     height: 20
 --- !u!114 &114074896814355664
@@ -7889,8 +7929,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -5724
-    y: 164
+    x: 1086
+    y: 181
     width: 400
     height: 250
 --- !u!114 &114084313417559056
@@ -7909,8 +7949,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1818
-    y: 1925.5
+    x: 4992
+    y: 1942.5
     width: 20
     height: 20
 --- !u!114 &114097963937838542
@@ -7966,8 +8006,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -5721
-    y: -117
+    x: 1089
+    y: -100
     width: 400
     height: 250
 --- !u!114 &114100977373760588
@@ -8058,8 +8098,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 598
-    y: 2088
+    x: 7408
+    y: 2105
     width: 400
     height: 250
 --- !u!114 &114102849600365556
@@ -8100,8 +8140,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -2712
-    y: 2292
+    x: 4098
+    y: 2309
     width: 400
     height: 250
 --- !u!114 &114103568535656370
@@ -8120,8 +8160,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 708
-    y: -89
+    x: 7518
+    y: -404
     width: 20
     height: 20
 --- !u!114 &114107304221981144
@@ -8140,8 +8180,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -914
-    y: 2762.3333
+    x: 5896
+    y: 2779.3333
     width: 20
     height: 20
 --- !u!114 &114112602643873716
@@ -8175,8 +8215,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 2659
-    y: 1175
+    x: 9469
+    y: 1192
     width: 400
     height: 250
 --- !u!114 &114115765941417898
@@ -8245,8 +8285,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -914
-    y: 2845.6667
+    x: 5896
+    y: 2862.6667
     width: 20
     height: 20
 --- !u!114 &114122808017650934
@@ -8275,7 +8315,7 @@ MonoBehaviour:
     width: 400
     height: 100
   isOnce: 0
-  realized: 0
+  realized: 1
 --- !u!114 &114123678625223450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8292,8 +8332,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 513
-    y: 2601
+    x: 7323
+    y: 2618
     width: 20
     height: 20
 --- !u!114 &114123726544562438
@@ -8312,8 +8352,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -2502
-    y: 1373.3334
+    x: 4308
+    y: 1390.3334
     width: 20
     height: 20
 --- !u!114 &114125142355141446
@@ -8357,8 +8397,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 2053
-    y: 1468.5
+    x: 8863
+    y: 1485.5
     width: 20
     height: 20
 --- !u!114 &114129828891359184
@@ -8387,8 +8427,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 1479
-    y: 913
+    x: 8289
+    y: 930
     width: 400
     height: 250
 --- !u!114 &114138806822543812
@@ -8415,7 +8455,7 @@ MonoBehaviour:
     width: 400
     height: 100
   isOnce: 0
-  realized: 0
+  realized: 1
 --- !u!114 &114145005737096484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8447,8 +8487,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 1237
-    y: 2000
+    x: 8047
+    y: 2017
     width: 400
     height: 250
 --- !u!114 &114146975566004284
@@ -8475,8 +8515,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -2990
-    y: 841
+    x: 3820
+    y: 858
     width: 400
     height: 250
 --- !u!114 &114150908171407338
@@ -8528,7 +8568,7 @@ MonoBehaviour:
     width: 400
     height: 70
   isOnce: 0
-  realized: 0
+  realized: 1
 --- !u!114 &114153514447175252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8545,8 +8585,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 2053
-    y: 1343.5
+    x: 8863
+    y: 1360.5
     width: 20
     height: 20
 --- !u!114 &114154502619060952
@@ -8565,8 +8605,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -3103
-    y: 1214
+    x: 3707
+    y: 1231
     width: 20
     height: 20
 --- !u!114 &114172140803167740
@@ -8602,8 +8642,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 594
-    y: 1436
+    x: 7404
+    y: 1453
     width: 400
     height: 250
 --- !u!114 &114173177289919550
@@ -8629,8 +8669,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -4150
-    y: 631
+    x: 2660
+    y: 648
     width: 400
     height: 250
 --- !u!114 &114183945473153774
@@ -8664,12 +8704,13 @@ MonoBehaviour:
     \u043A\u043E\u043D\u0442\u043E\u0440\u044B. \u0422\u0430\u043C \u0435\u0441\u0442\u044C
     \u0440\u044F\u0434 \u043D\u044E\u0430\u043D\u0441\u043E\u0432. \u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0439
     \u043C\u043E\u0435 \u043B\u0438\u0447\u043D\u043E\u0435 \u0434\u0435\u043B\u043E."
-  chooses: []
+  chooses:
+  - {fileID: 114989864152973142}
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -263
-    y: 664
+    x: 6547
+    y: 681
     width: 400
     height: 250
 --- !u!114 &114186622145561764
@@ -8686,12 +8727,17 @@ MonoBehaviour:
   type: 0
   speekerType: 1
   speeker: {fileID: 114013134622827056, guid: d83288d6a52519e4a9e930a420ce8775, type: 2}
-  phraseText: "\u0420\u0435\u0434\u043A\u0438\u0439 \u0448\u0430\u043D\u0441 \u0432
-    \u0421\u0442\u043E\u043B\u0438\u0446\u0435, \u0445\u043E\u0447\u0443 \u0437\u0430\u043C\u0435\u0442\u0438\u0442\u044C.
-    \u0418 \u0445\u043E\u0440\u043E\u0448\u0438\u0439 \u0441\u043F\u043E\u0441\u043E\u0431
-    \u0432\u0441\u0442\u0430\u0442\u044C \u043D\u0430 \u043D\u043E\u0433\u0438. \u042D\u0442\u043E
-    \u043D\u0435 \u043C\u0435\u0442\u0430\u0444\u043E\u0440\u0430, \u0435\u0441\u043B\u0438
-    \u0447\u0442\u043E."
+  phraseText: "\u0412\u0441\u0435 \u0431\u0443\u043C\u0430\u0433\u0438 \u043F\u043E\u0434\u043F\u0438\u0441\u0430\u043D\u044B,
+    \u043D\u0430\u0441\u043B\u0435\u0434\u0441\u0442\u0432\u043E - \u0432 \u0442\u0432\u043E\u0435\u043C
+    \u0440\u0430\u0441\u043F\u043E\u0440\u044F\u0436\u0435\u043D\u0438\u0438. \u041A\u043E\u043D\u0442\u043E\u0440\u0430
+    \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E \u0442\u0432\u043E\u044F,
+    \u0432\u043C\u0435\u0441\u0442\u0435 \u0441 \u0441\u043E\u0442\u0440\u0443\u0434\u043D\u0438\u043A\u0430\u043C\u0438,
+    \u0434\u043E\u043B\u0433\u0430\u043C\u0438 \u0438 \u043F\u043E\u043C\u0435\u0449\u0435\u043D\u0438\u0435\u043C.\n\n\u0420\u0435\u0434\u043A\u0438\u0439
+    \u0448\u0430\u043D\u0441 \u0432 \u0421\u0442\u043E\u043B\u0438\u0446\u0435, \u0445\u043E\u0447\u0443
+    \u0437\u0430\u043C\u0435\u0442\u0438\u0442\u044C. \u0418 \u0445\u043E\u0440\u043E\u0448\u0438\u0439
+    \u0441\u043F\u043E\u0441\u043E\u0431 \u0432\u0441\u0442\u0430\u0442\u044C \u043D\u0430
+    \u043D\u043E\u0433\u0438. \u042D\u0442\u043E \u043D\u0435 \u043C\u0435\u0442\u0430\u0444\u043E\u0440\u0430,
+    \u0435\u0441\u043B\u0438 \u0447\u0442\u043E."
   chooses:
   - {fileID: 114934334678981826}
   - {fileID: 114677177925473344}
@@ -8700,10 +8746,10 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -6229
-    y: 20
+    x: 581
+    y: 37
     width: 400
-    height: 250
+    height: 674
 --- !u!114 &114187553954946176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8737,8 +8783,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 106
-    y: 2077
+    x: 6916
+    y: 2094
     width: 400
     height: 250
 --- !u!114 &114191196535299324
@@ -8784,13 +8830,13 @@ MonoBehaviour:
   conditions: []
   effects: []
   links:
-  - {fileID: 114801275697828408}
+  - {fileID: 114294765491347988}
   nodePosition:
     serializedVersion: 2
-    x: -2458
-    y: 17
+    x: -143
+    y: 432
     width: 400
-    height: 70
+    height: 100
   isOnce: 0
   realized: 1
 --- !u!114 &114193252229545056
@@ -8809,8 +8855,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 1879
-    y: 1028
+    x: 8689
+    y: 1045
     width: 20
     height: 20
 --- !u!114 &114197598613466012
@@ -8843,8 +8889,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -1276
-    y: 1868
+    x: 5534
+    y: 1885
     width: 400
     height: 250
 --- !u!114 &114199755623009736
@@ -8863,8 +8909,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 1534
-    y: 465.33334
+    x: 8344
+    y: 482.33334
     width: 20
     height: 20
 --- !u!114 &114204528011441940
@@ -8933,8 +8979,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -920
-    y: 1068
+    x: 5890
+    y: 1085
     width: 20
     height: 20
 --- !u!114 &114213552723257922
@@ -8953,8 +8999,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 2015
-    y: 460
+    x: 8825
+    y: 477
     width: 20
     height: 20
 --- !u!114 &114216618481417766
@@ -8973,8 +9019,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 1534
-    y: 548.6667
+    x: 8344
+    y: 565.6667
     width: 20
     height: 20
 --- !u!114 &114217557992616266
@@ -9019,8 +9065,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -5324
-    y: 279
+    x: 1486
+    y: 296
     width: 20
     height: 20
 --- !u!114 &114222605389680368
@@ -9051,8 +9097,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -4695
-    y: 237
+    x: 2115
+    y: 254
     width: 400
     height: 250
 --- !u!114 &114224938208687508
@@ -9071,8 +9117,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1389
-    y: 2877
+    x: 5421
+    y: 2894
     width: 20
     height: 20
 --- !u!114 &114226602736222950
@@ -9091,8 +9137,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 144
-    y: 468
+    x: 6954
+    y: 485
     width: 20
     height: 20
 --- !u!114 &114227113363083926
@@ -9121,8 +9167,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -2902
-    y: 1300
+    x: 3908
+    y: 1317
     width: 400
     height: 250
 --- !u!114 &114229407948739366
@@ -9154,8 +9200,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 1093
-    y: 1508
+    x: 7903
+    y: 1525
     width: 400
     height: 250
 --- !u!114 &114229643816438944
@@ -9174,8 +9220,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1981
-    y: 1123
+    x: 4829
+    y: 1140
     width: 20
     height: 20
 --- !u!114 &114232027260386046
@@ -9243,8 +9289,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 648
-    y: 2374
+    x: 7458
+    y: 2391
     width: 400
     height: 250
 --- !u!114 &114242761538849912
@@ -9263,8 +9309,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -4820
-    y: 339
+    x: 1990
+    y: 356
     width: 20
     height: 20
 --- !u!114 &114248087086120910
@@ -9311,8 +9357,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -876
-    y: 1693
+    x: 5934
+    y: 1710
     width: 20
     height: 20
 --- !u!114 &114250408523357942
@@ -9401,8 +9447,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -1789
-    y: 2762
+    x: 5021
+    y: 2779
     width: 400
     height: 250
 --- !u!114 &114276943064702148
@@ -9447,8 +9493,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -5322
-    y: 589
+    x: 1488
+    y: 606
     width: 20
     height: 20
 --- !u!114 &114294521401163764
@@ -9474,10 +9520,30 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 1653
-    y: 1291
+    x: 8463
+    y: 1308
     width: 400
     height: 250
+--- !u!114 &114294765491347988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1645617393594654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f257119cf6d874bb9ecf01600992d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 114192704809389660}
+  output: {fileID: 114186622145561764}
+  conditions: []
+  nodePosition:
+    serializedVersion: 2
+    x: 408
+    y: 151
+    width: 20
+    height: 20
 --- !u!114 &114297475837291700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9519,8 +9585,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 33
-    y: 1260
+    x: 6843
+    y: 1277
     width: 20
     height: 20
 --- !u!114 &114304887483334872
@@ -9552,35 +9618,10 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -418
-    y: 3108
+    x: 6392
+    y: 3125
     width: 400
     height: 250
---- !u!114 &114309984201213286
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1536315176396606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f3836f6757f9143baf8717efb51c16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  chooseText: 
-  conditions: []
-  effects: []
-  links:
-  - {fileID: 114060323389358760}
-  nodePosition:
-    serializedVersion: 2
-    x: -2030
-    y: -2
-    width: 400
-    height: 70
-  isOnce: 0
-  realized: 1
 --- !u!114 &114310761729598362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9597,8 +9638,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -296
-    y: 775
+    x: 6514
+    y: 485
     width: 20
     height: 20
 --- !u!114 &114313771156292776
@@ -9642,8 +9683,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -3336
-    y: 902
+    x: 3474
+    y: 919
     width: 20
     height: 20
 --- !u!114 &114326480793247204
@@ -9662,8 +9703,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -442
-    y: 2819
+    x: 6368
+    y: 2836
     width: 20
     height: 20
 --- !u!114 &114331471790527222
@@ -9682,8 +9723,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 2602
-    y: 1299
+    x: 9412
+    y: 1316
     width: 20
     height: 20
 --- !u!114 &114336373474553262
@@ -9782,8 +9823,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 694
-    y: 392
+    x: 7504
+    y: 409
     width: 400
     height: 250
 --- !u!114 &114341684917630158
@@ -9827,8 +9868,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 506
-    y: 2192
+    x: 7316
+    y: 2209
     width: 20
     height: 20
 --- !u!114 &114349231202394288
@@ -9847,8 +9888,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 1493
-    y: 1623
+    x: 8303
+    y: 1640
     width: 20
     height: 20
 --- !u!114 &114351941266834490
@@ -9867,8 +9908,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -5829
-    y: 197.5
+    x: 981
+    y: 559
     width: 20
     height: 20
 --- !u!114 &114357160872278152
@@ -9887,8 +9928,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -365
-    y: 1644.5
+    x: 6445
+    y: 1661.5
     width: 20
     height: 20
 --- !u!114 &114358888669965534
@@ -9943,8 +9984,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 1524
-    y: 1575
+    x: 8334
+    y: 1592
     width: 400
     height: 250
 --- !u!114 &114365975192346830
@@ -9963,10 +10004,34 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -296
-    y: 875
+    x: 6514
+    y: 547.5
     width: 20
     height: 20
+--- !u!114 &114367159977455150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873370016130778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f3836f6757f9143baf8717efb51c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  chooseText: 
+  conditions: []
+  effects: []
+  links: []
+  nodePosition:
+    serializedVersion: 2
+    x: 531
+    y: 481
+    width: 400
+    height: 100
+  isOnce: 0
+  realized: 0
 --- !u!114 &114373156119208602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10007,8 +10072,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -842
-    y: 2704
+    x: 5968
+    y: 2721
     width: 400
     height: 250
 --- !u!114 &114389329797245146
@@ -10027,8 +10092,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -4295
-    y: 414.5
+    x: 2515
+    y: 431.5
     width: 20
     height: 20
 --- !u!114 &114392825087309366
@@ -10047,8 +10112,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -2948
-    y: 407.33334
+    x: 3862
+    y: 424.33334
     width: 20
     height: 20
 --- !u!114 &114399611223180466
@@ -10077,8 +10142,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 1615
-    y: 345
+    x: 8425
+    y: 362
     width: 400
     height: 250
 --- !u!114 &114399880159811938
@@ -10128,8 +10193,8 @@ MonoBehaviour:
   - {fileID: 114351941266834490}
   nodePosition:
     serializedVersion: 2
-    x: -5705
-    y: -906
+    x: 581
+    y: 519
     width: 400
     height: 100
   isOnce: 0
@@ -10150,8 +10215,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 1094
-    y: 507
+    x: 7904
+    y: 524
     width: 20
     height: 20
 --- !u!114 &114411177687117202
@@ -10195,8 +10260,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -3758
-    y: 416
+    x: 3052
+    y: 433
     width: 20
     height: 20
 --- !u!114 &114413584249878098
@@ -10258,10 +10323,10 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 308
-    y: -511
+    x: 7118
+    y: -494
     width: 400
-    height: 774
+    height: 250
 --- !u!114 &114420027885800656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10303,8 +10368,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -5321
-    y: -2
+    x: 1489
+    y: 15
     width: 20
     height: 20
 --- !u!114 &114424590788723018
@@ -10323,8 +10388,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 990
-    y: 1871
+    x: 7800
+    y: 1888
     width: 20
     height: 20
 --- !u!114 &114424687958959172
@@ -10405,8 +10470,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -4158
-    y: 301
+    x: 2652
+    y: 318
     width: 400
     height: 250
 --- !u!114 &114440739868474904
@@ -10425,8 +10490,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -5829
-    y: 135
+    x: 981
+    y: 459
     width: 20
     height: 20
 --- !u!114 &114444293376222026
@@ -10448,8 +10513,8 @@ MonoBehaviour:
   - {fileID: 114310761729598362}
   nodePosition:
     serializedVersion: 2
-    x: -696
-    y: 735
+    x: 106
+    y: 412
     width: 400
     height: 100
   isOnce: 0
@@ -10495,8 +10560,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 994
-    y: 1551
+    x: 7804
+    y: 1568
     width: 20
     height: 20
 --- !u!114 &114453557629710424
@@ -10535,8 +10600,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 113
-    y: 2486
+    x: 6923
+    y: 2503
     width: 400
     height: 250
 --- !u!114 &114454646056479272
@@ -10608,8 +10673,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -1777
-    y: 2313
+    x: 5033
+    y: 2330
     width: 400
     height: 250
 --- !u!114 &114456302957759272
@@ -10634,10 +10699,10 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 255
-    y: 542
+    x: 7065
+    y: 559
     width: 400
-    height: 474
+    height: 250
 --- !u!114 &114461121706782624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10679,8 +10744,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1981
-    y: 1223
+    x: 4829
+    y: 1240
     width: 20
     height: 20
 --- !u!114 &114466598032431082
@@ -10706,8 +10771,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -3736
-    y: 787
+    x: 3074
+    y: 804
     width: 400
     height: 250
 --- !u!114 &114467605865267580
@@ -10747,8 +10812,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -858
-    y: 3108
+    x: 5952
+    y: 3125
     width: 400
     height: 250
 --- !u!114 &114469090803781724
@@ -10793,7 +10858,6 @@ MonoBehaviour:
   phrases:
   - {fileID: 114186622145561764}
   - {fileID: 114533187417561060}
-  - {fileID: 114720482780831766}
   - {fileID: 114100426819490000}
   - {fileID: 114074896814355664}
   - {fileID: 114576826325298250}
@@ -10909,8 +10973,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1818
-    y: 1988
+    x: 4992
+    y: 2005
     width: 20
     height: 20
 --- !u!114 &114480471104785228
@@ -10942,8 +11006,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -3348
-    y: 334
+    x: 3462
+    y: 351
     width: 400
     height: 250
 --- !u!114 &114481799413403010
@@ -10962,8 +11026,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 708
-    y: 11
+    x: 7518
+    y: -354
     width: 20
     height: 20
 --- !u!114 &114483636650516856
@@ -10982,8 +11046,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 1637
-    y: 2115
+    x: 8447
+    y: 2132
     width: 20
     height: 20
 --- !u!114 &114487017087851160
@@ -11002,8 +11066,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -4295
-    y: 289.5
+    x: 2515
+    y: 306.5
     width: 20
     height: 20
 --- !u!114 &114492159105639704
@@ -11058,12 +11122,13 @@ MonoBehaviour:
     \u0412\u043F\u0440\u043E\u0447\u0435\u043C, \u044D\u0442\u043E \u043D\u0435 \u0437\u043D\u0430\u0447\u0438\u0442,
     \u0447\u0442\u043E \u043E\u043D\u0430 \u0434\u043E\u043B\u0436\u043D\u0430 \u043E\u0441\u0442\u0430\u0442\u044C\u0441\u044F
     \u043D\u0435\u043E\u0442\u043E\u043C\u0449\u0435\u043D\u043D\u043E\u0439."
-  chooses: []
+  chooses:
+  - {fileID: 114762874641295956}
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 749
-    y: -120
+    x: 7559
+    y: -103
     width: 400
     height: 250
 --- !u!114 &114493781012448426
@@ -11082,8 +11147,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1981
-    y: 1273
+    x: 4829
+    y: 1290
     width: 20
     height: 20
 --- !u!114 &114499359109512606
@@ -11127,8 +11192,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 708
-    y: -189
+    x: 7518
+    y: -454
     width: 20
     height: 20
 --- !u!114 &114505255198214018
@@ -11156,8 +11221,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 122
-    y: 1229
+    x: 6932
+    y: 1246
     width: 400
     height: 250
 --- !u!114 &114509039700537196
@@ -11176,8 +11241,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 655
-    y: 864
+    x: 7465
+    y: 632.3333
     width: 20
     height: 20
 --- !u!114 &114509393703628976
@@ -11196,8 +11261,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1403
-    y: 1233.6666
+    x: 5407
+    y: 1250.6666
     width: 20
     height: 20
 --- !u!114 &114520841182149352
@@ -11227,10 +11292,10 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -696
-    y: 353
+    x: 6114
+    y: 370
     width: 400
-    height: 574
+    height: 250
 --- !u!114 &114533187417561060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11255,8 +11320,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -7245
-    y: -8
+    x: 8
+    y: 36
     width: 400
     height: 250
 --- !u!114 &114534079847703060
@@ -11299,8 +11364,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -2221
-    y: 2589
+    x: 4589
+    y: 2606
     width: 400
     height: 250
 --- !u!114 &114536129531708240
@@ -11332,8 +11397,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -2381
-    y: 1083
+    x: 4429
+    y: 1100
     width: 400
     height: 250
 --- !u!114 &114542503873908974
@@ -11358,12 +11423,13 @@ MonoBehaviour:
     \u043A\u0442\u043E \u044D\u0442\u043E \u0441\u0434\u0435\u043B\u0430\u043B, \u0438
     \u0434\u0430\u0434\u0438\u043C \u0438\u043C... \u043F\u043E \u0437\u0430\u0441\u043B\u0443\u0433\u0430\u043C,
     \u0441\u043A\u0430\u0436\u0435\u043C."
-  chooses: []
+  chooses:
+  - {fileID: 114761288662345840}
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 747
-    y: -382
+    x: 7557
+    y: -365
     width: 400
     height: 250
 --- !u!114 &114543886012876338
@@ -11382,8 +11448,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -18
-    y: 3223
+    x: 6792
+    y: 3240
     width: 20
     height: 20
 --- !u!114 &114559230234010504
@@ -11427,8 +11493,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -2590
-    y: 956
+    x: 4220
+    y: 973
     width: 20
     height: 20
 --- !u!114 &114564845564314266
@@ -11447,8 +11513,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 1500
-    y: 1371
+    x: 8310
+    y: 1388
     width: 20
     height: 20
 --- !u!114 &114565289138187924
@@ -11467,8 +11533,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -4295
-    y: 352
+    x: 2515
+    y: 369
     width: 20
     height: 20
 --- !u!114 &114571486360629188
@@ -11502,8 +11568,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 2256
-    y: 1538
+    x: 9066
+    y: 1555
     width: 400
     height: 250
 --- !u!114 &114576826325298250
@@ -11532,8 +11598,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -5722
-    y: 474
+    x: 1088
+    y: 491
     width: 400
     height: 250
 --- !u!114 &114578479434513448
@@ -11552,8 +11618,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -458
-    y: 3223
+    x: 6352
+    y: 3240
     width: 20
     height: 20
 --- !u!114 &114579184920033498
@@ -11584,8 +11650,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 590
-    y: 1756
+    x: 7400
+    y: 1773
     width: 400
     height: 250
 --- !u!114 &114592698954238030
@@ -11630,8 +11696,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -365
-    y: 1769.5
+    x: 6445
+    y: 1786.5
     width: 20
     height: 20
 --- !u!114 &114595167667583396
@@ -11684,6 +11750,30 @@ MonoBehaviour:
     width: 400
     height: 100
   isOnce: 0
+  realized: 1
+--- !u!114 &114600675573561364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1721374898078354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f3836f6757f9143baf8717efb51c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  chooseText: 
+  conditions: []
+  effects: []
+  links: []
+  nodePosition:
+    serializedVersion: 2
+    x: 261
+    y: 491
+    width: 400
+    height: 100
+  isOnce: 0
   realized: 0
 --- !u!114 &114606520546006884
 MonoBehaviour:
@@ -11701,8 +11791,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -5829
-    y: 72.5
+    x: 981
+    y: 359
     width: 20
     height: 20
 --- !u!114 &114609059505563570
@@ -11721,8 +11811,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 2656
-    y: 1653
+    x: 9466
+    y: 1670
     width: 20
     height: 20
 --- !u!114 &114610435905837224
@@ -11761,8 +11851,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -367
-    y: 1145
+    x: 6443
+    y: 1162
     width: 400
     height: 250
 --- !u!114 &114612523979590498
@@ -11781,8 +11871,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1403
-    y: 1150.3334
+    x: 5407
+    y: 1167.3334
     width: 20
     height: 20
 --- !u!114 &114621414873499586
@@ -11809,8 +11899,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -3503
-    y: 1099
+    x: 3307
+    y: 1116
     width: 400
     height: 250
 --- !u!114 &114622819480769200
@@ -11845,8 +11935,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 1134
-    y: 392
+    x: 7944
+    y: 409
     width: 400
     height: 250
 --- !u!114 &114630000118672582
@@ -11873,7 +11963,7 @@ MonoBehaviour:
     width: 400
     height: 100
   isOnce: 0
-  realized: 0
+  realized: 1
 --- !u!114 &114641683690021832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11931,8 +12021,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 2682
-    y: 1540
+    x: 9492
+    y: 1557
     width: 400
     height: 250
 --- !u!114 &114648263869021708
@@ -11951,8 +12041,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 3059
-    y: 1290
+    x: 9869
+    y: 1307
     width: 20
     height: 20
 --- !u!114 &114650169506207404
@@ -12130,8 +12220,8 @@ MonoBehaviour:
   - {fileID: 114440739868474904}
   nodePosition:
     serializedVersion: 2
-    x: -5705
-    y: -1006
+    x: 581
+    y: 419
     width: 400
     height: 100
   isOnce: 0
@@ -12157,12 +12247,12 @@ MonoBehaviour:
   - {fileID: 114365975192346830}
   nodePosition:
     serializedVersion: 2
-    x: -696
-    y: 835
+    x: 106
+    y: 512
     width: 400
     height: 100
   isOnce: 0
-  realized: 0
+  realized: 1
 --- !u!114 &114684474575634860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12204,8 +12294,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1981
-    y: 1173
+    x: 4829
+    y: 1190
     width: 20
     height: 20
 --- !u!114 &114688696588348242
@@ -12237,8 +12327,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 1100
-    y: 1256
+    x: 7910
+    y: 1273
     width: 400
     height: 250
 --- !u!114 &114692896719772196
@@ -12257,8 +12347,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -296
-    y: 675
+    x: 6514
+    y: 422.5
     width: 20
     height: 20
 --- !u!114 &114708292946464008
@@ -12320,8 +12410,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 2202
-    y: 1184
+    x: 9012
+    y: 1201
     width: 400
     height: 250
 --- !u!114 &114713571248587828
@@ -12373,8 +12463,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -2218
-    y: 1873
+    x: 4592
+    y: 1890
     width: 400
     height: 250
 --- !u!114 &114719554392781822
@@ -12398,37 +12488,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -765
-    y: 1592
-    width: 400
-    height: 250
---- !u!114 &114720482780831766
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1539151870735624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4958de9aca165444f80f6e4b57ce0a24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  speekerType: 1
-  speeker: {fileID: 114013134622827056, guid: d83288d6a52519e4a9e930a420ce8775, type: 2}
-  phraseText: "\u0412\u0441\u0435 \u0431\u0443\u043C\u0430\u0433\u0438 \u043F\u043E\u0434\u043F\u0438\u0441\u0430\u043D\u044B,
-    \u043D\u0430\u0441\u043B\u0435\u0434\u0441\u0442\u0432\u043E - \u0432 \u0442\u0432\u043E\u0435\u043C
-    \u0440\u0430\u0441\u043F\u043E\u0440\u044F\u0436\u0435\u043D\u0438\u0438. \u041A\u043E\u043D\u0442\u043E\u0440\u0430
-    \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E \u0442\u0432\u043E\u044F,
-    \u0432\u043C\u0435\u0441\u0442\u0435 \u0441 \u0441\u043E\u0442\u0440\u0443\u0434\u043D\u0438\u043A\u0430\u043C\u0438,
-    \u0434\u043E\u043B\u0433\u0430\u043C\u0438 \u0438 \u043F\u043E\u043C\u0435\u0449\u0435\u043D\u0438\u0435\u043C."
-  chooses:
-  - {fileID: 114309984201213286}
-  effects: []
-  nodePosition:
-    serializedVersion: 2
-    x: -6775
-    y: -4
+    x: 6045
+    y: 1609
     width: 400
     height: 250
 --- !u!114 &114720696001722288
@@ -12447,8 +12508,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 2053
-    y: 1406
+    x: 8863
+    y: 1423
     width: 20
     height: 20
 --- !u!114 &114722010379407114
@@ -12473,8 +12534,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -1314
-    y: 2689
+    x: 5496
+    y: 2706
     width: 400
     height: 250
 --- !u!114 &114723138691050770
@@ -12493,8 +12554,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -2502
-    y: 1456.6666
+    x: 4308
+    y: 1473.6666
     width: 20
     height: 20
 --- !u!114 &114723646799631714
@@ -12513,8 +12574,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -3750
-    y: 746
+    x: 3060
+    y: 763
     width: 20
     height: 20
 --- !u!114 &114727349744999528
@@ -12543,8 +12604,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -5220
-    y: 224
+    x: 1590
+    y: 241
     width: 400
     height: 250
 --- !u!114 &114728499760651650
@@ -12559,16 +12620,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  chooseText: "\u0425\u043E\u0440\u043E\u0448\u043E. \u042F \u043C\u043E\u0433\u0443
-    \u0440\u0438\u0441\u043A\u043D\u0443\u0442\u044C. \u0427\u0442\u043E \u043D\u0443\u0436\u043D\u043E
-    \u0434\u0435\u043B\u0430\u0442\u044C?"
+  chooseText: "\u042F \u0443\u0436\u0435 \u0437\u043D\u0430\u044E \u0432\u0441\u0435,
+    \u0447\u0442\u043E \u043D\u0443\u0436\u043D\u043E. \u041F\u0440\u0438\u0441\u0442\u0443\u043F\u0438\u043C
+    \u043A \u0434\u0435\u043B\u0443."
   conditions: []
   effects: []
   links: []
   nodePosition:
     serializedVersion: 2
-    x: -5705
-    y: -806
+    x: 581
+    y: 619
     width: 400
     height: 100
   isOnce: 0
@@ -12589,8 +12650,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1821
-    y: 2704
+    x: 4989
+    y: 2721
     width: 20
     height: 20
 --- !u!114 &114738928594079004
@@ -12617,8 +12678,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -1320
-    y: 953
+    x: 5490
+    y: 970
     width: 400
     height: 250
 --- !u!114 &114761141458088720
@@ -12637,10 +12698,34 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 1000
-    y: 1359
+    x: 7810
+    y: 1376
     width: 20
     height: 20
+--- !u!114 &114761288662345840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1085220312083622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f3836f6757f9143baf8717efb51c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  chooseText: 
+  conditions: []
+  effects: []
+  links: []
+  nodePosition:
+    serializedVersion: 2
+    x: 516
+    y: 518
+    width: 400
+    height: 100
+  isOnce: 0
+  realized: 0
 --- !u!114 &114762508471583722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12657,10 +12742,34 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 3082
-    y: 1655
+    x: 9892
+    y: 1672
     width: 20
     height: 20
+--- !u!114 &114762874641295956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463791101571542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f3836f6757f9143baf8717efb51c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  chooseText: 
+  conditions: []
+  effects: []
+  links: []
+  nodePosition:
+    serializedVersion: 2
+    x: 517
+    y: 520
+    width: 400
+    height: 100
+  isOnce: 0
+  realized: 0
 --- !u!114 &114766173510160400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12733,8 +12842,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1377
-    y: 2428
+    x: 5433
+    y: 2445
     width: 20
     height: 20
 --- !u!114 &114769403824793426
@@ -12805,8 +12914,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -878
-    y: 2386
+    x: 5932
+    y: 2403
     width: 20
     height: 20
 --- !u!114 &114797372403039076
@@ -12855,8 +12964,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -2720
-    y: 1873
+    x: 4090
+    y: 1890
     width: 400
     height: 250
 --- !u!114 &114799998891494722
@@ -12885,26 +12994,6 @@ MonoBehaviour:
     height: 100
   isOnce: 0
   realized: 0
---- !u!114 &114801275697828408
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1979330762330776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64f257119cf6d874bb9ecf01600992d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: {fileID: 114192704809389660}
-  output: {fileID: 114720482780831766}
-  conditions: []
-  nodePosition:
-    serializedVersion: 2
-    x: -6845
-    y: 107
-    width: 20
-    height: 20
 --- !u!114 &114807850332459368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12921,8 +13010,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 522
-    y: 1385.6666
+    x: 7332
+    y: 1402.6666
     width: 20
     height: 20
 --- !u!114 &114809168476403194
@@ -12941,8 +13030,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -458
-    y: 1265
+    x: 6352
+    y: 1282
     width: 20
     height: 20
 --- !u!114 &114810493885336336
@@ -12973,8 +13062,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -858
-    y: 1150
+    x: 5952
+    y: 1167
     width: 400
     height: 250
 --- !u!114 &114816609350385602
@@ -12993,8 +13082,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 708
-    y: 111
+    x: 7518
+    y: -304
     width: 20
     height: 20
 --- !u!114 &114819090103492978
@@ -13038,8 +13127,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 522
-    y: 1260.6666
+    x: 7332
+    y: 1277.6666
     width: 20
     height: 20
 --- !u!114 &114835388416478768
@@ -13107,8 +13196,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 522
-    y: 1427.3334
+    x: 7332
+    y: 1444.3334
     width: 20
     height: 20
 --- !u!114 &114844854669635714
@@ -13152,8 +13241,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1340
-    y: 1520
+    x: 5470
+    y: 1537
     width: 20
     height: 20
 --- !u!114 &114851104671550338
@@ -13227,12 +13316,13 @@ MonoBehaviour:
     \u0431\u0443\u0434\u0435\u0448\u044C \u0445\u043E\u0442\u0435\u0442\u044C \u043E\u0442\u043E\u043C\u0441\u0442\u0438\u0442\u044C
     - \u0438 \u044D\u0442\u043E \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E.
     \u0422\u043E\u043B\u044C\u043A\u043E \u043D\u0435 \u0442\u043E\u0440\u043E\u043F\u0438\u0441\u044C."
-  chooses: []
+  chooses:
+  - {fileID: 114367159977455150}
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 746
-    y: -643
+    x: 7556
+    y: -626
     width: 400
     height: 250
 --- !u!114 &114900761777158852
@@ -13251,8 +13341,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 998
-    y: 2203
+    x: 7808
+    y: 2220
     width: 20
     height: 20
 --- !u!114 &114903722279499882
@@ -13271,8 +13361,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 1048
-    y: 2489
+    x: 7858
+    y: 2506
     width: 20
     height: 20
 --- !u!114 &114904238926284338
@@ -13454,8 +13544,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -1278
-    y: 2271
+    x: 5532
+    y: 2288
     width: 400
     height: 250
 --- !u!114 &114931018201172416
@@ -13530,8 +13620,8 @@ MonoBehaviour:
   - {fileID: 114692896719772196}
   nodePosition:
     serializedVersion: 2
-    x: -696
-    y: 635
+    x: 106
+    y: 312
     width: 400
     height: 100
   isOnce: 0
@@ -13552,8 +13642,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 522
-    y: 1302.3334
+    x: 7332
+    y: 1319.3334
     width: 20
     height: 20
 --- !u!114 &114934334678981826
@@ -13577,8 +13667,8 @@ MonoBehaviour:
   - {fileID: 114606520546006884}
   nodePosition:
     serializedVersion: 2
-    x: -5705
-    y: -1106
+    x: 581
+    y: 319
     width: 400
     height: 100
   isOnce: 0
@@ -13599,8 +13689,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: 1924
-    y: 1690
+    x: 8734
+    y: 1707
     width: 20
     height: 20
 --- !u!114 &114947914552052034
@@ -13619,8 +13709,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -1818
-    y: 2050.5
+    x: 4992
+    y: 2067.5
     width: 20
     height: 20
 --- !u!114 &114952108508996560
@@ -13647,8 +13737,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -1740
-    y: 1405
+    x: 5070
+    y: 1422
     width: 400
     height: 250
 --- !u!114 &114956700803446748
@@ -13692,8 +13782,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -2948
-    y: 490.66666
+    x: 3862
+    y: 507.6667
     width: 20
     height: 20
 --- !u!114 &114959591058476094
@@ -13721,7 +13811,7 @@ MonoBehaviour:
     width: 400
     height: 100
   isOnce: 0
-  realized: 0
+  realized: 1
 --- !u!114 &114974194841589188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13765,8 +13855,8 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -365
-    y: 1707
+    x: 6445
+    y: 1724
     width: 20
     height: 20
 --- !u!114 &114983409501539096
@@ -13810,10 +13900,34 @@ MonoBehaviour:
   conditions: []
   nodePosition:
     serializedVersion: 2
-    x: -2320
-    y: 1988
+    x: 4490
+    y: 2005
     width: 20
     height: 20
+--- !u!114 &114989864152973142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773566435415820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f3836f6757f9143baf8717efb51c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  chooseText: 
+  conditions: []
+  effects: []
+  links: []
+  nodePosition:
+    serializedVersion: 2
+    x: 512
+    y: 540
+    width: 400
+    height: 100
+  isOnce: 0
+  realized: 0
 --- !u!114 &114990486718695234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13871,8 +13985,8 @@ MonoBehaviour:
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: -1276
-    y: 1578
+    x: 5534
+    y: 1595
     width: 400
     height: 250
 --- !u!114 &114997329074006308
@@ -13895,11 +14009,12 @@ MonoBehaviour:
     \u043F\u043E\u0434\u0445\u043E\u0434. \u041B\u0430\u0434\u043D\u043E, \u0431\u0443\u0434\u0443
     \u0437\u043D\u0430\u0442\u044C. \u0421\u043F\u0430\u0441\u0438\u0431\u043E \u0437\u0430
     \u043E\u0442\u0432\u0435\u0442."
-  chooses: []
+  chooses:
+  - {fileID: 114600675573561364}
   effects: []
   nodePosition:
     serializedVersion: 2
-    x: 751
-    y: 141
+    x: 7562
+    y: 155
     width: 400
     height: 250

@@ -80,6 +80,11 @@ namespace BadDetective
                 {
                     quest.startLogicMap = quest.logicMaps[startIndex];
                 }
+                int endIndex = EditorGUILayout.Popup("End Logic Map", quest.GetLogicMaps().IndexOf(quest.endLogicMap), quest.GetLogicMapNames().ToArray());
+                if (endIndex != -1)
+                {
+                    quest.endLogicMap = quest.logicMaps[endIndex];
+                }
                 GUILayout.Space(10);
                 eUtils.DrawLogicMapList(quest.logicMaps, quest.transform, ref showLogicMaps, serializedObject);
                 GUILayout.Space(10);

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc81e89ac05b7d448fdbdfabd657869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agencyName: 
+  agencyName: "\u041D\u0435\u0441\u0447\u0430\u0441\u0442\u043D\u044B\u0439 \u0441\u043B\u0443\u0447\u0430\u0439"
   agencySymbol: {fileID: 0}
   office: {fileID: 114368969305942076, guid: a6ca749c222e2b340b4f218aa80e13e8, type: 2}
   detectives:
